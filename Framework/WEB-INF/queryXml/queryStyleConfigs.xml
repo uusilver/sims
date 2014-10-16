@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- === -->
+<!--查询样式配置列表-->
+<queryStyleConfigs>
+  <queryStyleConfig name="null">
+    <![CDATA[ <!---->
+    <!----> ]]>
+    </queryStyleConfig>
+  <queryStyleConfig name="GroupAdmin_Condition">
+    <![CDATA[ <!---->
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="/framework/image/title_r4_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="/framework/image/title_r4_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="/framework/image/title_r4_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table>
+      <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" background="/framework/image/title_r5_c3.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+          <td width="120" valign="top" class="td_xy_select_all"><table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="40" align="right" valign="bottom"><img src="/framework/image/title_r6_c5.gif" width="24" height="24">&nbsp;&nbsp;</td>
+                <td><span  class="font_xy_title">$(conditionLabel)$</span></td>
+              </tr>
+            </table>
+            <table width="85%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td height="5" background="/framework/image/title_r10_c5.jpg"></td>
+              </tr>
+            </table>
+			<!--
+            <table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="12" align="right" class="font_xy_normal">&nbsp;</td>
+                <td class="font_xy_normal">全选
+                  <input name="checkbox32225" type="checkbox" class="checkbox_xy_normal" value="checkbox"></td>
+              </tr>
+            </table>--></td>
+          <td width="1%" bgcolor="#EEF7FD"></td>
+          <td bgcolor="#EEF7FD">$(condition)$</td>
+          <td width="4" background="/framework/image/title_r5_c9.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="/framework/image/title_r10_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="/framework/image/title_r12_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="/framework/image/title_r10_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="3" class="table_big">
+  <tr>
+    <td height="7" background="/framework/image/title_r18_c5.gif"></td>
+  </tr>
+</table>
+    <!----> ]]>
+    </queryStyleConfig>
+
+  <queryStyleConfig name="GroupAdmin_YContent">
+    <![CDATA[ <!---->
+                          <tr>
+                            <td class="td_xy_selected"><span class="td_xy_normal">&nbsp;
+                              <input name="checkGroupY" type="checkbox" class="checkbox_xy_normal">
+                              &nbsp;&nbsp;$(text)$
+                              <input type="hidden" name="groupYName" value="$(value)$">
+                              <input type="hidden" name="groupYLabel" value="$(text)$">
+                              </span> </td>
+                            <td width="26" valign="top" class="td_xy_selected"><input name="checkGroupYSubTotal" type="checkbox" class="checkbox_xy_normal">
+                            </td>
+                          </tr>
+    <!----> ]]>
+    </queryStyleConfig>
+  <queryStyleConfig name="GroupAdmin_XContent">
+    <![CDATA[ <!---->
+                    <tr>
+                      <td class="td_xy_selected"><span class="td_xy_normal">&nbsp;
+                        <input name="checkGroupX" type="checkbox" class="checkbox_xy_normal" value="31">
+                        &nbsp;&nbsp;$(text)$
+                        <input type="hidden" name="groupXName" value="$(value)$">
+                        <input type="hidden" name="groupYLabel" value="$(text)$">
+                        </span></td>
+                    </tr>
+    <!----> ]]>
+    </queryStyleConfig>
+  <queryStyleConfig name="GroupAdmin">
+    <![CDATA[ <!---->
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="/framework/image/title_r4_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="/framework/image/title_r4_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="/framework/image/title_r4_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table>
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" background="/framework/image/title_r5_c3.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+          <td bgcolor="#EEF7FD"><table border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="45" align="center"><img src="/framework/image/title_r6_c5.gif" width="24" height="24"></td>
+                <td valign="top"><table height="23" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td valign="bottom"><span class="font_xy_title">其他条件</span></td>
+                    </tr>
+                  </table></td>
+                <td width="65" align="right" class="td_xy_normal">&nbsp;</td>
+              </tr>
+            </table>
+            <table width="98%" border="0" align="center" cellpadding="0" cellspacing="1">
+              <tr>
+                <td height="5" background="/framework/image/title_r10_c5.jpg"></td>
+              </tr>
+            </table>
+            <table width="93%" border="0" align="center" cellpadding="2" cellspacing="5">
+              <tr>
+                <td width="30%" align="center" valign="top"><table width="100%" border="0" cellspacing="2" cellpadding="0">
+                    <tr>
+                      <td height="23"><table width="90%" border="0" align="center" cellpadding="0" cellspacing="2">
+                          <tr>
+                            <td width="24" align="center" class="item_two_select"> 选择</td>
+                            <td class="item_two_select"> Y 轴已分配条件</td>
+                            <td width="24" align="center" class="item_two_select"> 小计</td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table>
+                  <table width="100%" height="160" border="0" cellpadding="0" cellspacing="3">
+                    <tr>
+                      <td valign="top" bgcolor="#FFFFFF"><table width="90%" border="0" align="center" cellpadding="3" cellspacing="0" id="groupYTable">
+                        </table></td>
+                    </tr>
+                  </table></td>
+                <td width="5%" align="center" valign="bottom"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="159" align="center"><table border="0" cellpadding="5" cellspacing="0">
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="groupToGroup('Z','Y')"> &lt;</button></td>
+                          </tr>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="groupToGroup('Z','Y',true)"> &lt;&lt;</button></td>
+                          </tr>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="groupToGroup('Y','Z')"> &gt;</button></td>
+                          </tr>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="groupToGroup('Y','Z',true)"> &gt;&gt;</button></td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+                <td width="30%" align="center" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="23"><table width="90%" border="0" align="center" cellpadding="0" cellspacing="2">
+                          <tr>
+                            <td width="24" align="center" class="item_two_select"> 选择</td>
+                            <td class="item_two_select"> 待分配条件</td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table>
+                  <table width="100%" height="160"  border="0" cellpadding="0" cellspacing="3">
+                    <tr>
+                      <td valign="top" bgcolor="#FFFFFF"><table width="90%"  border="0" align="center" cellpadding="3" cellspacing="0" id="groupZTable">
+                        </table></td>
+                    </tr>
+                  </table></td>
+                <td width="5%" align="center" valign="bottom"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="159" align="center"><table border="0" cellpadding="5" cellspacing="0">
+                          <td height="37"><button class="button_select" onClick="groupToGroup('Z','X')"> &gt;</button></td>
+                          </tr>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="groupToGroup('Z','X',true)"> &gt;&gt;</button></td>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="groupToGroup('X','Z')"> &lt;</button></td>
+                          </tr>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="groupToGroup('X','Z',true)"> &lt;&lt;</button></td>
+                          </tr>
+                          <tr> </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+                <td width="30%" align="center" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="23"><table width="90%" border="0" align="center" cellpadding="0" cellspacing="2">
+                          <tr>
+                            <td width="24" align="center" class="item_two_select"> 选择</td>
+                            <td class="item_two_select"> X 轴已分配条件</td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table>
+                  <table width="100%" height="160"  border="0" cellpadding="0" cellspacing="3">
+                    <tr>
+                      <td valign="top" bgcolor="#FFFFFF"><table width="90%"  border="0" align="center" cellpadding="3" cellspacing="0" id="groupXTable">
+                        </table></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table></td>
+			    <td width="4" background="/framework/image/title_r5_c9.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="4" height="4"><img src="/framework/image/title_r10_c3.gif" width="4" height="4"></td>
+    <td height="4"><img src="/framework/image/title_r12_c4.jpg" width="100%" height="4"></td>
+    <td width="4" height="4"><img src="/framework/image/title_r10_c8.gif" width="4" height="4"></td>
+  </tr>
+</table>
+</td>
+</tr>
+</table>
+
+<script language="javascript" type="text/javascript">
+function replaceSubstring(inputString, fromString, toString)
+{
+    var temp = inputString;
+    if (fromString == "") {
+        return inputString;
+    }
+    while (temp.indexOf(fromString) != -1)
+    {
+        var toTheLeft = temp.substring(0, temp.indexOf(fromString));
+        var toTheRight = temp.substring(temp.indexOf(fromString)+fromString.length, temp.length);
+        temp = toTheLeft + toString + toTheRight;
+     }
+    return temp;
+
+}
+
+/*
+    根据属性查找第一个节点
+*/
+function getChildByAttribute(xmlDoc,tagName,attributeName,attributeValue)
+{
+    tagList = queryStyleXmlDoc.getElementsByTagName('queryStyleConfig');
+    for (i=0;i<tagList.length;i++)
+    {
+        if (tagList[i].getAttribute(attributeName)==attributeValue)
+            return tagList[i];
+    }
+}
+
+//Xml配置文件的Document
+var queryStyleXmlDoc;
+var GroupAdmin_XContent;
+var GroupAdmin_YContent;
+
+/*
+	从Xml文件读取配置
+*/
+/*
+function initXml()
+{
+    //初始化xmlDoc
+    if (document.implementation && document.implementation.createDocument)
+    {
+        queryStyleXmlDoc = document.implementation.createDocument("", "", null);
+		queryStyleXmlDoc.onload = initConfig;
+    }
+    else if (window.ActiveXObject)
+    {
+	    queryStyleXmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+		queryStyleXmlDoc.onreadystatechange = function () {
+			if (queryStyleXmlDoc.readyState == 4) initConfig()
+		};
+    }
+	//装入配置文件
+    queryStyleXmlDoc.load("queryStyleConfigs.xml");
+}
+function initConfig()
+{
+    GroupAdmin_XContent = getChildByAttribute(queryStyleXmlDoc,'queryStyleConfig','name','GroupAdmin_XContent').text;
+    GroupAdmin_YContent = getChildByAttribute(queryStyleXmlDoc,'queryStyleConfig','name','GroupAdmin_YContent').text;
+}
+initXml();
+*/
+GroupAdmin_YContent = ''
++'                          <tr>'
++'                            <td class="td_xy_selected"><span class="td_xy_normal">&nbsp;'
++'                              <input name="checkGroupY" type="checkbox" class="checkbox_xy_normal">'
++'                              &nbsp;&nbsp;$(text)$'
++'                              <input type="hidden" name="groupYName" value="$(value)$">'
++'                              <input type="hidden" name="groupYLabel" value="$(text)$">'
++'                              </span> </td>'
++'                            <td width="26" valign="top" class="td_xy_selected"><input name="checkGroupYSubTotal" type="checkbox" class="checkbox_xy_normal" value="$(value)$">'
++'                            </td>'
++'                          </tr>';
+GroupAdmin_XContent = ''
++'                    <tr>'
++'                      <td class="td_xy_selected"><span class="td_xy_normal">&nbsp;'
++'                        <input name="checkGroupX" type="checkbox" class="checkbox_xy_normal" value="31">'
++'                        &nbsp;&nbsp;$(text)$'
++'                        <input type="hidden" name="groupXName" value="$(value)$">'
++'                        <input type="hidden" name="groupXLabel" value="$(text)$">'
++'                        </span></td>'
++'                    </tr>';
+GroupAdmin_ZContent = ''
++'                    <tr>'
++'                      <td class="td_xy_selected"><span class="td_xy_normal">&nbsp;'
++'                        <input name="checkGroupZ" type="checkbox" class="checkbox_xy_normal" value="31">'
++'                        &nbsp;&nbsp;$(text)$'
++'                        <input type="hidden" name="groupZName" value="$(value)$">'
++'                        <input type="hidden" name="groupZLabel" value="$(text)$">'
++'                        </span></td>'
++'                    </tr>';
+/*
+	增加一个条件
+*/
+function addGroup(groupDirection,text,value)
+{
+	eval('groupTable=document.all.group'+groupDirection+'Table;');
+	eval('res=GroupAdmin_'+groupDirection+'Content');
+    res = replaceSubstring(res,'$(text)$',text);
+    res = replaceSubstring(res,'$(value)$',value);
+	//Table中插入一行
+	content	= groupTable.outerHTML;
+	idx = content.toLowerCase().lastIndexOf("</tbody");
+    groupTable.outerHTML = content.substring(0,idx) + res + content.substring(idx);
+}
+
+/*
+	从Y轴或者X轴条件移到待分配条件
+*/
+function groupToGroup(groupDirection1,groupDirection2,ifAll)
+{
+	eval('groupTable1=document.all.group'+groupDirection1+'Table');
+	eval('checkGroup = document.all.checkGroup'+groupDirection1);
+	eval('groupLabel = document.all.group'+groupDirection1+'Label');
+	eval('groupName = document.all.group'+groupDirection1+'Name');
+	//条件个数
+	var tableLength = groupTable1.rows.length;
+	for(i=0,j=0;i+j<tableLength;i++)
+	{
+		if (checkGroup.item(i).checked||ifAll)
+		{
+	        addGroup(groupDirection2,groupLabel.item(i).value,groupName.item(i).value);
+
+			//删除当前行
+			groupTable1.deleteRow(i);
+			i--;
+			j++;
+		}
+	}
+}
+
+</script>
+    <!----> ]]>
+    </queryStyleConfig>
+</queryStyleConfigs>

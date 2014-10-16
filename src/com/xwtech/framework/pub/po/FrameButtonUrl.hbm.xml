@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<class 
+    name="com.xwtech.framework.pub.po.FrameButtonUrl" 
+    table="FRAME_BUTTON_URL"
+>
+
+    <id
+        name="buttonUrlId"
+        type="java.lang.Long"
+        column="BUTTON_URL_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="buttonUrlState"
+        type="java.lang.String"
+        column="BUTTON_URL_STATE"
+        not-null="true"
+        length="1"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to FrameButton -->
+    <many-to-one
+        name="frameButton"
+        class="com.xwtech.framework.pub.po.FrameButton"
+        not-null="true"
+    >
+        <column name="BUTTON_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to FrameUrl -->
+    <many-to-one
+        name="frameUrl"
+        class="com.xwtech.framework.pub.po.FrameUrl"
+        not-null="true"
+    >
+        <column name="URL_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,46 @@
+.balckBgColor{
+    background-color: rgb(51, 51, 51);
+}
+
+#exhibitor114{ margin:0 auto;width:auto;height:100%}
+#exhibitorleft{ float:left; width:44%; height:100%;text-align: center}
+#exhibitorright{ float:left; width:56%;height:100%;text-align: center}
+
+.center{
+    margin-right: auto;
+    margin-left:  auto;
+}
+
+#main
+{
+    margin-left:0;
+    width:100%;
+    height:322px;
+    padding:0 5px 5px 0;
+    border:1px #b7f0ff solid;
+}
+.buttons
+{
+    float:left;
+    width:100px;
+    height:100px;
+    margin:5px 0 0 5px;
+    background:white;
+    border:1px black solid;
+    display: inline;
+}
+
+*{margin:0;padding:0;}
+#pop{background:#fff;width:260px;border:1px solid #e0e0e0;font-size:12px;position: fixed;right:10px;bottom:10px;}
+#popHead{line-height:32px;background:#f6f0f3;border-bottom:1px solid #e0e0e0;position:relative;font-size:12px;padding:0 0 0 10px;}
+#popHead h2{font-size:14px;color:#666;line-height:32px;height:32px;}
+#popHead #popClose{position:absolute;right:10px;top:1px;}
+#popHead a#popClose:hover{color:#f00;cursor:pointer;}
+#popContent{padding:5px 10px;}
+#popTitle a{line-height:24px;font-size:14px;font-family:'微软雅黑';color:#333;font-weight:bold;text-decoration:none;}
+#popTitle a:hover{color:#f60;}
+#popIntro{text-indent:24px;line-height:160%;margin:5px 0;color:#666;}
+#popMore{text-align:right;border-top:1px dotted #ccc;line-height:24px;margin:8px 0 0 0;}
+#popMore a{color:#f60;}
+#popMore a:hover{color:#f00;}
+

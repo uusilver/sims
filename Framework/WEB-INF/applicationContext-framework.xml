@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!--
+	- Application context definition for framework
+-->
+
+<beans>
+	<!--<bean
+		id="globeContext"
+		singleton="true"
+		class="com.xwtech.framework.pub.web.GlobeContext">
+		</bean>-->
+	<!-- base framework web application start bean -->
+	<bean id="baseFrameworkApplication" singleton="true"
+		class="com.xwtech.framework.pub.web.BaseFrameworkApplication">
+		<property name="baseJdbcDAO" ref="baseJdbcDAO" />
+	</bean>
+
+	<bean id="paraMethodResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<property name="paramName">
+			<value>method</value>
+		</property>
+		<property name="defaultMethodName">
+			<value>list</value>
+		</property>
+	</bean>
+	
+
+	<bean id="viewResolver" 
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	   <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	   <property name="prefix" value=""/>
+	   <property name="suffix" value=""/>
+	</bean>
+	
+	<!-- message source -->
+	<bean id="userMessageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<!-- wap messge source -->
+				<value>
+					com.xwtech.framework.pub.messageSource.userMessageSource
+				</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- framework web application start bean -->
+	<bean id="frameworkApplication" singleton="true"
+		class="com.xwtech.framework.pub.web.FrameworkApplication">
+		<property name="frameworkProperties" ref="frameworkProperties" />
+		<property name="dbCollection" ref="dbCollection" />
+
+		<property name="cachePojoNames"><!-- only support readonly -->
+			<map>
+				<entry>
+					<key>
+						<value>frameResult</value>
+					</key>
+					<value>from com.xwtech.mss.pub.po.FrameResult frameResult where frameResult.resultState='A'</value>
+				</entry>
+				<!-- entry>
+					<key>
+						<value>userInterests</value>
+					</key>
+					<value>from com.xwtech.mss.pub.po.MssLikeInfo mssLikeInfo where mssLikeInfo.isDel=0 and mssLikeInfo.isHide=0</value>
+				</entry> -->
+			</map>
+		</property>
+		<property name="baseHibernateDAO" ref="baseHibernateDAO" />
+		<property name="baseJdbcDAO" ref="baseJdbcDAO" />
+	</bean>
+
+	<!-- framework properties beans -->
+	<bean id="frameworkProperties"
+		class="com.xwtech.framework.pub.web.FrameworkProperties">
+		<property name="useCheckCode" value="false" /><!-- 是否使用验证码 -->
+		<!-- <property name="mailFrom" value="gudp@mail.xwtec.cn"/> 
+			<property name="mailHost" value="mail.xwtec.cn"/> 
+			<property name="userName" value="gudp"/> 
+			<property name="password" value="888888"/> -->
+		<property name="skipOverHourStatistics" value="false" /> <!-- 是否跳过时报统计 关系web/wap apache wap栏目/其它统计 4个业务 -->
+		<property name="mailSendSwitch" value="true" />
+		<property name="commonOrderMsgSendSwitch" value="false" />
+		<property name="networkOrderMsgSendSwitch" value="false" />
+		<property name="tradeOrderMsgSendSwitch" value="false" />
+		<property name="signContractMsgSendSwitch" value="false" />
+		<property name="comparePriceMsgSendSwitch" value="false" />
+		<property name="prefixPath" value="../../../var/upload/Mss" /><!-- 上传附件路径前缀 -->
+		<property name="annexPathPrefix" value="/Mss_annex" /><!-- 访问附件前缀 -->
+		<property name="reviewFilePath" value="/file/review" /><!-- 预览文件路径 -->
+		<property name="importFilePath" value="/file/input" /><!-- 导入文件路径 -->
+		<property name="exportFilePath" value="/file/export" /><!-- 导出文件路径 -->
+		<property name="webAddress"
+			value="http://10.33.15.187:88/Mss/index.jsp" />
+		<property name="notFilterUrls">
+			<list>
+				<!-- 不需要进行校验的url -->
+				<value>index.jsp</value>
+				<value>login.jsp</value>
+				<value>information.jsp</value>
+				<value>userLoginController.do</value>
+				<value>logout.jsp</value>
+			</list>
+		</property>
+		<!-- 是否需要对查询结果按记录创建用户进行过滤 -->
+		<property name="notFilterItems" value="true" />
+	</bean>
+	
+	<bean id="transTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<!--<property name="hibernateTransactionManager" ref="hibernateTransactionManager"/>-->
+		<property name="transactionManager">
+			<ref local="transactionManager"></ref>
+		</property>
+	</bean>
+	
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+</beans>
+

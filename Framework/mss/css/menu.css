@@ -1,0 +1,48 @@
+body {
+	margin: 0px;
+}
+.menu_bg_line {
+	background-color: #115AFF;
+	background-image: url(../image/menu_line.jpg);
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.menu_out {
+	font-size: 9pt;
+	color: #FFFFFF;
+	background-image: url(../image/menu_out.jpg);
+	height: 30px;
+	padding-top: 3px;
+	padding-left: 20px;
+	cursor: pointer;
+}
+.menu_over {
+	font-size: 9pt;
+	color: #26C4FF;
+	background-image: url(../image/menu_over.jpg);
+	height: 30px;
+	cursor: pointer;
+	padding-top: 3px;
+	padding-left: 43px;
+}
+.menu_bg {
+	background-image: url(../image/menu_bg.jpg);
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.menu_td1 {
+	font-size: 9pt;
+	color: #FFFFFF;
+	height: 26px;
+	padding-left: 20px;
+}
+a.menu {
+	font-size: 9pt;
+	color: #DDDDDD;
+	text-decoration: none;
+}
+a.menu:hover {
+	font-size: 9pt;
+	color: #00CCFF;
+	text-decoration: none;
+}

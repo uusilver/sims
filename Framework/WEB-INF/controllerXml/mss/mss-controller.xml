@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean name="/mss/jsp/userLoginController.do"
+		class="com.xwtech.mss.controller.UserLoginController">
+		<property name="userLoginBO" ref="userLoginBO" />
+		<property name="commandClass"
+			value="com.xwtech.mss.pub.po.UserInfo" />
+	</bean>
+
+	<bean name="/mss/jsp/menuController.do"
+		class="com.xwtech.mss.controller.MenuController">
+		<property name="menuBO" ref="menuBO" />
+		<property name="roleBO" ref="roleBO" />
+		<property name="userPropertyBO" ref="userPropertyBO" />
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+	<bean name="/mss/jsp/sysManage/userManageController.do"
+		class="com.xwtech.mss.controller.UserManageController">
+		<property name="userManageBO" ref="userManageBO" />
+		<property name="menuBO" ref="menuBO" />
+		<property name="roleBO" ref="roleBO" />
+		<property name="userPropertyBO" ref="userPropertyBO" />
+		<property name="orgnizationBO" ref="orgnizationBO" />
+		<property name="authorizationBO" ref="authorizationBO" />
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+	<!-- 角色信息管理 -->
+	<bean name="/mss/jsp/sysManage/roleManageController.do"
+		class="com.xwtech.mss.controller.RoleManageController">
+		<property name="userManageBO" ref="userManageBO" />
+		<property name="menuBO" ref="menuBO" />
+		<property name="roleBO" ref="roleBO" />
+		<property name="userPropertyBO" ref="userPropertyBO" />
+		<property name="orgnizationBO" ref="orgnizationBO" />
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean name="/mss/jsp/log/operLog.do"
+		class="com.xwtech.mss.controller.OperLogController">
+		<property name="operLogBO">
+			<ref bean="operLogBO" />
+		</property>
+
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+<!-- 部门机构管理 -->
+	<bean name="/mss/jsp/OrgnizationOperation.do"
+		class="com.xwtech.mss.controller.OrgnizationOperation">
+		<property name="orgnizationBO" ref="orgnizationBO" />
+		<property name="sysOperLog" ref="sysOperLog" />
+		
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
+	
+
+
+	<bean name="/mss/jsp/business/goodsTypeController.do" class="com.xwtech.mss.controller.GoodsTypeController">
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="goodsTypeBO" ref="goodsTypeBO" />
+		<property name="operLogBO" ref="operLogBO" />
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
+	
+	<bean name="/mss/jsp/business/goodsInfoController.do" class="com.xwtech.mss.controller.GoodsInfoController">
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="goodsInfoBO" ref="goodsInfoBO" />
+		<property name="goodsTypeBO" ref="goodsTypeBO" />
+		<property name="goodsRecordBO" ref="goodsRecordBO"/>
+		<property name="operLogBO" ref="operLogBO"/>
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
+	
+	<bean name="/mss/jsp/business/goodsRecordController.do" class="com.xwtech.mss.controller.GoodsRecordController">
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="goodsRecordBO" ref="goodsRecordBO" />
+		<property name="goodsInfoBO" ref="goodsInfoBO" />
+		<property name="clientInfoBO" ref="clientInfoBO" />
+		<property name="operLogBO" ref="operLogBO" />
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
+	
+	<bean name="/mss/jsp/business/clientInfoController.do" class="com.xwtech.mss.controller.ClientInfoController">
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="clientInfoBO" ref="clientInfoBO" />
+		<property name="operLogBO" ref="operLogBO"/>
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
+
+</beans>

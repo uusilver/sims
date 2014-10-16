@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class
+    name="com.xwtech.framework.pub.po.FrameRole"
+    table="FRAME_ROLE"
+>
+
+    <id
+        name="roleId"
+        type="java.lang.Long"
+        column="ROLE_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="roleName"
+        type="java.lang.String"
+        column="ROLE_NAME"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="roleDesc"
+        type="java.lang.String"
+        column="ROLE_DESC"
+        length="200"
+    />
+    <property
+        name="roleState"
+        type="java.lang.String"
+        column="ROLE_STATE"
+        not-null="true"
+        length="1"
+    />
+
+    <!-- Associations -->
+
+    <!-- bi-directional one-to-many association to FrameRoleSubmenu -->
+    <set
+        name="frameRoleSubmenus"
+        inverse="true"
+        fetch="join"
+		cascade="none"
+    >
+        <key>
+            <column name="ROLE_ID" />
+        </key>
+        <one-to-many
+            class="com.xwtech.framework.pub.po.FrameRoleSubmenu"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to FrameUrl -->
+    <set
+        name="frameUrls"
+        inverse="true"
+        lazy="false"
+		cascade="none"
+    >
+        <key>
+            <column name="ROLE_ID" />
+        </key>
+        <one-to-many
+            class="com.xwtech.framework.pub.po.FrameUrl"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to FrameLoginRole -->
+    <set
+        name="frameLoginRoles"
+        inverse="true"
+        lazy="true"
+		cascade="none"
+    >
+        <key>
+            <column name="ROLE_ID" />
+        </key>
+        <one-to-many
+            class="com.xwtech.framework.pub.po.FrameLoginRole"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

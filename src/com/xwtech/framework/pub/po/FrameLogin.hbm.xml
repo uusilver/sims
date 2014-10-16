@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class
+    name="com.xwtech.framework.pub.po.FrameLogin"
+    table="FRAME_LOGIN"
+>
+
+    <id
+        name="loginId"
+        type="java.lang.Long"
+        column="LOGIN_ID"
+    >
+     <generator class="sequence">
+	     <param name="sequence">SEQ_FRAME_LOGIN_ID</param>
+     </generator>
+    </id>
+
+    <property
+        name="loginName"
+        type="java.lang.String"
+        column="LOGIN_NAME"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="loginPwd"
+        type="java.lang.String"
+        column="LOGIN_PWD"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="loginLastTime"
+        type="java.lang.String"
+        column="LOGIN_LAST_TIME"
+        length="14"
+    />
+    <property
+        name="loginState"
+        type="java.lang.String"
+        column="LOGIN_STATE"
+        not-null="true"
+        length="1"
+    />
+
+    <!-- Associations -->
+
+    <!-- bi-directional one-to-many association to FrameLoginRole -->
+    <set
+        name="frameLoginRoles"
+        fetch="join"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="LOGIN_ID" />
+        </key>
+        <one-to-many
+            class="com.xwtech.framework.pub.po.FrameLoginRole"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

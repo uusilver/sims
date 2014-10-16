@@ -1,0 +1,354 @@
+body {
+	margin: 5px 2px 0px 3px;
+	scrollbar-face-color:#6E7B84;
+    scrollbar-arrow-color:#FFFFFF;
+    scrollbar-highlight-color:#6E7B84;
+    scrollbar-3dlight-color:#FFFFFF;
+    scrollbar-shadow-color:#6E7B84;
+    scrollbar-darkshadow-color:#D0DBE8;
+    scrollbar-track-color:#DDDDDD;
+}
+a {
+	font-size: 9pt;
+	color: #4E729B;
+	text-decoration: none;
+}
+a:hover {
+	font-size: 9pt;
+	color: #0066FF;
+	text-decoration: underline;
+}
+td {
+	background-color: #FFFFFF;
+	height: 22px;
+}
+.xuqiu_title {
+	font-size: 10pt;
+	color: #294051;
+	text-align: center;
+	height: 25px;
+}
+.xuqiu_table1 {
+	background-color: #B9C9DB;
+}
+.xuqiu_table1_title {
+	font-size: 10pt;
+	color: #294051;
+	height: 25px;
+	border-top-width: 2px;
+	border-top-style: solid;
+	border-top-color: #47708D;
+	background-color: #D0DBE8;
+	text-align: center;
+}
+.xuqiu_table1_center {
+	font-size: 9pt;
+	color: #3C4F5F;
+	text-align: center;
+}
+.xuqiu_table1_left {
+	padding: 10px;
+	font-size: 9pt;
+	color: #3C4F5F;
+	text-align: left;
+}
+.xuqiu_table1_center2 {
+	font-size: 9pt;
+	color: #666666;
+	text-align: center;
+}
+.xuqiu_table1_center3 {
+	font-size: 9pt;
+	color: #5078A4;
+	text-align: center;
+}
+.xuqiu_table1_center4 {
+	font-size: 9pt;
+	color: #FF0066;
+	text-align: center;
+}
+.xuqiu_page_td1 {
+	height: 40px;
+	font-size: 9pt;
+	color: #5B7EA3;
+}
+.xuqiu_page_input {
+	font-size: 9pt;
+	color: #5B7EA3;
+	text-align: center;
+	height: 18px;
+	width: 25px;
+	border: 1px solid #5B7EA3;
+}
+.xuqiu_anniu01 {
+	font-size: 9pt;
+	color: #FFFFFF;
+	background-image: url(/dms/image/xuqiu_anniu01.jpg);
+	height: 22px;
+	width: 146px;
+	padding-top: 2px;
+	border: 0px none;
+}
+.xuqiu_anniu_del {
+	font-size: 9pt;
+	color: #FFFFFF;
+	background-image: url(/dms/image/anniu_del.jpg);
+	height: 22px;
+	width: 80px;
+	border: 0px none;
+}
+.xuqiu_anniu_add {
+	font-size: 9pt;
+	color: #FFFFFF;
+	background-image: url(/dms/image/anniu_add.jpg);
+	height: 22px;
+	width: 80px;
+	border: 0px none;
+}
+.xuqiu_add_td01 {
+	text-align: center;
+	padding: 5px;
+	background-color: #F9F9F9;
+}
+.xuqiu_add_text {
+	font-size: 9pt;
+	color: #294051;
+	padding: 3px;
+	height: 80px;
+	width: 80%;
+	border: 1px solid #5B7EA3;
+}
+.wuliaoconfig_table1_left {
+	height: 30px;
+	font-size: 9pt;
+	color: #5078A4;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.wuliaoconfig_table1_left2 {
+	height: 30px;
+	font-size: 9pt;
+	color: #5078A4;
+	background-color:#DEDEDE;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.wuliaoconfig_add_td {
+	background-color: #DFE7F0;
+	text-align: center;
+	font-size: 10pt;
+	color: #294051;
+	height: 25px;
+}
+.wuliaoconfig_add_input {
+	font-size: 9pt;
+	color: #5B7EA3;
+	height: 18px;
+	border: 1px solid #8FA7C0;
+}
+.wuliaoconfig_add_line {
+	color: #C2D0DE;
+	width: 90%;
+	height: 1px;
+	text-align: left;
+}
+.wuliaoruku_text {
+	font-size: 9pt;
+	color: #294051;
+	padding: 3px;
+	height: 50px;
+	width: 60%;
+	border: 1px solid #5B7EA3;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.wuliaoruku_anniu1 {
+	background-image: url(/dms/image/select.jpg);
+	height: 22px;
+	width: 23px;
+	border: 0px none;
+	font-size: 9pt;
+	color: #FFFFFF;
+	padding-top: 3px;
+	padding-left: 4px;
+	cursor:pointer;
+}
+.wuliaoruku_anniu2 {
+	background-image: url(/dms/image/del.gif);
+	height: 16px;
+	width: 16px;
+	border: 0px none;
+	font-size: 9pt;
+	color: #FFFFFF;
+	padding-top: 3px;
+	padding-left: 4px;
+	cursor:pointer;
+}
+.wuliaoruku_divtable {
+	padding: 6px;
+}
+
+.chaxun_line {
+	color: #C2D0DE;
+	height: 1px;
+}
+.chuzhang_font {
+	font-size: 9pt;
+	color: #666666;
+}
+.chuzhang__title {
+	font-size: 10pt;
+	color: #294051;
+	height: 22px;
+	background-color: #D0DBE8;
+	text-align: center;
+}
+.login_td {
+	height: 10px;
+}
+.login_td2 {
+	height: 27px;
+	font-size: 9pt;
+	color: #4E729B;
+}
+.login_td3 {
+	height: 35px;
+	font-size: 9pt;
+	color: #999999;
+}
+
+.chukudan_table1 {
+	background-color: #000000;
+	border: 1px solid #000000;
+}
+.chukudan_title {
+	font-size: 16pt;
+	color: #000000;
+	text-align: center;
+	height: 60px;
+	padding-right: 150px;
+}
+.chukudan_name {
+	font-size: 18pt;
+	color: #000000;
+	text-decoration: underline;
+	align: center;
+	text-align: center;
+	padding-left: 180px;
+	height:50px;
+}
+.chukudan_num {
+	font-size: 15pt;
+	color: #000000;
+	width: 180px;
+}
+.chukudan_num2 {
+	font-size: 15pt;
+	color: #FF0000;
+	font-weight: lighter;
+	font-family: "Times New Roman", Times, serif;
+}
+.chukudan_bumen {
+	font-size: 12pt;
+	color: #000000;
+	padding-left: 10px;
+}
+.chukudan_bumen2 {
+	font-size: 12pt;
+	color: #000000;
+	width: 200px;
+}
+.chukudan_cungen {
+	font-size: 10.5pt;
+	color: #000000;
+	width: 30px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.chukudan_table_title {
+	font-size: 10.5pt;
+	color: #000000;
+	text-align: center;
+	height: 40px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+}
+.chukudan_table_td {
+	font-size: 10.5pt;
+	color: #000000;
+	text-align: center;
+	height: 30px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+}
+.chukudan_qianming {
+	font-size: 10.5pt;
+	color: #000000;
+	padding-left: 10px;
+}
+.hover_hand {
+	cursor:pointer;
+}
+
+
+.main_font {
+	font-size: 9pt;
+	color: #0066FF;
+}
+.main_td1 {
+    height: 3px;
+}
+.main_text {
+	font-size: 10pt;
+	color: #FF0000;
+	text-align: center;
+}
+
+.login_input {
+	font-size: 9pt;
+	color: #5B7EA3;
+	height: 18px;
+	width: 100px;
+	border: 1px solid #8FA7C0;
+}
+.warning {
+	font-size: 9pt;
+	color: #4E729B;
+	padding-right: 15px;
+	padding-left: 20px;
+}
+.red {
+	font-size: 9pt;
+	color: #FF0066;
+}
+.orange {
+	font-size: 9pt;
+	color: #FF6600;
+}
+
+.ul_left {
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+} 
+li.li_song_name_more {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space:nowrap;
+	width:400px;
+	list-style-type: none;
+	margin : 0;
+	padding : 0;
+} 
+.chat_td {
+	height: 22px;
+}

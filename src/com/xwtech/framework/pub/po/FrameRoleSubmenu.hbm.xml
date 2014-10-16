@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class
+    name="com.xwtech.framework.pub.po.FrameRoleSubmenu"
+    table="FRAME_ROLE_SUBMENU"
+>
+
+    <id
+        name="roleSubmenuId"
+        type="java.lang.Long"
+        column="ROLE_SUBMENU_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="roleSubmenuState"
+        type="java.lang.String"
+        column="ROLE_SUBMENU_STATE"
+        not-null="true"
+        length="1"
+    />
+
+    <!-- Associations -->
+
+    <!-- bi-directional many-to-one association to FrameRole -->
+    <many-to-one
+        name="frameRole"
+        class="com.xwtech.framework.pub.po.FrameRole"
+        not-null="true"
+    >
+        <column name="ROLE_ID" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to FrameSubmenu -->
+    <many-to-one
+        name="frameSubmenu"
+        class="com.xwtech.framework.pub.po.FrameSubmenu"
+        not-null="true"
+    >
+        <column name="SUBMENU_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

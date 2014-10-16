@@ -1,0 +1,41 @@
+DATAIMPORT
+
+显示名称	PO	fieldName	编号set
+
+1.营业厅基本信息	PmsBusIntegInfo	PO_PmsBusIntegInfo_1	setNo
+
+2.综合楼基本信息	PmsBusIntegInfo	PO_PmsBusIntegInfo_2	setNo
+
+3.机房基本信息	PmsMachineHouseInfo	PO_PmsMachineHouseInfo	setMachineHouseNo
+
+4.房产基本信息	PmsHousePropInfo	PO_PmsHousePropInfo	setHousePropNo
+
+5.食堂基本信息	PmsMessHallInfo	PO_PmsMessHallInfo	setMessHallNo
+
+6.采购基本信息	PmsStockInfo	PO_PmsStockInfo	setStockNo
+
+7.代维公司基本信息	PmsProxyCompanyInfo	PO_PmsProxyCompanyInfo	setProxyCompanyNo
+
+8.建设公司基本信息	PmsBuildCompanyInfo	PO_PmsBuildCompanyInfo	setBuildCompanyNo
+
+9.用户信息	PmsUser	PO_PmsUser	setLoginName
+
+10.营业厅的设备信息	PmsEquipInfo	PO_PmsEquipInfo_1	setEquipNo
+
+11.综合楼的设备信息	PmsEquipInfo	PO_PmsEquipInfo_2	setEquipNo
+
+12.机房的设备信息	PmsEquipInfo	PO_PmsEquipInfo_3	setEquipNo
+
+13.营业厅的合同信息	PmsContrInfo	PO_PmsContrInfo_1	setContrNo
+
+14.综合楼的合同信息	PmsContrInfo	PO_PmsContrInfo_2	setContrNo
+
+15.机房的合同信息	PmsContrInfo	PO_PmsContrInfo_3	setContrNo
+
+16.房产的合同信息	PmsContrInfo	PO_PmsContrInfo_4	setContrNo
+
+17.食堂的合同信息	PmsContrInfo	PO_PmsContrInfo_5	setContrNo
+
+18.采购的合同信息	PmsContrInfo	PO_PmsContrInfo_6	setContrNo
+
+19.代维公司的合同信息	PmsContrInfo	PO_PmsContrInfo_7	setContrNo

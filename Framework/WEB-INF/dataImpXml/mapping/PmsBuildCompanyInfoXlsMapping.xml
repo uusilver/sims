@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<class className="com.xwtech.pms.pub.po.PmsBuildCompanyInfo">
+  <entry>
+    <title>地址</title>
+    <methodName>setAddress</methodName>
+  </entry>
+  <entry>
+    <title>联系号码</title>
+    <methodName>setPhone</methodName>
+  </entry>
+  <entry>
+    <title>备注</title>
+    <methodName>setRemaek</methodName>
+  </entry>
+  <entry>
+    <title>联系人</title>
+    <methodName>setLinkMan</methodName>
+  </entry>
+  <entry>
+    <title>建设公司名</title>
+    <methodName>setBuildCompanyName</methodName>
+  </entry>
+  <entry>
+    <title>公司规模</title>
+    <methodName>setCompanySize</methodName>
+  </entry>
+  <entry>
+    <title>服务内容</title>
+    <methodName>setServiceContent</methodName>
+  </entry>
+</class>

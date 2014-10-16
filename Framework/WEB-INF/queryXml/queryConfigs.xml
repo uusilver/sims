@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- === -->
+<!--查询配置列表-->
+<!--：配置如何获取所有的查询配置-->
+<queryConfigs cacheConfig="false">
+  <!--cacheConfig属性-->
+  <!--：是否缓存查询配置，缺省为false-->
+  <!--查询配置-->
+  <!--：一个查询配置中可以包含多个查询-->
+  <queryConfig class="com.xwtech.framework.query.bo.QueryConfigByXml">
+    <!--class属性（必选）：负责查询配置解析的类-->
+    <!-- === -->
+    <!--配置文件路径（对于QueryConfigByXml必选）-->
+    <!--：可以配置多个配置文件，这里配置的文件路径是相对路径-->
+    <configFilePath>sample/querySimple.xml</configFilePath>
+    <configFilePath>sample/queryGroup.xml</configFilePath>
+    <configFilePath>sample/querySoap.xml</configFilePath>
+    <configFilePath>admin/sysUserInfoList.xml</configFilePath>
+    <configFilePath>admin/ringContendTypeList.xml</configFilePath>
+    <configFilePath>admin/promotionDiscountActivityList.xml</configFilePath>
+    <configFilePath>admin/spInfoList.xml</configFilePath>
+    <configFilePath>admin/ipInfoList.xml</configFilePath>
+    <configFilePath>admin/sysUserRoleList.xml</configFilePath>
+    <configFilePath>admin/sysRoleList.xml</configFilePath>
+    <configFilePath>admin/sysNumSegmentList.xml</configFilePath>
+    <configFilePath>admin/sysRegionList.xml</configFilePath>
+    <configFilePath>admin/serviceInfoList.xml</configFilePath>
+    <configFilePath>admin/userGradeList.xml</configFilePath>
+    <configFilePath>admin/sysNoteList.xml</configFilePath>
+    <configFilePath>admin/spCampaignList.xml</configFilePath>
+    <configFilePath>admin/ringApproveList.xml</configFilePath>
+    <configFilePath>admin/selectRingList.xml</configFilePath>
+    <configFilePath>admin/selectServiceList.xml</configFilePath>
+    <configFilePath>admin/promotionOfferList.xml</configFilePath>
+    <configFilePath>admin/auditingRing.xml</configFilePath>
+    <configFilePath>admin/auditingRingSelect.xml</configFilePath>
+    <configFilePath>admin/ringSelect.xml</configFilePath>
+    <configFilePath>admin/sysOperation.xml</configFilePath>
+    <configFilePath>admin/sysOperationAggregate.xml</configFilePath>
+    <configFilePath>admin/sysOperationSelect.xml</configFilePath>
+    <configFilePath>admin/oneOperation.xml</configFilePath>
+    <configFilePath>admin/sysAffiche.xml</configFilePath>
+    <configFilePath>admin/sysAfficheSelect.xml</configFilePath>
+    <configFilePath>admin/auditingMsgSelect.xml</configFilePath>
+    <configFilePath>admin/auditingMsg.xml</configFilePath>
+    <configFilePath>admin/ringTaxisSelect.xml</configFilePath>
+    <configFilePath>admin/discountActivityList.xml</configFilePath>
+    <configFilePath>admin/ringList.xml</configFilePath>
+    <configFilePath>admin/auditingRingCommend.xml</configFilePath>
+    <configFilePath>admin/auditingRingCommendSelect.xml</configFilePath>
+    <configFilePath>admin/auditingRingSelect1.xml</configFilePath>
+    <configFilePath>admin/auditingRing.xml</configFilePath>
+    <configFilePath>admin/userLevelSelect.xml</configFilePath>
+    <configFilePath>admin/userLevel.xml</configFilePath>
+    <configFilePath>admin/serviceInfoSelect.xml</configFilePath>
+    <configFilePath>admin/ringSmallTypeSelect.xml</configFilePath>
+    <configFilePath>admin/ringContendTypeSelect.xml</configFilePath>
+    <configFilePath>admin/ringContendType.xml</configFilePath>
+    <configFilePath>admin/lvrringSmallTypeSelect.xml</configFilePath>
+    <configFilePath>admin/lvrringContendTypeSelect.xml</configFilePath>
+    <configFilePath>admin/lvrringContendType.xml</configFilePath>
+    <configFilePath>admin/spInfo.xml</configFilePath>
+    <configFilePath>admin/spInfoSelect.xml</configFilePath>
+    <configFilePath>admin/ringModifySheetApproveList.xml</configFilePath>
+    <configFilePath>admin/sysConfig.xml</configFilePath>
+    <configFilePath>admin/promotionPriceList.xml</configFilePath>
+    <configFilePath>admin/discountActivity.xml</configFilePath>
+    <configFilePath>admin/sysUserInfo.xml</configFilePath>
+    <configFilePath>admin/spAuditingactivity.xml</configFilePath>
+    <configFilePath>admin/manageRing.xml</configFilePath>
+    <configFilePath>admin/ringPhbSearch.xml</configFilePath>
+    <configFilePath>admin/serviceList.xml</configFilePath>
+    <configFilePath>admin/smsBlackListManager.xml</configFilePath>
+    <configFilePath>admin/smsBusinessActivity.xml</configFilePath>
+    <configFilePath>admin/batchMsg.xml</configFilePath>
+
+    <configFilePath>user/clzjRecommendTop.xml</configFilePath>
+    <configFilePath>user/newRingRecommendTop.xml</configFilePath>
+    <configFilePath>user/newUploadTop.xml</configFilePath>
+    <configFilePath>user/weekTop.xml</configFilePath>
+    <configFilePath>user/monthTop.xml</configFilePath>
+    <configFilePath>user/allTop.xml</configFilePath>
+    <configFilePath>user/searchRing.xml</configFilePath>
+    <configFilePath>user/searchRingBySinger.xml</configFilePath>
+    <configFilePath>user/recommendArea.xml</configFilePath>
+    <configFilePath>user/ringBox.xml</configFilePath>
+    <configFilePath>user/superPackage.xml</configFilePath>
+    <configFilePath>user/freePackage.xml</configFilePath>
+    <configFilePath>user/ringBoxDetail.xml</configFilePath>
+    <configFilePath>user/superPackageDetail.xml</configFilePath>
+    <configFilePath>user/freePackageDetail.xml</configFilePath>
+    <configFilePath>user/settingDefaultRing.xml</configFilePath>
+    <configFilePath>user/queryDefaultRing.xml</configFilePath>
+    <configFilePath>user/changeDefaultRing.xml</configFilePath>
+    <configFilePath>user/selectContactor.xml</configFilePath>
+    <configFilePath>user/settingRingManager.xml</configFilePath>
+    <configFilePath>user/contactorDetail.xml</configFilePath>
+    <configFilePath>user/settingContactorRing.xml</configFilePath>
+    <configFilePath>user/selectUserGroup.xml</configFilePath>
+    <configFilePath>user/selectGroupConstanctor.xml</configFilePath>
+    <configFilePath>user/selsectGroupRing.xml</configFilePath>
+    <configFilePath>user/selectGroupContactor.xml</configFilePath>
+    <configFilePath>user/groupDetail.xml</configFilePath>
+    <configFilePath>user/changeGroupRing.xml</configFilePath>
+    <configFilePath>user/handleHistory.xml</configFilePath>
+    <configFilePath>user/settingHistory.xml</configFilePath>
+    <configFilePath>user/downloadHistory.xml</configFilePath>
+    <configFilePath>user/searchMessage.xml</configFilePath>
+    <configFilePath>user/complimentContactor.xml</configFilePath>
+    <configFilePath>user/complimentGroup.xml</configFilePath>
+    <configFilePath>user/queryCopyNumber.xml</configFilePath>
+    <configFilePath>user/settingCopyContactor.xml</configFilePath>
+    <configFilePath>user/queryColtdRing.xml</configFilePath>
+    <configFilePath>user/searchContactor.xml</configFilePath>
+    <configFilePath>user/sendHistory.xml</configFilePath>
+
+    <configFilePath>user/settingDefaultRingBox.xml</configFilePath>
+    <configFilePath>user/settingDefaultPackage.xml</configFilePath>
+    <configFilePath>user/changeBoxRing.xml</configFilePath>
+    <configFilePath>user/changePackageRing.xml</configFilePath>
+    <configFilePath>user/settingContactorRingBox.xml</configFilePath>
+    <configFilePath>user/settingContactorPackage.xml</configFilePath>
+
+
+    <configFilePath>sp/ringBoxSelect.xml</configFilePath>
+    <configFilePath>sp/spPloyUploadSelect.xml</configFilePath>
+    <configFilePath>sp/writeMessageBoard.xml</configFilePath>
+    <configFilePath>sp/messageBoard.xml</configFilePath>
+    <configFilePath>sp/spPloyVindicate.xml</configFilePath>
+    <configFilePath>sp/ringBrowse.xml</configFilePath>
+    <configFilePath>sp/ringManage.xml</configFilePath>
+    <configFilePath>sp/ringCommendSelect.xml</configFilePath>
+    <configFilePath>sp/ringCommendVindicate.xml</configFilePath>
+    <configFilePath>sp/ringCommendVindicateSelect.xml</configFilePath>
+    <configFilePath>sp/ringCommendVindicateRingSelect.xml</configFilePath>
+    <configFilePath>sp/ringModifySheetList.xml</configFilePath>
+    <configFilePath>sp/uploadManager.xml</configFilePath>
+    <configFilePath>sp/businessRingCommend.xml</configFilePath>
+    <configFilePath>sp/businessRingCommendSelect.xml</configFilePath>
+    <configFilePath>sp/spPloyUploadRingSelect.xml</configFilePath>
+    <configFilePath>sp/spPloyUploadRing.xml</configFilePath>
+
+    <configFilePath>manpower/queryDefaultRing.xml</configFilePath>
+    <configFilePath>manpower/settingDefaultRing.xml</configFilePath>
+    <configFilePath>manpower/changeDefaultRing.xml</configFilePath>
+    <configFilePath>manpower/selectContactor.xml</configFilePath>
+    <configFilePath>manpower/settingContactorRing.xml</configFilePath>
+    <configFilePath>manpower/contactorDetail.xml</configFilePath>
+    <configFilePath>manpower/handleHistory.xml</configFilePath>
+    <configFilePath>manpower/settingHistory.xml</configFilePath>
+    <configFilePath>manpower/downloadHistory.xml</configFilePath>
+    <configFilePath>manpower/searchMessage.xml</configFilePath>
+    <configFilePath>manpower/selectUserGroup.xml</configFilePath>
+    <configFilePath>manpower/selsectGroupRing.xml</configFilePath>
+    <configFilePath>manpower/changeGroupRing.xml</configFilePath>
+    <configFilePath>manpower/selectGroupConstanctor.xml</configFilePath>
+    <configFilePath>manpower/groupDetail.xml</configFilePath>
+    <configFilePath>manpower/selectGroupContactor.xml</configFilePath>
+    <configFilePath>manpower/settingRingManager.xml</configFilePath>
+    <configFilePath>manpower/complimentGroup.xml</configFilePath>
+    <configFilePath>manpower/complimentContactor.xml</configFilePath>
+    <configFilePath>manpower/searchRing.xml</configFilePath>
+    <configFilePath>manpower/searchRingBySinger.xml</configFilePath>
+    <configFilePath>manpower/queryColtdRing.xml</configFilePath>
+    <configFilePath>manpower/queryCopyNumber.xml</configFilePath>
+    <configFilePath>manpower/settingCopyContactor.xml</configFilePath>
+    <configFilePath>manpower/ringBox.xml</configFilePath>
+    <configFilePath>manpower/ringBoxDetail.xml</configFilePath>
+    <configFilePath>manpower/statistic1.xml</configFilePath>
+    <configFilePath>manpower/statistic2.xml</configFilePath>
+    <configFilePath>manpower/statisticDownland.xml</configFilePath>
+    <configFilePath>manpower/statisticCompliment.xml</configFilePath>
+    <configFilePath>manpower/statisticDelRing.xml</configFilePath>
+    <configFilePath>manpower/statisticSetting.xml</configFilePath>
+    <configFilePath>manpower/statisticDelSetting.xml</configFilePath>
+    <configFilePath>manpower/queryRing.xml</configFilePath>
+    <configFilePath>manpower/searchContactor.xml</configFilePath>
+    <configFilePath>manpower/sendHistory.xml</configFilePath>
+
+    <configFilePath>group/bolcRingMaintenance.xml</configFilePath>
+    <configFilePath>group/bolcRingSetting.xml</configFilePath>
+    <configFilePath>group/bolcRingSettingSearch.xml</configFilePath>
+    <configFilePath>group/bolcParticularInfo.xml</configFilePath>
+    <configFilePath>group/bolcNumberMaintenance.xml</configFilePath>
+    <configFilePath>group/bolcCustomerSearch.xml</configFilePath>
+
+
+
+    <configFilePath>diy/queryUsersByBallot.xml</configFilePath>
+    <configFilePath>diy/queryRings.xml</configFilePath>
+    <configFilePath>diy/queryNewRings.xml</configFilePath>
+    <configFilePath>diy/queryNewRecommended.xml</configFilePath>
+    <configFilePath>diy/queryRecommendedFamily.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonFriendsHome.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonFriendsHome_NO_LOGIN.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonPageRight.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonPageRight_NO.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonPageRight_NO_LOGIN.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonEatRoom.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonEatRoom_NO.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonEatRoom_NO_LOGIN.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonFans.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonFans_NO.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonFans_NO_LOGIN.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonIfram.xml</configFilePath>
+    <configFilePath>diy/queryWeeklyFunnyRings.xml</configFilePath>
+    <configFilePath>diy/queryFunnyRecommendedRings.xml</configFilePath>
+    <configFilePath>diy/queryInditeRecommendedRing.xml</configFilePath>
+    <configFilePath>diy/queryNewFunnyRings.xml</configFilePath>
+    <configFilePath>diy/queryNewInditeRings.xml</configFilePath>
+    <configFilePath>diy/queryFunnyFamilies.xml</configFilePath>
+    <configFilePath>diy/queryNewPopRings.xml</configFilePath>
+    <configFilePath>diy/queryPopRecommendedRings.xml</configFilePath>
+    <configFilePath>diy/queryWeeklyPopRings.xml</configFilePath>
+    <configFilePath>diy/queryWeeklyInditeRings.xml</configFilePath>
+    <configFilePath>diy/queryCRings.xml</configFilePath>
+    <configFilePath>diy/queryDiyUserHome.xml</configFilePath>
+    <configFilePath>diy/queryKindsOfRings.xml</configFilePath>
+    <configFilePath>diy/queryAllNewFunnyRings.xml</configFilePath>
+    <configFilePath>diy/queryAllNewInditeRings.xml</configFilePath>
+    <configFilePath>diy/queryAllNewPopRings.xml</configFilePath>
+    <configFilePath>diy/queryFinalInditeRingList.xml</configFilePath>
+    <configFilePath>diy/queryFinalFunnyFamilyList.xml</configFilePath>
+    <configFilePath>diy/queryFinalPopRingList.xml</configFilePath>
+    <configFilePath>diy/queryFinalInditeRingList.xml</configFilePath>
+    <configFilePath>diy/queryInditeRingTotalList.xml</configFilePath>
+    <configFilePath>diy/queryPopRingTotalList.xml</configFilePath>
+    <configFilePath>diy/queryFunnyFamilyTotalList.xml</configFilePath>
+    <configFilePath>diy/queryInditeRingTotalList_more.xml</configFilePath>
+    <configFilePath>diy/queryPopRingTotalList_more.xml</configFilePath>
+    <configFilePath>diy/queryMusicHomeTotalList_more.xml</configFilePath>
+    <configFilePath>diy/queryAllMusicHomes.xml</configFilePath>
+    <configFilePath>diy/queryRecommendedMusicHome.xml</configFilePath>
+    <configFilePath>diy/queryFunnyRingTotalList_more.xml</configFilePath>
+    <configFilePath>diy/queryAllNewCRings.xml</configFilePath>
+    <configFilePath>diy/queryCRingsTotalList_more.xml</configFilePath>
+    <configFilePath>diy/queryRecommendedCRings.xml</configFilePath>
+    <configFilePath>diy/queryRingsOfDiyUserHome.xml</configFilePath>
+    <configFilePath>diy/queryFunnyRingTotalList.xml</configFilePath>
+    <configFilePath>diy/queryInditeRingsOfBestQueality.xml</configFilePath>
+    <configFilePath>diy/queryPopRingsOfBestQueality.xml</configFilePath>
+    <configFilePath>diy/queryFunnyRingsOfBestQueality.xml</configFilePath>
+    <configFilePath>diy/queryMusicHomeOfBestQueality.xml</configFilePath>
+    <configFilePath>diy/queryNewRecommendedRings.xml</configFilePath>
+    <configFilePath>diy/queryNewUpLoadRings.xml</configFilePath>
+    <configFilePath>diy/queryDiyRingPlus.xml</configFilePath>
+    <configFilePath>diy/queryPersonDiyHome.xml</configFilePath>
+    <configFilePath>diy/queryPersonDiyHome_NO.xml</configFilePath>
+    <configFilePath>diy/queryPersonDiyHome_NO_LOGIN.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonMove.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonMove_NO.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonMove_NO_LOGIN.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonMovie_Detail_NO_LOGIN.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonMovie_Detail.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonMovieForm.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonVideo.xml</configFilePath>
+    <configFilePath>diy/queryDiyPersonVideoSinger.xml</configFilePath>
+
+    <configFilePath>diy/queryVideoTotalList.xml</configFilePath>
+    <configFilePath>diy/queryVideoMonthList.xml</configFilePath>
+    <configFilePath>diy/queryVideoWeeklyList.xml</configFilePath>
+
+    <!--联通版本DIY-->
+    <configFilePath>diy_lt/queryUsersByBallot_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryNewRings_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryNewRecommended_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryRecommendedFamily_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryNewFunnyRings_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryNewInditeRings_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryNewPopRings_LT.xml</configFilePath>
+    <!--原创－－begin－－-->
+    <configFilePath>diy_lt/queryInditeRecommendedRing_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryAllNewInditeRings_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryFinalInditeRingList_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryWeeklyInditeRings_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryInditeRingTotalList_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryNewInditeRings_LT_10.xml</configFilePath>
+    <!--原创－－end－－-->
+
+    <!--流行－－begin－－-->
+    <configFilePath>diy_lt/queryPopRecommendedRing_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryFinalPopRingList_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryWeeklyPopRings_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryPopRingTotalList_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryNewPopRings_LT_10.xml</configFilePath>
+    <!--流行－－end－－-->
+
+    <!--搞笑－－begin－－-->
+    <configFilePath>diy_lt/queryFunnyRecommendedRing_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryFinalFunnyRingList_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryWeeklyFunnyRings_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryFunnyRingTotalList_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryNewFunnyRings_LT_10.xml</configFilePath>
+    <!--搞笑－－end－－-->
+
+    <!--更多原创－－begin－－-->
+    <configFilePath>diy_lt/queryInditeRingTotalList_LT_more.xml</configFilePath>
+    <configFilePath>diy_lt/queryAllInditeRings_LT.xml</configFilePath>
+    <!--更多原创－－end－－-->
+
+    <!--更多流行－－begin－－-->
+    <configFilePath>diy_lt/queryPopRingTotalList_LT_more.xml</configFilePath>
+    <configFilePath>diy_lt/queryAllPopRings_LT.xml</configFilePath>
+    <!--更多流行－－end－－-->
+
+    <!--更多搞笑－－begin－－-->
+    <configFilePath>diy_lt/queryFunnyRingTotalList_LT_more.xml</configFilePath>
+    <configFilePath>diy_lt/queryAllFunnyRings_LT.xml</configFilePath>
+    <!--更多搞笑－－end－－-->
+
+    <!--更多彩铃－－begin－－-->
+    <configFilePath>diy_lt/queryCRingTotalList_LT_more.xml</configFilePath>
+    <configFilePath>diy_lt/queryAllCRings_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryRecommendedCRings_LT.xml</configFilePath>
+    <!--更多彩铃－－end－－-->
+
+
+    <!--视频－－begin－－-->
+    <configFilePath>diy_lt/queryAllVideos_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryRecommendedVideos_LT.xml</configFilePath>
+    <configFilePath>diy_lt/querySignedSingerVideo_LT_more.xml</configFilePath>
+    <!--视频－－end－－-->
+
+    <!--搜索－－begin－－-->
+    <configFilePath>diy_lt/queryCRings_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyUserHome_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryKindsOfRings_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyRingPlus_LT.xml</configFilePath>
+    <!--搜索－－end－－-->
+
+
+    <!--乐窝－－begin－－-->
+    <configFilePath>diy_lt/queryMusHomeTotalList_LT_more.xml</configFilePath>
+    <configFilePath>diy_lt/queryAllMusHomes_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryRecommendedFamily_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonFriendsHome_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonFriendsHome_LT_NO_LOGIN.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonMusicManager_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonMusicManager_LT_NO.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonMusicManager_LT_NO_LOGIN.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonEatRoom_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonEatRoom_LT_NO.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonEatRoom_LT_NO_LOGIN.xml</configFilePath>
+
+    <configFilePath>diy_lt/queryDiyPersonFans_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonFans_LT_NO.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonFans_LT_NO_LOGIN.xml</configFilePath>
+
+    <configFilePath>diy_lt/queryDiyPersonMove_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonMove_LT_NO.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonMove_LT_NO_LOGIN.xml</configFilePath>
+    <configFilePath>diy_lt/queryDiyPersonIfram_LT.xml</configFilePath>
+
+    <configFilePath>diy_lt/queryRingsOfDiyUserHome_LT.xml</configFilePath>
+
+    <configFilePath>diy_lt/queryPersonDiyHome_LT.xml</configFilePath>
+    <configFilePath>diy_lt/queryPersonDiyHome_LT_NO.xml</configFilePath>
+    <configFilePath>diy_lt/queryPersonDiyHome_LT_NO_LOGIN.xml</configFilePath>
+
+    <!--乐窝－－end－－-->
+
+
+
+    <configFilePath>diyadmin/diyFristAuditingCity.xml</configFilePath>
+    <configFilePath>diyadmin/diyFristAuditingProvince.xml</configFilePath>
+    <configFilePath>diyadmin/diyCommendRingSelect.xml</configFilePath>
+    <configFilePath>diyadmin/diyCommendHomeSelect.xml</configFilePath>
+    <configFilePath>diyadmin/diyFristAuditingVideo.xml</configFilePath>
+    <configFilePath>diyadmin/diyVideoSelect.xml</configFilePath>
+    <configFilePath>diyadmin/diyBgVideoWord.xml</configFilePath>
+
+
+    <configFilePath>groupadring/queryMakingSearch.xml</configFilePath>
+    <configFilePath>groupadring/queryMeasureSearch.xml</configFilePath>
+    <configFilePath>groupadring/queryCallingSearch.xml</configFilePath>
+    <configFilePath>groupadring/queryMeasureMoreSearch.xml</configFilePath>
+    <configFilePath>groupadring/queryGroupSearch.xml</configFilePath>
+    <configFilePath>groupadring/queryCallingRings_1.xml</configFilePath>
+    <configFilePath>groupadring/queryCallingRings_2.xml</configFilePath>
+    <configFilePath>groupadring/queryCallingRings_3.xml</configFilePath>
+    <configFilePath>groupadring/queryCallingRings_4.xml</configFilePath>
+    <configFilePath>groupadring/queryCallingRingsMore.xml</configFilePath>
+    <configFilePath>groupadring/queryGroupRing.xml</configFilePath>
+    <configFilePath>groupadring/queryGroupRingSearch.xml</configFilePath>
+    <configFilePath>groupadring/queryCpRings.xml</configFilePath>
+
+    <configFilePath>groupadadmin/queryRingApplySearch.xml</configFilePath>
+    <configFilePath>groupadadmin/queryRingAutiting.xml</configFilePath>
+    <configFilePath>groupadadmin/queryRingSecondSubmit.xml</configFilePath>
+    <configFilePath>groupadadmin/queryRingSearchInformation.xml</configFilePath>
+
+    <!-- === -->
+    <!-- 统计 -->
+    <configFilePath>statistics/stat_user_migrate_by_month.xml</configFilePath>
+  </queryConfig>
+</queryConfigs>

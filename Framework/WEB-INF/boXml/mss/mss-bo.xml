@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="operLogBO" class="com.xwtech.mss.bo.system.OperLogBO">     
+		<property name="operationLogDAO" ref="operationLogDAO" />
+	</bean>
+	
+	<!-- 以下为业务内容 -->
+	<bean id="goodsTypeBO" class="com.xwtech.mss.bo.business.GoodsTypeBO">     
+		<property name="goodsTypeDAO" ref="goodsTypeDAO" />
+	</bean>
+	
+	<bean id="goodsInfoBO" class="com.xwtech.mss.bo.business.GoodsInfoBO">     
+		<property name="goodsInfoDAO" ref="goodsInfoDAO" />
+	</bean>
+	
+	<bean id="goodsRecordBO" class="com.xwtech.mss.bo.business.GoodsRecordBO">     
+		<property name="goodsRecordDAO" ref="goodsRecordDAO" />
+	</bean>
+	
+	<bean id="clientInfoBO" class="com.xwtech.mss.bo.business.ClientInfoBO">     
+		<property name="clientInfoDAO" ref="clientInfoDAO" />
+	</bean>
+	
+	<bean id="authorizationBO" class="com.xwtech.mss.bo.business.AuthorizationBO">     
+		<property name="mpmsAuthorizationDAO" ref="mpmsAuthorizationDAO" />
+	</bean>
+	
+</beans>

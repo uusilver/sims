@@ -1,0 +1,45 @@
+body {
+	margin: 0px;
+}
+.top_bg1 {
+	background-color: #01456A;
+	background-image: url(../image/top_bg.jpg);
+	background-repeat: no-repeat;
+	background-position: right;
+}
+.top_bg2 {
+	background-image: url(../image/top_exit.jpg);
+	width: 160px;
+	font-size: 9pt;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 2px;
+	padding-left: 3px;
+}
+.top_bg3 {
+	background-image: url(../image/top_bg2.jpg);
+	font-size: 9pt;
+	padding-left: 20px;
+	color: #FFFFFF;
+}
+.top_bg4 {
+	background-image: url(../image/top_logo2.jpg);
+	width: 160px;
+	height: 27px;
+}
+a.top {
+	color:#006600;
+	text-decoration: none;	
+}
+a.top:hover {
+	color:#FF3300;
+	text-decoration:none;
+}
+a.password {
+	color:#00CCFF;
+	text-decoration: none;	
+}
+a.password:hover {
+	color:#FF3300;
+	text-decoration:none;
+}

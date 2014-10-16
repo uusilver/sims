@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:wls="http://www.bea.com/ns/weblogic/90"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd http://www.bea.com/ns/weblogic/90 http://www.bea.com/ns/weblogic/90/weblogic-web-app.xsd">
+	<wls:container-descriptor>
+		<servlet-reload-check-secs>1</servlet-reload-check-secs>
+ 	    <wls:prefer-web-inf-classes>true</wls:prefer-web-inf-classes> 
+ 	</wls:container-descriptor> 
+	<wls:context-root>/</wls:context-root>
+	<!-- Resource name="jdbc/spms" auth="Container" type="javax.sql.DataSource"
+factory="org.logicalcobwebs.proxool.ProxoolDataSource"
+proxool.alias="hrs" proxool.trace="true" user="framework" password="framework"
+proxool.maximum-active-time="1200000"
+proxool.maximum-connection-count="100"
+delegateProperties="foo=bar" proxool.driver-url="jdbc:oracle:thin:@192.168.16.97:1521:njxw"
+proxool.driver-class="oracle.jdbc.driver.OracleDriver"/> -->
+   <!--<wls:jsp-descriptor>-->
+       <!--<wls:jsp-param>-->
+           <!--<param-name>debug</param-name>-->
+           <!--<param-value>true</param-value>-->
+       <!--</wls:jsp-param>-->
+   <!--</wls:jsp-descriptor>-->
+    <!--<jsp-descriptor>-->
+        <!--<jsp-param>-->
+            <!--<param-name>debug</param-name>-->
+            <!--<param-value>true</param-value>-->
+        <!--</jsp-param>-->
+    <!--</jsp-descriptor>-->
+</weblogic-web-app>

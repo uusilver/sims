@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class
+    name="com.xwtech.framework.pub.po.FrameSubmenu"
+    table="FRAME_SUBMENU"
+>
+
+    <id
+        name="submenuId"
+        type="java.lang.Long"
+        column="SUBMENU_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="submenuName"
+        type="java.lang.String"
+        column="SUBMENU_NAME"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="submenuSort"
+        type="int"
+        column="SUBMENU_SORT"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="submenuState"
+        type="java.lang.String"
+        column="SUBMENU_STATE"
+        not-null="true"
+        length="1"
+    />
+
+    <!-- Associations -->
+
+    <!-- bi-directional many-to-one association to FrameUrl -->
+    <many-to-one
+        name="frameUrl"
+        class="com.xwtech.framework.pub.po.FrameUrl"
+        not-null="true"
+    >
+        <column name="URL_ID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to FrameRoleSubmenu -->
+    <set
+        name="frameRoleSubmenus"
+        fetch="join"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="SUBMENU_ID" />
+        </key>
+        <one-to-many
+            class="com.xwtech.framework.pub.po.FrameRoleSubmenu"
+        />
+    </set>
+    <!-- bi-directional many-to-one association to FrameMenu -->
+    <many-to-one
+        name="frameMenu"
+        class="com.xwtech.framework.pub.po.FrameMenu"
+        not-null="true"
+    >
+        <column name="MENU_ID" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

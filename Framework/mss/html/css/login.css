@@ -1,0 +1,46 @@
+body {
+	margin: 0px;
+}
+.td1_bg {
+	background-image: url(../image/login_bg.jpg);
+}
+.td2_bg {
+	background-color: #3C3C3C;
+}
+.td3 {
+	font-size: 9pt;
+	color: #CCCCCC;
+	text-align: right;
+	height: 35px;
+}
+.td4 {
+	padding-left: 7px;
+}
+.out {
+	font-size: 9pt;
+	color: #333333;
+	background-image: url(../image/login_anniu_out.jpg);
+	height: 20px;
+	width: 82px;
+	border: none;
+	cursor:pointer;
+}
+.over {
+	font-size: 9pt;
+	color: #333333;
+	background-image: url(../image/login_anniu_over.jpg);
+	height: 20px;
+	width: 82px;
+	border: none;
+	cursor:pointer;
+}
+.input {
+	padding-top: 2px;
+	font-size: 9pt;
+	color: #999999;
+	background-color: #333333;
+	height: 20px;
+	width: 140px;
+	border: 1px solid #555555;
+	font-weight: bold;
+}

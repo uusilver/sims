@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<class className="com.xwtech.pms.pub.po.PmsBusIntegInfo">
+  <entry>
+    <title>综合楼名</title>
+    <methodName>setName</methodName>
+  </entry>
+  <entry>
+    <title>地址</title>
+    <methodName>setAddress</methodName>
+  </entry>
+  <entry>
+    <title>重要性</title>
+    <methodName>setFundamentality</methodName>
+  </entry>
+  <entry>
+    <title>行政区</title>
+    <methodName>setDistrict</methodName>
+  </entry>
+  <entry>
+    <title>安全性</title>
+    <methodName>setSecurity</methodName>
+  </entry>
+  <entry>
+    <title>设备类型</title>
+    <methodName>setEquip</methodName>
+  </entry>
+  <entry>
+    <title>建设公司</title>
+    <methodName>setPmsBuildCompanyInfo</methodName>
+  </entry>
+  <entry>
+    <title>备注</title>
+    <methodName>setRemaek</methodName>
+  </entry>
+  <entry>
+    <title>详细位置</title>
+    <methodName>setPartPosition</methodName>
+  </entry>
+  <entry>
+    <title>面积</title>
+    <methodName>setAcreage</methodName>
+  </entry>
+</class>

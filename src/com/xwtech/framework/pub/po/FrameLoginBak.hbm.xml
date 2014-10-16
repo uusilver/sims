@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.xwtech.cring.pub.po.FrameLoginBak" 
+    table="FRAME_LOGIN_BAK"
+>
+
+    <id
+        name="loginId"
+        type="java.lang.Long"
+        column="LOGIN_ID"
+    >
+     <generator class="sequence">
+	     <param name="sequence">SEQ_FRAME_LOGIN_BAK_ID</param>
+     </generator>
+    </id>
+
+    <property
+        name="loginName"
+        type="java.lang.String"
+        column="LOGIN_NAME"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="loginPwd"
+        type="java.lang.String"
+        column="LOGIN_PWD"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="loginLastTime"
+        type="java.lang.String"
+        column="LOGIN_LAST_TIME"
+        length="14"
+    />
+    <property
+        name="loginState"
+        type="java.lang.String"
+        column="LOGIN_STATE"
+        not-null="true"
+        length="1"
+    />
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

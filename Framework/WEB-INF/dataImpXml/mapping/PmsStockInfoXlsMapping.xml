@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<class className="com.xwtech.pms.pub.po.PmsStockInfo">
+  <entry>
+    <title>采购部门</title>
+    <methodName>setDept</methodName>
+  </entry>
+  <entry>
+    <title>联系号码</title>
+    <methodName>setPhone</methodName>
+  </entry>
+  <entry>
+    <title>备注</title>
+    <methodName>setRemaek</methodName>
+  </entry>
+  <entry>
+    <title>经办人</title>
+    <methodName>setDoneMan</methodName>
+  </entry>
+  <entry>
+    <title>采购名</title>
+    <methodName>setStockName</methodName>
+  </entry>
+  <entry>
+    <title>采购日期</title>
+    <methodName>setStockDate</methodName>
+  </entry>
+</class>

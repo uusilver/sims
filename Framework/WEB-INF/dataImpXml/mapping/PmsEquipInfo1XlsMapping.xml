@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<class className="com.xwtech.pms.pub.po.PmsEquipInfo">
+  <entry>
+    <title>营业厅名</title>
+    <methodName>setPmsBusIntegInfo</methodName>
+  </entry>
+  <entry>
+    <title>设备数量</title>
+    <methodName>setEquipNumber</methodName>
+  </entry>
+  <entry>
+    <title>设备类型</title>
+    <methodName>setEquipType</methodName>
+  </entry>
+  <entry>
+    <title>设备号</title>
+    <methodName>setEquipNo</methodName>
+  </entry>
+  <entry>
+    <title>备注</title>
+    <methodName>setRemaek</methodName>
+  </entry>
+  <entry>
+    <title>设备名称</title>
+    <methodName>setEquipName</methodName>
+  </entry>
+  <entry>
+    <title>供货周期</title>
+    <methodName>setSupplyDate</methodName>
+  </entry>
+  <entry>
+    <title>设备价格(元)</title>
+    <methodName>setEquipPrice</methodName>
+  </entry>
+  <entry>
+    <title>设备厂家</title>
+    <methodName>setEquipMaker</methodName>
+  </entry>
+  <entry>
+    <title>设备说明</title>
+    <methodName>setEquipExplain</methodName>
+  </entry>
+</class>

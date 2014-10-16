@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<class className="com.xwtech.pms.pub.po.PmsMessHallInfo">
+  <entry>
+    <title>责任人</title>
+    <methodName>setPrincipal</methodName>
+  </entry>
+  <entry>
+    <title>所属综合楼</title>
+    <methodName>setPmsBusIntegInfo</methodName>
+  </entry>
+  <entry>
+    <title>备注</title>
+    <methodName>setRemaek</methodName>
+  </entry>
+  <entry>
+    <title>详细位置</title>
+    <methodName>setPartPosition</methodName>
+  </entry>
+  <entry>
+    <title>食堂名</title>
+    <methodName>setMessHallName</methodName>
+  </entry>
+</class>

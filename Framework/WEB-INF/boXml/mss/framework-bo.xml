@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="userLoginBO"
+		class="com.xwtech.mss.bo.system.login.UserLoginBO">
+		<property name="userInfoDAO" ref="userInfoDAO" />
+		<property name="frameLoginLogDAO" ref="frameLoginLogDAO" />
+	</bean>
+	<bean id="menuBO" class="com.xwtech.mss.bo.system.menu.MenuBO">
+		<property name="menuDAO" ref="menuDAO" />
+	</bean>
+	<bean id="userManageBO"
+		class="com.xwtech.mss.bo.system.user.UserManageBO">
+		<property name="userInfoDAO" ref="userInfoDAO" />
+		<property name="roleDAO" ref="roleDAO" />
+	</bean>
+	<bean id="roleBO"
+		class="com.xwtech.mss.bo.system.property.RoleBO">
+		<property name="roleDAO" ref="roleDAO" />
+	</bean>
+	<bean id="userPropertyBO"
+		class="com.xwtech.mss.bo.system.property.UserPropertyBO">
+		<property name="userPropertyDAO" ref="userPropertyDAO" />
+	</bean>
+	<bean id="operLogBO"
+		class="com.xwtech.mss.bo.system.operator.OperLogBO">
+		<property name="operationLogDAO" ref="operationLogDAO" />
+	</bean>
+
+	<bean id="orgnizationBO"
+		class="com.xwtech.mss.bo.system.orgnization.OrgnizationBO">
+		<property name="sysOperLog" ref="sysOperLog" />
+		<property name="orgnizationDAO" ref="orgnizationDAO" />
+		<property name="frameOrgCityRelationDAO"
+			ref="frameOrgCityRelationDAO" />
+		<property name="transTemplate" ref="transTemplate" /><!-- 事务 -->
+	</bean>
+
+	<bean id="sysOperLog" class="com.xwtech.mss.pub.web.SysOperLog">
+		<property name="userInfoDAO" ref="userInfoDAO"/>
+		<property name="operationLogDAO" ref="operationLogDAO"/>
+	</bean> 
+	
+
+	
+  <!-- <bean id="dmsUserPropertyBO" class="com.xwtech.dms.bo.DmsUserPropertyBO">
+    <property name="dmsUserPropertyDAO" ref="dmsUserPropertyDAO"/>
+  </bean>
+    <bean id="dmsSysResourceBO" class="com.xwtech.dms.bo.DmsSysResourceBO">
+  </bean>
+  <bean id="dmsRoleBO" class="com.xwtech.dms.bo.DmsRoleBO">
+    <property name="dmsRoleDAO" ref="dmsRoleDAO"/>
+  </bean> -->
+
+</beans>

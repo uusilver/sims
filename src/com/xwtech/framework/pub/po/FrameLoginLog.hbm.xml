@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class
+    name="com.xwtech.framework.pub.po.FrameLoginLog"
+    table="FRAME_LOGIN_LOG"
+>
+
+    <id
+        name="loginLogId"
+        type="java.lang.Long"
+        column="LOGIN_LOG_ID"
+    >
+        <generator class="sequence">
+         <param name="sequence">SEQ_FRAME_LOGIN_LOG_ID</param>
+        </generator>
+    </id>
+
+    <property
+        name="loginIp"
+        type="java.lang.String"
+        column="LOGIN_IP"
+        not-null="true"
+        length="15"
+    />
+    <property
+        name="loginName"
+        type="java.lang.String"
+        column="LOGIN_NAME"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="loginPwd"
+        type="java.lang.String"
+        column="LOGIN_PWD"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="loginTime"
+        type="java.lang.String"
+        column="LOGIN_TIME"
+        not-null="true"
+        length="14"
+    />
+    <property
+        name="loginResultCode"
+        type="int"
+        column="LOGIN_RESULT_CODE"
+        not-null="true"
+        length="1"
+    />
+
+    <!-- Associations -->
+
+
+</class>
+</hibernate-mapping>

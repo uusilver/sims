@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class
+    name="com.xwtech.framework.pub.po.FrameFieldCheck"
+    table="FRAME_FIELD_CHECK"
+>
+    <id
+        name="fieldCheckId"
+        type="java.lang.Long"
+        column="FIELD_CHECK_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="tableName"
+        type="java.lang.String"
+        column="TABLE_NAME"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="fieldName"
+        type="java.lang.String"
+        column="FIELD_NAME"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="checkValue"
+        type="java.lang.String"
+        column="CHECK_VALUE"
+        not-null="true"
+        length="2"
+    />
+    <property
+        name="checkDesc"
+        type="java.lang.String"
+        column="CHECK_DESC"
+        not-null="true"
+        length="100"
+    />
+    <property
+        name="constantName"
+        type="java.lang.String"
+        column="CONSTANT_NAME"
+        not-null="true"
+        length="100"
+    />
+    <property
+        name="checkState"
+        type="java.lang.String"
+        column="CHECK_STATE"
+        not-null="true"
+        length="1"
+    />
+
+    <!-- Associations -->
+
+
+</class>
+</hibernate-mapping>

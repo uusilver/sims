@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<class 
+    name="com.xwtech.framework.pub.po.FrameRefsql" 
+    table="FRAME_REFSQL"
+>
+
+    <id
+        name="refsqlId"
+        type="java.lang.Integer"
+        column="REFSQL_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="refName"
+        type="java.lang.String"
+        column="REF_NAME"
+        length="200"
+    />
+    <property
+        name="sqlString"
+        type="java.lang.String"
+        column="SQL_STRING"
+        length="1000"
+    />
+    <property
+        name="refTitle"
+        type="java.lang.String"
+        column="REF_TITLE"
+        length="200"
+    />
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

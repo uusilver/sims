@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+       <bean id="baseHibernateDAO" class="com.xwtech.framework.pub.dao.BaseHibernateDAO" >
+          <property name="sessionFactory" ref="sessionFactory"/>
+       </bean>
+       <bean id="baseJdbcDAO" class="com.xwtech.framework.pub.dao.BaseJdbcDAO" lazy-init="true">
+          <property name="dataSource" ref="dataSource"/>
+       </bean>
+       <!--  
+       <bean id="frameButtonDAO" class="com.xwtech.framework.pub.dao.FrameButtonDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameButtonUrlDAO" class="com.xwtech.framework.pub.dao.FrameButtonUrlDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameFeildCheckDAO" class="com.xwtech.framework.pub.dao.FrameFeildCheckDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameLoginDAO" class="com.xwtech.framework.pub.dao.FrameLoginDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameLoginLogDAO" class="com.xwtech.framework.pub.dao.FrameLoginLogDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameLoginRoleDAO" class="com.xwtech.framework.pub.dao.FrameLoginRoleDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameMenuDAO" class="com.xwtech.framework.pub.dao.FrameMenuDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameRoleDAO" class="com.xwtech.framework.pub.dao.FrameRoleDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameRoleSubmenuDAO" class="com.xwtech.framework.pub.dao.FrameRoleSubmenuDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameSubmenuDAO" class="com.xwtech.framework.pub.dao.FrameSubmenuDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameUrlDAO" class="com.xwtech.framework.pub.dao.FrameUrlDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       <bean id="frameRefsqlDAO" class="com.xwtech.framework.pub.dao.FrameRefsqlDAO"><property name="sessionFactory" ref="sessionFactory"/></bean>
+       -->
+  <!-- framework transcation beans -->
+  	<bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+       <bean id="jdbcTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+               <property name="dataSource" ref="dataSource" />
+       </bean>
+</beans>

@@ -1,0 +1,904 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>报表条件选择</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<script language="javascript">
+    //function openwin(url, l, t, w ,h)
+    //{open(url,','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width='+ w +',height='+ h +',left='+ l +',top='+ t);}
+
+  </script>
+<style type="text/css">
+<!--
+.style2 {color: #315753}
+-->
+</style>
+</head>
+<body>
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td height="40" valign="top"><img src="../image/title_r2_c2.jpg" width="983" height="40"></td>
+  </tr>
+</table>
+<table width="100%"  border="0" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table  border="0" align="right" cellpadding="0" cellspacing="5">
+        <tr>
+          <td><img src="../image/title_r22_c14.jpg" width="24" height="24"></td>
+          <td width="60" class="link_normal"><a href="#" class="link_normal">全部打开</a></td>
+          <td><img src="../image/title_r22_c16.jpg" width="24" height="24"></td>
+          <td width="60"><a href="#" class="link_normal">全部合拢</a></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r4_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r4_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r4_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table>
+      <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" background="../image/title_r5_c3.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+          <td width="120" valign="top" class="td_xy_select_all"><table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="40" align="right" valign="bottom"><img src="../image/title_r6_c5.gif" width="24" height="24">&nbsp;&nbsp;</td>
+                <td><span  class="font_xy_title">地区</span></td>
+              </tr>
+            </table>
+            <table width="85%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td height="5" background="../image/title_r10_c5.jpg"></td>
+              </tr>
+            </table>
+			<!--
+            <table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="12" align="right" class="font_xy_normal">&nbsp;</td>
+                <td class="font_xy_normal">全选
+                  <input name="checkbox32225" type="checkbox" class="checkbox_xy_normal" value="checkbox"></td>
+              </tr>
+            </table>--></td>
+          <td bgcolor="#EEF7FD"><table width="97%"  border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="td_xy_normal"><input name="checkbox" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  南京</td>
+                <td class="td_xy_normal"><input name="checkbox2" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  苏州</td>
+                <td class="td_xy_normal"><input name="checkbox22" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  泰州</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table></td>
+          <td width="4" background="../image/title_r5_c9.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r10_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r12_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r10_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="3" class="table_big">
+  <tr>
+    <td height="7" background="../image/title_r18_c5.gif"></td>
+  </tr>
+</table>
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r4_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r4_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r4_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table>
+      <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" background="../image/title_r5_c3.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+          <td width="120" valign="top" class="td_xy_select_all"><table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="40" align="right" valign="bottom"><img src="../image/title_r6_c5.gif" width="24" height="24">&nbsp;&nbsp;</td>
+                <td><span  class="font_xy_title">品牌</span></td>
+              </tr>
+            </table>
+            <table width="85%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td height="5" background="../image/title_r10_c5.jpg"></td>
+              </tr>
+            </table>
+            <table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="12" align="right" class="font_xy_normal">&nbsp;</td>
+                <td class="font_xy_normal">全选
+                  <input name="checkbox322252" type="checkbox" class="checkbox_xy_normal" value="checkbox"></td>
+              </tr>
+            </table></td>
+          <td bgcolor="#EEF7FD"><table width="97%"  border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="td_xy_normal"><input name="checkbox43" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  全球通</td>
+                <td class="td_xy_normal"><input name="checkbox233" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  神州行</td>
+                <td class="td_xy_normal"><input name="checkbox2223" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  动感地带</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table></td>
+          <td width="4" background="../image/title_r5_c9.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r10_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r12_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r10_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="3" class="table_big">
+  <tr>
+    <td height="7" background="../image/title_r18_c5.gif"></td>
+  </tr>
+</table>
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r4_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r4_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r4_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table>
+      <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" background="../image/title_r5_c3.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+          <td width="120" valign="top" class="td_xy_select_all"><table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="40" align="right" valign="bottom"><img src="../image/title_r6_c5.gif" width="24" height="24">&nbsp;&nbsp;</td>
+                <td><span  class="font_xy_title">下载渠道</span></td>
+              </tr>
+            </table>
+            <table width="85%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td height="5" background="../image/title_r10_c5.jpg"></td>
+              </tr>
+            </table>
+            <table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="12" align="right" class="font_xy_normal">&nbsp;</td>
+                <td class="font_xy_normal">全选
+                  <input name="checkbox3222522" type="checkbox" class="checkbox_xy_normal" value="checkbox"></td>
+              </tr>
+            </table></td>
+          <td bgcolor="#EEF7FD"><table width="97%"  border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="td_xy_normal"><input name="checkbox422" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  WWW</td>
+                <td class="td_xy_normal"><input name="checkbox2322" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  IVR</td>
+                <td class="td_xy_normal"><input name="checkbox22222" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  SMS</td>
+                <td class="td_xy_normal"><input name="checkbox222232" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  WAP</td>
+                <td class="td_xy_normal"><input name="checkbox2222333" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  营业前台</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table></td>
+          <td width="4" background="../image/title_r5_c9.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r10_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r12_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r10_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="3" class="table_big">
+  <tr>
+    <td height="7" background="../image/title_r18_c5.gif"></td>
+  </tr>
+</table>
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r4_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r4_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r4_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table>
+      <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" background="../image/title_r5_c3.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+          <td width="120" valign="top" class="td_xy_select_all"><table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="40" align="right" valign="bottom"><img src="../image/title_r6_c5.gif" width="24" height="24">&nbsp;&nbsp;</td>
+                <td><span  class="font_xy_title">ARPU</span></td>
+              </tr>
+            </table>
+            <table width="85%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td height="5" background="../image/title_r10_c5.jpg"></td>
+              </tr>
+            </table>
+            <table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="12" align="right" class="font_xy_normal">&nbsp;</td>
+                <td class="font_xy_normal">全选
+                  <input name="checkbox32225222" type="checkbox" class="checkbox_xy_normal" value="checkbox"></td>
+              </tr>
+            </table></td>
+          <td bgcolor="#EEF7FD"><table width="97%"  border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="td_xy_normal"><input name="checkbox4244" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  小于50</td>
+                <td class="td_xy_normal"><input name="checkbox23243" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  50&lt;ARPU&lt;75</td>
+                <td class="td_xy_normal"><input name="checkbox222253" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  75&lt;ARPU&lt;100</td>
+                <td class="td_xy_normal"><input name="checkbox2222343" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  100&lt;ARPU&lt;150</td>
+                <td class="td_xy_normal"><input name="checkbox22223324" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  150&lt;ARPU&lt;200</td>
+                <td class="td_xy_normal"><input name="checkbox222233223" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  200&lt;ARPU&lt;250</td>
+                <td class="td_xy_normal"><input name="checkbox2222332222" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  250&lt;ARPU&lt;300</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td class="td_xy_normal"><input name="checkbox42422" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  大于等于300</td>
+                <td class="td_xy_normal">&nbsp;</td>
+                <td class="td_xy_normal">&nbsp;</td>
+                <td class="td_xy_normal">&nbsp;</td>
+                <td class="td_xy_normal">&nbsp;</td>
+                <td class="td_xy_normal">&nbsp;</td>
+                <td class="td_xy_normal">&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table></td>
+          <td width="4" background="../image/title_r5_c9.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r10_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r12_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r10_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="3" class="table_big">
+  <tr>
+    <td height="7" background="../image/title_r18_c5.gif"></td>
+  </tr>
+</table>
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r4_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r4_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r4_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table>
+      <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" background="../image/title_r5_c3.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+          <td width="120" valign="top" class="td_xy_select_all"><table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="40" align="right" valign="bottom"><img src="../image/title_r6_c5.gif" width="24" height="24">&nbsp;&nbsp;</td>
+                <td><span  class="font_xy_title">统计量</span></td>
+              </tr>
+            </table>
+            <table width="85%" border="0" cellpadding="0" cellspacing="1">
+              <tr>
+                <td height="5" background="../image/title_r10_c5.jpg"></td>
+              </tr>
+            </table>
+            <table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="12" align="right" class="font_xy_normal">&nbsp;</td>
+                <td class="font_xy_normal">全选
+                  <input name="checkbox322252222" type="checkbox" class="checkbox_xy_normal" value="checkbox"></td>
+              </tr>
+            </table></td>
+          <td bgcolor="#EEF7FD"><table width="97%"  border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="td_xy_normal"><input name="checkbox42432" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  下载用户数</td>
+                <td class="td_xy_normal"><input name="checkbox232422" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  业务申请用户数</td>
+                <td class="td_xy_normal"><input name="checkbox2222522" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  设置用户数</td>
+                <td class="td_xy_normal"><input name="checkbox22223422" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  下载次数</td>
+                <td class="td_xy_normal"><input name="checkbox222233232" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                  设置次数</td>
+                <td>&nbsp;</td>
+              </tr>
+            </table></td>
+          <td width="4" background="../image/title_r5_c9.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r10_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r12_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r10_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="3" class="table_big">
+  <tr>
+    <td height="7" background="../image/title_r18_c5.gif"></td>
+  </tr>
+</table>
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r4_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r4_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r4_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table>
+      <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" background="../image/title_r5_c3.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+          <td width="120" valign="top" class="td_xy_select_all"><table width="100%" height="30" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="40" align="right" valign="bottom"><img src="../image/title_r6_c5.gif" width="24" height="24">&nbsp;&nbsp;</td>
+                <td><span  class="font_xy_title">时间段</span></td>
+              </tr>
+            </table></td>
+          <td bgcolor="#EEF7FD"><table width="93%" height="28"  border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="88" align="center" class="font_xy_normal">启始日期:</td>
+                <td width="130"><input name="textfield3" type="text" class="input_xy_gray" value="2005-10-10"></td>
+                <td width="40" align="center"><img src="../image/title_r16_c11.jpg" width="21" height="21" border="0" class="hand_df"></td>
+                <td width="40" align="center" class="font_xy_normal">&nbsp;</td>
+                <td width="70" align="center"><span class="font_xy_normal">终止日期:</span></td>
+                <td width="130" align="center"><input name="textfield22" type="text" class="input_xy_gray"></td>
+                <td width="40" align="center"><img src="../image/title_r16_c11.jpg" width="21" height="21" border="0" class="hand_df"></td>
+                <td align="center">&nbsp;</td>
+              </tr>
+            </table></td>
+          <td width="4" background="../image/title_r5_c9.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r10_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r12_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r10_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="3" class="table_big">
+  <tr>
+    <td height="7" background="../image/title_r18_c5.gif"></td>
+  </tr>
+</table>
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r4_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r4_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r4_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table>
+      <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" background="../image/title_r5_c3.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+          <td width="120" valign="top" class="td_xy_select_all"><table width="100%" height="30" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="40" align="right" valign="bottom"><img src="../image/title_r6_c5.gif" width="24" height="24">&nbsp;&nbsp;</td>
+                <td><span  class="font_xy_title">其他条件</span></td>
+              </tr>
+            </table></td>
+          <td bgcolor="#EEF7FD"><table width="93%" border="0" cellpadding="2" cellspacing="5">
+              <tr>
+                <td width="30%" align=center valign="top"><table width="100%"  border="0" cellspacing="2" cellpadding="0">
+                    <tr>
+                      <td height="23"><table width="90%" border="0" align="center" cellpadding="0" cellspacing="2">
+                          <tr>
+                            <td width="24" align="center" class="item_two_select">选择</td>
+                            <td class="item_two_select">Y 轴已分配条件</td>
+                            <td width="24" align="center" class="item_two_select">小计</td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table>
+                  <table width="100%" height="160"  border="0" cellpadding="0" cellspacing="3">
+                    <tr>
+                      <td valign="top" bgcolor="#FFFFFF"><table width="90%"  border="0" align="center" cellpadding="3" cellspacing="0">
+                          <tr>
+                            <td class="td_xy_selected"><span class="td_xy_normal"> &nbsp;
+                              <input name="checkbox42433" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                              &nbsp;&nbsp;地区</span></td>
+                            <td width="26" valign="top" class="td_xy_selected"><input name="checkbox424332" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="td_xy_selected"><span class="td_xy_normal"> &nbsp;
+                              <input name="checkbox424334" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                              &nbsp;&nbsp;品牌</span></td>
+                            <td valign="top" class="td_xy_selected"><input name="checkbox4243323" type="checkbox" class="checkbox_xy_normal" value="checkbox"></td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+                <td width="5%" align=center valign="bottom"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="159" align="center"><table border="0" cellpadding="5" cellspacing="0">
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="MoveSingleItem(WaitSelectItem, SelectedItem)">&lt;</button></td>
+                          </tr>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="MoveAllItems(WaitSelectItem, SelectedItem)">&lt;&lt;</button></td>
+                          </tr>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="MoveSingleItem(SelectedItem, WaitSelectItem)">&gt;</button></td>
+                          </tr>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="MoveAllItems(SelectedItem, WaitSelectItem)">&gt;&gt;</button></td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+                <td width="30%" align=center valign="top"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td width="3" height="23">&nbsp;</td>
+                      <td valign="bottom" ><table border="0" align="center" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td class="item_two_select">待分配条件</td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table>
+                  <table width="100%"  border="0" cellspacing="0" cellpadding="3">
+                    <tr>
+                      <td><select name="SelectedItem" size=10 class="two_select" id=select2 >
+                          <option>地区</option>
+                          <option>品牌</option>
+                          <option>下载渠道</option>
+                          <option>ARPU</option>
+                          <option>统计量</option>
+                          <option>时间段</option>
+                        </select></td>
+                    </tr>
+                  </table></td>
+                <td width="5%" align=center valign="bottom"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td height="159" align="center"><table border="0" cellpadding="5" cellspacing="0">
+                          <tr>
+                          <td height="37"><button class="button_select" onClick="MoveSingleItem(SelectedItem, WaitSelectItem)">&gt;</button></td>
+                          </tr>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="MoveAllItems(SelectedItem, WaitSelectItem)">&gt;&gt;</button></td>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="MoveSingleItem(WaitSelectItem, SelectedItem)">&lt;</button></td>
+                          </tr>
+                          <tr>
+                            <td height="37"><button class="button_select" onClick="MoveAllItems(WaitSelectItem, SelectedItem)">&lt;&lt;</button></td>
+                          </tr>
+                          <tr> </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+                <td width="30%" align=center valign="top"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="23"><table width="90%" border="0" align="center" cellpadding="0" cellspacing="2">
+                          <tr>
+                            <td width="24" align="center" class="item_two_select">选择</td>
+                            <td class="item_two_select">X 轴已分配条件</td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table>
+                  <table width="100%" height="160"  border="0" cellpadding="0" cellspacing="3">
+                    <tr>
+                      <td valign="top" bgcolor="#FFFFFF"><table width="90%"  border="0" align="center" cellpadding="3" cellspacing="0">
+                          <tr>
+                            <td class="td_xy_selected"><span class="td_xy_normal"> &nbsp;
+                              <input name="checkbox4243333" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                              &nbsp;&nbsp;时间段</span></td>
+                          </tr>
+                          <tr>
+                            <td class="td_xy_selected"><span class="td_xy_normal"> &nbsp;
+                              <input name="checkbox424333" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                              &nbsp;&nbsp;下载渠道</span></td>
+                          </tr>
+                          <tr>
+                            <td class="td_xy_selected"><span class="td_xy_normal"> &nbsp;
+                              <input name="checkbox4243332" type="checkbox" class="checkbox_xy_normal" value="checkbox">
+                              &nbsp;&nbsp;统计量</span></td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table></td>
+          <td width="4" background="../image/title_r5_c9.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r10_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r12_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r10_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table height="60" border="0" align="center" cellpadding="0" cellspacing="20">
+  <tr>
+    <td align="center"><div align="center">
+        <input name="Submit3" type="submit" class="button_xy_normal" value=" 提 交 ">
+      </div></td>
+    <td align="center"><input name="Submit22" type="submit" class="button_xy_normal" value=" 重 填 "></td>
+  </tr>
+</table>
+<br>
+<table  border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#003DA2" class="table_big">
+  <tr>
+    <td colspan="2" class="td_xy_area">时间</td>
+    <td colspan="8" class="td_xy_time">一月</td>
+    <td colspan="8" class="td_xy_time">二月</td>
+    <td colspan="2" rowspan="2" class="td_xy_time">总计</td>
+  </tr>
+  <tr>
+    <td colspan="2" class="td_xy_area">渠道</td>
+    <td colspan="2" class="td_xy_channel">WWW</td>
+    <td colspan="2" class="td_xy_channel">IVR</td>
+    <td colspan="2" class="td_xy_channel">SMS</td>
+    <td colspan="2" class="td_xy_channel">WAP</td>
+    <td colspan="2" class="td_xy_channel">WWW</td>
+    <td colspan="2" class="td_xy_channel">IVR</td>
+    <td colspan="2" class="td_xy_channel">SMS</td>
+    <td colspan="2" class="td_xy_channel">WAP</td>
+  </tr>
+  <tr>
+    <td width="45" class="td_xy_area">地区</td>
+    <td class="td_xy_area">品牌</td>
+    <td class="td_xy_download_setting">设置用户</td>
+    <td class="td_xy_download_setting">下载用户</td>
+    <td class="td_xy_download_setting">设置用户</td>
+    <td class="td_xy_download_setting">下载用户</td>
+    <td class="td_xy_download_setting">设置用户</td>
+    <td class="td_xy_download_setting">下载用户</td>
+    <td class="td_xy_download_setting">设置用户</td>
+    <td class="td_xy_download_setting">下载用户</td>
+    <td class="td_xy_download_setting">设置用户</td>
+    <td class="td_xy_download_setting">下载用户</td>
+    <td class="td_xy_download_setting">设置用户</td>
+    <td class="td_xy_download_setting">下载用户</td>
+    <td class="td_xy_download_setting">设置用户</td>
+    <td class="td_xy_download_setting">下载用户</td>
+    <td class="td_xy_download_setting">设置用户</td>
+    <td class="td_xy_download_setting">下载用户</td>
+    <td class="td_xy_download_setting">设置用户</td>
+    <td class="td_xy_download_setting">下载用户</td>
+  </tr>
+  <tr>
+    <td rowspan="4" class="td_xy_channel">南京</td>
+    <td bgcolor="#EEF7FD" class="td_xy_download_setting">全球通</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEF7FD" class="td_xy_download_setting">神州行</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEF7FD" class="td_xy_download_setting">动感地带</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEF7FD" class="td_xy_area">小计</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_3">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_3">10000</td>
+  </tr>
+  <tr>
+    <td rowspan="4" class="td_xy_channel">苏州</td>
+    <td bgcolor="#EEF7FD" class="td_xy_download_setting">全球通</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEF7FD" class="td_xy_download_setting">神州行</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEF7FD" class="td_xy_download_setting">动感地带</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEF7FD" class="td_xy_area">小计</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_3">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_3">10000</td>
+  </tr>
+  <tr>
+    <td rowspan="4" class="td_xy_channel">泰州</td>
+    <td bgcolor="#EEF7FD" class="td_xy_download_setting">全球通</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEF7FD" class="td_xy_download_setting">神州行</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEF7FD" class="td_xy_download_setting">动感地带</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all">10000</td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEF7FD" class="td_xy_area">小计</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_1">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_3">10000</td>
+    <td bgcolor="#EEF7FD" class="td_xy_data_all_3">10000</td>
+  </tr>
+  <tr >
+    <td height="40" colspan="2" class="td_xy_time">总计</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all">10000</td>
+    <td class="td_xy_data_all_2">10000</td>
+    <td class="td_xy_data_all_2">10000</td>
+  </tr>
+</table>
+<br>
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" class="table_big">
+  <tr>
+    <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" height="4"><img src="../image/title_r4_c3.gif" width="4" height="4"></td>
+          <td height="4"><img src="../image/title_r4_c4.jpg" width="100%" height="4"></td>
+          <td width="4" height="4"><img src="../image/title_r4_c8.gif" width="4" height="4"></td>
+        </tr>
+      </table>
+      <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="4" background="../image/title_r5_c3.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+          <td bgcolor="#EEF7FD"><table height="35" border="0" align="center" cellpadding="0" cellspacing="4">
+              <tr>
+                <td align="center" class="font_xy_normal">&copy; 2005-2006 江苏移动通信有限责任公司 版权所有 </td>
+              </tr>
+            </table></td>
+          <td width="4" background="../image/title_r5_c9.jpg" bgcolor="#CCCCCC">&nbsp;</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<span class="style2">123</span>
+</body>
+</html>

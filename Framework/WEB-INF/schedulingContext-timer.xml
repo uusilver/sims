@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-lazy-init="false" default-dependency-check="none"
+	default-autowire="no">
+
+	<bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<!-- 在此增加需要后台定时允许的任务（下面配置的定时任务） -->
+				<!-- <ref local="autoDelOverdueFileTask"/> 
+					<ref local="importFile"/>
+					<ref local="sendRemindMsg"/>
+					<ref local="webApacheLogTask" />
+					<ref local="webPlateLogTask" />
+					<ref local="webForumLogTask" />
+					<ref local="webTopicLogTask" />
+					<ref local="webPTinfoLogTask" />
+					<ref local="webUserVisitLogTask" /> 
+					<ref local="webUserPointLogTask" />
+					
+					<ref local="wapApacheLogTask" />
+					<ref local="doWapLanmuLog" />-->
+			</list>
+		</property>
+	</bean>
+
+	<!-- 定时器设置 -->
+	<bean name="stdSchedulerFactory"
+		class="org.quartz.impl.StdSchedulerFactory">
+	</bean>
+	<bean name="scheduleInfo"
+		class="com.xwtech.mss.pub.spring.scheduling.ScheduleInfo">
+		<property name="cronExpression" value="" />
+	</bean>
+	<bean name="scheduleInfoManager"
+		class="com.xwtech.mss.pub.spring.scheduling.ScheduleInfoManager">
+		<property name="scheduleInfo" ref="scheduleInfo" />
+	</bean>
+	<bean name="scheduleInfoAction"
+		class="com.xwtech.mss.pub.spring.scheduling.ScheduleInfoAction">
+		<property name="stdSchedulerFactory" ref="stdSchedulerFactory" />
+		<property name="scheduleInfoManager" ref="scheduleInfoManager" />
+	</bean>
+	<bean name="schedulerJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="scheduleInfoAction" />
+		<property name="targetMethod" value="reScheduleJob" />
+		<property name="concurrent" value="false" />
+		<!-- 第二个job将不会在第一个job完成之前开始 job不并发执行 -->
+	</bean>
+	<bean id="cronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="schedulerJobDetail" />
+		<property name="cronExpression">
+			<value>0/120 * * * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 配置定时任务 web apache =================================================================================-->
+	<bean id="webApacheLogTask"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<!-- 关联定时任务bean -->
+			<ref bean="doWebApacheLog" />
+		</property>
+		<!-- 延迟10秒执行 10 seconds -->
+		<property name="startDelay" value="0" />
+		<!-- repeat every 1 seconds -->
+		<property name="repeatInterval" value="60000" />
+
+	</bean>
+	<!-- 设置任务内容 -->
+	<bean name="doWebApacheLog"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="10" />
+				<entry key="url"
+					value="http://127.0.0.1:8088/mss/jsp/ApacheLogOperation.back?method=start&#38;type=4" />
+			</map>
+		</property>
+
+	</bean>
+	
+	<!-- 配置定时任务 web plate ================================================================================= -->
+	<bean id="webPlateLogTask"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<!-- 关联定时任务bean -->
+			<ref bean="doWebPlateLog" />
+		</property>
+		<!-- 延迟10秒执行 10 seconds -->
+		<property name="startDelay" value="0" />
+		<!-- repeat every 10 seconds -->
+		<property name="repeatInterval" value="60000" />
+
+	</bean>
+	<!-- 设置任务内容 -->
+	<bean name="doWebPlateLog"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="10" />
+				<entry key="url"
+					value="http://127.0.0.1:8088/mss/jsp/BusinessLogOperation.back?method=start&#38;type=6" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 配置定时任务 web forum ================================================================================= -->
+	<bean id="webForumLogTask"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<!-- 关联定时任务bean -->
+			<ref bean="doWebForumLog" />
+		</property>
+		<!-- 延迟10秒执行 10 seconds -->
+		<property name="startDelay" value="0" />
+		<!-- repeat every 10 seconds -->
+		<property name="repeatInterval" value="60000" />
+
+	</bean>
+	<!-- 设置任务内容 -->
+	<bean name="doWebForumLog"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="10" />
+				<entry key="url"
+					value="http://127.0.0.1:8088/mss/jsp/BusinessLogOperation.back?method=start&#38;type=5" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 配置定时任务 web topic ================================================================================= -->
+	<bean id="webTopicLogTask"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<!-- 关联定时任务bean -->
+			<ref bean="doWebTopicLog" />
+		</property>
+		<!-- 延迟10秒执行 10 seconds -->
+		<property name="startDelay" value="0" />
+		<!-- repeat every 10 seconds -->
+		<property name="repeatInterval" value="60000" />
+
+	</bean>
+	<!-- 设置任务内容 -->
+	<bean name="doWebTopicLog"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="10" />
+				<entry key="url"
+					value="http://127.0.0.1:8088/mss/jsp/BusinessLogOperation.back?method=start&#38;type=7" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 配置定时任务 web pt_info ================================================================================= -->
+	<bean id="webPTinfoLogTask"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<!-- 关联定时任务bean -->
+			<ref bean="doWebPTinfoLog" />
+		</property>
+		<!-- 延迟10秒执行 10 seconds -->
+		<property name="startDelay" value="0" />
+		<!-- repeat every 10 seconds -->
+		<property name="repeatInterval" value="10000" />
+
+	</bean>
+	<!-- 设置任务内容 -->
+	<bean name="doWebPTinfoLog"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="10" />
+				<entry key="url"
+					value="http://127.0.0.1:8088/mss/jsp/BusinessLogOperation.back?method=start&#38;type=8" />
+			</map>
+		</property>
+	</bean>	
+	
+	<!-- 配置定时任务 web user_visit ================================================================================= -->
+	<bean id="webUserVisitLogTask"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<!-- 关联定时任务bean -->
+			<ref bean="doWebUserVisitLog" />
+		</property>
+		<!-- 延迟10秒执行 10 seconds -->
+		<property name="startDelay" value="0" />
+		<!-- repeat every 10 seconds -->
+		<property name="repeatInterval" value="60000" />
+
+	</bean>
+	<!-- 设置任务内容 -->
+	<bean name="doWebUserVisitLog"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="10" />
+				<entry key="url"
+					value="http://127.0.0.1:8088/mss/jsp/BusinessLogOperation.back?method=start&#38;type=9" />
+			</map>
+		</property>
+	</bean>	
+	
+<!-- 配置定时任务 web user_point ================================================================================= -->
+	<bean id="webUserPointLogTask"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<!-- 关联定时任务bean -->
+			<ref bean="doWebUserPointLog" />
+		</property>
+		<!-- 延迟10秒执行 10 seconds -->
+		<property name="startDelay" value="0" />
+		<!-- repeat every 10 seconds -->
+		<property name="repeatInterval" value="60000" />
+
+	</bean>
+	<!-- 设置任务内容 -->
+	<bean name="doWebUserPointLog"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="10" />
+				<entry key="url"
+					value="http://127.0.0.1:8088/mss/jsp/BusinessLogOperation.back?method=start&#38;type=10" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 配置定时任务 wap apache ================================================================================= -->
+
+	<bean id="wapApacheLogTask"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<!-- 关联定时任务bean -->
+			<ref bean="doWapApacheLog" />
+		</property>
+		<!-- 延迟10秒执行 10 seconds -->
+		<property name="startDelay" value="0" />
+		<!-- repeat every 1 seconds -->
+		<property name="repeatInterval" value="60000" />
+
+	</bean>
+	<!-- 设置任务内容 -->
+	<bean name="doWapApacheLog"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="10" />
+				<entry key="url"
+					value="http://127.0.0.1:8088/mss/jsp/ApacheLogOperation.back?method=start&#38;type=1" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 配置定时任务 wap 栏目 ================================================================================= -->
+
+	<bean id="wapLanmuLogTask"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<!-- 关联定时任务bean -->
+			<ref bean="doWapLanmuLog" />
+		</property>
+		<!-- 延迟10秒执行 10 seconds -->
+		<property name="startDelay" value="0" />
+		<!-- repeat every 1 seconds -->
+		<property name="repeatInterval" value="60000" />
+
+	</bean>
+	<!-- 设置任务内容 -->
+	<bean name="doWapLanmuLog"
+		class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="10" />
+				<entry key="url"
+					value="http://127.0.0.1:8088/mss/jsp/BusinessLogOperation.back?method=start&#38;type=2" />
+			</map>
+		</property>
+	</bean>	
+	
+	
+</beans>

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class
+    name="com.xwtech.framework.pub.po.FrameMenu"
+    table="FRAME_MENU"
+>
+
+    <id
+        name="menuId"
+        type="java.lang.Long"
+        column="MENU_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="menuName"
+        type="java.lang.String"
+        column="MENU_NAME"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="menuSort"
+        type="int"
+        column="MENU_SORT"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="menuState"
+        type="java.lang.String"
+        column="MENU_STATE"
+        not-null="true"
+        length="1"
+    />
+
+    <!-- Associations -->
+
+    <!-- bi-directional one-to-many association to FrameSubmenu -->
+    <set
+        name="frameSubmenus"
+        fetch="join"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="MENU_ID" />
+        </key>
+        <one-to-many
+            class="com.xwtech.framework.pub.po.FrameSubmenu"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

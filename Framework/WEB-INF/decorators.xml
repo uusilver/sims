@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/cring/jsp/">
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>
+        <!-- 配置哪些文件不需要渲染 -->
+        <!-- <pattern>/cring/jsp/user/login.jsp</pattern> -->
+        
+    </excludes>
+    <!-- 配置哪些文件需要被哪个文件所渲染 -->
+    <!-- <decorator name="velocity" page="main.jsp">
+        <pattern>/velocity.html</pattern>
+    </decorator> -->
+</decorators>

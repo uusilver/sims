@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="dbCollection"
+		class="com.xwtech.mss.pub.db.DbCollection">
+
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="frameFieldCheckDAO" ref="frameFieldCheckDAO" />
+		<property name="frameLoginLogDAO" ref="frameLoginLogDAO" />
+		<property name="frameResultDAO" ref="frameResultDAO" />
+		<property name="frameUrlDAO" ref="frameUrlDAO" />
+		<property name="menuDAO" ref="menuDAO" />
+		<property name="orgnizationDAO" ref="orgnizationDAO" />
+		<property name="operationLogDAO" ref="operationLogDAO" />
+		<property name="roleDAO" ref="roleDAO" />
+		<property name="userInfoDAO" ref="userInfoDAO" />
+		<property name="userPropertyDAO" ref="userPropertyDAO" />
+		<property name="frameOrgCityRelationDAO"
+			ref="frameOrgCityRelationDAO" />
+			
+			
+		<property name="goodsTypeDAO" ref="goodsTypeDAO" />
+		<property name="goodsInfoDAO" ref="goodsInfoDAO" />
+		<property name="clientInfoDAO" ref="clientInfoDAO" />
+		<property name="goodsRecordDAO" ref="goodsRecordDAO" />
+		<property name="mpmsAuthorizationDAO" ref="mpmsAuthorizationDAO" />
+	</bean>
+
+
+	<bean id="frameFieldCheckDAO"
+		class="com.xwtech.mss.pub.dao.system.FrameFieldCheckDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="frameLoginLogDAO"
+		class="com.xwtech.mss.pub.dao.system.FrameLoginLogDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="frameResultDAO"
+		class="com.xwtech.mss.pub.dao.system.FrameResultDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="frameUrlDAO"
+		class="com.xwtech.mss.pub.dao.system.FrameUrlDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="menuDAO" class="com.xwtech.mss.pub.dao.system.MenuDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="operationLogDAO"
+		class="com.xwtech.mss.pub.dao.system.OperationLogDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="roleDAO" class="com.xwtech.mss.pub.dao.system.RoleDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userInfoDAO"
+		class="com.xwtech.mss.pub.dao.system.UserInfoDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="userPropertyDAO"
+		class="com.xwtech.mss.pub.dao.system.UserPropertyDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="orgnizationDAO"
+		class="com.xwtech.mss.pub.dao.system.OrgnizationDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="frameOrgCityRelationDAO"
+		class="com.xwtech.mss.pub.dao.system.FrameOrgCityRelationDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<bean id="goodsTypeDAO"
+		class="com.xwtech.mss.pub.dao.business.GoodsTypeDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="goodsInfoDAO"
+		class="com.xwtech.mss.pub.dao.business.GoodsInfoDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="clientInfoDAO"
+		class="com.xwtech.mss.pub.dao.business.ClientInfoDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="goodsRecordDAO"
+		class="com.xwtech.mss.pub.dao.business.GoodsRecordDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="mpmsAuthorizationDAO"
+		class="com.xwtech.mss.pub.dao.business.MpmsAuthorizationDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+</beans>

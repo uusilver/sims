@@ -1,0 +1,57 @@
+<queries>
+  <query name="queryAllNewCRings" class="com.xwtech.framework.query.bo.QueryByXml" nocondition="true">
+    <valuefetch class="com.xwtech.framework.query.bo.QueryValueFetchByJdbcSql" pageSize="20">
+      <sql count="true">
+        <SqlSelect>
+          diy_user.diy_user_id,
+          diy_ring.diy_ring_id,
+          diy_ring.ring_name as  歌曲名称,
+          diy_user.nick as 作者,
+          substr(diy_ring.upload_time,3,2)||'-'||substr(diy_ring.upload_time,5,2)||'-'||substr(diy_ring.upload_time,7,2) as 上传时间
+</SqlSelect>
+        <SqlFromWhere>
+          from diy_ring,diy_user
+          where diy_ring.diy_user_id = diy_user.diy_user_id
+          and diy_ring.status = 'P'
+          order by diy_ring.upload_time desc
+</SqlFromWhere>
+      </sql>
+    </valuefetch>
+    <resultview>
+       <neednavbottom>true</neednavbottom>
+      <conditionform name=""/>
+      <resultform name=""/>
+      <pagesize>20</pagesize>
+      <hiddencolname>diyUserId,diyRingId</hiddencolname>
+      <tableview onload="">
+        <externscript language="" src=""/>
+        <skinclass>diy-top-search</skinclass>
+        <resize sizelist="">false</resize>
+        <navigate jump="true"/>
+        <trview ondblclick="">
+          <tdview colnum="3" align="left" sortable="false">
+            <exhibit>
+              <type>raw</type>
+              <raw><![CDATA[<ul class="ul_left"><li class="li_song_name_more"><a href="/cring/jsp/diy/diyMusicDetail.jsp?diyUserId=$1&diyRingId=$2&url=/cring/jsp/diy/moreCring.jsp" class="link_forgot_pw" target="_parent" title='$3'>$3</a></li></ul>]]>              </raw>
+              <link target="" title="" href="" onclick="">              </link>
+            </exhibit>
+          </tdview>
+          <tdview colnum="4" align="center" width="70" sortable="false">
+            <exhibit>
+              <type>raw</type>
+              <raw><![CDATA[<ul class="ul_left"><li class="li_author_index"><a href="/cring/jsp/diy/person.jsp?flag=1&diyUserId=$1" class="link_forgot_pw" target="_blank" title='$4'>$4</a></li></ul>]]>              </raw>
+              <link target="" title="" href="" onclick="">              </link>
+            </exhibit>
+          </tdview>
+          <tdview colnum="5" align="center" width="63" sortable="false">
+            <exhibit>
+              <type>raw</type>
+              <raw><![CDATA[<a class="font_number">$5</a>]]>              </raw>
+              <link target="" title="" href="" onclick="">              </link>
+            </exhibit>
+          </tdview>
+        </trview>
+      </tableview>
+    </resultview>
+  </query>
+</queries>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<class className="com.xwtech.pms.pub.po.PmsUser">
+  <entry>
+    <title>用户密码</title>
+    <methodName>setPassword</methodName>
+  </entry>
+  <entry>
+    <title>部门</title>
+    <methodName>setDept</methodName>
+  </entry>
+  <entry>
+    <title>登录名</title>
+    <methodName>setLoginName</methodName>
+  </entry>
+  <entry>
+    <title>办公号码</title>
+    <methodName>setPhone</methodName>
+  </entry>
+  <entry>
+    <title>用户名称</title>
+    <methodName>setUserName</methodName>
+  </entry>
+  <entry>
+    <title>移动电话</title>
+    <methodName>setMobile</methodName>
+  </entry>
+  <entry>
+    <title>短号</title>
+    <methodName>setShortMobile</methodName>
+  </entry>
+  <entry>
+    <title>E-mail</title>
+    <methodName>setEmail</methodName>
+  </entry>
+</class>

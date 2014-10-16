@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<class 
+    name="com.xwtech.framework.pub.po.FrameResult" 
+    table="FRAME_RESULT"
+>
+
+    <id
+        name="resultId"
+        type="java.lang.Long"
+        column="RESULT_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="resultCode"
+        type="int"
+        column="RESULT_CODE"
+        not-null="true"
+        length="4"
+    />
+    <property
+        name="resultInfo"
+        type="java.lang.String"
+        column="RESULT_INFO"
+        not-null="true"
+        length="500"
+    />
+    <property
+        name="resultType"
+        type="int"
+        column="RESULT_TYPE"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="resultState"
+        type="java.lang.String"
+        column="RESULT_STATE"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="constantName"
+        type="java.lang.String"
+        column="CONSTANT_NAME"
+        not-null="true"
+        length="50"
+    />
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

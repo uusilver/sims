@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<class
+    name="com.xwtech.framework.pub.po.FrameUrl"
+    table="FRAME_URL"
+>
+
+    <id
+        name="urlId"
+        type="java.lang.Long"
+        column="URL_ID"
+    >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="urlValue"
+        type="java.lang.String"
+        column="URL_VALUE"
+        not-null="true"
+        length="200"
+    />
+    <property
+        name="urlName"
+        type="java.lang.String"
+        column="URL_NAME"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="urlDesc"
+        type="java.lang.String"
+        column="URL_DESC"
+        length="200"
+    />
+    <property
+        name="urlState"
+        type="java.lang.String"
+        column="URL_STATE"
+        not-null="true"
+        length="1"
+    />
+
+    <!-- Associations -->
+
+    <!-- bi-directional many-to-one association to FrameRole -->
+    <many-to-one
+        name="frameRole"
+        class="com.xwtech.framework.pub.po.FrameRole"
+        not-null="true"
+    >
+        <column name="ROLE_ID" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to FrameSubmenu -->
+    <set
+        name="frameSubmenus"
+        fetch="join"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="URL_ID" />
+        </key>
+        <one-to-many
+            class="com.xwtech.framework.pub.po.FrameSubmenu"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to FrameButtonUrl -->
+    <set
+        name="frameButtonUrls"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="URL_ID" />
+        </key>
+        <one-to-many
+            class="com.xwtech.framework.pub.po.FrameButtonUrl"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>
