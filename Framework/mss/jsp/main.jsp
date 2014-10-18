@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>物资管理系统</title>
+<title>服务器信息管理系统V1.0</title>
 <link href="${contextPath }/mss/css/top.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -12,7 +12,7 @@
   <frameset cols="160,*" frameborder="NO" border="0" framespacing="0" id="frameset_body">
     <frame src="${contextPath }/mss/jsp/menuController.do?method=queryTopMenu" name="leftFrame" scrolling="yes" noresize>
     <!-- frame src="/mss/jsp/promptControllor.do?method=queryBudgetList" name="mainFrame" scrolling="AUTO"> -->
-    <frame src="${contextPath }/mss/jsp/business/goodsRecordController.do?method=statisticUnpayedCount&recordState=0" name="mainFrame" scrolling="AUTO">
+    <frame src="${contextPath }/mss/html/server-static-info.html" name="mainFrame" scrolling="AUTO">
   </frameset>
 </frameset>
 <noframes><body>
