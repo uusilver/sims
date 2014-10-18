@@ -6,29 +6,35 @@
 var i=1;
 var _interval;
 var html='';
-jQuery(document).ready(function() {
-//    jQuery('#vmap').vectorMap({
-//        map: 'world_en',
-//        backgroundColor: '#333333',
-//        color: '#ffffff',
-//        hoverOpacity: 0.7,
-//        selectedColor: '#666666',
-//        enableZoom: true,
-//        showTooltip: true,
-//        values: sample_data,
-//        scaleColors: ['#C8EEFF', '#006491'],
-//        normalizeFunction: 'polynomial',
-//        onRegionOver: function(element, code, region){
-//            //alert(region);
-//        },
-//        onRegionClick:function(element,code,region){
-//            jAlert('当前选择国家:'+region+" <br/>服务器数目为:3台<br/>可用:2台<br/>繁忙:1台<br/>不可用:1台");
-//
-//        }
-//    }); //end of loading world map
-    //fusion charts loading
-//   
+$(function() {
+    //***************************start to loading server list info*****************************************************************
+    var serverListIno='';
+    serverListIno+='<div class =  "buttons"><img title="美国服务器10" src="images/server-green.gif" width="99" height="99"/></div>';
+    $("#main").append(serverListIno);
+    //***************************end of loading server list info*******************************************************************
 
+    $(".buttons").tooltip();
+    //Add tooltip
+    $( "#dialog" ).dialog({
+        autoOpen: true,
+        width: 1100,
+        buttons: [
+            {
+                text: "关闭",
+                click: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        ]
+    });
+
+    // Link to open the dialog
+    $( "#dialog-link" ).click(function( event ) {
+        $( "#dialog" ).dialog( "open" );
+        event.preventDefault();
+    });
+
+    //auto msg box
     showTime();
     _interval = setInterval("showTime()", 1000);
 

@@ -6,16 +6,27 @@
     
     <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="css/prettify.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-ui-1.9.2.css" media="screen" rel="stylesheet" type="text/css" />
       <style>
 
       </style>
 
     <script src="js/lib/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="js/lib/jquery-ui-1.9.2.js" type="text/javascript"></script>
+    <script src="js/lib/FusionCharts.js" type="text/javascript"></script>
+    <script src="js/lib/prettify.js" type="text/javascript"></script>
+    <script src="js/lib/json2.js" type="text/javascript"></script>
+    <script src="js/lib/lib.js" type="text/javascript"></script>
+    <script src="js/data/Pie2D1.js" type="text/javascript"></script>
+    <script src="js/server-static-data-provider.js" type="text/javascript"></script>
     <script src="js/server-status.js" type="text/javascript"></script>
 
   </head>
   <body>
-    <!-- Div for World Map-->
+    <!-- Div for Show server status-->
+    <div>
+        <p><a href="#" id="dialog-link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>显示服务器信息</a></p>
+    </div>
     <!-- Div for Charts info-->
     <!-- Div for server list-->
     <div>
@@ -27,16 +38,17 @@
             <fieldset>
                 <legend>南京市</legend>
                 <div id="main">
-                    <div class =  "buttons"><img title="server1" src="images/server-green.gif" width="99" height="99"/></div>
-                    <div class =  "buttons"><img title="server1" src="images/server-warning.gif" width="99" height="99"/></div>
-                    <div class =  "buttons"><img title="server1" src="images/server-warning.gif" width="99" height="99"/></div>
-                    <div class =  "buttons"><img title="server1" src="images/server-gray.gif" width="99" height="99"/></div>
-                    <div class =  "buttons"><img title="server1" src="images/server-warning.gif" width="99" height="99"/></div>
-                    <div class =  "buttons"><img title="server1" src="images/server-green.gif" width="99" height="99"/></div>
-                    <div class =  "buttons"><img title="server1" src="images/server-warning.gif" width="99" height="99"/></div>
-                    <div class =  "buttons"><img title="server1" src="images/server-green.gif" width="99" height="99"/></div>
-                    <div class =  "buttons"><img title="server1" src="images/server-warning.gif" width="99" height="99"/></div>
+                    <div class =  "buttons"><img title="美国服务器1" src="image/server-green.gif" width="99" height="99"/></div>
+                    <div class =  "buttons"><img title="香港服务器2" src="image/server-warning.gif" width="99" height="99"/></div>
+                    <div class =  "buttons"><img title="英国服务器3" src="image/server-warning.gif" width="99" height="99"/></div>
+                    <div class =  "buttons"><img title="美国服务器2" src="image/server-gray.gif" width="99" height="99"/></div>
+                    <div class =  "buttons"><img title="server1" src="image/server-warning.gif" width="99" height="99"/></div>
+                    <div class =  "buttons"><img title="server1" src="image/server-green.gif" width="99" height="99"/></div>
+                    <div class =  "buttons"><img title="server1" src="image/server-warning.gif" width="99" height="99"/></div>
+                    <div class =  "buttons"><img title="server1" src="image/server-green.gif" width="99" height="99"/></div>
+                    <div class =  "buttons"><img title="server1" src="image/server-warning.gif" width="99" height="99"/></div>
                 </div>
+             
             </fieldset>
             <fieldset>
                 <legend>无锡市</legend>
@@ -53,6 +65,16 @@
             <dl>
                 <dd id="popIntro">初始化....</dd>
             </dl>
+        </div>
+    </div>
+
+    <div>
+        <!-- ui-dialog -->
+        <div id="dialog" title="服务器状态">
+            <div id="exhibitor114" style="float:inherit">
+                <div id="exhibitorleft">左侧</div>
+                <div id="exhibitorright">右侧</div>
+            </div>
         </div>
     </div>
   </body>
