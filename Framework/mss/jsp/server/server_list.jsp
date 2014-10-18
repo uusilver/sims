@@ -29,17 +29,7 @@
 			}
 		}
 		
-		function revertPwd(userId){
-			var url="${contextPath}/mss/jsp/sysManage/userManageController.do?method=revertPassword";
-			var filter = "";
-			filter="userId="+userId;
-		    var retrunValue = getReturnDataByXMLHttp(url,filter);
-		    if(retrunValue == "true") {
-		    	alert("用户密码初始成功，初始密码为：123456！");
-		    }else{
-		    	alert("用户密码初始失败！");
-		    }
-		}
+		
 	</script>
 	</head>
 
