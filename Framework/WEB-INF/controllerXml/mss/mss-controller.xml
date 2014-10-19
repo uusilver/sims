@@ -106,4 +106,9 @@
 		class="com.xwtech.mss.controller.ServerManagerController">
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
+	
+	<bean name="/mss/html/locationController.do"
+		class="com.xwtech.mss.controller.LocationController">
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
 </beans>

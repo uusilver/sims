@@ -37,7 +37,10 @@ $(function () {
             $('#jstree_demo').jstree(true).search(v);
         }, 250);
     });
-
+    //Loading information from server
+    $.get('/sims/mss/html/locationController.do?method=queryLocationInfo',function(data){
+        alert(data);
+    });
     $('#jstree_demo')
         .jstree({
             "core" : {
@@ -45,16 +48,21 @@ $(function () {
                 "check_callback" : true,
                 "themes" : { "stripes" : true },
                 'data' : [
-                    'Simple root node',
                     {
-                        'text' : 'Root node 2',
-                        'state' : {
-                            'opened' : true,
-                            'selected' : true
-                        },
-                        'children' : [
-                            { 'text' : 'Child 1' },
-                            'Child 2'
+                        'id': '0-0',
+                        'text': '地址管理',
+                        'children': [
+                            {
+                                id: '1-1',
+                                'text': '中国',
+                                'children': [
+                                    {
+                                        'id': '2-1',
+                                        'text': "江苏",
+                                        'children':[{'id':'3-1','text':'南京'},{'id':'3-2','text':'无锡'},{'id':'3-3','text':'镇江'}]
+                                    }
+                                ]
+                            }
                         ]
                     }
                 ]
