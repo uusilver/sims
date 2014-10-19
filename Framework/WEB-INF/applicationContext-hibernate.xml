@@ -58,7 +58,9 @@
                              <value>com/xwtech/mss/pub/po/ClientInfo.hbm.xml</value>
                              <value>com/xwtech/mss/pub/po/GoodsRecord.hbm.xml</value>
                              <value>com/xwtech/mss/pub/po/MpmsAuthorization.hbm.xml</value>
-                             		
+                             
+                            
+                            <value>com/xwtech/mss/pub/po/TransitServer.hbm.xml</value> 
                             <value>com/xwtech/mss/pub/po/Region.hbm.xml</value>
 							<value>com/xwtech/mss/pub/po/Gateway.hbm.xml</value>
 							<value>com/xwtech/mss/pub/po/Country.hbm.xml</value>

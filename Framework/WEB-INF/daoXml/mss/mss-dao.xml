@@ -25,6 +25,7 @@
 		<property name="mpmsAuthorizationDAO" ref="mpmsAuthorizationDAO" />
 		
 		<!-- DAO for SIMS Project -->
+		<property name="transitServerDAO" ref="transitServerDAO" />
 		<property name="cityDAO" ref="cityDAO" />
 		<property name="clientDAO" ref="clientDAO" />
 		<property name="clientGatewayDAO" ref="clientGatewayDAO" />
@@ -115,6 +116,11 @@
 	</bean>
 
 <!-- DAO configuration for SIMS project -->
+
+	<bean id="transitServerDAO"
+		class="com.xwtech.mss.pub.dao.business.TransitServerDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<bean id="cityDAO"
 		class="com.xwtech.mss.pub.dao.business.CityDAO">

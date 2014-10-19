@@ -22,6 +22,7 @@ import com.xwtech.mss.pub.dao.business.RegionDAO;
 import com.xwtech.mss.pub.dao.business.ServerGroupDAO;
 import com.xwtech.mss.pub.dao.business.ServerGroupMappingDAO;
 import com.xwtech.mss.pub.dao.business.ServerStatusDAO;
+import com.xwtech.mss.pub.dao.business.TransitServerDAO;
 import com.xwtech.mss.pub.dao.system.FrameFieldCheckDAO;
 import com.xwtech.mss.pub.dao.system.FrameLoginLogDAO;
 import com.xwtech.mss.pub.dao.system.FrameOrgCityRelationDAO;
@@ -68,6 +69,8 @@ public class DbCollection {
 	private ClientInfoDAO clientInfoDAO;
 	
 	private MpmsAuthorizationDAO mpmsAuthorizationDAO;
+	
+	private TransitServerDAO transitServerDAO;
 	
 	private CityDAO cityDAO;
 	
@@ -240,6 +243,14 @@ public class DbCollection {
 
 	public void setMpmsAuthorizationDAO(MpmsAuthorizationDAO mpmsAuthorizationDAO) {
 		this.mpmsAuthorizationDAO = mpmsAuthorizationDAO;
+	}
+
+	public TransitServerDAO getTransitServerDAO() {
+		return transitServerDAO;
+	}
+
+	public void setTransitServerDAO(TransitServerDAO transitServerDAO) {
+		this.transitServerDAO = transitServerDAO;
 	}
 
 	public CityDAO getCityDAO() {
