@@ -29,12 +29,12 @@ public class ResultConstants{
   public static final int DEL_GOODS_TYPE_SUCCESS = 80022; 	//删除物品类别成功！
   public static final int DEL_GOODS_TYPE_FAILED = 80023;    //删除物品类别失败！
   
-  public static final int ADD_SERVER_INFO_SUCCESS = 80024; 	//保存物品信息成功！
-  public static final int ADD_SERVER_INFO_FAILED = 80025;    //保存物品信息失败！
-  public static final int DEL_SERVER_INFO_SUCCESS = 80026; 	//删除物品信息成功！
-  public static final int DEL_SERVER_INFO_FAILED = 80027;    //删除物品信息失败！
-  public static final int UPDATE_SERVER_INFO_SUCCESS = 80039;    //更新物品信息成功！
-  public static final int UPDATE_SERVER_INFO_FAILED = 80040;    //更新物品信息失败！
+  public static final int ADD_GOODS_INFO_SUCCESS = 80024; 	//保存物品信息成功！
+  public static final int ADD_GOODS_INFO_FAILED = 80025;    //保存物品信息失败！
+  public static final int DEL_GOODS_INFO_SUCCESS = 80026; 	//删除物品信息成功！
+  public static final int DEL_GOODS_INFO_FAILED = 80027;    //删除物品信息失败！
+  public static final int UPDATE_GOODS_INFO_SUCCESS = 80039;    //更新物品信息成功！
+  public static final int UPDATE_GOODS_INFO_FAILED = 80040;    //更新物品信息失败！
   
 
   public static final int ADD_GOODS_IN_RECORD_SUCCESS = 80028; 	//保存物品入库记录成功！
@@ -61,5 +61,13 @@ public class ResultConstants{
   /**信息加载失败*/
   public static final int LOAD_ERROR = 1005;
   
+
+  
+  public static final int ADD_SERVER_INFO_SUCCESS = 90001; 	//保存物品信息成功！
+  public static final int ADD_SERVER_INFO_FAILED = 90002;    //保存物品信息失败！
+  public static final int DEL_SERVER_INFO_SUCCESS = 90003; 	//删除物品信息成功！
+  public static final int DEL_SERVER_INFO_FAILED = 90004;    //删除物品信息失败！
+  public static final int UPDATE_SERVER_INFO_SUCCESS = 90005;    //更新物品信息成功！
+  public static final int UPDATE_SERVER_INFO_FAILED = 90006;    //更新物品信息失败！
 
 }
