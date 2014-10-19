@@ -66,5 +66,15 @@
                 <comment>状态位，用来标识该记录是否有效 A:有效 B:需要备份 D:删除 默认值为A</comment>
             </column>
         </property>
+        <property name="addWho" type="integer">
+            <column name="ADDWHO">
+                <comment>操作人员ID</comment>
+            </column>
+        </property>
+        <property name="addtime" type="timestamp">
+            <column name="ADDTIME" length="19">
+                <comment>创建时间</comment>
+            </column>
+        </property>
     </class>
 </hibernate-mapping>

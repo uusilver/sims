@@ -283,6 +283,27 @@ public class DateUtils {
 	}
 
 	/**
+	 * 将字符串格式的时间转换成日期对象
+	 * @param date
+	 * @param formatter
+	 * @return
+	 */
+	public static Date convertString2Date(String date) {
+		SimpleDateFormat myFormatter = null;
+		Date da = null;
+		if (date.length() < 15)
+			myFormatter = new SimpleDateFormat("yyyyMMddHHmmss");
+		else
+			myFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			da = myFormatter.parse(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return da;
+	}
+
+	/**
 	 * 转化日期时间（yyyyMMddHHmmss）的格式
 	 * 
 	 * @param date

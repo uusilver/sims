@@ -23,6 +23,8 @@ public class TransitServer implements java.io.Serializable {
 	private Date updatetime;
 	private String note;
 	private String status;
+	private Integer addWho;
+	private Date addtime;
 
 	// Constructors
 
@@ -153,6 +155,22 @@ public class TransitServer implements java.io.Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Integer getAddWho() {
+		return addWho;
+	}
+
+	public void setAddWho(Integer addWho) {
+		this.addWho = addWho;
+	}
+
+	public Date getAddtime() {
+		return addtime;
+	}
+
+	public void setAddtime(Date addtime) {
+		this.addtime = addtime;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.xwtech.mss.pub.dao.business;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -9,6 +11,10 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Example;
 
 import com.xwtech.framework.pub.dao.BaseDao;
+import com.xwtech.framework.pub.utils.DateUtils;
+import com.xwtech.framework.pub.web.FrameworkApplication;
+import com.xwtech.mss.formBean.ServerInfoForm;
+import com.xwtech.mss.pub.constants.MssConstants;
 import com.xwtech.mss.pub.po.TransitServer;
 
 /**
@@ -186,5 +192,129 @@ public class TransitServerDAO extends BaseDao {
 			log.error("attach failed", re);
 			throw re;
 		}
+	}
+	
+	/**
+	 * 根据查询条件查询服务器信息
+	 * @param searchForm
+	 * @param perPageCount
+	 * @return
+	 */
+	public HashMap queryServerInfoList(ServerInfoForm searchForm, String perPageCount){
+		List paramList = new ArrayList();
+		// 查询列表sql
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select transitServer from TransitServer transitServer ");
+
+		// 查询条数
+		StringBuffer countHql = new StringBuffer();
+		countHql.append("select count(transitServer.serverid) from TransitServer transitServer ");
+
+		StringBuffer filterHql = new StringBuffer();
+			
+		filterHql.append(" where 1=1 ");
+
+		//服务器类型
+		if (searchForm.getQueryServerType() != null && !"".equals(searchForm.getQueryServerType())) {
+			filterHql.append(" and transitServer.servertype = ?");
+			paramList.add(new Integer (searchForm.getQueryServerType()));
+		}
+		//服务器状态
+		if (searchForm.getQueryServerStatus() != null && !"".equals(searchForm.getQueryServerStatus())) {
+			filterHql.append(" and transitServer.serverstatus = ?");
+			paramList.add(new Integer(searchForm.getQueryServerStatus()));
+		}else{
+			filterHql.append(" and transitServer.serverstatus in (0,1)");
+		}
+
+		//服务器所在国家
+		if (searchForm.getQueryCountryId() != null && !"".equals(searchForm.getQueryCountryId())) {
+			filterHql.append(" and transitServer.countryid = ?");
+			paramList.add(new Integer (searchForm.getQueryCountryId()));
+		}
+
+		//服务器所在省（州）
+		if (searchForm.getQueryProvinceId() != null && !"".equals(searchForm.getQueryProvinceId())) {
+			filterHql.append(" and transitServer.provinceid = ?");
+			paramList.add(new Integer (searchForm.getQueryProvinceId()));
+		}
+
+		//服务器所在城市
+		if (searchForm.getQueryCityId() != null && !"".equals(searchForm.getQueryCityId())) {
+			filterHql.append(" and transitServer.cityid = ?");
+			paramList.add(new Integer (searchForm.getQueryCityId()));
+		}
+
+		//服务器服务区域
+		if (searchForm.getQueryRegionId() != null && !"".equals(searchForm.getQueryRegionId())) {
+			filterHql.append(" and transitServer.regionid = ?");
+			paramList.add(new Integer (searchForm.getQueryRegionId()));
+		}
+
+		//有效期起始时间
+		if (searchForm.getQueryStartTime() != null && !"".equals(searchForm.getQueryStartTime())) {
+//			filterHql.append(" and subStr(goodsInfo.createTime,0,8) >= ?");
+			filterHql.append(" and transitServer.invalidtime >= ?");
+			paramList.add((Object)DateUtils.formatDate(searchForm.getQueryStartTime(),"yyyy-MM-dd HH:mm:ss"));
+		}
+
+		//有效期截至时间
+		if (searchForm.getQueryEndTime() != null && !"".equals(searchForm.getQueryEndTime())) {
+//			filterHql.append(" and subStr(goodsInfo.createTime,0,8) <= ?");
+			filterHql.append(" and transitServer.invalidtime <= ?");
+			paramList.add((Object)DateUtils.formatDate(searchForm.getQueryEndTime(),"yyyy-MM-dd HH:mm:ss"));
+		}
+		
+		//按服务器类别和名称排序
+		listHql.append(filterHql + "  order by transitServer.servertype ,transitServer.regionid asc ");
+		countHql.append(filterHql);
+
+		HashMap map = queryResultCount(listHql.toString(), countHql.toString(), paramList, searchForm.getCurrentPage(),
+				perPageCount);
+		return map;
+	}
+	
+	/**
+	 * 批量删除选中的服务器记录（逻辑删除）
+	 * @param typeNumStr
+	 * @return
+	 */
+	public int delServerInfo(String serverIds) {
+		// 拼装SQL
+		StringBuffer sbSql = new StringBuffer("UPDATE TRANSIT_SERVER TS SET TS.STATUS = ");
+		sbSql.append("'" + MssConstants.STATE_D + "'"); // 状态设置为删除
+		sbSql.append(" WHERE TS.SERVERID IN (");
+		sbSql.append(serverIds);
+		sbSql.append(")");
+
+		return FrameworkApplication.baseJdbcDAO.update(sbSql.toString());
+	}
+	
+
+	
+	/**
+	 * 根据服务器id查询服务器IP
+	 * @param goodsNumStr
+	 * @return
+	 */
+	public List queryServerIP(String serverIds){
+		String[] paramList = new String[1];
+		// 查询条数sql
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select transitServer from TransitServer transitServer ");
+
+
+		StringBuffer filterHql = new StringBuffer();
+			
+		filterHql.append(" where 1=1 ");
+
+		//服务器Id
+		if (serverIds != null && !"".equals(serverIds)) {
+			filterHql.append(" and transitServer.serverid in ("+serverIds+")");
+		}
+
+		
+		List list = getHibernateTemplate().find((listHql.toString()+filterHql.toString()));
+		return list;
 	}
 }

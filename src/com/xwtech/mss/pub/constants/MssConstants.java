@@ -4,7 +4,7 @@ public class MssConstants {
 	/***************************************************************************
 	 * 基本常量
 	 **************************************************************************/
-	public static final int COUNT_FOR_EVERY_PAGE = 10; // 每页显示的记录条数
+	public static final int COUNT_FOR_EVERY_PAGE = 30; // 每页显示的记录条数
 	
 
 	/***************************************************************************
@@ -36,7 +36,11 @@ public class MssConstants {
 	// add by jzy 09-01-14 日志记录操作类型
 	public static final String OPER_TYPE_INSERT = "A"; // 新增
 	public static final String OPER_TYPE_UPDATE = "U"; // 修改
-	public static final String OPER_TYPE_DELETE = "D"; // 删除
+	public static final String OPER_TYPE_DELETE = "D"; // 删除	
+	
+	public static final String STATE_A = "A";	//状态-有效
+	public static final String STATE_U = "U";	//状态-无效
+	public static final String STATE_D = "D";	//状态-删除
 
 	// 用户状态：正常A、停机U、销号D
 	public static final String CUSTOMER_STATE_VALID = "A"; // 正常
@@ -50,4 +54,9 @@ public class MssConstants {
 	public static final String QUERY_LIKE_INFO_HQL = "SELECT mli.likeId, mli.likeName FROM MssLikeInfo mli"
 			+ " WHERE mli.isDel = " + DATA_NO + " and mli.isHide = " + DATA_NO;
 
+	// 19位日期格式
+	public static final String DATE_FOMATTER_19 = "yyyy-MM-dd HH:mm:ss";
+
+	// 14位日期格式
+	public static final String DATE_FOMATTER_15 = "yyyyMMddHHmmss";
 }
