@@ -200,6 +200,7 @@ public class TransitServerDAO extends BaseDao {
 	 * @param perPageCount
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public HashMap queryServerInfoList(ServerInfoForm searchForm, String perPageCount){
 		List paramList = new ArrayList();
 		// 查询列表sql

@@ -403,7 +403,7 @@ public class ServerInfoController extends MultiActionController {
 		// 页面首次访问，即由菜单点击访问
 		String accessType = request.getParameter("accessType");
 		
-		// 进行物品选择查询时使用
+		// 进行服务器选择查询时使用
 		String rowId = request.getParameter("trId");
 		
 		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();

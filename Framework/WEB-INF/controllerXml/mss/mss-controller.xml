@@ -102,6 +102,9 @@
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 
+
+	<!-- Configuration For SIMS project -->
+
     <bean name="/mss/jsp/server/serverManagerController.do"
 		class="com.xwtech.mss.controller.ServerManagerController">
 		<property name="methodNameResolver" ref="paraMethodResolver" />
@@ -109,6 +112,17 @@
 	
 	<bean name="/mss/html/locationController.do"
 		class="com.xwtech.mss.controller.LocationController">
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
+	
+	
+	
+	
+	<bean name="/mss/jsp/business/serverInfoController.do" class="com.xwtech.mss.controller.ServerInfoController">
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="serverInfoBO" ref="serverInfoBO" />
+		<property name="serverGroupMappingBO" ref="serverGroupMappingBO" />
+		<property name="operLogBO" ref="operLogBO"/>
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 </beans>
