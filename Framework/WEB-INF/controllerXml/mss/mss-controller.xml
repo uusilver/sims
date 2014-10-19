@@ -102,5 +102,8 @@
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 
-  
+    <bean name="/mss/jsp/server/serverManagerController.do"
+		class="com.xwtech.mss.controller.ServerManagerController">
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
 </beans>

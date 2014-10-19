@@ -23,7 +23,7 @@
 		function query(){
 			var passed = "1";
 			if(passed == "1"){
-				document.userListForm.action = "${contextPath}/mss/jsp/sysManage/userManageController.do?method=queryUserList"
+				document.userListForm.action = "${contextPath}/mss/jsp/server/serverManagerController.do?method=queryServerList"
 					+ constructParams("userNum,userName,userDept,userRole,currentPage,viewOrEdit,returnForm,indexNO");
 				document.userListForm.submit();
 			}
@@ -35,7 +35,7 @@
 
 	<body>
 
-		<form name="userListForm" method="post" action="${contextPath}/mss/jsp/sysManage/userManageController.do?method=queryUserList">
+		<form name="userListForm" method="post" action="${contextPath}/mss/jsp/server/serverManagerController.do?method=queryServerList">
 
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://www.jstree.com/demo/ -->
+<html class="no-js"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>地址基础信息修改</title>
+	<meta name="viewport" content="width=device-width">
+    <meta name="robots" content="index,follow">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/tree.min.css">
+    <link rel="stylesheet" href="css/docs.css">
+
+
+	<!--[if lt IE 9]><script src="js/lib/html5.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="js/lib/respond.js"></script><![endif]-->
+    <script>window.$q=[];window.$=window.jQuery=function(a){window.$q.push(a);};</script>
+    <script src="js/location-manager.js"></script>
+
+</head>
+<body>
+
+	<div class="container" id="content">
+		<div class="row page" id="demo" style="display: block; min-height: 1857px;">
+			<div class="col-md-12">
+				<h3>地址基础信息修改</h3>
+				<div class="row">
+					<div class="col-md-4 col-sm-8 col-xs-8">
+						<button type="button" class="btn btn-success btn-sm" onclick="demo_create();"><i class="glyphicon glyphicon-asterisk"></i> 新建</button>
+						<button type="button" class="btn btn-warning btn-sm" onclick="demo_rename();"><i class="glyphicon glyphicon-pencil"></i> 重命名</button>
+						<button type="button" class="btn btn-danger btn-sm" onclick="demo_delete();"><i class="glyphicon glyphicon-remove"></i> 删除</button>
+					</div>
+					<div class="col-md-2 col-sm-4 col-xs-4" style="text-align:right;">
+						<input type="text" value="" style="box-shadow:inset 0 0 4px #eee; width:120px; margin:0; padding:6px 12px; border-radius:4px; border:1px solid silver; font-size:1.1em;" id="demo_q" placeholder="搜索">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div id="jstree_demo" class="demo jstree jstree-1 jstree-default" style="margin-top:1em; min-height:200px;" role="tree" aria-multiselectable="true" tabindex="0" aria-activedescendant="demo_root_2" aria-busy="false"><ul class="jstree-container-ul jstree-children jstree-striped jstree-wholerow-ul jstree-no-dots" role="group"><li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="demo_root_1_anchor" aria-expanded="true" id="demo_root_1" class="jstree-node  jstree-open"><div unselectable="on" role="presentation" class="jstree-wholerow">&nbsp;</div><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://www.jstree.com/demo/#" tabindex="-1" id="demo_root_1_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(http://www.jstree.com/static/3.0.6/assets/images/tree_icon.png); background-size: auto; background-position: 50% 50%;"></i>Root 1</a><ul role="group" class="jstree-children"><li role="treeitem" aria-selected="false" aria-level="2" aria-labelledby="j1_3_anchor" id="j1_3" class="jstree-node  jstree-leaf"><div unselectable="on" role="presentation" class="jstree-wholerow">&nbsp;</div><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://www.jstree.com/demo/#" tabindex="-1" id="j1_3_anchor"><i class="jstree-icon jstree-themeicon" role="presentation"></i>Child 1</a></li><li role="treeitem" aria-selected="false" aria-level="2" aria-labelledby="demo_child_1_anchor" aria-expanded="false" id="demo_child_1" class="jstree-node  jstree-closed jstree-last"><div unselectable="on" role="presentation" class="jstree-wholerow">&nbsp;</div><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="http://www.jstree.com/demo/#" tabindex="-1" id="demo_child_1_anchor"><i class="jstree-icon jstree-themeicon" role="presentation"></i>Child 2</a></li></ul></li><li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="demo_root_2_anchor" id="demo_root_2" class="jstree-node  jstree-leaf jstree-last"><div unselectable="on" role="presentation" class="jstree-wholerow jstree-wholerow-hovered">&nbsp;</div><i class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor jstree-hovered" href="http://www.jstree.com/demo/#" tabindex="-1" id="demo_root_2_anchor"><i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(http://www.jstree.com/static/3.0.6/assets/images/tree_icon.png); background-size: auto; background-position: 50% 50%;"></i>Root 2</a></li></ul></div>
+
+					</div>
+					<div class="col-md-12">
+						<p style="text-align:center; padding-top:1em;">
+							<button class="btn btn-info" id="saveInfo">保存信息</button>
+						</p>
+					</div>
+				</div>
+
+
+
+	</div>
+	<script src="js/lib/jquery-1.9.1.min.js"></script>
+	<script src="js/lib/jquery.address-1.6.js"></script>
+	<script src="js/lib/vakata.js"></script>
+	<script src="js/lib/jstree.js"></script>
+	<script src="js/lib/site.js"></script>
+	<script>$.each($q,function(i,f){$(f)});$q=null;</script>
+
+
+</body></html>
