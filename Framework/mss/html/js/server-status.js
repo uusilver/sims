@@ -7,9 +7,11 @@ var i=1;
 var _interval;
 var html='';
 $(function() {
+
     //***************************start to loading server list info*****************************************************************
+	
     var serverListIno='';
-    serverListIno+='<div class =  "buttons"><img title="美国服务器10" src="images/server-green.gif" width="99" height="99"/></div>';
+    serverListIno+='<div class =  "buttons"><img title="美国服务器10" src="image/server-green.gif" width="99" height="99"/></div>';
     $("#main").append(serverListIno);
     //***************************end of loading server list info*******************************************************************
 
@@ -55,7 +57,7 @@ function showTime()
     $("#popIntro").html(html);
     $("#pop").show("slow");
     i++;
-    if (i>10)
+    if (i>100)
     {
         clearInterval(_interval);
         closeMe($('#pop'));
