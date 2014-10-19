@@ -58,6 +58,22 @@
                              <value>com/xwtech/mss/pub/po/ClientInfo.hbm.xml</value>
                              <value>com/xwtech/mss/pub/po/GoodsRecord.hbm.xml</value>
                              <value>com/xwtech/mss/pub/po/MpmsAuthorization.hbm.xml</value>
+                             		
+                            <value>com/xwtech/mss/pub/po/Region.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/Gateway.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/Country.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/ServerStatus.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/ServerGroup.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/ServerGroupMapping.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/Province.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/ClientWebsiteHistory.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/ClientGroup.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/ClientGroupMapping.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/ClientServerMapping.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/ClientGateway.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/City.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/ClientStatus.hbm.xml</value>
+							<value>com/xwtech/mss/pub/po/Client.hbm.xml</value>
                     </list>
 		</property>
 		<property name="hibernateProperties">

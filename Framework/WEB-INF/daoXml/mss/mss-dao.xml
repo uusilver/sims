@@ -15,8 +15,7 @@
 		<property name="roleDAO" ref="roleDAO" />
 		<property name="userInfoDAO" ref="userInfoDAO" />
 		<property name="userPropertyDAO" ref="userPropertyDAO" />
-		<property name="frameOrgCityRelationDAO"
-			ref="frameOrgCityRelationDAO" />
+		<property name="frameOrgCityRelationDAO" ref="frameOrgCityRelationDAO" />
 			
 			
 		<property name="goodsTypeDAO" ref="goodsTypeDAO" />
@@ -24,6 +23,25 @@
 		<property name="clientInfoDAO" ref="clientInfoDAO" />
 		<property name="goodsRecordDAO" ref="goodsRecordDAO" />
 		<property name="mpmsAuthorizationDAO" ref="mpmsAuthorizationDAO" />
+		
+		<!-- DAO for SIMS Project -->
+		<property name="cityDAO" ref="cityDAO" />
+		<property name="clientDAO" ref="clientDAO" />
+		<property name="clientGatewayDAO" ref="clientGatewayDAO" />
+		<property name="clientGroupDAO" ref="clientGroupDAO" />
+		<property name="clientGroupMappingDAO" ref="clientGroupMappingDAO" />
+		<property name="clientServerMappingDAO" ref="clientServerMappingDAO" />
+		<property name="clientStatusDAO" ref="clientStatusDAO" />
+		<property name="clientWebsiteHistoryDAO" ref="clientWebsiteHistoryDAO" />
+		<property name="countryDAO" ref="countryDAO" />
+		<property name="gatewayDAO" ref="gatewayDAO" />
+		<property name="provinceDAO" ref="provinceDAO" />
+		<property name="regionDAO" ref="regionDAO" />
+		<property name="serverGroupDAO" ref="serverGroupDAO" />
+		<property name="serverGroupMappingDAO" ref="serverGroupMappingDAO" />
+		<property name="serverStatusDAO" ref="serverStatusDAO" />
+		
+		
 	</bean>
 
 
@@ -93,6 +111,83 @@
 
 	<bean id="mpmsAuthorizationDAO"
 		class="com.xwtech.mss.pub.dao.business.MpmsAuthorizationDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+<!-- DAO configuration for SIMS project -->
+
+	<bean id="cityDAO"
+		class="com.xwtech.mss.pub.dao.business.CityDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="clientDAO"
+		class="com.xwtech.mss.pub.dao.business.ClientDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="clientGatewayDAO"
+		class="com.xwtech.mss.pub.dao.business.ClientGatewayDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="clientGroupDAO"
+		class="com.xwtech.mss.pub.dao.business.ClientGroupDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="clientGroupMappingDAO"
+		class="com.xwtech.mss.pub.dao.business.ClientGroupMappingDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="clientServerMappingDAO"
+		class="com.xwtech.mss.pub.dao.business.ClientServerMappingDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="clientStatusDAO"
+		class="com.xwtech.mss.pub.dao.business.ClientStatusDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="clientWebsiteHistoryDAO"
+		class="com.xwtech.mss.pub.dao.business.ClientWebsiteHistoryDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="countryDAO"
+		class="com.xwtech.mss.pub.dao.business.CountryDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="gatewayDAO"
+		class="com.xwtech.mss.pub.dao.business.GatewayDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="provinceDAO"
+		class="com.xwtech.mss.pub.dao.business.ProvinceDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="regionDAO"
+		class="com.xwtech.mss.pub.dao.business.RegionDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="serverGroupDAO"
+		class="com.xwtech.mss.pub.dao.business.ServerGroupDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="serverGroupMappingDAO"
+		class="com.xwtech.mss.pub.dao.business.ServerGroupMappingDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="serverStatusDAO"
+		class="com.xwtech.mss.pub.dao.business.ServerStatusDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
