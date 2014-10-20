@@ -29,7 +29,7 @@
 	<!-- Configuration For SIMS project -->
 	
 	<bean id="serverInfoBO" class="com.xwtech.mss.bo.business.ServerInfoBO">     
-		<property name="serverInfoDAO" ref="serverInfoDAO" />
+		<property name="transitServerDAO" ref="transitServerDAO" />
 	</bean>
 	<bean id="serverGroupMappingBO" class="com.xwtech.mss.bo.business.ServerGroupMappingBO">     
 		<property name="serverGroupMappingDAO" ref="serverGroupMappingDAO" />

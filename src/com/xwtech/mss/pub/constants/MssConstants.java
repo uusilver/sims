@@ -47,13 +47,35 @@ public class MssConstants {
 	public static final String CUSTOMER_STATE_INVALID = "U"; // 停机
 	public static final String CUSTOMER_STATE_DELETE = "D"; // 销号
 
-	// 查询兴趣类别表有效信息SQL
-	public static final String QUERY_LIKE_INFO_SQL = "SELECT mli.like_Id, mli.like_Name FROM Mss_Like_Info mli"
-			+ " WHERE mli.IS_DEL = " + DATA_NO + " and mli.IS_HIDE = " + DATA_NO;
-	// 查询兴趣类别表有效信息HQL
-	public static final String QUERY_LIKE_INFO_HQL = "SELECT mli.likeId, mli.likeName FROM MssLikeInfo mli"
-			+ " WHERE mli.isDel = " + DATA_NO + " and mli.isHide = " + DATA_NO;
-
+	// 查询服务器所在国家表有效信息SQL
+	public static final String QUERY_COUNTRY_INFO_SQL = "SELECT C.COUNTRYID, C.COUNTRYNAME FROM COUNTRY C"
+			+ " WHERE C.STATUS = '" + STATE_A +"'";
+	
+	// 查询服务器所在省（州）表有效信息SQL
+	public static final String QUERY_PROVINCE_INFO_SQL = "SELECT P.PROVINCEID, P.PROVINCENAME,P.COUNTRYID FROM PROVINCE P"
+			+ " WHERE P.STATUS = '" + STATE_A + "'";
+	
+	// 查询服务器所在城市表有效信息SQL
+	public static final String QUERY_CITY_INFO_SQL = "SELECT T.CITYID, T.CITYNAME,T.PROVINCEID FROM CITY T"
+			+ " WHERE T.STATUS = '" + STATE_A + "'";
+	
+	// 查询服务器服务地域表有效信息SQL
+	public static final String QUERY_SERVE_REGION_INFO_SQL = "SELECT R.REGIONID, R.REGIONNAME FROM REGION R"
+			+ " WHERE R.STATUS = '" + STATE_A + "'";
+	
+	// 查询服务器类型信息SQL
+	public static final String QUERY_SERVER_TYPE_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
+			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='SERVER_TYPE'";
+	
+	// 查询服务器状态信息SQL
+	public static final String QUERY_SERVER_STATUS_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
+			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='SERVER_STATUS'";
+	
+	// 查询服务器约束信息SQL
+	public static final String QUERY_SERVER_LIMIT_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
+			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='LIMITATION'";
+	
+	
 	// 19位日期格式
 	public static final String DATE_FOMATTER_19 = "yyyy-MM-dd HH:mm:ss";
 

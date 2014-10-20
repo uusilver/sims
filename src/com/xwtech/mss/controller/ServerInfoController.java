@@ -68,13 +68,13 @@ public class ServerInfoController extends MultiActionController {
 	}
 
 	/**
-	 * 保存物品信息和流水记录
+	 * 保存服务器信息和流水记录
 	 * @param request
 	 * @param response
 	 * @return
 	 * @throws ServletRequestBindingException
 	 */
-	public ModelAndView saveGoodsInfo(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView saveServerInfo(HttpServletRequest request, HttpServletResponse response)
 	throws ServletRequestBindingException {
 
 		HashMap map = new HashMap();
@@ -128,12 +128,12 @@ public class ServerInfoController extends MultiActionController {
 		transTemplate.execute(new TransactionCallbackWithoutResult() {
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 
-				// 1.添加物品信息
+				// 1.添加服务器信息
 				//服务器信息
 				TransitServer transitServer = new TransitServer();
 
 				try{
-					//保存物品信息
+					//保存服务器信息
 					transitServer.setServerip(serverIP);
 					transitServer.setCountryid(new Integer(countryID));
 					transitServer.setProvinceid(new Integer(provinceID));
@@ -162,7 +162,7 @@ public class ServerInfoController extends MultiActionController {
 					OperationLog oper = new OperationLog();
 					oper.setDoObject(new Long(4));
 					
-					//4：物品信息
+					//4：服务器信息
 					oper.setObjType(new Long(4));
 					
 					//1:新增
@@ -190,7 +190,7 @@ public class ServerInfoController extends MultiActionController {
 	
 	
 //	/**
-//	 * 更新物品信息和流水记录
+//	 * 更新服务器信息和流水记录
 //	 * @param request
 //	 * @param response
 //	 * @return
@@ -203,10 +203,10 @@ public class ServerInfoController extends MultiActionController {
 //		final ResultInfos resultInfos = new ResultInfos();
 //		map.put(RequestNameConstants.RESULTINFOS, resultInfos);
 //		
-//		//物品id
+//		//服务器id
 //		final String goodsNum = request.getParameter("goodsNum");
 //		
-//		//物品名称
+//		//服务器名称
 //		final String goodsName = request.getParameter("goodsName");
 //		
 //		//所属类别名称
@@ -215,25 +215,25 @@ public class ServerInfoController extends MultiActionController {
 //		//所属类别名称
 //		final String goodsTypeName = request.getParameter("goodsType");
 //		
-//		//物品所属类别,记录商品类别，格式如下：1,2,3  ;其中1,2,3分别为商品类别的记录序号
+//		//服务器所属类别,记录商品类别，格式如下：1,2,3  ;其中1,2,3分别为商品类别的记录序号
 //		final String goodsType = request.getParameter("goodsTypeStr");
 //		
-//		//物品单价
+//		//服务器单价
 //		final String goodsPrice = request.getParameter("goodsPrice");
 //		
 //		//预估单价
 //		final String wishPrice = request.getParameter("wishPrice");
 //		
-//		//物品克重
+//		//服务器克重
 //		final String goodsWeight = request.getParameter("goodsWeight");
 //		
-//		//物品数量
+//		//服务器数量
 //		final String goodsCount = request.getParameter("goodsCount");
 //		
-//		//物品数量
+//		//服务器数量
 //		final String goodsCountPlus = request.getParameter("goodsCountPlus");
 //		
-//		//物品状态
+//		//服务器状态
 //		final String goodsState = request.getParameter("goodsState");
 //		
 //		//备注
@@ -248,22 +248,22 @@ public class ServerInfoController extends MultiActionController {
 //		transTemplate.execute(new TransactionCallbackWithoutResult() {
 //			protected void doInTransactionWithoutResult(TransactionStatus status) {
 //
-//				// 1.获取物品和流水信息
+//				// 1.获取服务器和流水信息
 //				// 更新
 //				GoodsInfo goodsInfo = goodsInfoBO.findById(new Long(goodsNum));
 //
 //				//入库流水
 //				List<GoodsRecord> recordList = goodsRecordBO.queryRecordListByGoodsAndState(goodsNum, null);
 //				String oldGoodsName = goodsInfo.getGoodsName();
-//				//更新物品信息操作日志
+//				//更新服务器信息操作日志
 //				OperationLog oper = new OperationLog();
 //				
 //				String oldGoodsCode = goodsInfo.getGoodsCode();
 //				
-//				oper.setDescription("更新物品信息，ID：【"+goodsNum+"】，名称：【"+goodsInfo.getGoodsName()+" : "+oldGoodsCode+"】 为 【"+goodsName+" : "+goodsCode.toLowerCase()+"】，成本单价：【"+goodsInfo.getGoodsPrice()+"】 为 【"+goodsPrice+"】，预估单价：【"+goodsInfo.getWishPrice()+"】 为 【"+wishPrice+"】");
+//				oper.setDescription("更新服务器信息，ID：【"+goodsNum+"】，名称：【"+goodsInfo.getGoodsName()+" : "+oldGoodsCode+"】 为 【"+goodsName+" : "+goodsCode.toLowerCase()+"】，成本单价：【"+goodsInfo.getGoodsPrice()+"】 为 【"+goodsPrice+"】，预估单价：【"+goodsInfo.getWishPrice()+"】 为 【"+wishPrice+"】");
 //				
 //				try{
-//					//更新物品信息
+//					//更新服务器信息
 //					goodsInfo.setGoodsName(goodsName);
 //					goodsInfo.setTypeName(goodsTypeName);
 //					if(!goodsType.startsWith(",")){
@@ -284,7 +284,7 @@ public class ServerInfoController extends MultiActionController {
 //					
 //					oper.setDoObject(new Long(4));
 //					
-//					//4：物品信息
+//					//4：服务器信息
 //					oper.setObjType(new Long(4));
 //					
 //					//2:更新
@@ -331,7 +331,7 @@ public class ServerInfoController extends MultiActionController {
 //							operFlow.setDoTime(DateUtils.getChar12());
 //							operFlow.setLoginName(userName);
 //							operFlow.setTableName("goodsRecord");
-//							operFlow.setDescription("更新流水，ID:【"+goodsRecord.getRecordNum()+"】的物品名称【"+oldGoodsName+" : "+oldGoodsCode+"】 为：【"+goodsName+" ： "+goodsCode.toUpperCase()+"】");
+//							operFlow.setDescription("更新流水，ID:【"+goodsRecord.getRecordNum()+"】的服务器名称【"+oldGoodsName+" : "+oldGoodsCode+"】 为：【"+goodsName+" ： "+goodsCode.toUpperCase()+"】");
 //							operLogBO.save(operFlow);
 //						}
 //					}
@@ -356,11 +356,11 @@ public class ServerInfoController extends MultiActionController {
 //						goodsRecordPlus.setUserName(userName);
 //						goodsRecordBO.saveOrUpdate(goodsRecordPlus);
 //						
-//						//新增物品信息
+//						//新增服务器信息
 //						OperationLog operPlus = new OperationLog();
 //						operPlus.setDoObject(new Long(4));
 //						
-//						//4：物品信息
+//						//4：服务器信息
 //						operPlus.setObjType(new Long(4));
 //						
 //						//1:新增
@@ -368,7 +368,7 @@ public class ServerInfoController extends MultiActionController {
 //						operPlus.setDoTime(DateUtils.getChar12());
 //						operPlus.setLoginName(userName);
 //						operPlus.setTableName("goodsInfo");
-//						operPlus.setDescription("为物品【"+goodsName+" ： "+goodsCode.toUpperCase()+"】补录数量：【"+goodsCountPlus+"】");
+//						operPlus.setDescription("为服务器【"+goodsName+" ： "+goodsCode.toUpperCase()+"】补录数量：【"+goodsCountPlus+"】");
 //						operLogBO.save(operPlus);
 //					}
 //					
@@ -388,7 +388,7 @@ public class ServerInfoController extends MultiActionController {
 	
 	
 	/**
-	 * 查询物品信息
+	 * 查询服务器信息
 	 * @param request
 	 * @param response
 	 * @return
@@ -468,7 +468,7 @@ public class ServerInfoController extends MultiActionController {
 	}
 	
 //	/**
-//	 * 根据物品类别ID查询物品类别详细信息
+//	 * 根据服务器类别ID查询服务器类别详细信息
 //	 * @param request
 //	 * @param response
 //	 * @return
@@ -499,7 +499,7 @@ public class ServerInfoController extends MultiActionController {
 //	}
 //	
 //	/**
-//	 * 根据查询条件查询同类别物品信息个数
+//	 * 根据查询条件查询同类别服务器信息个数
 //	 * @param request
 //	 * @param response
 //	 * @return
@@ -574,21 +574,21 @@ public class ServerInfoController extends MultiActionController {
 //					}
 //
 //					
-//					//保存物品删除记录
+//					//保存服务器删除记录
 //					if(!"".equals(goodsNameStr)){
 //						OperationLog oper = new OperationLog();
 //						
 //						oper.setDoObject(new Long(4));
 //						
-//						//4：物品信息
+//						//4：服务器信息
 //						oper.setObjType(new Long(4));
 //						
-//						//删除物品信息
+//						//删除服务器信息
 //						oper.setDoType(new Long(3));
 //						oper.setDoTime(DateUtils.getChar12());
 //						oper.setLoginName(userName);
 //						oper.setTableName("goodsInfo");
-//						oper.setDescription("删除物品信息，ID【"+goodsNumStr+"】，物品名称：【"+goodsNameStr+"】");
+//						oper.setDescription("删除服务器信息，ID【"+goodsNumStr+"】，服务器名称：【"+goodsNameStr+"】");
 //						operLogBO.save(oper);
 //					}
 //					
@@ -596,7 +596,7 @@ public class ServerInfoController extends MultiActionController {
 //					resultInfos.setGotoUrl("/mss/jsp/business/goodsInfoController.do?method=queryGoodsInfoList" + "&ifSession=yes");
 //				} catch (Exception ex) {
 //					resultInfos.setGotoUrl(null);
-//					log.error("删除物品信息失败！");
+//					log.error("删除服务器信息失败！");
 //					resultInfos.add(new ResultInfo(ResultConstants.DEL_GOODS_INFO_FAILED));
 //					resultInfos.setGotoUrl("/mss/jsp/business/goodsInfoController.do?method=queryGoodsInfoList" + "&ifSession=yes");
 //					ex.printStackTrace();
