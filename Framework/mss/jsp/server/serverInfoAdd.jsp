@@ -13,26 +13,17 @@
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/ajax.js"></script>
 		<script type="text/javascript">
-		function selectServerType(){
-			var url = "/mss/jsp/business/goodsTypeController.do?method=queryGoodsTypeList&accessType=sel&queryTypeState=A";
-			window.open(url,'','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=600, height=400,top=100,left=100');
-		}
 
 		function saveServerInfo(){
-			var serverIP = document.getElementById("server_IP");
-			var serverComm = document.getElementById("server_comment");
-			//if(clientAddr.value!=""){
-			//	
-			//}
-			if(checkClientName()&&checkClientNick()&&checkClientTel()&&checkClientAddr()&&checkZipCode()&&checkEMail()&&checkClientComment()){
+			if(checkServerIP()&&checkCountry()&&checkProvince()&&checkCity()&&checkServerType()&&checkServerStatus()
+				&&checkInvalidTime()&&checkServerLimit()&&checkServeRegion()&&checkComment()){
 				if(confirm("您确定要保存该服务器信息么？")){
-					document.clientInfoAddForm.submit();
+					document.serverInfoAddForm.submit();
 				}
 			}else{
 				alert("请根据提示修改相应内容！");
 			}
 		}
-		
 		
 		
 		function checkServerIP() {
@@ -146,7 +137,7 @@
 			
 			var infoDiv = document.getElementById("server_statusDiv");
 			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器类状态合要求";
+		    infoDiv.innerHTML = "服务器状态符合要求";
 		    return true;
 		}
 		
@@ -160,12 +151,13 @@
 		        infoDiv.innerHTML = "服务器失效日期不能为空，请选择！";
 				return false;
 			}
-			var invalidTime_C = new Date(invalidTime.replace(/-/g, '/'));
+			var invalidTime_C = Date.parse(invalidTime.value.replace(/\-/g,"/"));
+			var currentDateTime_C = Date.parse(getCurrentDateTime().replace(/\-/g,"/"));
 			
-			if (invalidTime.value == "") {
+			if (invalidTime_C<currentDateTime_C) {
 				var infoDiv = document.getElementById("invalid_timeDiv");
 				infoDiv.className = "warning";
-		        infoDiv.innerHTML = "服务器失效日期不能为空，请选择！";
+		        infoDiv.innerHTML = "服务器失效日期不能小于或等于当前日期，请修改！";
 				return false;
 			}
 			
@@ -175,153 +167,58 @@
 		    return true;
 		}
 		
-		function getCurrentDateTime(){
-			var d = new Date();
-			var vYear = d.getFullYear();
-			var vMon = d.getMonth() + 1;
-			var vDay = d.getDate();
-			var h = d.getHours();
-			var m = d.getMinutes();
-			var se = d.getSeconds(); 
-			s=vYear+(vMon<10 ? "0" + vMon : vMon)+(vDay<10 ? "0"+ vDay : vDay)+(h<10 ? "0"+ h : h)+(m<10 ? "0" + m : m)+(se<10 ? "0" +se : se);
-			return s;
-		}
 		
-		/**
-		 * 校验是否超长或者是否为数字
-		 */
-		function checkClientTel(){
-			var condition = /^[0-9]+$/g;
-			var clientTel = document.getElementById("client_tel").value;
-			var numLength = clientTel.length;
-			if(numLength==0){
-				var infoDiv = document.getElementById("client_telDiv");
+		function checkServerLimit() {
+			
+			var serverLimit = document.getElementsByName("limit")[0];
+			
+			if (serverLimit.value == "") {
+				var infoDiv = document.getElementById("limitDiv");
 				infoDiv.className = "warning";
-		        infoDiv.innerHTML = "联系电话不能为空，请填写！";
-				return false;
-			}
-			if(numLength>20){
-				var infoDiv = document.getElementById("client_telDiv");
-				infoDiv.className = "warning";
-		        infoDiv.innerHTML = "号码长度不能超过20位，请修改！";
-				return false;
-			}
-			if(!condition.test(clientTel)){
-				var infoDiv = document.getElementById("client_telDiv");
-				infoDiv.className = "warning";
-			    infoDiv.innerHTML = "联系电话只能为数字，请修改！";
+		        infoDiv.innerHTML = "服务器约束不能为空，请选择！";
 				return false;
 			}
 			
-			var infoDiv = document.getElementById("client_telDiv");
+			var infoDiv = document.getElementById("limitDiv");
 			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "联系电话格式符合要求";
+		    infoDiv.innerHTML = "服务器约束信息符合要求";
 		    return true;
 		}
 		
-		//校验客户地址
-		function checkClientAddr(){
-			var condition = /^[\u4E00-\u9FA5,0-9,a-z,A-Z,(,),（,）]+$/; //校验是否汉字或者字母
-			var clientAddr = document.getElementById("client_addr");
+		function checkServeRegion() {
 			
-			if(clientAddr.value==""){
-				return true;
-			}
+			var serveRegion = document.getElementsByName("serveRegion")[0];
 			
-			if(clientAddr.value.length>80)
-			{
-				var infoDiv = document.getElementById("client_addrDiv");
+			if (serveRegion.value == "") {
+				var infoDiv = document.getElementById("server_regionDiv");
 				infoDiv.className = "warning";
-		        infoDiv.innerHTML = "收件地址不能超过80个字符，请修改";
+		        infoDiv.innerHTML = "服务器服务地域不能为空，请选择！";
 				return false;
 			}
 			
-			if(!condition.test(trim(clientAddr.value))) {
-				var infoDiv = document.getElementById("client_addrDiv");
-				infoDiv.className = "warning";
-		       infoDiv.innerHTML = "收件地址必须是汉字、数字、字母、括号或者四者组合，请修改！";
-				return false;
-			}
-			
-			var infoDiv = document.getElementById("client_addrDiv");
+			var infoDiv = document.getElementById("server_regionDiv");
 			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "收件地址符合要求";
-		    return true;
-		}
-		
-		//校验客户邮编
-		function checkZipCode(){
-			var condition = /^[0-9]+$/;
-			var zipCode = document.getElementById("zip_code").value;
-			
-			if(zipCode==""){
-				return true;
-			}
-			
-			if(zipCode.length>10){
-				var infoDiv = document.getElementById("zip_codeDiv");
-				infoDiv.className = "warning";
-		        infoDiv.innerHTML = "邮政编码不能超过10位，请修改！";
-				return false;
-			}
-			if(!condition.test(zipCode)){
-				var infoDiv = document.getElementById("zip_codeDiv");
-				infoDiv.className = "warning";
-			    infoDiv.innerHTML = "邮政编码只能为数字，请修改！";
-				return false;
-			}
-			
-			var infoDiv = document.getElementById("zip_codeDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "邮政编码格式符合要求";
-		    return true;
-		}
-		
-		//校验Email
-		function checkEMail(){
-			var condition = /^([-_A-Za-z0-9\.]+)@+([-_A-Za-z0-9]+\.)+[A-Za-z0-9]{2,3}$/;
-			var eMail = document.getElementById("e_mail").value;
-			
-			if(eMail==""){
-				return true;
-			}
-			
-			if(eMail.length>80){
-				var infoDiv = document.getElementById("e_mailDiv");
-				infoDiv.className = "warning";
-		        infoDiv.innerHTML = "Email长度不能超过80位，请修改！";
-				return false;
-			}
-			if(!condition.test(eMail)){
-				var infoDiv = document.getElementById("e_mailDiv");
-				infoDiv.className = "warning";
-			    infoDiv.innerHTML = "不是有效的Email格式，请修改！";
-				return false;
-			}
-			
-			var infoDiv = document.getElementById("e_mailDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "Email格式符合要求";
+		    infoDiv.innerHTML = "服务器服务地域符合要求";
 		    return true;
 		}
 		
 		//校验备注
-		function checkClientComment() {
-			var clientComment = document.getElementById("client_comment");
+		function checkComment() {
+			var comment = document.getElementById("server_comment");
 			
-			if(clientComment.value==""){
+			if(comment.value==""){
 				return true;
 			}
 			
-			if(clientComment.value.length>50)
+			if(comment.value.length>100)
 			{
-				var infoDiv = document.getElementById("client_commDiv");
+				var infoDiv = document.getElementById("server_commDiv");
 				infoDiv.className = "warning";
-		        infoDiv.innerHTML = "备注不能超过50个字符，请修改！";
+		        infoDiv.innerHTML = "备注不能超过100个字符，请修改！";
 				return false;
 			}
 			
-			var infoDiv = document.getElementById("client_commDiv");
+			var infoDiv = document.getElementById("server_commDiv");
 			infoDiv.className = "OK";
 		    infoDiv.innerHTML = "";
 		    return true;
@@ -438,8 +335,18 @@
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 					<pub:link sql="<%=MssConstants.QUERY_SERVE_REGION_INFO_SQL%>" num="1" selectSize="20"
-							title="---请选择地域信息---" next="false" name="ServeRegion" mvalue="${information.transitServer.regionid}" />
+							title="---请选择地域信息---" next="false" name="serveRegion" mvalue="${information.transitServer.regionid}" />
 					<span id="server_regionDiv"></span>
+					</td>
+				</tr>
+				<tr height="30">
+					<td width="20%" align="center" class="qinggoudan_table_title">
+						服务器所属分组
+					</td>
+					<td align="left" class="qinggoudan_table_td1">
+					<pub:link sql="<%=MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" selectSize="20"
+							title="---请选择服务器分组---" next="false" name="serveGroup" mvalue="${information.serverGroup.servergroupid}" />
+					<span id="server_groupDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
@@ -458,7 +365,7 @@
 				<tr>
 					<td align="center">
 						&nbsp;
-						<input type="button" class="anniu_out" name="saveBtn" value=" 确 定 " onclick="saveClientInfo()"
+						<input type="button" class="anniu_out" name="saveBtn" value=" 确 定 " onclick="saveServerInfo()"
 							onMouseOver="className='anniu_over'" onMouseOut="className='anniu_out'">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" class="anniu_out" value=" 返 回 " onMouseOver="className='anniu_over'"
