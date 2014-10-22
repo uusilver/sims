@@ -33,12 +33,7 @@
   </head>
   <body class="metro" style="background-color: #353434">
     <!-- Div for Show server status-->
-    <div>
-        <p><a href="#" id="dialog-link" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>显示服务器信息</a></p>
-    </div>
-    <div>
-        <p><a href="#" id="dialog-msg" class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-newwin"></span>显示消息信息</a></p>
-    </div>
+
     <!-- Div for Charts info-->
     <!-- Div for server list-->
     <div class="container">
@@ -146,26 +141,26 @@
                 </div>
             </div>
         </div>
-        <div class="tile double" id="nj">
+        <div class="tile double" name="citybox" id="nj">
             <div class="tile double live" data-role="live-tile" data-effect="slideRight">
                 <div class="tile-content image" style="...">
                     <img src="image/cities/nanjing.png">
                 </div>
                 <div class="tile-content image" style="...">
-                    <img src="image/cities/nanjing-p.png">
+                    <img src="image/cities/server1.jpg">
                 </div>
                 <div class="tile-status bg-dark opacity">
                     <span class="label">南京</span>
                 </div>
             </div>
         </div>
-        <div class="tile double">
+        <div class="tile double" name="citybox" id="wx">
             <div class="tile double live" data-role="live-tile" data-effect="slideUp">
                 <div class="tile-content image" style="...">
                     <img src="image/cities/wuxi.png">
                 </div>
                 <div class="tile-content image" style="...">
-                    <img src="image/cities/wuxi-p.png">
+                    <img src="image/cities/servre2.jpg">
                 </div>
                 <div class="tile-status bg-dark opacity">
                     <span class="label">无锡</span>
@@ -271,28 +266,40 @@
 
     </div> <!-- End of container -->
      <!-- Div for pop up window-->
-    <div id="pop" style="display:none;">
-           <dd id="popIntro">初始化....</dd>
-           <dd id="info">信息1.</dd>
-    </div>
-
-    <div>
-        <!-- ui-dialog -->
-        <div id="dialog" title="服务器状态">
-            <div id="exhibitor114" style="float:inherit">
-                <div id="exhibitorleft">左侧</div>
-                <div id="exhibitorright">右侧</div>
+    <div id="pop" style="display:none;" title="服务器状态">
+        <div id="exhibitor114" style="float:inherit;margin-top: 45px">
+            <div id="exhibitorleft">
+                <div style="height: 33%" >
+                    <fieldset>
+                        <legend>活跃服务器</legend>
+                        <ul>
+                            <li id="server_green"></li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div style="height: 33%">
+                    <fieldset>
+                        <legend>繁忙服务器</legend>
+                        <ul>
+                            <li id="server_warning"></li>
+                        </ul>
+                    </fieldset>
+                </div>
+                <div style="height: 33%">
+                    <fieldset>
+                        <legend>空闲服务器</legend>
+                        <ul>
+                            <li id="server_gray"></li>
+                        </ul>
+                    </fieldset>
+                </div>
             </div>
+            <div id="exhibitorright">右侧</div>
         </div>
     </div>
+
+
   </body>
-  <script type="text/javascript">
-      function sc()
-      {
-          var e=document.getElementById("popContent")
-          e.scrollTop=e.scrollHeight;
-      }
-      var s=setInterval("sc()",200)
-  </script>
+
 
 </html>
