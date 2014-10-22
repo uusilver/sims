@@ -3,22 +3,17 @@
     @Date:   2014-10-16
     @@Desc:  For index.html
  */
-var i=1;
-var _interval;
-var html='';
 $(function() {
 
     //***************************start to loading server list info*****************************************************************
 	
-    var serverListIno='';
-    serverListIno+='<div class =  "buttons"><img title="美国服务器10" src="image/server-green.gif" width="99" height="99"/></div>';
-    $("#main").append(serverListIno);
+
     //***************************end of loading server list info*******************************************************************
 
-    $(".buttons").tooltip();
-    //Add tooltip
+
+    //Add dialog show server msg
     $( "#dialog" ).dialog({
-        autoOpen: true,
+        autoOpen: false,
         width: 1100,
         buttons: [
             {
@@ -36,35 +31,25 @@ $(function() {
         event.preventDefault();
     });
 
-    //auto msg box
-    showTime();
-    _interval = setInterval("showTime()", 1000);
-
-    //define close button
-    $("#popClose").click(function(){
-        closeMe($('#pop'));
-    })
+    //dialog shows server status info
+    $( "#pop" ).dialog({
+        autoOpen: false,
+        width: 1100,
+        buttons: [
+            {
+                text: "关闭",
+                click: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        ]
+    });
+    //Click
+    $( "#dialog-msg" ).click(function( event ) {
+        $( "#pop" ).dialog( "open" );
+        event.preventDefault();
+    });
 
 });//end of function
 //
-function showTime()
-{
-    if(html){
-        html += "服务器"+(i-1)+"在被攻击<br/>";
-    }else{
-        html =  "<br/>";
-    }
-    $("#popIntro").html(html);
-    $("#pop").show("slow");
-    i++;
-    if (i>100)
-    {
-        clearInterval(_interval);
-        closeMe($('#pop'));
-    }
 
-}
-//close window
-function closeMe(obj){
-    obj.hide();
-}
