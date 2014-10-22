@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/jquery.jOrgChart.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
+    <link href="css/prettify.css" type="text/css" rel="stylesheet" />
+
+    <script type="text/javascript" src="js/lib/prettify.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-ui-1.9.2.js"></script>
+    <script src="js/lib/jquery.jOrgChart.js"></script>
+
+    <script>
+        jQuery(document).ready(function() {
+
+            $("#org").jOrgChart({
+                chartElement : '#chart',
+                dragAndDrop  : true
+            });
+        });
+    </script>
+</head>
+<body>
+<body onload="prettyPrint();">
+
+<div >
+<ul id="org" style="display:none">
+    <li>
+        南京
+        <ul>
+            <li id="beer">组1
+                <ul>网关1
+                    <li>用户1</li>
+                    <li>用户2</li>
+                 </ul>
+            </li>
+            <li>Vegetables </li>
+            <li class="fruit">Fruit </li>
+            <li>Bread</li>
+            <li class="collapsed">Chocolate</li>
+        </ul>
+    </li>
+
+    <li>
+        Time
+        <ul>
+            <li id="beer">Minutes</li>
+            <li>Seconds </li>
+
+        </ul>
+    </li>
+</ul>
+</div>
+<div id="chart" class="orgChart"></div>
+
+</body>
+</html>
