@@ -940,3 +940,21 @@ function convertBack(str){
 	}
 	return value;
 }
+
+
+
+function getCurrentDateTime(){
+
+	var date = new Date();
+	var dateValue = date.getFullYear() + "-" + ((date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1)) 
+					+ "-" + ((date.getDate()) < 10 ? "0" + (date.getDate()) : (date.getDate()));
+
+	var h = date.getHours();
+	var m = date.getMinutes();
+	var se = date.getSeconds(); 
+	var timeValue = (h<10 ? "0"+ h : h)+":"+(m<10 ? "0" + m : m)+":"+(se<10 ? "0" +se : se);
+	
+	var dateTime =dateValue+" "+timeValue;
+	//alert(dateTime);
+	return dateTime;
+}

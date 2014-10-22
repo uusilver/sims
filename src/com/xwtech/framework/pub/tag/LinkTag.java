@@ -1270,7 +1270,14 @@ public class LinkTag extends TagSupport implements IHtmlet
                 + ".options[0] = new Option('" + title + "','');\n");
         if(next.equals("true"))
         {
-          body = body.append("document.all." + selectId + mn + ".fireEvent(\"onChange\");\n");
+        	//兼容IE，FF和Chrome
+        	body = body.append("if (document.createEvent) {\n ");
+        	body = body.append(" var evt = document.createEvent('HTMLEvents');\n");
+        	body = body.append(" evt.initEvent('change',true,true);\n");
+        	body = body.append(" document.all." + selectId + mn + ".dispatchEvent(evt);\n");
+            body = body.append("} else{\n");
+        	body = body.append("document.all." + selectId + mn + ".fireEvent(\"onChange\");\n}");
+        	
         }
         body = body.append("for (i=0; i<subcat" + name + mn
                 + ".length; i++){\nif (subcat" + name + mn

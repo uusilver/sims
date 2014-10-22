@@ -62,4 +62,12 @@ public class ResultConstants{
   public static final int LOAD_ERROR = 1005;
   
 
+  
+  public static final int ADD_SERVER_INFO_SUCCESS = 90001; 	//保存物品信息成功！
+  public static final int ADD_SERVER_INFO_FAILED = 90002;    //保存物品信息失败！
+  public static final int DEL_SERVER_INFO_SUCCESS = 90003; 	//删除物品信息成功！
+  public static final int DEL_SERVER_INFO_FAILED = 90004;    //删除物品信息失败！
+  public static final int UPDATE_SERVER_INFO_SUCCESS = 90005;    //更新物品信息成功！
+  public static final int UPDATE_SERVER_INFO_FAILED = 90006;    //更新物品信息失败！
+
 }
