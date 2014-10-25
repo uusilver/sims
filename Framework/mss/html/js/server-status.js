@@ -43,14 +43,29 @@ $(function() {
         var cityCode= $(this).attr("id");
         $( "#pop" ).dialog( "open" );
         event.preventDefault();
-        var greenHtml = "<img title='美国服务器1' src='image/server-green.gif' width='70' height=70'/><img title='美国服务器1' src='image/server-green.gif' width='70' height=70'/>";
-        var warningHtml = "<img title='美国服务器1' src='image/server-warning.gif' width='70' height=70'/>";
-        var grayHtml = "<img title='美国服务器1' src='image/server-gray.gif' width='70' height=70'/>";
+        var greenHtml = '';
+        greenHtml += "<div class='main'>"
+        greenHtml += "<div class='buttons'><img title='美国服务器1' src='image/server-green.gif' width='70' height='70'/></div>";
+        greenHtml += "<div class='buttons'><img title='美国服务器1' src='image/server-green.gif' width='70' height='70'/></div>";
+        greenHtml += "</div>"
+        var warningHtml ='';
+        warningHtml += "<div class='main'>"
+        warningHtml += "<div class='buttons'><img title='美国服务器1' src='image/server-warning.gif' width='70' height='70'/></div>";
+        warningHtml += "</div>"
 
+        var grayHtml ='';
+        grayHtml += "<div class='main'>"
+        grayHtml += "<div class='buttons'><img title='美国服务器1' src='image/server-gray.gif' width='70' height='70'/></div>";
+        grayHtml += "</div>"
+
+        //append img on
         $("#server_green").html(greenHtml);
         $("#server_warning").html(warningHtml);
         $("#server_gray").html(grayHtml);
-    });
+
+        //Dynamic value for iframe
+        $("#orgChart").attr("src","server-org-chats.html?"+cityCode);
+    }).tooltip();
 });//end of function
 //
 

@@ -15,12 +15,21 @@
 
     <script>
         jQuery(document).ready(function() {
-
+            //Init orgnization chars
+            var url = window.location.href;
+            var cityCode = url.split('?')[1];
+            var html = '';
+            html+="<li>"+cityCode+"<ul><li>组1<ul><li>用户1</li><li>用户2</li></ul></li><li>组2<ul><li>用户3</li><li>用户4</li></ul></li></ul><li>";
+            $("#org").html(html);
             $("#org").jOrgChart({
                 chartElement : '#chart',
                 dragAndDrop  : true
             });
         });
+
+        function transCityCode(cityCode){
+            if(cityCode=='nj') return "南京";
+        }
     </script>
 </head>
 <body>
@@ -28,7 +37,7 @@
 
 <div >
 <ul id="org" style="display:none">
-    <li>
+<!--    <li>
         南京
         <ul>
             <li id="beer">组1
@@ -37,21 +46,15 @@
                     <li>用户2</li>
                  </ul>
             </li>
-            <li>Vegetables </li>
-            <li class="fruit">Fruit </li>
-            <li>Bread</li>
-            <li class="collapsed">Chocolate</li>
-        </ul>
-    </li>
+            <li>组2
+                    <ul>
+                        <li>用户3</li>
 
-    <li>
-        Time
-        <ul>
-            <li id="beer">Minutes</li>
-            <li>Seconds </li>
+                    </ul>
+            </li>
 
         </ul>
-    </li>
+    </li>-->
 </ul>
 </div>
 <div id="chart" class="orgChart"></div>

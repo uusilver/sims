@@ -41,24 +41,26 @@ li {
     margin-left:  auto;
 }
 
-#main
+.main
 {
     margin-left:0;
-    width:100%;
-    height:322px;
+    width:322%;
+    height:110px;
     padding:0 5px 5px 0;
     border:1px #b7f0ff solid;
 }
 .buttons
 {
     float:left;
-    width:100px;
-    height:100px;
+    width:70px;
+    height:70px;
     margin:5px 0 0 5px;
     background:white;
     border:1px black solid;
     display: inline;
 }
+
+
 
 
 
