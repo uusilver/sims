@@ -39,7 +39,7 @@ $(function () {
     });
     //Loading information from server
     $.get('/sims/mss/html/locationController.do?method=queryLocationInfo',function(data){
-        alert(data);
+        //alert(data);
         $('#jstree_demo')
         .jstree({
             "core" : {
