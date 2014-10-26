@@ -67,7 +67,9 @@ $(function () {
        //alert(result);
        
        $.post('/sims/mss/html/locationController.do?method=saveLocationInfo',{result:result},function(data){
-    	   
+    	      if(data=='success'){
+                  alert('保存成功!');
+              }
        });
     });
 });
