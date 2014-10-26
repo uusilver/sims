@@ -45,12 +45,12 @@ $(function() {
         event.preventDefault();
         var greenHtml = '';
         greenHtml += "<div class='main'>"
-        greenHtml += "<div class='buttons'><img title='美国服务器1' src='image/server-green.gif' width='70' height='70'/></div>";
-        greenHtml += "<div class='buttons'><img title='美国服务器1' src='image/server-green.gif' width='70' height='70'/></div>";
+        greenHtml += "<div class='buttons'><img title='美国服务器1' src='image/server-green.gif' width='35' height='35'/></div>";
+        greenHtml += "<div class='buttons'><img title='美国服务器1' src='image/server-green.gif' width='35' height='35'/></div>";
         greenHtml += "</div>"
         var warningHtml ='';
         warningHtml += "<div class='main'>"
-        warningHtml += "<div class='buttons'><img title='美国服务器1' src='image/server-warning.gif' width='70' height='70'/></div>";
+        warningHtml += "<div class='buttons'><img title='美国服务器1' src='image/server-warning.gif' width='35' height='35'/></div>";
         warningHtml += "</div>"
 
         var grayHtml ='';

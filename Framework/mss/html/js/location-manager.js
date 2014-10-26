@@ -40,32 +40,13 @@ $(function () {
     //Loading information from server
     $.get('/sims/mss/html/locationController.do?method=queryLocationInfo',function(data){
         alert(data);
-    });
-    $('#jstree_demo')
+        $('#jstree_demo')
         .jstree({
             "core" : {
                 "animation" : 0,
                 "check_callback" : true,
                 "themes" : { "stripes" : true },
-                'data' : [
-                    {
-                        'id': '0-0',
-                        'text': '地址管理',
-                        'children': [
-                            {
-                                id: '1-1',
-                                'text': '中国',
-                                'children': [
-                                    {
-                                        'id': '2-1',
-                                        'text': "江苏",
-                                        'children':[{'id':'3-1','text':'南京'},{'id':'3-2','text':'无锡'},{'id':'3-3','text':'镇江'}]
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
+                'data' : eval('(' + data + ')')
             },
             "types" : {
                 "#" : { "max_children" : 1, "max_depth" : 4, "valid_children" : ["root"] },
@@ -75,10 +56,18 @@ $(function () {
             },
             "plugins" : [ "contextmenu", "dnd", "search", "state", "types", "wholerow" ]
         });
+    });
+   
 
     //Click save button
     $("#saveInfo").click(function(){
-       var data =  $('#jstree_demo').jstree('get_json');
-       alert(JSON.stringify(data));
+       var data =  $('#jstree_demo').jstree(true).get_json('#', { 'flat': false,'no_state':true,'no_id':true,'no_data':true });
+       
+       var result = JSON.stringify(data);
+       //alert(result);
+       
+       $.post('/sims/mss/html/locationController.do?method=saveLocationInfo',{result:result},function(data){
+    	   
+       });
     });
 });

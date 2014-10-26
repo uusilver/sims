@@ -19,7 +19,7 @@
             var url = window.location.href;
             var cityCode = url.split('?')[1];
             var html = '';
-            html+="<li>"+cityCode+"<ul><li>组1<ul><li>用户1</li><li>用户2</li></ul></li><li>组2<ul><li>用户3</li><li>用户4</li></ul></li></ul><li>";
+            html+="<li>"+new Date().getSeconds()+"<ul><li>组1<ul><li>用户1</li><li>用户2</li></ul></li><li>组2<ul><li>用户3</li><li>用户4</li></ul></li></ul><li>";
             $("#org").html(html);
             $("#org").jOrgChart({
                 chartElement : '#chart',
@@ -29,6 +29,19 @@
 
         function transCityCode(cityCode){
             if(cityCode=='nj') return "南京";
+            if(cityCode=='sz') return "苏州";
+            if(cityCode=='xz') return "徐州";
+            if(cityCode=='wx') return "无锡";
+            if(cityCode=='cz') return "常州";
+            if(cityCode=='sq') return "宿迁";
+            if(cityCode=='ha') return "淮安";
+            if(cityCode=='lyg') return "连云港";
+            if(cityCode=='nt') return "南通";
+            if(cityCode=='yc') return "盐城";
+            if(cityCode=='tz') return "泰州";
+            if(cityCode=='yz') return "扬州";
+            if(cityCode=='st') return "省厅";
+            if(cityCode=='stc') return "省统筹";
         }
     </script>
 </head>
