@@ -85,16 +85,19 @@ public class ServerInfoController extends MultiActionController {
 		final String serverIP = request.getParameter("serverIP");
 		
 		//所属国家
-		final String countryID = request.getParameter("countryID");
+		final String countryID = request.getParameter("countryId");
 		
 		//所属省（州）
-		final String provinceID = request.getParameter("provinceID");
+		final String provinceID = request.getParameter("provinceId");
 		
 		//所属城市
-		final String cityID = request.getParameter("cityID");
+		final String cityID = request.getParameter("cityId");
+		
+		//服务区域
+		final String regionID = request.getParameter("serveRegion");
 		
 		//所属分组
-		final String serverGroupID = request.getParameter("serverGroupID");
+		final String serverGroupID = request.getParameter("serveGroup");
 		
 		//所属类别,0 - 浏览下载 ；1 - 渗透攻击
 		final String serverType = request.getParameter("serverType");
@@ -113,11 +116,8 @@ public class ServerInfoController extends MultiActionController {
 		//4 – 只能作为第一跳；
 		final String limit = request.getParameter("limit");
 		
-		//服务地域
-		final String regionID = request.getParameter("regionID");
-		
 		//备注
-		final String note = request.getParameter("note");
+		final String note = request.getParameter("serverComment");
 
 		CommonOperation commonOpera = new CommonOperation();
 		UserInfo sysUser = commonOpera.getLoginUserInfo(request).getSysUser();
@@ -417,7 +417,7 @@ public class ServerInfoController extends MultiActionController {
 
 		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
 			String currentPage = request.getParameter("currentPage");
-			serverInfoForm.setQueryServerStatus(SpmsConstants.STATE_A);
+			serverInfoForm.setQueryStatus(SpmsConstants.STATE_A);
 			serverInfoForm.setViewOrEdit(viewOrEdit);
 			serverInfoForm.setCurrentPage(currentPage);
 			SessionUtils.setObjectAttribute(request, "serverInfoFormSession", serverInfoForm);
@@ -433,6 +433,7 @@ public class ServerInfoController extends MultiActionController {
 			String queryRegionId = request.getParameter("queryRegionId");
 			String queryStartTime = request.getParameter("queryStartTime");
 			String queryEndTime = request.getParameter("queryEndTime");
+			serverInfoForm.setQueryStatus(SpmsConstants.STATE_A);
 
 			if (null == currentPage || "".equals(currentPage)) {
 				currentPage = "1";
@@ -463,7 +464,7 @@ public class ServerInfoController extends MultiActionController {
 		map.put("rowId", rowId);
 		map.put("roleId", roleId.intValue());
 
-		return new ModelAndView("/mss/jsp/business/serverInfoList.jsp", RequestNameConstants.INFORMATION, map);
+		return new ModelAndView("/mss/jsp/server/serverInfoList.jsp", RequestNameConstants.INFORMATION, map);
 		
 	}
 	
@@ -474,7 +475,7 @@ public class ServerInfoController extends MultiActionController {
 //	 * @return
 //	 * @throws ServletRequestBindingException
 //	 */
-//	public ModelAndView queryGoodsInfoById(HttpServletRequest request, HttpServletResponse response)
+//	public ModelAndView queryServerInfoById(HttpServletRequest request, HttpServletResponse response)
 //															throws ServletRequestBindingException {
 //		HashMap map = new HashMap();
 //		String goodsNum = request.getParameter("goodsNum");

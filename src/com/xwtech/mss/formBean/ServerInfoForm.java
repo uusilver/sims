@@ -12,6 +12,8 @@ public class ServerInfoForm {
 	
 	private String queryServerType;
 	
+	private String queryServerGroup;
+	
 	private String queryServerStatus;
 	
 	private String queryRegionId;
@@ -23,6 +25,8 @@ public class ServerInfoForm {
 	private String viewOrEdit;
 	
 	private String indexNO;
+	
+	private String queryStatus;
 
 	public String getCurrentPage() {
 		return currentPage;
@@ -55,6 +59,14 @@ public class ServerInfoForm {
 
 	public void setQueryCityId(String queryCityId) {
 		this.queryCityId = queryCityId;
+	}
+
+	public String getQueryServerGroup() {
+		return queryServerGroup;
+	}
+
+	public void setQueryServerGroup(String queryServerGroup) {
+		this.queryServerGroup = queryServerGroup;
 	}
 
 	public String getQueryServerStatus() {
@@ -111,6 +123,14 @@ public class ServerInfoForm {
 
 	public void setIndexNO(String indexNO) {
 		this.indexNO = indexNO;
+	}
+
+	public String getQueryStatus() {
+		return queryStatus;
+	}
+
+	public void setQueryStatus(String queryStatus) {
+		this.queryStatus = queryStatus;
 	}
 	
 	

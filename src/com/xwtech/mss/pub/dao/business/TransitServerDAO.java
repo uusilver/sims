@@ -205,15 +205,27 @@ public class TransitServerDAO extends BaseDao {
 		List paramList = new ArrayList();
 		// 查询列表sql
 		StringBuffer listHql = new StringBuffer();
-		listHql.append("select transitServer from TransitServer transitServer ");
+		listHql.append("select transitServer.serverid,cb_type.text,transitServer.serverip,"
+				+" sGroup.servergroupname,region.regionname,country.countryname,prov.provincename,city.cityname,cb_status.text"
+				+ " from TransitServer transitServer,ServerGroupMapping sgMapping,ServerGroup sGroup,"
+				+ " CodeBook cb_type,CodeBook cb_status,Country country,Province prov,City city,Region region "
+				+ " where transitServer.countryid = country.countryid"
+				+ " and transitServer.provinceid = prov.provinceid"
+				+ " and transitServer.cityid = city.cityid"
+				+ " and transitServer.serverid = sgMapping.serverid"
+				+ " and sgMapping.servergroupid = sGroup.servergroupid"
+				+ " and transitServer.servertype = cb_type.value"
+				+ " and cb_type.tag = '"+MssConstants.SERVER_TYPE+"'"
+				+ " and transitServer.serverstatus = cb_status.value"
+				+ " and cb_status.tag = '"+MssConstants.SERVER_STATUS+"'");
 
 		// 查询条数
 		StringBuffer countHql = new StringBuffer();
-		countHql.append("select count(transitServer.serverid) from TransitServer transitServer ");
+		countHql.append("select count(transitServer.serverid) from TransitServer transitServer where 1=1");
 
 		StringBuffer filterHql = new StringBuffer();
 			
-		filterHql.append(" where 1=1 ");
+//		filterHql.append(" where 1=1 ");
 
 		//服务器类型
 		if (searchForm.getQueryServerType() != null && !"".equals(searchForm.getQueryServerType())) {
@@ -264,6 +276,12 @@ public class TransitServerDAO extends BaseDao {
 //			filterHql.append(" and subStr(goodsInfo.createTime,0,8) <= ?");
 			filterHql.append(" and transitServer.invalidtime <= ?");
 			paramList.add((Object)DateUtils.formatDate(searchForm.getQueryEndTime(),"yyyy-MM-dd HH:mm:ss"));
+		}
+
+		//服务器所在省（州）
+		if (searchForm.getQueryStatus() != null && !"".equals(searchForm.getQueryStatus())) {
+			filterHql.append(" and transitServer.status = ?");
+			paramList.add(searchForm.getQueryStatus());
 		}
 		
 		//按服务器类别和名称排序

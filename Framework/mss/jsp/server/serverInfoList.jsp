@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=utf-8"%>
-<%@page import="com.xwtech.mss.pub.constants.SpmsConstants" %>
+<%@page import="com.xwtech.mss.pub.constants.MssConstants" %>
 <%@include file="/framework/jsp/taglibs.jsp"%>
 
 <html>
@@ -23,8 +23,8 @@
 		function query(){
 			var passed = "1";
 			if(passed == "1"){
-				document.userListForm.action = "${contextPath}/mss/jsp/server/serverManagerController.do?method=queryServerList"
-					+ constructParams("userNum,userName,userDept,userRole,currentPage,viewOrEdit,returnForm,indexNO");
+				document.userListForm.action = "${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoList"
+					+ constructParams("queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit,returnForm,indexNO");
 				document.userListForm.submit();
 			}
 		}
@@ -35,7 +35,7 @@
 
 	<body>
 
-		<form name="userListForm" method="post" action="${contextPath}/mss/jsp/server/serverManagerController.do?method=queryServerList">
+		<form name="serverListForm" method="post" action="${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoList">
 
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">
@@ -56,26 +56,42 @@
 				style="margin:0px;">
 				<tr>
 					<td class="qinggoudan_table_td1">
-						服务器名:
-						<input name="quserName" type="text" class="qinggoudan_input02" size="20"
-							value="${information.searchForm.userName}" maxlength="50" />
+						服务类型:
+						<pub:link sql="<%=MssConstants.QUERY_SERVER_TYPE_SQL%>" num="1" selectSize="20"
+							title="---请选择服务器类型---" next="false" name="queryServerType" mvalue="${information.searchForm.queryServerType}" />
+					</td>
+					<td class="qinggoudan_table_td1">
+						所属国家:
+						<pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="20"
+							title="---请选择国家---" next="true" name="queryCountryId" mvalue="${information.searchForm.queryCountryId}" />
+					</td>
+					<td class="qinggoudan_table_td1">
+						所属省（州）:
+						<pub:link sql="<%=MssConstants.QUERY_PROVINCE_INFO_SQL%>" num="2" id="P.PROVINCEID" valueName="P.PROVINCENAME" selectSize="20"
+							fatherName="queryCountryId" title="---请选择省（州）---" next="true" name="queryProvinceId" mvalue="${information.searchForm.queryProvinceId}" />
+						
+					</td>
+					<td class="qinggoudan_table_td1">
+						所属城市:
+						<pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="20"
+							fatherName="queryProvinceId" title="---请选择城市---" next="false" name="queryCityId" mvalue="${information.searchForm.queryProvinceId}" />
 					</td>
 					<td class="qinggoudan_table_td1">
 						服务器分组:
-						<pub:link sql="<%=SpmsConstants.QUERY_ROLE_INFO%>" num="1" title="---请选择---"
-							next="false" name="quserRole" mvalue="${information.searchForm.userRole}" />
+						<pub:link sql="<%=MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" title="---请选择---"
+							next="false" name="quserServerGroup" mvalue="${information.searchForm.queryServerGroup}" />
 					</td>
 					<td class="qinggoudan_table_td1">
-						状态:
-						<pub:link sql="<%=SpmsConstants.QUERY_ROLE_STATE%>" num="1" title="---请选择---" next="false" name="userState"
-							mvalue="${information.searchForm.userState}" />
+						服务器状态:
+						<pub:link sql="<%=MssConstants.QUERY_SERVER_STATUS_SQL%>" num="1" title="---请选择---" next="false" 
+						name="quserServerStatus" mvalue="${information.searchForm.queryServerStatus}" />
 					</td>
 					<td class="qinggoudan_table_td1">
 						&nbsp;
 						<input type="button" class="anniu_out" value=" 搜 索 " onMouseOver="className='anniu_over'"
 							onMouseOut="className='anniu_out'" onclick="query()">
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" onclick="resetQuery('userListForm')" class="anniu_out" value=" 重 填 "
+						<input type="button" onclick="resetQuery('serverListForm')" class="anniu_out" value=" 重 填 "
 							onMouseOver="className='anniu_over'" onMouseOut="className='anniu_out'">
 					</td>
 				</tr>
@@ -86,8 +102,8 @@
 				<tr>
 					<td width="50" class="qinggoudan_table_title">
 						<c:if test="${information.searchForm.viewOrEdit!=null&&information.searchForm.viewOrEdit=='edit'}">
-							<input type="checkbox" class="qinggoudan_input011" name="userChk"
-								onclick="javaScript:checkAll('userChk','true');" />全选
+							<input type="checkbox" class="qinggoudan_input011" name="serverChk"
+								onclick="javaScript:checkAll('serverChk','true');" />全选
 				 </c:if>
 						<c:if test="${information.searchForm.viewOrEdit!='edit'}">
 							<c:if test="${information.searchForm.indexNO!=null && information.searchForm.indexNO!=''}">选择</c:if>
@@ -95,19 +111,28 @@
 						</c:if>
 					</td>
 					<td class="qinggoudan_table_title">
-						服务器名
-					</td>
-					<td class="qinggoudan_table_title">
-						组名
+						服务器类型
 					</td>
 					<td class="qinggoudan_table_title">
 						IP地址
 					</td>
 					<td class="qinggoudan_table_title">
-						角色
+						所属组名
 					</td>
 					<td class="qinggoudan_table_title">
-						状态
+						服务地域
+					</td>
+					<td class="qinggoudan_table_title">
+						所属国家
+					</td>
+					<td class="qinggoudan_table_title">
+						所属省（州）
+					</td>
+					<td class="qinggoudan_table_title">
+						所属城市
+					</td>
+					<td class="qinggoudan_table_title">
+						服务器状态
 					</td>
 					<c:if test="${information.searchForm.indexNO==null || information.searchForm.indexNO==''}">
 						<td width="50" class="qinggoudan_table_title">
@@ -115,61 +140,61 @@
 						</td>
 					</c:if>
 				</tr>
-				<c:forEach var="userInfo" items="${information.userList}" varStatus="status">
+				<c:forEach var="serverInfo" items="${information.serverInfoList}" varStatus="status">
 					<tr <c:if test="${(status.index+1)%2==0}"> bgcolor="#F0FFF0"</c:if>>
 						<td class="qinggoudan_table_td2">
 							<c:if test="${information.searchForm.viewOrEdit!=null&&information.searchForm.viewOrEdit=='edit'}">
-								<input type="checkbox" class="qinggoudan_input011" name="userChk" value="${userInfo.userId}"
-									<c:if test="${userInfo.delFlag=='N'}">disabled="disabled"</c:if> />
+								<input type="checkbox" class="qinggoudan_input011" name="serverChk" value="${serverInfo[0]}"/>
 							</c:if>
 							<c:if test="${information.searchForm.viewOrEdit!='edit'}">
 								<c:if test="${information.searchForm.indexNO==null || information.searchForm.indexNO==''}">
-							${status.index+1}</c:if>
-								<c:if test="${information.searchForm.indexNO!=null && information.searchForm.indexNO!=''}">
-									<input type="radio" class="qinggoudan_input011" name="userId" value="${userInfo.userId}"
-										onclick="returnUser('${information.searchForm.returnForm}','${information.searchForm.indexNO}','${userInfo.userId}','${userInfo.userName}','${userInfo.tel}')" />
+									${status.index+1}
 								</c:if>
 							</c:if>
 						</td>
 						<td class="qinggoudan_table_td2" width="20%" >
-							&nbsp;${fn:escapeXml(userInfo.userName)}
+							&nbsp;${fn:escapeXml(serverInfo[1])}
 						</td>
 						<td class="qinggoudan_table_td2" width="20%" >
-							&nbsp;${fn:escapeXml(userInfo.loginName)}
+							&nbsp;${fn:escapeXml(serverInfo[2])}
 						</td>
 						<td class="qinggoudan_table_td2">
-							&nbsp;${userInfo.tel}
+							&nbsp;${serverInfo[3]}
 						</td>
 						<td class="qinggoudan_table_td2">
-							&nbsp;${fn:escapeXml(userInfo.role.roleName)}
+							&nbsp;${fn:escapeXml(serverInfo[4])}
 						</td>
 						<td class="qinggoudan_table_td2">
-							&nbsp;${userInfo.userState == 'A' ? '有效' : '无效'}
+							&nbsp;${fn:escapeXml(serverInfo[5])}
 						</td>
-						<c:if test="${information.searchForm.viewOrEdit!=null&&information.searchForm.viewOrEdit=='edit'}">
-							<td class="qinggoudan_table_td2">
-								<a href="javascript:revertPwd('${userInfo.userId}')" style="color:red;">初始密码</a>
-							</td>
-						</c:if>
+						<td class="qinggoudan_table_td2">
+							&nbsp;${fn:escapeXml(serverInfo[6])}
+						</td>
+						<td class="qinggoudan_table_td2">
+							&nbsp;${fn:escapeXml(serverInfo[7])}
+						</td>
+						<td class="qinggoudan_table_td2">
+							&nbsp;${fn:escapeXml(serverInfo[8])}
+						</td>
 						<c:if test="${information.searchForm.indexNO==null || information.searchForm.indexNO==''}">
 							<td class="qinggoudan_table_td2">
-								<a href="javascript:viewUser('${userInfo.userId}')"> <img src="${contextPath}/mss/image/see.gif" width="18" height="20"
+								<a href="javascript:viewServer('${serverInfo[0]}')"> <img src="${contextPath}/mss/image/see.gif" width="18" height="20"
 										border="0"> </a>
 							</td>
 						</c:if>
 					</tr>
 				</c:forEach>
 			</table>
-			<pub:page formName="userListForm" currentPage="${information.currentPage}" totalCount="${information.totalCount}"
+			<pub:page formName="serverListForm" currentPage="${information.currentPage}" totalCount="${information.totalCount}"
 				totalPage="${information.totalPage}" />
 			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
 				style="display:${information.searchForm.viewOrEdit!=null&&information.searchForm.viewOrEdit=='edit'?"block":"none"}">
 				<tr>
 					<td align="center">
-						<input type="button" class="anniu_out" value=" 新 增  " onclick="addUser()" onMouseOver="className='anniu_over'"
+						<input type="button" class="anniu_out" value=" 新 增  " onclick="addServer()" onMouseOver="className='anniu_over'"
 							onMouseOut="className='anniu_out'">
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" class="anniu_out" value=" 删 除  " onclick="delUser()" onMouseOver="className='anniu_over'"
+						<input type="button" class="anniu_out" value=" 删 除  " onclick="delServer()" onMouseOver="className='anniu_over'"
 							onMouseOut="className='anniu_out'">
 					</td>
 				</tr>
@@ -177,10 +202,6 @@
 
 			<input type="hidden" name="viewOrEdit" value="${information.searchForm.viewOrEdit}" />
 			<input type="hidden" name="indexNO" value="${information.searchForm.indexNO}" />
-			<input type="hidden" name="returnForm" value="${information.searchForm.returnForm}" />
-			<input type="hidden" name="returnNameInput" value="${information.searchForm.returnNameInput}" />
-			<input type="hidden" name="returnIdInput" value="${information.searchForm.returnIdInput}" />
-			<input type="hidden" name="returnTelInput" value="${information.searchForm.returnTelInput}" />
 
 		</form>
 
@@ -188,46 +209,29 @@
 </html>
 
 <script type="text/javascript">
-	function addUser(){
-		window.location = "${contextPath}/mss/jsp/server/serverAdd.jsp?" + constructParams('quserNum,quserName,quserDept,quserRole,currentPage,viewOrEdit');
+	function addServer(){
+		window.location = "${contextPath}/mss/jsp/server/serverInfoAdd.jsp?" + constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit');
 	}
 		
-	function viewUser(userId){
-		window.location = "${contextPath}/mss/jsp/sysManage/userManageController.do?method=viewUser&userId=" + userId 
-			+ constructParams('quserNum,quserName,quserDept,quserRole,currentPage,viewOrEdit');
+	function viewUser(serverId){
+		window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoById&serverId=" + serverId 
+			+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit');
 	}
 		
-	function queryUser(){
-		
-	}
-		
-	function delUser(){
-		var userChk = document.getElementsByName("userChk");
-		var userIdStr = "";
-		for(var i=1;i<userChk.length; i++){
-			if(userChk[i].checked == true){
-				userIdStr += userChk[i].value + ",";
+	function delServer(){
+		var serverChk = document.getElementsByName("serverChk");
+		var serverIdStr = "";
+		for(var i=1;i<serverChk.length; i++){
+			if(serverChk[i].checked == true){
+				serverIdStr += serverChk[i].value + ",";
 			}
 		}
-		if(userIdStr==""){
-			alert("请选择要删除的用户！");
+		if(serverIdStr==""){
+			alert("请选择要删除的服务器！");
 			return;
-		}else if(confirm("您确定要删除选中的用户信息吗？")){
-			window.location = "${contextPath}/mss/jsp/sysManage/userManageController.do?method=delUserInfo&userIdStr=" + userIdStr 
-				+ constructParams('quserNum,quserName,quserDept,quserRole,currentPage,viewOrEdit');
+		}else if(confirm("您确定要删除选中的服务器信息吗？")){
+			window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=delServerInfo&serverIdStr=" + serverIdStr 
+				+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit');
 		}
-	}
-	
-	function returnUser(returnForm,indexNO,userId,userName,telNum){
-		if(returnForm=='reqForm'){
-			opener.document.getElementsByName("${information.searchForm.returnNameInput}")[indexNO].value = userName;
-			opener.document.getElementsByName("${information.searchForm.returnIdInput}")[indexNO].value = userId;
-			opener.document.getElementsByName("${information.searchForm.returnTelInput}")[indexNO].value = telNum;
-		}else{
-			opener.document.getElementsByName("linkManName")[indexNO].value = userName;
-			opener.document.getElementsByName("linkMan")[indexNO].value = userId;
-			opener.document.getElementsByName("telNum")[indexNO].value = telNum;
-		}
-		self.window.close();
 	}
 </script>

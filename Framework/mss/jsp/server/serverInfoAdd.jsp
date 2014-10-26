@@ -16,7 +16,7 @@
 
 		function saveServerInfo(){
 			if(checkServerIP()&&checkCountry()&&checkProvince()&&checkCity()&&checkServerType()&&checkServerStatus()
-				&&checkInvalidTime()&&checkServerLimit()&&checkServeRegion()&&checkComment()){
+				&&checkInvalidTime()&&checkServerLimit()&&checkServeRegion()&&checkServerComment()){
 				if(confirm("您确定要保存该服务器信息么？")){
 					document.serverInfoAddForm.submit();
 				}
@@ -203,7 +203,7 @@
 		}
 		
 		//校验备注
-		function checkComment() {
+		function checkServerComment() {
 			var comment = document.getElementById("server_comment");
 			
 			if(comment.value==""){
@@ -227,7 +227,7 @@
 	</head>
 
 	<body>
-		<form name="serverInfoAddForm" method="post" action="${contextPath}/mss/jsp/business/serverInfoController.do?method=saveServerInfo">
+		<form name="serverInfoAddForm" method="post" action="${contextPath}/mss/jsp/server/serverInfoController.do?method=saveServerInfo">
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">
 				<tr>
@@ -258,7 +258,7 @@
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="20"
-							title="---请选择国家---" next="true" name="countryId" mvalue="${information.transitServer.serverid}" />
+							title="---请选择国家---" next="true" name="countryId" mvalue="${information.transitServer.countryid}" />
 						<span id="server_countryDiv"></span>
 					</td>
 				</tr>
@@ -280,7 +280,7 @@
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="20"
-							fatherName="provinceId" title="---请选择城市---" next="true" name="cityId" mvalue="${information.transitServer.cityid}" />
+							fatherName="provinceId" title="---请选择城市---" next="false" name="cityId" mvalue="${information.transitServer.cityid}" />
 						<span id="server_cityDiv"></span>
 					</td>
 				</tr>
@@ -370,7 +370,7 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" class="anniu_out" value=" 返 回 " onMouseOver="className='anniu_over'"
 							onMouseOut="className='anniu_out'"
-							onclick="goList('${contextPath }/mss/jsp/business/serverInfoController.do?method=queryClientInfoList','viewOrEdit')">
+							onclick="goList('${contextPath }/mss/jsp/server/serverInfoController.do?method=queryClientInfoList','viewOrEdit')">
 						<!-- input type="button" class="anniu_out" value=" 返 回 " onMouseOver="className='anniu_over'"
 							onMouseOut="className='anniu_out'" onclick="history.go(-1);"> -->
 					</td>
