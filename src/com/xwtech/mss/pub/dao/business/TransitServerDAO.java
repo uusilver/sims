@@ -68,7 +68,7 @@ public class TransitServerDAO extends BaseDao {
 		log.debug("getting TransitServer instance with id: " + id);
 		try {
 			TransitServer instance = (TransitServer) getSession().get(
-					"com.xwtech.mss.pub.dao.business.TransitServer", id);
+					"com.xwtech.mss.pub.po.TransitServer", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -81,7 +81,7 @@ public class TransitServerDAO extends BaseDao {
 		try {
 			List results = getSession()
 					.createCriteria(
-							"com.xwtech.mss.pub.dao.business.TransitServer")
+							"com.xwtech.mss.pub.po.TransitServer")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -214,6 +214,7 @@ public class TransitServerDAO extends BaseDao {
 				+ " and transitServer.cityid = city.cityid"
 				+ " and transitServer.serverid = sgMapping.serverid"
 				+ " and sgMapping.servergroupid = sGroup.servergroupid"
+				+ " and transitServer.regionid = region.regionid"
 				+ " and transitServer.servertype = cb_type.value"
 				+ " and cb_type.tag = '"+MssConstants.SERVER_TYPE+"'"
 				+ " and transitServer.serverstatus = cb_status.value"

@@ -21,12 +21,9 @@
 		}
 		
 		function query(){
-			var passed = "1";
-			if(passed == "1"){
-				document.userListForm.action = "${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoList"
-					+ constructParams("queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit,returnForm,indexNO");
-				document.userListForm.submit();
-			}
+			document.serverListForm.action = "${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoList"
+				+ constructParams("queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit,returnForm,indexNO");
+			document.serverListForm.submit();
 		}
 		
 		
@@ -41,7 +38,7 @@
 				style="margin:0px;">
 				<tr>
 					<td class="qinggoudan_title01_td1">
-						服务器查询
+						服务器信息查询
 					</td>
 				</tr>
 				<tr>
@@ -57,24 +54,24 @@
 				<tr>
 					<td class="qinggoudan_table_td1">
 						服务类型:
-						<pub:link sql="<%=MssConstants.QUERY_SERVER_TYPE_SQL%>" num="1" selectSize="20"
-							title="---请选择服务器类型---" next="false" name="queryServerType" mvalue="${information.searchForm.queryServerType}" />
+						<pub:link sql="<%=MssConstants.QUERY_SERVER_TYPE_SQL%>" num="1" selectSize="15"
+							title="---服务器类型---" next="false" name="queryServerType" mvalue="${information.searchForm.queryServerType}" />
 					</td>
 					<td class="qinggoudan_table_td1">
 						所属国家:
-						<pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="20"
-							title="---请选择国家---" next="true" name="queryCountryId" mvalue="${information.searchForm.queryCountryId}" />
+						<pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="10"
+							title="---国家---" next="true" name="queryCountryId" mvalue="${information.searchForm.queryCountryId}" />
 					</td>
 					<td class="qinggoudan_table_td1">
 						所属省（州）:
-						<pub:link sql="<%=MssConstants.QUERY_PROVINCE_INFO_SQL%>" num="2" id="P.PROVINCEID" valueName="P.PROVINCENAME" selectSize="20"
-							fatherName="queryCountryId" title="---请选择省（州）---" next="true" name="queryProvinceId" mvalue="${information.searchForm.queryProvinceId}" />
+						<pub:link sql="<%=MssConstants.QUERY_PROVINCE_INFO_SQL%>" num="2" id="P.PROVINCEID" valueName="P.PROVINCENAME" selectSize="10"
+							fatherName="queryCountryId" title="---省（州）---" next="true" name="queryProvinceId" mvalue="${information.searchForm.queryProvinceId}" />
 						
 					</td>
 					<td class="qinggoudan_table_td1">
 						所属城市:
-						<pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="20"
-							fatherName="queryProvinceId" title="---请选择城市---" next="false" name="queryCityId" mvalue="${information.searchForm.queryProvinceId}" />
+						<pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="10"
+							fatherName="queryProvinceId" title="---城市---" next="false" name="queryCityId" mvalue="${information.searchForm.queryCityId}" />
 					</td>
 					<td class="qinggoudan_table_td1">
 						服务器分组:
@@ -176,19 +173,16 @@
 						<td class="qinggoudan_table_td2">
 							&nbsp;${fn:escapeXml(serverInfo[8])}
 						</td>
-						<c:if test="${information.searchForm.indexNO==null || information.searchForm.indexNO==''}">
-							<td class="qinggoudan_table_td2">
-								<a href="javascript:viewServer('${serverInfo[0]}')"> <img src="${contextPath}/mss/image/see.gif" width="18" height="20"
-										border="0"> </a>
-							</td>
-						</c:if>
+						<td class="qinggoudan_table_td2">
+							<a href="javascript:viewServer('${serverInfo[0]}')"> <img src="${contextPath}/mss/image/see.gif" width="18" height="20"
+									border="0"> </a>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
 			<pub:page formName="serverListForm" currentPage="${information.currentPage}" totalCount="${information.totalCount}"
 				totalPage="${information.totalPage}" />
-			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
-				style="display:${information.searchForm.viewOrEdit!=null&&information.searchForm.viewOrEdit=='edit'?"block":"none"}">
+			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
 					<td align="center">
 						<input type="button" class="anniu_out" value=" 新 增  " onclick="addServer()" onMouseOver="className='anniu_over'"
@@ -213,7 +207,7 @@
 		window.location = "${contextPath}/mss/jsp/server/serverInfoAdd.jsp?" + constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit');
 	}
 		
-	function viewUser(serverId){
+	function viewServer(serverId){
 		window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoById&serverId=" + serverId 
 			+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit');
 	}

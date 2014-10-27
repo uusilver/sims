@@ -257,8 +257,8 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="20"
-							title="---请选择国家---" next="true" name="countryId" mvalue="${information.transitServer.countryid}" />
+						<pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="10"
+							title="---国家---" next="true" name="countryId" mvalue="${information.transitServer.countryid}" />
 						<span id="server_countryDiv"></span>
 					</td>
 				</tr>
@@ -268,8 +268,8 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<pub:link sql="<%=MssConstants.QUERY_PROVINCE_INFO_SQL%>" num="2" id="P.PROVINCEID" valueName="P.PROVINCENAME" selectSize="20"
-							fatherName="countryId" title="---请选择省（州）---" next="true" name="provinceId" mvalue="${information.transitServer.provinceid}" />
+						<pub:link sql="<%=MssConstants.QUERY_PROVINCE_INFO_SQL%>" num="2" id="P.PROVINCEID" valueName="P.PROVINCENAME" selectSize="10"
+							fatherName="countryId" title="---省（州）---" next="true" name="provinceId" mvalue="${information.transitServer.provinceid}" />
 						<span id="server_provinceDiv"></span>
 					</td>
 				</tr>
@@ -279,9 +279,9 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="20"
-							fatherName="provinceId" title="---请选择城市---" next="false" name="cityId" mvalue="${information.transitServer.cityid}" />
-						<span id="server_cityDiv"></span>
+						<pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="10"
+							fatherName="provinceId" title="---城市---" next="false" name="cityId" mvalue="${information.transitServer.cityid}" />
+					<span id="server_cityDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
@@ -370,13 +370,20 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" class="anniu_out" value=" 返 回 " onMouseOver="className='anniu_over'"
 							onMouseOut="className='anniu_out'"
-							onclick="goList('${contextPath }/mss/jsp/server/serverInfoController.do?method=queryClientInfoList','viewOrEdit')">
+							onclick="goList('${contextPath }/mss/jsp/server/serverInfoController.do?method=queryServerInfoList','viewOrEdit,currentPage,queryCountryId,queryProvinceId,queryCityId,queryServerType,queryServerStatus,queryServerGroup')">
 						<!-- input type="button" class="anniu_out" value=" 返 回 " onMouseOver="className='anniu_over'"
 							onMouseOut="className='anniu_out'" onclick="history.go(-1);"> -->
 					</td>
 				</tr>
 			</table>
-				<input type="hidden" id="viewOrEdit" value=<%=request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit")%> />
+				<input type="hidden" name="viewOrEdit" value=<%=request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit")%> />
+				<input type="hidden" name="currentPage" value="${information.searchForm.currentPage}" />
+				<input type="hidden" name="queryCountryId" value="${information.searchForm.queryCountryId}" />
+				<input type="hidden" name="queryProvinceId" value="${information.searchForm.queryProvinceId}" />
+				<input type="hidden" name="queryCityId" value="${information.searchForm.queryCityId}" />
+				<input type="hidden" name="queryServerType" value="${information.searchForm.queryServerType}" />
+				<input type="hidden" name="queryServerStatus" value="${information.searchForm.queryServerStatus}" />
+				<input type="hidden" name="queryServerGroup" value="${information.searchForm.queryServerGroup}" />
 				
 		</form>
 	</body>

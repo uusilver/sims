@@ -28,6 +28,7 @@ import com.xwtech.mss.formBean.ServerInfoForm;
 import com.xwtech.mss.pub.constants.MssConstants;
 import com.xwtech.mss.pub.constants.SpmsConstants;
 import com.xwtech.mss.pub.po.OperationLog;
+import com.xwtech.mss.pub.po.ServerBean;
 import com.xwtech.mss.pub.po.ServerGroupMapping;
 import com.xwtech.mss.pub.po.TransitServer;
 import com.xwtech.mss.pub.po.UserInfo;
@@ -81,6 +82,9 @@ public class ServerInfoController extends MultiActionController {
 		final ResultInfos resultInfos = new ResultInfos();
 		map.put(RequestNameConstants.RESULTINFOS, resultInfos);
 		
+		//服务器ID
+		final String serverId = request.getParameter("serverId");
+		
 		//服务器IP
 		final String serverIP = request.getParameter("serverIP");
 		
@@ -118,6 +122,9 @@ public class ServerInfoController extends MultiActionController {
 		
 		//备注
 		final String note = request.getParameter("serverComment");
+		
+		//新增/编辑
+		final String viewOrEdit = request.getParameter("viewOrEdit");
 
 		CommonOperation commonOpera = new CommonOperation();
 		UserInfo sysUser = commonOpera.getLoginUserInfo(request).getSysUser();
@@ -130,7 +137,12 @@ public class ServerInfoController extends MultiActionController {
 
 				// 1.添加服务器信息
 				//服务器信息
-				TransitServer transitServer = new TransitServer();
+				TransitServer transitServer = null;
+				if(serverId!=null && !"".equals(serverId)){
+					transitServer = serverInfoBO.findById(new Integer(serverId));
+				}else{
+					transitServer = new TransitServer();
+				}
 
 				try{
 					//保存服务器信息
@@ -158,7 +170,7 @@ public class ServerInfoController extends MultiActionController {
 					}
 					
 					//用户操作日志
-					//新增服务器信息
+					//新增/编辑 服务器信息
 					OperationLog oper = new OperationLog();
 					oper.setDoObject(new Long(4));
 					
@@ -166,11 +178,16 @@ public class ServerInfoController extends MultiActionController {
 					oper.setObjType(new Long(4));
 					
 					//1:新增
-					oper.setDoType(new Long(1));
+					if(viewOrEdit==null || "add".equals(viewOrEdit)){
+						oper.setDoType(new Long(1));
+						oper.setDescription("新增服务器信息：【"+transitServer.getServerid()+" : "+serverIP+"】");						
+					}else{
+						oper.setDoType(new Long(2));
+						oper.setDescription("修改服务器信息：【"+transitServer.getServerid()+" : "+serverIP+"】");	
+					}
 					oper.setDoTime(DateUtils.getChar12());
 					oper.setLoginName(userName);
 					oper.setTableName("transit_server");
-					oper.setDescription("新增服务器信息：【"+transitServer.getServerid()+" : "+serverIP+"】");
 					operLogBO.save(oper);
 					resultInfos.add(new ResultInfo(ResultConstants.ADD_SERVER_INFO_SUCCESS));
 				}catch(Exception e){
@@ -179,7 +196,7 @@ public class ServerInfoController extends MultiActionController {
 					e.printStackTrace();
 				}
 				//resultInfos.setGotoUrl("/mss/jsp/business/goodsRecordController.do?method=queryGoodsRecordList&addOrView='edit'");
-				resultInfos.setGotoUrl("/mss/jsp/business/serverInfoController.do?method=queryServerInfoList&viewOrEdit=add&perPageCount=0");
+				resultInfos.setGotoUrl("/mss/jsp/server/serverInfoController.do?method=queryServerInfoList&viewOrEdit="+viewOrEdit);
 				resultInfos.setIsAlert(true);
 				resultInfos.setIsRedirect(true);
 			}
@@ -468,36 +485,65 @@ public class ServerInfoController extends MultiActionController {
 		
 	}
 	
-//	/**
-//	 * 根据服务器类别ID查询服务器类别详细信息
-//	 * @param request
-//	 * @param response
-//	 * @return
-//	 * @throws ServletRequestBindingException
-//	 */
-//	public ModelAndView queryServerInfoById(HttpServletRequest request, HttpServletResponse response)
-//															throws ServletRequestBindingException {
-//		HashMap map = new HashMap();
-//		String goodsNum = request.getParameter("goodsNum");
-//		
-//		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
-//		
-//		GoodsInfo goodsInfo = null;
-//		String typeNameStr = "";
-//		String typeNumStr = "";
-//		if(goodsNum!=null&&!goodsNum.equals("")){
-//			goodsInfo = goodsInfoBO.findById(new Long(goodsNum));
-//			String goodsTypeStr = goodsInfo.getGoodsType();
-//			List<GoodsType> goodsTypeList = goodsTypeBO.queryGoodsTypeByIds(goodsTypeStr.substring(1,goodsTypeStr.length()-1));
-//			
-//			map.put("goodsInfo", goodsInfo);
-//			
-//			HashMap goodsTypeResult = goodsTypeBO.queryGoodsTypeList(new GoodsTypeForm(),"0");
-//			map.put("goodsTypeList", (List) goodsTypeResult.get(RequestNameConstants.RESULT_LIST));
-//			map.put("viewOrEdit", viewOrEdit);
-//		}
-//		return new ModelAndView("/mss/jsp/business/goodsInfoAddByTree.jsp?viewOrEdit="+viewOrEdit, RequestNameConstants.INFORMATION, map);
-//	}
+	/**
+	 * 根据服务器类别ID查询服务器类别详细信息
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletRequestBindingException
+	 */
+	@SuppressWarnings("unchecked")
+	public ModelAndView queryServerInfoById(HttpServletRequest request, HttpServletResponse response)
+															throws ServletRequestBindingException {
+		HashMap map = new HashMap();
+		ServerInfoForm serverInfoForm = new ServerInfoForm();
+		String serverId = request.getParameter("serverId");
+		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
+		String currentPage = request.getParameter("currentPage");
+		String queryCountryId = request.getParameter("queryCountryId");
+		String queryProvinceId = request.getParameter("queryProvinceId");
+		String queryCityId = request.getParameter("queryCityId");
+		String queryServerType = request.getParameter("queryServerType");
+		String queryServerStatus = request.getParameter("queryServerStatus");
+		String quserServerGroup = request.getParameter("quserServerGroup");
+		String queryRegionId = request.getParameter("queryRegionId");
+		String queryStartTime = request.getParameter("queryStartTime");
+		String queryEndTime = request.getParameter("queryEndTime");
+		serverInfoForm.setQueryStatus(SpmsConstants.STATE_A);
+		
+		TransitServer transitServer = null;
+		
+		if(serverId!=null&&!serverId.equals("")){
+			transitServer = serverInfoBO.findById(new Integer(serverId));
+
+			serverInfoForm.setCurrentPage(currentPage);
+			serverInfoForm.setQueryCountryId(queryCountryId);
+			serverInfoForm.setQueryProvinceId(queryProvinceId);
+			serverInfoForm.setQueryCityId(queryCityId);
+			serverInfoForm.setQueryServerType(queryServerType);
+			serverInfoForm.setQueryServerStatus(queryServerStatus);
+			serverInfoForm.setQueryServerGroup(quserServerGroup);
+			serverInfoForm.setQueryRegionId(queryRegionId);
+			serverInfoForm.setQueryStartTime(queryStartTime);
+			serverInfoForm.setQueryEndTime(queryEndTime);
+			serverInfoForm.setViewOrEdit(viewOrEdit);
+			
+//			ServerBean serverBean = new ServerBean(transitServer.getServerid().toString(),transitServer.getServerip(),
+//					transitServer.getCountryid().toString(),transitServer.getProvinceid().toString(),transitServer.getCityid().toString(),
+//					transitServer.getServertype().toString(),transitServer.getServerstatus().toString(),transitServer.getInvalidtime(),
+//					transitServer.getLimitation().toString(),transitServer.getRegionid().toString(),transitServer.getUpdatetime(),
+//					transitServer.getNote(),transitServer.getStatus(),transitServer.getAddWho().toString(),transitServer.getAddtime());
+			if(viewOrEdit!=null && "edit".equals(viewOrEdit)){
+				serverInfoForm.setQueryCountryId(String.valueOf(transitServer.getCountryid()));
+				serverInfoForm.setQueryProvinceId(String.valueOf(transitServer.getProvinceid()));
+				serverInfoForm.setQueryCityId(String.valueOf(transitServer.getCityid()));
+			}
+			map.put("transitServer", transitServer);
+			map.put("viewOrEdit", viewOrEdit);
+			map.put("searchForm", serverInfoForm);
+		}
+		return new ModelAndView("/mss/jsp/server/serverInfoAdd.jsp?viewOrEdit=edit", RequestNameConstants.INFORMATION, map);
+	}
 //	
 //	/**
 //	 * 根据查询条件查询同类别服务器信息个数
@@ -526,85 +572,74 @@ public class ServerInfoController extends MultiActionController {
 //		}
 //		return null;
 //	}
-//	
-//	/**
-//	 * 删除用户选择的记录（逻辑删除）
-//	 * @param request
-//	 * @param response
-//	 * @return
-//	 * @throws Exception
-//	 */
-//	public ModelAndView delGoodsInfo(final HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		HashMap map = new HashMap();
-//
-//		final ResultInfos resultInfos = new ResultInfos();
-//		map.put(RequestNameConstants.RESULTINFOS, resultInfos);
-//		resultInfos.setIsAlert(true);
-//		resultInfos.setIsRedirect(true);
-//		
-//		CommonOperation commonOpera = new CommonOperation();
-//		UserInfo sysUser = commonOpera.getLoginUserInfo(request).getSysUser();
-//		final String userName = sysUser.getUserName();
-//
-//		
-//		transTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-//		transTemplate.execute(new TransactionCallbackWithoutResult() {
-//			protected void doInTransactionWithoutResult(TransactionStatus status) {
-//				
-//				List goodsNameList = null;
-//				String goodsNameStr = "";
-//				
-//				//删除操作返回值
-//				int result = 0;
-//				try {
-//					// 获得页面表单信息
-//					String goodsNumStr = request.getParameter("goodsNumStr");
-//					if(goodsNumStr!=null&&!goodsNumStr.equals("")){
-//						goodsNameList = goodsInfoBO.queryGoodsName(goodsNumStr.substring(0, goodsNumStr.length()-1));
-//						// 根据权限ID删除相关权限信息
-//						goodsInfoBO.delGoodsInfo(goodsNumStr.substring(0, goodsNumStr.length()-1));
-//					}
-//					
-//					if(goodsNameList!=null&&goodsNameList.size()>0){
-//						for (int i = 0; i < goodsNameList.size(); i++) {
-//							goodsNameStr += ((GoodsInfo)goodsNameList.get(i)).getGoodsName();
-//							if(i< goodsNameList.size()-1){
-//								goodsNameStr += " | ";
-//							}
-//						}
-//					}
-//
-//					
-//					//保存服务器删除记录
-//					if(!"".equals(goodsNameStr)){
-//						OperationLog oper = new OperationLog();
-//						
-//						oper.setDoObject(new Long(4));
-//						
-//						//4：服务器信息
-//						oper.setObjType(new Long(4));
-//						
-//						//删除服务器信息
-//						oper.setDoType(new Long(3));
-//						oper.setDoTime(DateUtils.getChar12());
-//						oper.setLoginName(userName);
-//						oper.setTableName("goodsInfo");
-//						oper.setDescription("删除服务器信息，ID【"+goodsNumStr+"】，服务器名称：【"+goodsNameStr+"】");
-//						operLogBO.save(oper);
-//					}
-//					
-//					resultInfos.add(new ResultInfo(ResultConstants.DEL_GOODS_INFO_SUCCESS));
-//					resultInfos.setGotoUrl("/mss/jsp/business/goodsInfoController.do?method=queryGoodsInfoList" + "&ifSession=yes");
-//				} catch (Exception ex) {
-//					resultInfos.setGotoUrl(null);
-//					log.error("删除服务器信息失败！");
-//					resultInfos.add(new ResultInfo(ResultConstants.DEL_GOODS_INFO_FAILED));
-//					resultInfos.setGotoUrl("/mss/jsp/business/goodsInfoController.do?method=queryGoodsInfoList" + "&ifSession=yes");
-//					ex.printStackTrace();
-//				}
-//			}
-//		});
-//
-//		return new ModelAndView("/mss/jsp/information.jsp", RequestNameConstants.INFORMATION, map);
-//	}
+	
+	/**
+	 * 删除用户选择的记录（逻辑删除）
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView delServerInfo(final HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HashMap map = new HashMap();
+
+		final ResultInfos resultInfos = new ResultInfos();
+		map.put(RequestNameConstants.RESULTINFOS, resultInfos);
+		resultInfos.setIsAlert(true);
+		resultInfos.setIsRedirect(true);
+		
+		CommonOperation commonOpera = new CommonOperation();
+		UserInfo sysUser = commonOpera.getLoginUserInfo(request).getSysUser();
+		final String userName = sysUser.getUserName();
+
+		
+		transTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		transTemplate.execute(new TransactionCallbackWithoutResult() {
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
+				
+				List serverList = null;
+				String serverIdStr = "";
+				
+				//删除操作返回值
+				int result = 0;
+				try {
+					// 获得页面表单信息
+					String serverNumStr = request.getParameter("serverIdStr");
+					if(serverNumStr!=null&&!serverNumStr.equals("")){
+						// 根据权限ID删除相关权限信息
+						serverInfoBO.delServerInfo(serverNumStr.substring(0, serverNumStr.length()-1));
+					}
+					
+					//保存服务器删除记录
+					if(!"".equals(serverIdStr)){
+						OperationLog oper = new OperationLog();
+						
+						oper.setDoObject(new Long(4));
+						
+						//4：服务器信息
+						oper.setObjType(new Long(4));
+						
+						//删除服务器信息
+						oper.setDoType(new Long(3));
+						oper.setDoTime(DateUtils.getChar12());
+						oper.setLoginName(userName);
+						oper.setTableName("goodsInfo");
+						oper.setDescription("删除服务器信息成功，ID【"+serverIdStr+"】");
+						operLogBO.save(oper);
+					}
+					
+					resultInfos.add(new ResultInfo(ResultConstants.DEL_SERVER_INFO_SUCCESS));
+					resultInfos.setGotoUrl("/mss/jsp/server/serverInfoController.do?method=queryServerInfoList" + "&ifSession=yes");
+				} catch (Exception ex) {
+					resultInfos.setGotoUrl(null);
+					log.error("删除服务器信息失败！");
+					resultInfos.add(new ResultInfo(ResultConstants.DEL_SERVER_INFO_FAILED));
+					resultInfos.setGotoUrl("/mss/jsp/server/goodsInfoController.do?method=queryServerInfoList" + "&ifSession=yes");
+					ex.printStackTrace();
+				}
+			}
+		});
+
+		return new ModelAndView("/mss/jsp/information.jsp", RequestNameConstants.INFORMATION, map);
+	}
 }
