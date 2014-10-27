@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>服务器状态统计信息</title>
+</head>
+<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    *{margin:0;padding:0;list-style-type:none;}
+    a,img{border:0;}
+    body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";background-color:#F1F1F1;}
+        /* wide-wrapper */
+    #wide-wrapper{background:url(images/bg.jpg) repeat-x;height:600px;}
+    #header{width:280px;margin:0px auto;padding-top:75px;}
+    #carousel{width:870px;height:450px;margin:0px auto;padding:0px;}
+    #carousel{list-style:none;padding:0px;}
+    #carousel li{float:left;}
+    #carousel .tooltip, #carousel .bigImage, #carousel .title, #carousel .description{position:absolute;left:-9999px;}
+</style>
+
+<link rel="stylesheet" type="text/css" href="css/carousel.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/lib/"></script>
+<script type="text/javascript" src="js/jquery.carousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+<body style="background:url(images/bg.jpg)">
+<!-- Div for Charts info-->
+<div id="exhibitor114" >
+    <div id="exhibitorleft" >
+        <div id="wide-wrapper">
+            <div id="header">
+                <a href="#"><img src="images/name.jpg" width="280" height="50" alt="3d carousel"/></a>
+            </div>
+
+            <ul id="carousel">
+                <li><img src="images/nj.jpg" id="nj" alt=""/></li>
+                <li>
+                    <img src="images/cz.jpg" alt="" id="cz"/>
+                    <div class="tooltip">Image description</div>
+                </li>
+                <li><img src="images/lyg.jpg" alt="" id="lyg"/></li>
+                <li>
+                    <img src="images/ha.jpg" alt="" id="ha"/>
+                    <div class="tooltip"><u>Image title</u><br/><br alt=""/>Tooltips support <i>HTML</i> text.</div>
+                </li>
+                <li><img src="images/nt.jpg" alt="" id="nt"/></li>
+                <li><img src="images/st.jpg" alt="" id="st"/></li>
+                <li>
+                    <img src="images/stc.jpg" alt="" id="stc"/>
+                    <div class="tooltip"><u></u><br/><br/><img src="images/stc.jpg" width="60" height="50" style="float:left; margin-right:10px; margin-bottom:10px;" alt=""/>省统筹</div>
+                </li>
+                <li><img src="images/sq.jpg" alt="" id="sq"/></li>
+                <li><img src="images/sz.jpg" alt="" id="sz"/></li>
+                <li>
+                    <img src="images/tz.jpg" alt="" id="tz"/>
+                    <div class="tooltip">Image description</div>
+                </li>
+                <li><img src="images/wx.jpg" alt="" id="wx"/></li>
+                <li><img src="images/xz.jpg" alt="" id="xz"/></li>
+                <li>
+                    <img src="images/yz.jpg" alt="" id="yz"/>
+                    <div class="tooltip"><u>Image title</u><br/><br/>Tooltips support <i>HTML</i> text.</div>
+                </li>
+                <li><img src="images/zj.jpg" alt="" id="zj"/></li>
+                <li><img src="images/yc.jpg" alt="" id="yc"/></li>
+
+
+            </ul>
+        </div>
+    </div>
+    <div id="exhibitorright" style="background:url(images/bg.jpg)">
+        <ul id="" style="float: left">
+            <div id="header">
+                <a href="#"><img src="images/right-name.png" width="280" height="50" alt="3d carousel"/></a>
+            </div>
+            <li id="server_green"></li>
+            <li id="server_warning"></li>
+            <li id="server_gray"></li>
+        </ul>
+              <iframe id="orgChart" name="tt"  width="900" height="600" scrolling="no" frameborder="0"></iframe>
+    </div>
+</div>
+
+
+</body>
+</html>
