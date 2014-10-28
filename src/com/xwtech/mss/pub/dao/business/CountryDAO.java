@@ -32,7 +32,7 @@ public class CountryDAO extends BaseDao {
 	public void save(Country transientInstance) {
 		log.debug("saving Country instance");
 		try {
-			getSession().save(transientInstance);
+			getSession().saveOrUpdate(transientInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);

@@ -122,7 +122,7 @@ public class LocationController extends MultiActionController{
 				perCountry.setCountryname(c.getText());
 				perCountry.setStatus("A");
 				//TODO: Save into database
-				
+				countryBO.saveOrUpdate(perCountry);
 				
 				List<ProvinceJModel> provinceList = c.getChildren();
 				//start to load province info
@@ -133,7 +133,7 @@ public class LocationController extends MultiActionController{
 					perProvince.setProvincename(p.getText());
 					perProvince.setStatus("A");
 					//TODO: Save into database
-					
+					provinceBO.saveOrUpdate(perProvince);
 					
 					List<CityJModel> cityList = p.getChildren();
 					//start to load city info
@@ -144,6 +144,7 @@ public class LocationController extends MultiActionController{
 						perCity.setCityname(city.getText());
 						perCity.setStatus("A");
 						//TODO: Save into database
+						cityBO.saveOrUpdate(perCity);
 					}
 				}
 				
