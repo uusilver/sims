@@ -45,6 +45,10 @@ public class CityBO {
 		return this.cityDAO.queryAllCitys();
 	}
 	
+	
+	public List<City> queryCityByProvinceId(String provinceId){
+		return this.cityDAO.queryCityByProvinceId(provinceId);
+	}
 	/**
 	 * 批量删除选中的城市记录（逻辑删除）
 	 * @param typeNumStr

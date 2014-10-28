@@ -1,24 +1,24 @@
 package com.xwtech.mss.controller;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
+import com.xwtech.mss.bo.business.CityBO;
+import com.xwtech.mss.bo.business.CountryBO;
+import com.xwtech.mss.bo.business.ProvinceBO;
+import com.xwtech.mss.bo.system.operator.OperLogBO;
 import com.xwtech.mss.json.bean.CityJModel;
 import com.xwtech.mss.json.bean.CountryJModel;
 import com.xwtech.mss.json.bean.ProvinceJModel;
@@ -34,12 +34,71 @@ import com.xwtech.mss.pub.po.Province;
 public class LocationController extends MultiActionController{
 	
 	private static final Log log = LogFactory.getLog(LocationController.class);
+	
+	
+	/**
+
+     * 注入回滚事务
+
+     */
+	private final static String ROOT_PREFIX="0";
+	private final static String COUNTRY_PREFIX="1";
+	private final static String PROVINCE_PREFIX="2";
+	private final static String CITY_PREFIX="3";
+
+    private TransactionTemplate transTemplate;
+
+    
+
+    private CountryBO countryBO;
+
+    
+
+    private ProvinceBO provinceBO;
+
+    
+
+    private CityBO cityBO;
+    
+    private OperLogBO operLogBO;
+    
+    
+
+    
+
+    public void setOperLogBO(OperLogBO operLogBO) {
+		this.operLogBO = operLogBO;
+	}
+
+	public void setTransTemplate(TransactionTemplate transTemplate) {
+
+            this.transTemplate = transTemplate;
+
+    }
+
+    public void setCountryBO(CountryBO countryBO) {
+
+            this.countryBO = countryBO;
+
+    }
+
+    public void setProvinceBO(ProvinceBO provinceBO) {
+
+            this.provinceBO = provinceBO;
+
+    }
+
+    public void setCityBO(CityBO cityBO) {
+
+            this.cityBO = cityBO;
+
+    }
 
 	public void queryLocationInfo(HttpServletRequest request, HttpServletResponse response){
 		 try {
 			 response.setHeader("Content-type","text/html;charset=UTF-8");
 			 PrintWriter writer = response.getWriter();
-			 writer.write(test4Json());
+			 writer.write(queryLocationFromTable());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,9 +116,11 @@ public class LocationController extends MultiActionController{
 			//start to load country info
 			for(CountryJModel c:countryList){
 				Country perCountry = new Country();
-				perCountry.setCountryid(Integer.valueOf(c.getId()));
+				//id like = "1-1", the first is the prefix, the second number which is after "-" is the real id
+				//same for below
+				perCountry.setCountryid(Integer.valueOf(c.getId().split("-")[1]));
 				perCountry.setCountryname(c.getText());
-				perCountry.setStatus("TRUE");
+				perCountry.setStatus("A");
 				//TODO: Save into database
 				
 				
@@ -67,10 +128,10 @@ public class LocationController extends MultiActionController{
 				//start to load province info
 				for(ProvinceJModel p:provinceList){
 					Province perProvince = new Province();
-					perProvince.setCountryid(Integer.valueOf(c.getId()));
-					perProvince.setProvinceid(Integer.valueOf(p.getId()));
+					perProvince.setCountryid(Integer.valueOf(c.getId().split("-")[1]));
+					perProvince.setProvinceid(Integer.valueOf(p.getId().split("-")[1]));
 					perProvince.setProvincename(p.getText());
-					perProvince.setStatus("TRUE");
+					perProvince.setStatus("A");
 					//TODO: Save into database
 					
 					
@@ -78,10 +139,10 @@ public class LocationController extends MultiActionController{
 					//start to load city info
 					for(CityJModel city:cityList){
 						City perCity = new City();
-						perCity.setProvinceid(Integer.valueOf(p.getId()));
-						perCity.setCityid(Integer.valueOf(city.getId()));
+						perCity.setProvinceid(Integer.valueOf(p.getId().split("-")[1]));
+						perCity.setCityid(Integer.valueOf(city.getId().split("-")[1]));
 						perCity.setCityname(city.getText());
-						perCity.setStatus("TRUE");
+						perCity.setStatus("A");
 						//TODO: Save into database
 					}
 				}
@@ -99,25 +160,102 @@ public class LocationController extends MultiActionController{
 		 writer.write("success");
 	}
 	
-	public static String test4Json(){
-		CityJModel city1 = new CityJModel("31","南京");
-		CityJModel city2 = new CityJModel("32","无锡");
-		CityJModel city3 = new CityJModel("33","镇江");
-		CityJModel cityModeArray[] = {city1, city2, city3};
+	private String queryLocationFromTable(){
+		List<Country> countryList = countryBO.queryAllCountries();
+		List<Province> provinceList = provinceBO.queryAllProvinces();
+		List<City> cityList = cityBO.queryAllCitys();
 		
-		ProvinceJModel p1 = new ProvinceJModel("21","江苏省", Arrays.asList(cityModeArray));
-		ProvinceJModel pModelArray[] = {p1};
+		//init object for GSON loading
+		Root root = new Root();
+		root.setId(ROOT_PREFIX+"-0");
+		root.setText("地理信息");
+		/////////////////////////////////////////////////////////////////
+		List<CountryJModel> countryListJ = new ArrayList<CountryJModel>();
 		
-		CountryJModel c1 = new CountryJModel("11","中国", Arrays.asList(pModelArray));
-		CountryJModel cModelArray[] = {c1};
 		
-		Root root = new Root("0","地址信息",Arrays.asList(cModelArray));
 		
+		for(Country country:countryList){
+			CountryJModel countryJ = new CountryJModel();
+			countryJ.setId(COUNTRY_PREFIX+"-"+country.getCountryid());
+			countryJ.setText(country.getCountryname());
+			List<ProvinceJModel> provinceListJ = new ArrayList<ProvinceJModel>();
+				//start to loading province
+				for(Province province:provinceList){
+					if(province.getCountryid().toString().equalsIgnoreCase(country.getCountryid().toString())){
+						ProvinceJModel provinceJ = new ProvinceJModel();
+						provinceJ.setId(PROVINCE_PREFIX+"-"+province.getProvinceid());
+						provinceJ.setText(province.getProvincename());
+						List<CityJModel> cintyListJ = new ArrayList<CityJModel>();
+							//start to load city
+							for(City city:cityList){
+								if(city.getProvinceid().toString().equalsIgnoreCase(province.getProvinceid().toString())){
+									CityJModel cityJ = new CityJModel();
+									cityJ.setId(CITY_PREFIX+"-"+city.getCityid());
+									cityJ.setText(city.getCityname());
+									cintyListJ.add(cityJ);
+								}
+							}
+							
+						provinceJ.setChildren(cintyListJ);
+						provinceListJ.add(provinceJ);	
+					}
+				}
+			countryJ.setChildren(provinceListJ);
+			countryListJ.add(countryJ);
+			//init provice Model List
+			root.setChildren(countryListJ);
+		}
 		Gson gson = new Gson();
-		String str = gson.toJson(root);
-		log.info("Location Info:"+str);
-		return str;
+		String result = gson.toJson(root);
+		log.info(result);
+		return result;
 	}
+	
+	
+	public void queryProvinceByCountryId(HttpServletRequest request, HttpServletResponse response){
+		 try {
+			 response.setHeader("Content-type","text/html;charset=UTF-8");
+			 PrintWriter writer = response.getWriter();
+			 String countryId = request.getParameter("countryId");
+			 List<Province> provinceList = provinceBO.queryProvinceByCountryId(countryId);
+			 String result = null;
+			 if(provinceList.size()>0){
+				 Gson gson = new Gson();
+				 result = gson.toJson(provinceList);
+			 }else{
+				 result = "error";
+			 }
+			 
+			 writer.write(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+	} 
+	
+	public void queryCityByProvinceId(HttpServletRequest request, HttpServletResponse response){
+		 try {
+			 response.setHeader("Content-type","text/html;charset=UTF-8");
+			 PrintWriter writer = response.getWriter();
+			 String provinceId = request.getParameter("provinceId");
+			 List<City> cityList = cityBO.queryCityByProvinceId(provinceId);
+			 String result = null;
+			 if(cityList.size()>0){
+				 Gson gson = new Gson();
+				 result = gson.toJson(cityList);
+			 }else{
+				 result = "error";
+			 }
+			 
+			 writer.write(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+	} 
+	
 	public static void main(String args[]){
 		CityJModel city = new CityJModel("2012","nanjing");
 		city.setChildren(new ArrayList<String>());

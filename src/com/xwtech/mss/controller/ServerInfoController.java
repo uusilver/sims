@@ -28,7 +28,7 @@ import com.xwtech.mss.formBean.ServerInfoForm;
 import com.xwtech.mss.pub.constants.MssConstants;
 import com.xwtech.mss.pub.constants.SpmsConstants;
 import com.xwtech.mss.pub.po.OperationLog;
-import com.xwtech.mss.pub.po.ServerBean;
+
 import com.xwtech.mss.pub.po.ServerGroupMapping;
 import com.xwtech.mss.pub.po.TransitServer;
 import com.xwtech.mss.pub.po.UserInfo;

@@ -14,6 +14,11 @@ public class CountryJModel {
 	private boolean data;
 	private String type;
 	
+	
+	
+	public CountryJModel() {
+		super();
+	}
 	public CountryJModel(String id, String text, List<ProvinceJModel> children) {
 		super();
 		this.id = id;

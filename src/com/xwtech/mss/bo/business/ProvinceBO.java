@@ -52,6 +52,10 @@ public class ProvinceBO {
 	 * @param typeNumStr
 	 * @return
 	 */
+	
+	public List<Province> queryProvinceByCountryId(String countryId){
+		return this.provinceDAO.queryProvinceByCountryId(countryId);
+	}
 //	public int delProvinces(String provinceNumStr) {
 //		return this.provinceDAO.delServerInfo(provinceNumStr);
 //	}

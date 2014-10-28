@@ -3,6 +3,9 @@ package com.xwtech.mss.json.bean;
 import java.util.List;
 
 public class ProvinceJModel {
+	public ProvinceJModel() {
+		super();
+	}
 	private String id;
 	private String text;
 	private List<CityJModel> children;

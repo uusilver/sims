@@ -166,4 +166,23 @@ public class CityDAO extends BaseDao {
 		return list;
 	}
 	
+	/**
+	 * 查询所有有效的城市信息
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<City> queryCityByProvinceId(String provinceId){
+		Integer[] paramList = {};
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select city from City city where city.status='A' AND city.provinceid=?");
+		if(provinceId==null||"".equals(provinceId)){
+			return null;
+		}
+		paramList[0] = Integer.valueOf(provinceId);
+		//按物品类别和名称排序
+		listHql.append(" order by city.provinceid ,city.cityid asc ");
+		List<City> list = getHibernateTemplate().find((listHql.toString()),paramList);
+		return list;
+	}
+	
 }

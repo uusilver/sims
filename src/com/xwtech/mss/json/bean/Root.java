@@ -16,6 +16,12 @@ public class Root {
 	
 	
 	
+	
+	public Root() {
+		super();
+	}
+
+
 	public Root(String id, String text, List<CountryJModel> children) {
 		super();
 		this.id = id;
