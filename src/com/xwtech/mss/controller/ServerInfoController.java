@@ -89,13 +89,13 @@ public class ServerInfoController extends MultiActionController {
 		final String serverIP = request.getParameter("serverIP");
 		
 		//所属国家
-		final String countryID = request.getParameter("countryId");
+		final String countryID = request.getParameter("country_id");
 		
 		//所属省（州）
-		final String provinceID = request.getParameter("provinceId");
+		final String provinceID = request.getParameter("province_id");
 		
 		//所属城市
-		final String cityID = request.getParameter("cityId");
+		final String cityID = request.getParameter("city_id");
 		
 		//服务区域
 		final String regionID = request.getParameter("serveRegion");

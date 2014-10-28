@@ -15,40 +15,54 @@
 		
 		<script type="text/javascript">  
 
-		function changProvince(countryId){
+			
+		function changeProvince(countryId,pId){
 			var url="${contextPath}/mss/html/locationController.do?method=queryProvinceByCountryId";
 	    	$.post(url,{"countryId":countryId},function(json){
 	    		//清空省（州）下拉框 
-				$(".proivnce").empty();
-				
+				$(".province").find("option").remove();
 				$(".province").append("<option value=''>---请选择省（州）---</option>");
 				for(var i=0;i<json.length;i++){  
 				//添加一个省（州）
 					$(".province").append("<option value='"+json[i].provinceid+"'>"+json[i].provincename+"</option>");  
 				}
+				//用于编辑页面选项回填
+				if(pId!=""&&pId!=null){
+					$(".province").val(pId);
+				}
 			},'json');
 	    	
 			//注册省（州）下拉框事件
 			$(".province").change(function(){  
-				changCity($(this).val());  
+				changeCity($(this).val(),"");  
 			}); 
 		}
 	 	
-	 	function changCity(ProvinceId){
+	 	function changeCity(provinceId,cId){
 			var url="${contextPath}/mss/html/locationController.do?method=queryCityByProvinceId";
-	    	$.post(url,{"provinceId":ProvinceId},function(json){
+	    	$.post(url,{"provinceId":provinceId},function(json){
 	    		//清空城市下拉框 
 				$(".city").find("option").remove();
 				$(".city").append("<option value=''>---请选择城市---</option>");
-				alert(json);
+				//alert(json);
 				for(var i=0;i<json.length;i++){  
 				//添加一个城市
 					$(".city").append("<option value='"+json[i].cityid+"'>"+json[i].cityname+"</option>");  
 				}
+				//用于编辑页面选项回填
+				if(cId!=""&&cId!=null){
+					$(".city").val(cId);
+				}
 			},'json');  
+			
 		}
 		
 	 	$(function(){
+			var editFlag = $("input[name='viewOrEdit']").val();
+			var cid=${information.transitServer.countryid };
+			var pid=${information.transitServer.provinceid };
+			var tid=${information.transitServer.cityid };
+			
 			//初始化国家下拉框  
 			var url="${contextPath}/mss/html/locationController.do?method=queryAllCountries";
 			$.post(url,null,function(json){
@@ -58,12 +72,21 @@
 				//添加一个国家  
 				$(".country").append("<option value='"+json[i].countryid+"'>"+json[i].countryname+"</option>");  
 		 	}
+				//用于编辑页面选项回填
+				if(editFlag=="edit"){
+					//选中指定国家
+					$(".country").val(cid);
+					//选中指定省
+					changeProvince(cid,pid);
+					//选中指定市
+					changeCity(pid,tid);
+				}
 		 	},'json');
 			
 			//注册国家下拉框事件
 			$(".country").change(function(){  
-				changProvince($(this).val());  
-			});  
+				changeProvince($(this).val(),"");  
+			}); 
 		});
 	</script>
 		
@@ -91,6 +114,7 @@
 				var infoDiv = document.getElementById("server_IpDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器IP地址不能为空，请填写！";
+		        serverIP.focus();
 				return false;
 			}
 			
@@ -98,6 +122,7 @@
 				var infoDiv = document.getElementById("server_IpDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器IP地址格式不正确，请修改！例如：192.54.6.20";
+		        serverIP.focus();
 				return false;
 			}
 			
@@ -110,12 +135,13 @@
 		
 		function checkCountry() {
 			
-			var country = document.getElementsByName("countryId")[0];
+			var country = document.getElementById("countryId");
 			
 			if (country.value == "") {
 				var infoDiv = document.getElementById("server_countryDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器所在国家不能为空，请选择！";
+		        country.focus();
 				return false;
 			}
 			
@@ -128,12 +154,13 @@
 		
 		function checkProvince() {
 			
-			var province = document.getElementsByName("provinceId")[0];
+			var province = document.getElementById("provinceId");
 			
 			if (province.value == "") {
 				var infoDiv = document.getElementById("server_provinceDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器所在省（州）不能为空，请选择！";
+		        province.focus();
 				return false;
 			}
 			
@@ -146,12 +173,13 @@
 		
 		function checkCity() {
 			
-			var city = document.getElementsByName("cityId")[0];
+			var city = document.getElementById("cityId");
 			
 			if (city.value == "") {
 				var infoDiv = document.getElementById("server_cityDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器所在城市不能为空，请选择！";
+		        city.focus();
 				return false;
 			}
 			
@@ -170,6 +198,7 @@
 				var infoDiv = document.getElementById("server_typeDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器类型不能为空，请选择！";
+		        serverType.focus();
 				return false;
 			}
 			
@@ -188,6 +217,7 @@
 				var infoDiv = document.getElementById("server_statusDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器状态不能为空，请选择！";
+		        serverStatus.focus();
 				return false;
 			}
 			
@@ -205,6 +235,7 @@
 				var infoDiv = document.getElementById("invalid_timeDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器失效日期不能为空，请选择！";
+		        invalidTime.focus();
 				return false;
 			}
 			var invalidTime_C = Date.parse(invalidTime.value.replace(/\-/g,"/"));
@@ -214,6 +245,7 @@
 				var infoDiv = document.getElementById("invalid_timeDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器失效日期不能小于或等于当前日期，请修改！";
+		        invalidTime.focus();
 				return false;
 			}
 			
@@ -232,6 +264,7 @@
 				var infoDiv = document.getElementById("limitDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器约束不能为空，请选择！";
+		        serverLimit.focus();
 				return false;
 			}
 			
@@ -249,6 +282,7 @@
 				var infoDiv = document.getElementById("server_regionDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器服务地域不能为空，请选择！";
+		        serveRegion.focus();
 				return false;
 			}
 			
@@ -271,6 +305,7 @@
 				var infoDiv = document.getElementById("server_commDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "备注不能超过100个字符，请修改！";
+		        comment.focus();
 				return false;
 			}
 			
@@ -303,7 +338,7 @@
 						<input name="serverIP" id="server_IP" type="text" class="qinggoudan_input023" size="20" maxlength="50"
 							value="${information.transitServer.serverip}"
 							onchange="checkServerIP()">
-						<input type="hidden" name="serverID" id="server_ID" value="${information.transitServer.serverid }" />
+						<input type="hidden" name="serverId" id="server_ID" value="${information.transitServer.serverid }" />
 						<span id="server_IpDiv"></span>
 					</td>
 				</tr>
@@ -313,9 +348,7 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<!-- pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="10"
-							title="---国家---" next="true" name="countryId" mvalue="${information.transitServer.countryid}" /> -->
-						<select class="country" id="countryId">
+						<select class="country" id="countryId" name="country_id">
 						<option value="">---请选择国家---</option>
 						</select>
 						<span id="server_countryDiv"></span>
@@ -327,9 +360,7 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<!-- pub:link sql="<%=MssConstants.QUERY_PROVINCE_INFO_SQL%>" num="2" id="P.PROVINCEID" valueName="P.PROVINCENAME" selectSize="10"
-							fatherName="countryId" title="---省（州）---" next="true" name="provinceId" mvalue="${information.transitServer.provinceid}" /> -->
-						<select class="province" id="provinceId">
+						<select class="province" id="provinceId" name="province_id">
 						<option value="">---请选择省（州）---</option>
 						</select>
 						<span id="server_provinceDiv"></span>
@@ -341,9 +372,7 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<!-- pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="10"
-							fatherName="provinceId" title="---城市---" next="false" name="cityId" mvalue="${information.transitServer.cityid}" /> -->
-						<select class="city" id="cityId">
+						<select class="city" id="cityId" name="city_id">
 						<option value="">---请选择城市---</option>
 						</select>
 						<span id="server_cityDiv"></span>
