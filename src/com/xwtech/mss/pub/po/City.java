@@ -7,7 +7,9 @@ package com.xwtech.mss.pub.po;
 public class City implements java.io.Serializable {
 
 	// Fields
-
+	/*
+	 * [{cityid:1,cityname:'nj',.....},{}]
+	 */
 	private Integer cityid;
 	private String cityname;
 	private Integer provinceid;

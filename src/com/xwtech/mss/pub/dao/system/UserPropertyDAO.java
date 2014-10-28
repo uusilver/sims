@@ -154,9 +154,9 @@ public class UserPropertyDAO extends BaseDao {
 		try {
 			// 拼装SQL
 			StringBuffer sbSql = new StringBuffer();
-			sbSql.append("delete from frame_user_property t where t.role_id in (");
+			sbSql.append("delete t from frame_user_property t where t.role_id in ( ");
 			sbSql.append(strRoleIds);
-			sbSql.append(")");
+			sbSql.append(" )");
 
 			log.info("del UserProperty By RoleIds successed:" + sbSql.toString());
 			FrameworkApplication.baseJdbcDAO.update(sbSql.toString());
@@ -179,8 +179,8 @@ public class UserPropertyDAO extends BaseDao {
 
 		try {
 			// 拼装SQL
-			StringBuffer sbSql = new StringBuffer("INSERT INTO frame_user_property (property_id, role_id, menu_id)");
-			sbSql.append(" SELECT frame_seq_property.NEXTVAL, " + roleId + " AS  role_id, t.menu_id FROM");
+			StringBuffer sbSql = new StringBuffer("INSERT INTO frame_user_property ( role_id, menu_id)");
+			sbSql.append(" SELECT " + roleId + " AS  role_id, t.menu_id FROM");
 			// 二级菜单
 			sbSql.append(" (SELECT fm.menu_id from frame_menu fm WHERE fm.menu_id IN (" + strMenuIds + ")");
 			sbSql.append(" UNION ");

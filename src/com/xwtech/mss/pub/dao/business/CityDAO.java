@@ -1,5 +1,6 @@
 package com.xwtech.mss.pub.dao.business;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -32,7 +33,7 @@ public class CityDAO extends BaseDao {
 	public void save(City transientInstance) {
 		log.debug("saving City instance");
 		try {
-			getSession().save(transientInstance);
+			getSession().saveOrUpdate(transientInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
@@ -150,4 +151,38 @@ public class CityDAO extends BaseDao {
 			throw re;
 		}
 	}
+	
+	/**
+	 * 查询所有有效的城市信息
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<City> queryAllCitys(){
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select city from City city where city.status='A'");
+		//按物品类别和名称排序
+		listHql.append(" order by city.provinceid ,city.cityid asc ");
+		List<City> list = getHibernateTemplate().find((listHql.toString()));
+		return list;
+	}
+	
+	/**
+	 * 查询所有有效的城市信息
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<City> queryCityByProvinceId(String provinceId){
+		Integer[] paramList = new Integer[1];
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select city from City city where city.status='A' AND city.provinceid=?");
+		if(provinceId==null||"".equals(provinceId)){
+			return null;
+		}
+		paramList[0] = Integer.valueOf(provinceId);
+		//按物品类别和名称排序
+		listHql.append(" order by city.provinceid ,city.cityid asc ");
+		List<City> list = getHibernateTemplate().find((listHql.toString()),paramList);
+		return list;
+	}
+	
 }

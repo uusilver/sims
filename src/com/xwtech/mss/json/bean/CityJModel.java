@@ -3,6 +3,11 @@ package com.xwtech.mss.json.bean;
 import java.util.List;
 
 public class CityJModel {
+	public CityJModel() {
+		super();
+	}
+
+
 	private String id;
 	private String text;
 	private String icon;

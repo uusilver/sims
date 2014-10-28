@@ -112,6 +112,11 @@
 	
 	<bean name="/mss/html/locationController.do"
 		class="com.xwtech.mss.controller.LocationController">
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="countryBO" ref="countryBO" />
+		<property name="provinceBO" ref="provinceBO" />
+		<property name="cityBO" ref="cityBO" />
+		<property name="operLogBO" ref="operLogBO"/>
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 	

@@ -9,9 +9,65 @@
 		<title>物资管理系统-服务器信息管理</title>
 		<link href="${contextPath }/framework/css/style.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="${contextPath}/mss/js/GoodsManage.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/ajax.js"></script>
+		<script type="text/javascript" src="${contextPath}/mss/js/jquery-1.9.1.min.js"></script> 
+		
+		<script type="text/javascript">  
+
+		function changProvince(countryId){
+			var url="${contextPath}/mss/html/locationController.do?method=queryProvinceByCountryId";
+	    	$.post(url,{"countryId":countryId},function(json){
+	    		//清空省（州）下拉框 
+				$(".proivnce").empty();
+				
+				$(".province").append("<option value=''>---请选择省（州）---</option>");
+				for(var i=0;i<json.length;i++){  
+				//添加一个省（州）
+					$(".province").append("<option value='"+json[i].provinceid+"'>"+json[i].provincename+"</option>");  
+				}
+			},'json');
+	    	
+			//注册省（州）下拉框事件
+			$(".province").change(function(){  
+				changCity($(this).val());  
+			}); 
+		}
+	 	
+	 	function changCity(ProvinceId){
+			var url="${contextPath}/mss/html/locationController.do?method=queryCityByProvinceId";
+	    	$.post(url,{"provinceId":ProvinceId},function(json){
+	    		//清空城市下拉框 
+				$(".city").find("option").remove();
+				$(".city").append("<option value=''>---请选择城市---</option>");
+				alert(json);
+				for(var i=0;i<json.length;i++){  
+				//添加一个城市
+					$(".city").append("<option value='"+json[i].cityid+"'>"+json[i].cityname+"</option>");  
+				}
+			},'json');  
+		}
+		
+	 	$(function(){
+			//初始化国家下拉框  
+			var url="${contextPath}/mss/html/locationController.do?method=queryAllCountries";
+			$.post(url,null,function(json){
+				$(".country").find("option").remove();
+				$(".country").append("<option value=''>---请选择国家---</option>");
+		 	for(var i=0;i<json.length;i++){  
+				//添加一个国家  
+				$(".country").append("<option value='"+json[i].countryid+"'>"+json[i].countryname+"</option>");  
+		 	}
+		 	},'json');
+			
+			//注册国家下拉框事件
+			$(".country").change(function(){  
+				changProvince($(this).val());  
+			});  
+		});
+	</script>
+		
+		
 		<script type="text/javascript">
 
 		function saveServerInfo(){
@@ -224,8 +280,8 @@
 		    return true;
 		}
 		</script>
+	 
 	</head>
-
 	<body>
 		<form name="serverInfoAddForm" method="post" action="${contextPath}/mss/jsp/server/serverInfoController.do?method=saveServerInfo">
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
@@ -257,8 +313,11 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="10"
-							title="---国家---" next="true" name="countryId" mvalue="${information.transitServer.countryid}" />
+						<!-- pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="10"
+							title="---国家---" next="true" name="countryId" mvalue="${information.transitServer.countryid}" /> -->
+						<select class="country" id="countryId">
+						<option value="">---请选择国家---</option>
+						</select>
 						<span id="server_countryDiv"></span>
 					</td>
 				</tr>
@@ -268,8 +327,11 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<pub:link sql="<%=MssConstants.QUERY_PROVINCE_INFO_SQL%>" num="2" id="P.PROVINCEID" valueName="P.PROVINCENAME" selectSize="10"
-							fatherName="countryId" title="---省（州）---" next="true" name="provinceId" mvalue="${information.transitServer.provinceid}" />
+						<!-- pub:link sql="<%=MssConstants.QUERY_PROVINCE_INFO_SQL%>" num="2" id="P.PROVINCEID" valueName="P.PROVINCENAME" selectSize="10"
+							fatherName="countryId" title="---省（州）---" next="true" name="provinceId" mvalue="${information.transitServer.provinceid}" /> -->
+						<select class="province" id="provinceId">
+						<option value="">---请选择省（州）---</option>
+						</select>
 						<span id="server_provinceDiv"></span>
 					</td>
 				</tr>
@@ -279,9 +341,12 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="10"
-							fatherName="provinceId" title="---城市---" next="false" name="cityId" mvalue="${information.transitServer.cityid}" />
-					<span id="server_cityDiv"></span>
+						<!-- pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="10"
+							fatherName="provinceId" title="---城市---" next="false" name="cityId" mvalue="${information.transitServer.cityid}" /> -->
+						<select class="city" id="cityId">
+						<option value="">---请选择城市---</option>
+						</select>
+						<span id="server_cityDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
