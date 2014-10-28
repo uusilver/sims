@@ -118,7 +118,7 @@
 	
 	
 	
-	<bean name="/mss/jsp/business/serverInfoController.do" class="com.xwtech.mss.controller.ServerInfoController">
+	<bean name="/mss/jsp/server/serverInfoController.do" class="com.xwtech.mss.controller.ServerInfoController">
 		<property name="transTemplate" ref="transTemplate" />
 		<property name="serverInfoBO" ref="serverInfoBO" />
 		<property name="serverGroupMappingBO" ref="serverGroupMappingBO" />

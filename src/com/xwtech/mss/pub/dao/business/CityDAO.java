@@ -1,5 +1,6 @@
 package com.xwtech.mss.pub.dao.business;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -150,4 +151,19 @@ public class CityDAO extends BaseDao {
 			throw re;
 		}
 	}
+	
+	/**
+	 * 查询所有有效的城市信息
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<City> queryAllCitys(){
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select city from City city where city.status='A'");
+		//按物品类别和名称排序
+		listHql.append(" order by city.provinceid ,city.cityid asc ");
+		List<City> list = getHibernateTemplate().find((listHql.toString()));
+		return list;
+	}
+	
 }

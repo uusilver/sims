@@ -10,6 +10,7 @@ import org.hibernate.criterion.Example;
 
 import com.xwtech.framework.pub.dao.BaseDao;
 import com.xwtech.mss.pub.po.Country;
+import com.xwtech.mss.pub.po.Province;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -144,5 +145,19 @@ public class CountryDAO extends BaseDao {
 			log.error("attach failed", re);
 			throw re;
 		}
+	}
+	
+	/**
+	 * 查询所有有效的国家信息
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Country> queryAllCountries(){
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select country from Country country where country.status='A'");
+		//按物品类别和名称排序
+		listHql.append(" order by country.countryid asc ");
+		List<Country> list = getHibernateTemplate().find((listHql.toString()));
+		return list;
 	}
 }

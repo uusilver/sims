@@ -43,9 +43,8 @@ public class MssConstants {
 	public static final String STATE_D = "D";	//状态-删除
 
 	// 用户状态：正常A、停机U、销号D
-	public static final String CUSTOMER_STATE_VALID = "A"; // 正常
-	public static final String CUSTOMER_STATE_INVALID = "U"; // 停机
-	public static final String CUSTOMER_STATE_DELETE = "D"; // 销号
+	public static final String SERVER_TYPE = "SERVER_TYPE"; // 服务器类型
+	public static final String SERVER_STATUS = "SERVER_STATUS"; // 服务器状态
 
 	// 查询服务器所在国家表有效信息SQL
 	public static final String QUERY_COUNTRY_INFO_SQL = "SELECT C.COUNTRYID, C.COUNTRYNAME FROM COUNTRY C"
