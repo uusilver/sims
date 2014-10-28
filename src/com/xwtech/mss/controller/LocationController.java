@@ -211,7 +211,11 @@ public class LocationController extends MultiActionController{
 		return result;
 	}
 	
-	
+	/**
+	 * 根据countryId查询省
+	 * @param request
+	 * @param response
+	 */
 	public void queryProvinceByCountryId(HttpServletRequest request, HttpServletResponse response){
 		 try {
 			 response.setHeader("Content-type","text/html;charset=UTF-8");
@@ -234,6 +238,11 @@ public class LocationController extends MultiActionController{
 		 
 	} 
 	
+	/**
+	 * 根据provinceId查询城市
+	 * @param request
+	 * @param response
+	 */
 	public void queryCityByProvinceId(HttpServletRequest request, HttpServletResponse response){
 		 try {
 			 response.setHeader("Content-type","text/html;charset=UTF-8");
@@ -244,6 +253,33 @@ public class LocationController extends MultiActionController{
 			 if(cityList.size()>0){
 				 Gson gson = new Gson();
 				 result = gson.toJson(cityList);
+			 }else{
+				 result = "error";
+			 }
+			 
+			 writer.write(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+	} 
+	
+
+	/**
+	 * 查询所有国家信息
+	 * @param request
+	 * @param response
+	 */
+	public void queryAllCountries(HttpServletRequest request, HttpServletResponse response){
+		 try {
+			 response.setHeader("Content-type","text/html;charset=UTF-8");
+			 PrintWriter writer = response.getWriter();
+			 List<Country> countryList = countryBO.queryAllCountries();
+			 String result = null;
+			 if(countryList.size()>0){
+				 Gson gson = new Gson();
+				 result = gson.toJson(countryList);
 			 }else{
 				 result = "error";
 			 }
