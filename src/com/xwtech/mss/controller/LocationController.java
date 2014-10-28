@@ -223,7 +223,7 @@ public class LocationController extends MultiActionController{
 			 String countryId = request.getParameter("countryId");
 			 List<Province> provinceList = provinceBO.queryProvinceByCountryId(countryId);
 			 String result = null;
-			 if(provinceList.size()>0){
+			 if(provinceList!=null&&provinceList.size()>0){
 				 Gson gson = new Gson();
 				 result = gson.toJson(provinceList);
 			 }else{
@@ -250,7 +250,7 @@ public class LocationController extends MultiActionController{
 			 String provinceId = request.getParameter("provinceId");
 			 List<City> cityList = cityBO.queryCityByProvinceId(provinceId);
 			 String result = null;
-			 if(cityList.size()>0){
+			 if(cityList!=null&&cityList.size()>0){
 				 Gson gson = new Gson();
 				 result = gson.toJson(cityList);
 			 }else{
@@ -277,7 +277,7 @@ public class LocationController extends MultiActionController{
 			 PrintWriter writer = response.getWriter();
 			 List<Country> countryList = countryBO.queryAllCountries();
 			 String result = null;
-			 if(countryList.size()>0){
+			 if(countryList!=null&&countryList.size()>0){
 				 Gson gson = new Gson();
 				 result = gson.toJson(countryList);
 			 }else{

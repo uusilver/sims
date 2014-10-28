@@ -173,7 +173,7 @@ public class ProvinceDAO extends BaseDao {
 	public List<Province> queryProvinceByCountryId(String countryId){
 		StringBuffer listHql = new StringBuffer();
 		listHql.append("select province from Province province where province.status='A' AND province.countryid=?");
-		Integer[] paramList = {};
+		Integer[] paramList = new Integer[1];
 		if(countryId==null||"".equals(countryId)){
 			return null;
 		}

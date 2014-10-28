@@ -172,7 +172,7 @@ public class CityDAO extends BaseDao {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<City> queryCityByProvinceId(String provinceId){
-		Integer[] paramList = {};
+		Integer[] paramList = new Integer[1];
 		StringBuffer listHql = new StringBuffer();
 		listHql.append("select city from City city where city.status='A' AND city.provinceid=?");
 		if(provinceId==null||"".equals(provinceId)){
