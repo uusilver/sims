@@ -20,6 +20,7 @@
 	    	$.post(url,{"countryId":countryId},function(json){
 	    		//清空省（州）下拉框 
 				$(".proivnce").empty();
+				
 				$(".province").append("<option value=''>---请选择省（州）---</option>");
 				for(var i=0;i<json.length;i++){  
 				//添加一个省（州）
@@ -35,10 +36,11 @@
 	 	
 	 	function changCity(ProvinceId){
 			var url="${contextPath}/mss/html/locationController.do?method=queryCityByProvinceId";
-	    	$.post(url,{"provinceId":provinceId},function(json){
+	    	$.post(url,{"provinceId":ProvinceId},function(json){
 	    		//清空城市下拉框 
 				$(".city").find("option").remove();
 				$(".city").append("<option value=''>---请选择城市---</option>");
+				alert(json);
 				for(var i=0;i<json.length;i++){  
 				//添加一个城市
 					$(".city").append("<option value='"+json[i].cityid+"'>"+json[i].cityname+"</option>");  
