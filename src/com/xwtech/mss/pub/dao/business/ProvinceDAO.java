@@ -150,4 +150,18 @@ public class ProvinceDAO extends BaseDao {
 			throw re;
 		}
 	}
+	
+	/**
+	 * 查询所有有效的省（州）信息
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Province> queryAllProvinces(){
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select province from Province province where province.status='A'");
+		//按物品类别和名称排序
+		listHql.append(" order by province.countryid ,province.provinceid asc ");
+		List<Province> list = getHibernateTemplate().find((listHql.toString()));
+		return list;
+	}
 }
