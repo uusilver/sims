@@ -28,7 +28,6 @@ import com.xwtech.mss.formBean.ServerInfoForm;
 import com.xwtech.mss.pub.constants.MssConstants;
 import com.xwtech.mss.pub.constants.SpmsConstants;
 import com.xwtech.mss.pub.po.OperationLog;
-import com.xwtech.mss.pub.po.ServerBean;
 import com.xwtech.mss.pub.po.ServerGroupMapping;
 import com.xwtech.mss.pub.po.TransitServer;
 import com.xwtech.mss.pub.po.UserInfo;
@@ -467,7 +466,7 @@ public class ServerInfoController extends MultiActionController {
 			serverInfoForm.setQueryEndTime(queryEndTime);
 			serverInfoForm.setViewOrEdit(viewOrEdit);
 
-			SessionUtils.setObjectAttribute(request, "serverInfoFormSession", serverInfoForm);
+//			SessionUtils.setObjectAttribute(request, "serverInfoFormSession", serverInfoForm);
 		}
 		HashMap serverResult = null;
 		serverResult = serverInfoBO.queryServerInfoList(serverInfoForm,String.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));
@@ -512,7 +511,7 @@ public class ServerInfoController extends MultiActionController {
 		serverInfoForm.setQueryStatus(SpmsConstants.STATE_A);
 		
 		TransitServer transitServer = null;
-		
+		String countryInfo = "";
 		if(serverId!=null&&!serverId.equals("")){
 			transitServer = serverInfoBO.findById(new Integer(serverId));
 
@@ -527,17 +526,7 @@ public class ServerInfoController extends MultiActionController {
 			serverInfoForm.setQueryStartTime(queryStartTime);
 			serverInfoForm.setQueryEndTime(queryEndTime);
 			serverInfoForm.setViewOrEdit(viewOrEdit);
-			
-//			ServerBean serverBean = new ServerBean(transitServer.getServerid().toString(),transitServer.getServerip(),
-//					transitServer.getCountryid().toString(),transitServer.getProvinceid().toString(),transitServer.getCityid().toString(),
-//					transitServer.getServertype().toString(),transitServer.getServerstatus().toString(),transitServer.getInvalidtime(),
-//					transitServer.getLimitation().toString(),transitServer.getRegionid().toString(),transitServer.getUpdatetime(),
-//					transitServer.getNote(),transitServer.getStatus(),transitServer.getAddWho().toString(),transitServer.getAddtime());
-			if(viewOrEdit!=null && "edit".equals(viewOrEdit)){
-				serverInfoForm.setQueryCountryId(String.valueOf(transitServer.getCountryid()));
-				serverInfoForm.setQueryProvinceId(String.valueOf(transitServer.getProvinceid()));
-				serverInfoForm.setQueryCityId(String.valueOf(transitServer.getCityid()));
-			}
+
 			map.put("transitServer", transitServer);
 			map.put("viewOrEdit", viewOrEdit);
 			map.put("searchForm", serverInfoForm);
