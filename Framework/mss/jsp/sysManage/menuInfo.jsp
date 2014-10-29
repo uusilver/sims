@@ -18,11 +18,12 @@
 			
 			var menuLevel= $('input:radio[name="menuLevel"]:checked').val();
 			
-			var fatherMenu = $("select[@name=parentMenuId] option[@selected]").val();
-			alert(fatherMenu);
+			var fatherMenu = $("select[name=parentMenuId]").val();
 			
-			if(menuLevel=="2"){
-				menuLevel[0].value =="2";
+			if(menuLevel=="2"&&(fatherMenu==null||fatherMenu=="")){
+				alert("请选择上级菜单！");
+				$("select[name=parentMenuId]").focus();
+				return;
 			}
 			
 			if(trim(document.getElementsByName("resourceName")[0].value)==""){

@@ -157,6 +157,12 @@ public class MenuController extends MultiActionController {
 	 */
 	public ModelAndView saveMenuInfo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletRequestBindingException {
+		
+		HashMap map = new HashMap();
+		final ResultInfos resultInfos = new ResultInfos();
+		map.put(RequestNameConstants.RESULTINFOS, resultInfos);
+		resultInfos.setIsAlert(true);
+		resultInfos.setIsRedirect(true);
 
 		final String resourceName = request.getParameter("resourceName");
 		final String resourceUrl = request.getParameter("resourceUrl");
@@ -173,44 +179,55 @@ public class MenuController extends MultiActionController {
 
 				// 1.添加菜单信息
 				Menu menu = null;
+				try{
 
-				if (null == resourceId || "".equals(resourceId)) { // 新增
-					menu = new Menu();
-					menu.setMenuState(SpmsConstants.STATE_A);
-					// 2.为系统管理员配置此菜单(每次添加菜单，自动配置)
-					UserProperty userProperty = new UserProperty();
+					if (null == resourceId || "".equals(resourceId)) { // 新增
+						menu = new Menu();
+						menu.setMenuState(SpmsConstants.STATE_A);
+						// 2.为系统管理员配置此菜单(每次添加菜单，自动配置)
+						UserProperty userProperty = new UserProperty();
 
-					userProperty.setMenu(menu);
-					userProperty.setRole(roleBO.findRoleById(new Long(SpmsConstants.ROLE_ADMIN)));
-					userProperty.setState(SpmsConstants.STATE_A);
+						userProperty.setMenu(menu);
+						userProperty.setRole(roleBO.findRoleById(new Long(SpmsConstants.ROLE_ADMIN)));
+						userProperty.setState(SpmsConstants.STATE_A);
 
-					userPropertyBO.saveUserProperty(userProperty);
-				} else { // 更新
-					menu = menuBO.getMenuById(new Long(resourceId));
-					menu.setMenuState(menuState);
+						userPropertyBO.saveUserProperty(userProperty);
+					} else { // 更新
+						menu = menuBO.getMenuById(new Long(resourceId));
+						menu.setMenuState(menuState);
+					}
+
+					// 二级菜单,需要设置上级菜单
+					if ("2".equals(menuLevel)) {
+						Menu menuFirst = menuBO.getMenuById(new Long(parentMenuId));
+						menu.setMenu(menuFirst);
+					}
+					// 一级菜单
+					else if ("1".equals(menuLevel)) {
+					}
+
+					menu.setMenuName(resourceName);
+					menu.setMenuOrder(new Long(menuOrder));
+					menu.setMenuUrl(resourceUrl);
+
+					menu.setMenuLevel(new Long(menuLevel));
+
+					menuBO.save(menu);
+					log.error("添加菜单成功！");
+					resultInfos.add(new ResultInfo(ResultConstants.ADD_MENU_INFO_SUCCESS));
+					resultInfos.setGotoUrl("/mss/jsp/menuController.do?method=queryMenuList&queryMenuState=A&currentPage=1&ifSession=yes");
+				}catch (Exception ex) {
+					resultInfos.setGotoUrl(null);
+					log.error("添加菜单失败！");
+					resultInfos.add(new ResultInfo(ResultConstants.ADD_MENU_INFO_FAILED));
+					resultInfos.setGotoUrl("/mss/jsp/menuController.do?method=queryMenuList&queryMenuState=A&currentPage=1&ifSession=yes");
+					ex.printStackTrace();
 				}
-
-				// 二级菜单,需要设置上级菜单
-				if ("2".equals(menuLevel)) {
-					Menu menuFirst = menuBO.getMenuById(new Long(parentMenuId));
-					menu.setMenu(menuFirst);
-				}
-				// 一级菜单
-				else if ("1".equals(menuLevel)) {
-				}
-
-				menu.setMenuName(resourceName);
-				menu.setMenuOrder(new Long(menuOrder));
-				menu.setMenuUrl(resourceUrl);
-
-				menu.setMenuLevel(new Long(menuLevel));
-
-				menuBO.save(menu);
 
 			}
 		});
 
-		return new ModelAndView("/mss/jsp/menuController.do?method=queryMenuList&ifSession=yes", RequestNameConstants.INFORMATION, null);
+		return new ModelAndView("/mss/jsp/information.jsp", RequestNameConstants.INFORMATION, map);
 	}
 
 	/**
@@ -219,9 +236,10 @@ public class MenuController extends MultiActionController {
 	public ModelAndView delMenuInfo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletRequestBindingException {
 		HashMap map = new HashMap();
-
 		final ResultInfos resultInfos = new ResultInfos();
 		map.put(RequestNameConstants.RESULTINFOS, resultInfos);
+		resultInfos.setIsAlert(true);
+		resultInfos.setIsRedirect(true);
 
 		String menuIdStr = request.getParameter("menuIdStr");
 
