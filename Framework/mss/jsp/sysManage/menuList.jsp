@@ -37,38 +37,23 @@
 			document.queryForm.submit();
 		}
 		
-		function infoDel(tarId)
+		function delMenu()
 		{
-			checkAllButton(true);
-			var isCheck=0;
-			var target = document.getElementById(tarId);
-			var targetInput=target.getElementsByTagName("input");
-			for(var i=0; i < targetInput.length; i++) 
-			{
-				if(targetInput[i].type=="checkbox"&&targetInput[i].checked==true&&targetInput[i].name!='checkboxAll')
-				{
-					isCheck=isCheck+1;
+			var menuChk = document.getElementsByName("menuChk");
+			var menuIdStr = "";
+			for(var i = 1; i < menuChk.length; i++){
+				if(menuChk[i].checked == true){
+					menuIdStr += menuChk[i].value + ",";
 				}
 			}
-		
-			if(isCheck==0)
-			{
-				alert("请选择要删除的记录！");
-				checkAllButton(false);
+			menuIdStr = menuIdStr.substring(0, menuIdStr.length - 1);
+			
+			if(menuIdStr == ""){
+				alert("请选择要删除的菜单！");
 				return;
+			} else if (confirm("您确定要删除选中的菜单吗？")){
+				window.location = "${contextPath}/mss/jsp/menuController.do?method=delMenuInfo&menuIdStr=" + menuIdStr;
 			}
-			if(isCheck>0)
-			{
-				if(window.confirm("确定要删除吗?"))
-				{}
-				else
-				{
-					checkAllButton(false);
-					return;
-				}
-			}
-			document.getElementById("queryForm").action="${contextPath}/mss/jsp/menuController.do?method=delMenuInfo";
-			document.getElementById("queryForm").submit();
 		}
 
 		function chooseAllBox(tarId)
@@ -81,7 +66,7 @@
 				var targetInput=target.getElementsByTagName("input");
 				for(var i=0; i < targetInput.length; i++) 
 				{
-				//alert(i);
+					alert(i);
 					if(targetInput[i].type=="checkbox"&&targetInput[i].disabled!=true)
 					{
 						targetInput[i].checked = true;
@@ -174,8 +159,8 @@
 				style="margin:0px;">
 				<tr>
 					<td class="qinggoudan_table_title">
-						<input type="checkbox" name="checkboxAll" class="qinggoudan_input011" value="checkboxAll"
-							onClick="javaScript:chooseAllBox('menuList');">
+						<input type="checkbox" name=menuChk class="qinggoudan_input011" value="checkboxAll"
+							onClick="javaScript:checkAll('menuChk');">
 						全选
 					</td>
 					<td class="qinggoudan_table_title">
@@ -203,7 +188,7 @@
 					<c:forEach items="${information.menuList }" var="info" varStatus="order">
 						<tr <c:if test="${(order.index+1)%2==0}"> bgcolor="#F0FFF0"</c:if>>
 							<td class="qinggoudan_table_td2">
-								<input type="checkbox" name="resourceId" class="qinggoudan_input011" value="${info.menuId}" ${info.menuState=='A' ? '' : 'disabled'}>
+								<input type="checkbox" name="menuChk" class="qinggoudan_input011" value="${info.menuId}" ${info.menuState=='A' ? '' : 'disabled'}>
 							</td>
 							<td class="qinggoudan_table_td2">
 								${fn:escapeXml(info.menuName)}
@@ -239,7 +224,7 @@
 						<input type="button" class="anniu_out" value=" 新 增  " onclick="addInfo();" onMouseOver="className='anniu_over'"
 							onMouseOut="className='anniu_out'">
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" class="anniu_out" value=" 删 除  " onclick="javaScript:infoDel('menuList');"
+						<input type="button" class="anniu_out" value=" 删 除  " onclick="javaScript:delMenu();"
 							onMouseOver="className='anniu_over'" onMouseOut="className='anniu_out'">
 					</td>
 				</tr>

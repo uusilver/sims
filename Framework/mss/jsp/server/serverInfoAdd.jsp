@@ -15,7 +15,6 @@
 		
 		<script type="text/javascript">  
 
-			
 		function changeProvince(countryId,pId){
 			var url="${contextPath}/mss/html/locationController.do?method=queryProvinceByCountryId";
 	    	$.post(url,{"countryId":countryId},function(json){
@@ -27,7 +26,8 @@
 					$(".province").append("<option value='"+json[i].provinceid+"'>"+json[i].provincename+"</option>");  
 				}
 				//用于编辑页面选项回填
-				if(pId!=""&&pId!=null){
+				var flag = pId+"".substr(0,1);
+				if(pId!="" && pId!=null && flag!="-"){
 					$(".province").val(pId);
 				}
 			},'json');
@@ -50,7 +50,8 @@
 					$(".city").append("<option value='"+json[i].cityid+"'>"+json[i].cityname+"</option>");  
 				}
 				//用于编辑页面选项回填
-				if(cId!=""&&cId!=null){
+				var flag = cId+"".substr(0,1);
+				if(cId!="" && cId!=null && flag!="-"){
 					$(".city").val(cId);
 				}
 			},'json');  
@@ -59,9 +60,9 @@
 		
 	 	$(function(){
 			var editFlag = $("input[name='viewOrEdit']").val();
-			var cid=${information.transitServer.countryid };
-			var pid=${information.transitServer.provinceid };
-			var tid=${information.transitServer.cityid };
+			var cid=${information.transitServer.countryid==null?"-10":information.transitServer.countryid };
+			var pid=${information.transitServer.provinceid==null?"-20":information.transitServer.provinceid };
+			var tid=${information.transitServer.cityid==null?"-30":information.transitServer.cityid };
 			
 			//初始化国家下拉框  
 			var url="${contextPath}/mss/html/locationController.do?method=queryAllCountries";
@@ -439,7 +440,7 @@
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 					<pub:link sql="<%=MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" selectSize="20"
-							title="---请选择服务器分组---" next="false" name="serveGroup" mvalue="${information.serverGroup.servergroupid}" />
+							title="---请选择服务器分组---" next="false" name="serveGroup" mvalue="${information.serverGroupId}" />
 					<span id="server_groupDiv"></span>
 					</td>
 				</tr>

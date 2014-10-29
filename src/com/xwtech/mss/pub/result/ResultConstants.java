@@ -60,7 +60,12 @@ public class ResultConstants{
 
   /**信息加载失败*/
   public static final int LOAD_ERROR = 1005;
-  
+
+
+  public static final int ADD_MENU_INFO_SUCCESS = 20030; 	//保存菜单信息成功！
+  public static final int ADD_MENU_INFO_FAILED = 20031;    //保存菜单信息失败！
+  public static final int DEL_MENU_INFO_SUCCESS = 20032; 	//删除菜单信息成功！
+  public static final int DEL_MENU_INFO_FAILED = 20033;    //删除菜单信息失败！
 
   
   public static final int ADD_SERVER_INFO_SUCCESS = 90001; 	//保存物品信息成功！

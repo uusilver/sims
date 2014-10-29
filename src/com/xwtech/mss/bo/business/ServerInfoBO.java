@@ -65,4 +65,12 @@ public class ServerInfoBO {
 	public List queryServerIP(String ServerIds){
 		return this.transitServerDAO.queryServerIP(ServerIds);
 	}
+	/**
+	 * 根据服务器id查询服务器所属服务器组
+	 * @param serverId
+	 * @return
+	 */
+	public List queryServerGroup(String serverId){
+		return this.transitServerDAO.queryServerGroup(serverId);
+	}
 }

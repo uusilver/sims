@@ -1,6 +1,5 @@
 package com.xwtech.mss.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -17,21 +17,21 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import com.xwtech.framework.pub.result.ResultInfo;
 import com.xwtech.framework.pub.result.ResultInfos;
 import com.xwtech.framework.pub.utils.SessionUtils;
 import com.xwtech.framework.pub.web.RequestNameConstants;
 import com.xwtech.mss.bo.system.menu.MenuBO;
 import com.xwtech.mss.bo.system.property.RoleBO;
 import com.xwtech.mss.bo.system.property.UserPropertyBO;
-import com.xwtech.mss.formBean.BaseForm;
 import com.xwtech.mss.formBean.MenuForm;
+import com.xwtech.mss.pub.constants.MssConstants;
 import com.xwtech.mss.pub.constants.SpmsConstants;
 import com.xwtech.mss.pub.po.Menu;
-import com.xwtech.mss.pub.po.Role;
 import com.xwtech.mss.pub.po.UserInfo;
 import com.xwtech.mss.pub.po.UserProperty;
+import com.xwtech.mss.pub.result.ResultConstants;
 import com.xwtech.mss.pub.tools.CommonOperation;
-import com.xwtech.mss.pub.tools.StructForm;
 
 /**
  * <p>
@@ -166,7 +166,8 @@ public class MenuController extends MultiActionController {
 
 		final String resourceId = request.getParameter("resourceId");
 		final String parentMenuId = request.getParameter("parentMenuId");
-
+		
+		transTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 		transTemplate.execute(new TransactionCallbackWithoutResult() {
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 
@@ -217,32 +218,41 @@ public class MenuController extends MultiActionController {
 	 */
 	public ModelAndView delMenuInfo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletRequestBindingException {
+		HashMap map = new HashMap();
 
-		String[] resourceId = request.getParameterValues("resourceId");
+		final ResultInfos resultInfos = new ResultInfos();
+		map.put(RequestNameConstants.RESULTINFOS, resultInfos);
+
+		String menuIdStr = request.getParameter("menuIdStr");
 
 		String currentPage = request.getParameter("currentPage");
 		if (null == currentPage || "".equals(currentPage)) {
 			currentPage = "1";
 		}
 
-		if (resourceId != null) {
-			for (int i = 0; i < resourceId.length; i++) {
-				Menu menu = menuBO.getMenuById(new Long(resourceId[i]));
-				if (menu == null && menu.getMenuId() == null) {
-					continue;
+		try{
+			if (menuIdStr != null && !"".equals(menuIdStr)) {
+				String[] menuIdArray = menuIdStr.split(",");
+				for (int i = 0; i < menuIdArray.length; i++) {
+					Menu menu = menuBO.getMenuById(new Long(menuIdArray[i]));
+					if (menu == null && menu.getMenuId() == null) {
+						continue;
+					}
+					menu.setMenuState(MssConstants.STATE_U); // 设为无效
+					menuBO.save(menu);
+					resultInfos.add(new ResultInfo(ResultConstants.DEL_MENU_INFO_SUCCESS));
+					resultInfos.setGotoUrl("/mss/jsp/menuController.do?method=queryMenuList&queryMenuState=A&currentPage=" + currentPage + "&ifSession=yes");
 				}
-				menu.setMenuState(SpmsConstants.STATE_U); // 设为无效
-				menuBO.save(menu);
 			}
+		} catch (Exception ex) {
+			resultInfos.setGotoUrl(null);
+			log.error("删除菜单失败！");
+			resultInfos.add(new ResultInfo(ResultConstants.DEL_MENU_INFO_FAILED));
+			resultInfos.setGotoUrl("/mss/jsp/menuController.do?method=queryMenuList&queryMenuState=A&currentPage=" + currentPage + "&ifSession=yes");
+			ex.printStackTrace();
 		}
 
-//		try {
-//			response.sendRedirect("/mss/jsp/menuController.do?method=queryMenuList&currentPage=" + currentPage);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-
-		return new ModelAndView("/mss/jsp/menuController.do?method=queryMenuList&currentPage=" + currentPage, RequestNameConstants.INFORMATION, null);
+		return new ModelAndView("/mss/jsp/information.jsp", RequestNameConstants.INFORMATION, map);
 
 	}
 

@@ -28,7 +28,6 @@ import com.xwtech.mss.formBean.ServerInfoForm;
 import com.xwtech.mss.pub.constants.MssConstants;
 import com.xwtech.mss.pub.constants.SpmsConstants;
 import com.xwtech.mss.pub.po.OperationLog;
-
 import com.xwtech.mss.pub.po.ServerGroupMapping;
 import com.xwtech.mss.pub.po.TransitServer;
 import com.xwtech.mss.pub.po.UserInfo;
@@ -206,204 +205,6 @@ public class ServerInfoController extends MultiActionController {
 	}
 	
 	
-//	/**
-//	 * 更新服务器信息和流水记录
-//	 * @param request
-//	 * @param response
-//	 * @return
-//	 * @throws ServletRequestBindingException
-//	 */
-//	public ModelAndView updateGoodsInfo(HttpServletRequest request, HttpServletResponse response)
-//	throws ServletRequestBindingException {
-//
-//		HashMap map = new HashMap();
-//		final ResultInfos resultInfos = new ResultInfos();
-//		map.put(RequestNameConstants.RESULTINFOS, resultInfos);
-//		
-//		//服务器id
-//		final String goodsNum = request.getParameter("goodsNum");
-//		
-//		//服务器名称
-//		final String goodsName = request.getParameter("goodsName");
-//		
-//		//所属类别名称
-//		final String goodsCode = request.getParameter("goodsCode");
-//		
-//		//所属类别名称
-//		final String goodsTypeName = request.getParameter("goodsType");
-//		
-//		//服务器所属类别,记录商品类别，格式如下：1,2,3  ;其中1,2,3分别为商品类别的记录序号
-//		final String goodsType = request.getParameter("goodsTypeStr");
-//		
-//		//服务器单价
-//		final String goodsPrice = request.getParameter("goodsPrice");
-//		
-//		//预估单价
-//		final String wishPrice = request.getParameter("wishPrice");
-//		
-//		//服务器克重
-//		final String goodsWeight = request.getParameter("goodsWeight");
-//		
-//		//服务器数量
-//		final String goodsCount = request.getParameter("goodsCount");
-//		
-//		//服务器数量
-//		final String goodsCountPlus = request.getParameter("goodsCountPlus");
-//		
-//		//服务器状态
-//		final String goodsState = request.getParameter("goodsState");
-//		
-//		//备注
-//		final String goodsComment = request.getParameter("goodsComment");
-//
-//		CommonOperation commonOpera = new CommonOperation();
-//		UserInfo sysUser = commonOpera.getLoginUserInfo(request).getSysUser();
-//		final String userName = sysUser.getUserName();
-//		final Long userId = sysUser.getUserId();
-//
-//		transTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-//		transTemplate.execute(new TransactionCallbackWithoutResult() {
-//			protected void doInTransactionWithoutResult(TransactionStatus status) {
-//
-//				// 1.获取服务器和流水信息
-//				// 更新
-//				GoodsInfo goodsInfo = goodsInfoBO.findById(new Long(goodsNum));
-//
-//				//入库流水
-//				List<GoodsRecord> recordList = goodsRecordBO.queryRecordListByGoodsAndState(goodsNum, null);
-//				String oldGoodsName = goodsInfo.getGoodsName();
-//				//更新服务器信息操作日志
-//				OperationLog oper = new OperationLog();
-//				
-//				String oldGoodsCode = goodsInfo.getGoodsCode();
-//				
-//				oper.setDescription("更新服务器信息，ID：【"+goodsNum+"】，名称：【"+goodsInfo.getGoodsName()+" : "+oldGoodsCode+"】 为 【"+goodsName+" : "+goodsCode.toLowerCase()+"】，成本单价：【"+goodsInfo.getGoodsPrice()+"】 为 【"+goodsPrice+"】，预估单价：【"+goodsInfo.getWishPrice()+"】 为 【"+wishPrice+"】");
-//				
-//				try{
-//					//更新服务器信息
-//					goodsInfo.setGoodsName(goodsName);
-//					goodsInfo.setTypeName(goodsTypeName);
-//					if(!goodsType.startsWith(",")){
-//						goodsInfo.setGoodsType(","+goodsType+",");
-//					}else{
-//						goodsInfo.setGoodsType(goodsType);
-//					}
-//					goodsInfo.setGoodsCode(goodsCode.toUpperCase());
-//					goodsInfo.setGoodsWeight(new Double(goodsWeight));
-//					goodsInfo.setGoodsPrice(new BigDecimal(goodsPrice));
-//					goodsInfo.setWishPrice(new BigDecimal(wishPrice));
-//					goodsInfo.setGoodsCount(new Long(goodsCount)+new Long(goodsCountPlus));
-//					goodsInfo.setGoodsState(goodsState);
-//					goodsInfo.setGoodsComm(goodsComment);
-//					goodsInfo.setModifyTime(DateUtils.getChar12());
-//					goodsInfoBO.saveOrUpdate(goodsInfo);
-//					
-//					
-//					oper.setDoObject(new Long(4));
-//					
-//					//4：服务器信息
-//					oper.setObjType(new Long(4));
-//					
-//					//2:更新
-//					oper.setDoType(new Long(2));
-//					oper.setDoTime(DateUtils.getChar12());
-//					oper.setLoginName(userName);
-//					oper.setTableName("goodsInfo");
-//					operLogBO.save(oper);
-//					
-//					//更新流水信息
-//					GoodsRecord goodsRecord = null;
-//					if(recordList!=null&&recordList.size()>0){
-//						for (int i = 0; i < recordList.size(); i++) {
-//							goodsRecord = recordList.get(i);
-//							goodsRecord.setGoodsName(goodsName);
-////							goodsInfo.setGoodsCode(goodsCode.toUpperCase());
-//							goodsRecord.setGoodsType(goodsTypeName);
-//							if(!goodsType.startsWith(",")){
-//								goodsRecord.setTypeNum(","+goodsType+",");
-//							}else{
-//								goodsRecord.setTypeNum(goodsType);
-//							}
-//							goodsRecord.setGoodsCode(goodsCode.toUpperCase());
-////							if(goodsRecord.getRecordType().intValue()==new Integer(SpmsConstants.IN_RECORD)){
-////								goodsRecord.setSalePrice(new Double(goodsPrice));
-////								goodsRecord.setGoodsCount(new Long(goodsCount));
-////								goodsRecord.setGoodsProfit(goodsRecord.getGoodsCount()*new Double(goodsPrice));
-////								goodsRecord.setRecordComm(goodsComment);
-////							}
-//							goodsRecord.setModifyTime(DateUtils.getChar12());
-//							goodsRecordBO.saveOrUpdate(goodsRecord);
-//
-//							
-//							
-//							//更新流水信息
-//							OperationLog operFlow = new OperationLog();
-//							operFlow.setDoObject(goodsRecord.getRecordType());
-//							
-//							//4：流水类型
-//							operFlow.setObjType(goodsRecord.getRecordType());
-//							
-//							//2:更新
-//							operFlow.setDoType(new Long(2));
-//							operFlow.setDoTime(DateUtils.getChar12());
-//							operFlow.setLoginName(userName);
-//							operFlow.setTableName("goodsRecord");
-//							operFlow.setDescription("更新流水，ID:【"+goodsRecord.getRecordNum()+"】的服务器名称【"+oldGoodsName+" : "+oldGoodsCode+"】 为：【"+goodsName+" ： "+goodsCode.toUpperCase()+"】");
-//							operLogBO.save(operFlow);
-//						}
-//					}
-//					
-//
-//					//如果“补录数量”不为空，则新增入库流水记录
-//					if(goodsCountPlus!=null && !"0".equals(goodsCountPlus)){
-//						GoodsRecord goodsRecordPlus = new GoodsRecord();
-//						goodsRecordPlus.setGoodsName(goodsName);
-//						goodsRecordPlus.setGoodsNum(goodsInfo.getGoodsNum());
-//						goodsRecordPlus.setGoodsCode(goodsCode.toUpperCase());
-//						goodsRecordPlus.setGoodsType(goodsTypeName);
-//						goodsRecordPlus.setTypeNum(","+goodsType+",");
-//						goodsRecordPlus.setRecordType(new Long(SpmsConstants.IN_RECORD));
-//						goodsRecordPlus.setRecordState(SpmsConstants.RECORD_FINISHED);
-//						goodsRecordPlus.setSalePrice(new BigDecimal(goodsPrice));
-//						goodsRecordPlus.setGoodsCount(new Long(goodsCountPlus));
-//						goodsRecordPlus.setGoodsProfit(new BigDecimal(goodsPrice).multiply(new BigDecimal(goodsCountPlus)));
-//						goodsRecordPlus.setRecordComm(goodsComment);
-//						goodsRecordPlus.setCreateTime(DateUtils.getChar12());
-//						goodsRecordPlus.setOperator(userId);
-//						goodsRecordPlus.setUserName(userName);
-//						goodsRecordBO.saveOrUpdate(goodsRecordPlus);
-//						
-//						//新增服务器信息
-//						OperationLog operPlus = new OperationLog();
-//						operPlus.setDoObject(new Long(4));
-//						
-//						//4：服务器信息
-//						operPlus.setObjType(new Long(4));
-//						
-//						//1:新增
-//						operPlus.setDoType(new Long(1));
-//						operPlus.setDoTime(DateUtils.getChar12());
-//						operPlus.setLoginName(userName);
-//						operPlus.setTableName("goodsInfo");
-//						operPlus.setDescription("为服务器【"+goodsName+" ： "+goodsCode.toUpperCase()+"】补录数量：【"+goodsCountPlus+"】");
-//						operLogBO.save(operPlus);
-//					}
-//					
-//					resultInfos.add(new ResultInfo(ResultConstants.UPDATE_GOODS_INFO_SUCCESS));
-//				}catch(Exception e){
-//					resultInfos.add(new ResultInfo(ResultConstants.UPDATE_GOODS_INFO_FAILED));
-//					status.setRollbackOnly();
-//				}
-//				resultInfos.setGotoUrl("/mss/jsp/business/goodsRecordController.do?method=queryGoodsRecordList&addOrView='edit'");
-//				resultInfos.setIsAlert(true);
-//				resultInfos.setIsRedirect(true);
-//			}
-//		});
-//
-//		return new ModelAndView("/mss/jsp/information.jsp", RequestNameConstants.INFORMATION,map );
-//	}
-	
-	
 	/**
 	 * 查询服务器信息
 	 * @param request
@@ -425,6 +226,24 @@ public class ServerInfoController extends MultiActionController {
 		
 		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
 		
+		String queryCountryId = request.getParameter("queryCountryId");
+		
+		String queryProvinceId = request.getParameter("queryProvinceId");
+		
+		String queryCityId = request.getParameter("queryCityId");
+		
+		String currentPage = request.getParameter("currentPage");
+		
+		String queryServerType = request.getParameter("queryServerType");
+		
+		String queryServerStatus = request.getParameter("queryServerStatus");
+		
+		String queryRegionId = request.getParameter("queryRegionId");
+		
+		String queryStartTime = request.getParameter("queryStartTime");
+		
+		String queryEndTime = request.getParameter("queryEndTime");
+		
 		// ifSession只在修改页面跳转至查询页面时有值
 		String ifSession = request.getParameter("ifSession");
 		
@@ -432,43 +251,28 @@ public class ServerInfoController extends MultiActionController {
 		UserInfo sysUser = commonOpera.getLoginUserInfo(request).getSysUser();
 		Long roleId = sysUser.getRole().getRoleId();
 
+		serverInfoForm.setQueryCountryId((queryCountryId==null||"".equals(queryCountryId)?"-10":queryCountryId));
+		serverInfoForm.setQueryProvinceId((queryProvinceId==null||"".equals(queryProvinceId)?"-20":queryProvinceId));
+		serverInfoForm.setQueryCityId((queryCityId==null||"".equals(queryCityId)?"-30":queryCityId));
+		serverInfoForm.setQueryServerType(queryServerType);
+		serverInfoForm.setQueryServerStatus(queryServerStatus);
+		serverInfoForm.setQueryRegionId(queryRegionId);
+		serverInfoForm.setQueryStartTime(queryStartTime);
+		serverInfoForm.setQueryEndTime(queryEndTime);
+		serverInfoForm.setViewOrEdit(viewOrEdit);
+
 		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
-			String currentPage = request.getParameter("currentPage");
-			serverInfoForm.setQueryStatus(SpmsConstants.STATE_A);
-			serverInfoForm.setViewOrEdit(viewOrEdit);
-			serverInfoForm.setCurrentPage(currentPage);
-			SessionUtils.setObjectAttribute(request, "serverInfoFormSession", serverInfoForm);
-		} else if (ifSession != null && ifSession.equals("yes")) {
-			serverInfoForm = (ServerInfoForm) SessionUtils.getObjectAttribute(request, "serverInfoFormSession");
-		} else {
-			String currentPage = request.getParameter("currentPage");
-			String queryCountryId = request.getParameter("queryCountryId");
-			String queryProvinceId = request.getParameter("queryProvinceId");
-			String queryCityId = request.getParameter("queryCityId");
-			String queryServerType = request.getParameter("queryServerType");
-			String queryServerStatus = request.getParameter("queryServerStatus");
-			String queryRegionId = request.getParameter("queryRegionId");
-			String queryStartTime = request.getParameter("queryStartTime");
-			String queryEndTime = request.getParameter("queryEndTime");
-			serverInfoForm.setQueryStatus(SpmsConstants.STATE_A);
 
 			if (null == currentPage || "".equals(currentPage)) {
 				currentPage = "1";
 			}
-
 			serverInfoForm.setCurrentPage(currentPage);
-			serverInfoForm.setQueryCountryId(queryCountryId);
-			serverInfoForm.setQueryProvinceId(queryProvinceId);
-			serverInfoForm.setQueryCityId(queryCityId);
-			serverInfoForm.setQueryServerType(queryServerType);
-			serverInfoForm.setQueryServerStatus(queryServerStatus);
-			serverInfoForm.setQueryRegionId(queryRegionId);
-			serverInfoForm.setQueryStartTime(queryStartTime);
-			serverInfoForm.setQueryEndTime(queryEndTime);
-			serverInfoForm.setViewOrEdit(viewOrEdit);
-
-//			SessionUtils.setObjectAttribute(request, "serverInfoFormSession", serverInfoForm);
+			
+			SessionUtils.setObjectAttribute(request, "serverInfoFormSession", serverInfoForm);
+		} else if (ifSession != null && ifSession.equals("yes")) {
+			serverInfoForm = (ServerInfoForm) SessionUtils.getObjectAttribute(request, "serverInfoFormSession");
 		}
+		
 		HashMap serverResult = null;
 		serverResult = serverInfoBO.queryServerInfoList(serverInfoForm,String.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));
 
@@ -512,10 +316,13 @@ public class ServerInfoController extends MultiActionController {
 		serverInfoForm.setQueryStatus(SpmsConstants.STATE_A);
 		
 		TransitServer transitServer = null;
-		String countryInfo = "";
 		if(serverId!=null&&!serverId.equals("")){
 			transitServer = serverInfoBO.findById(new Integer(serverId));
-
+			List serverGroupList = serverInfoBO.queryServerGroup(serverId);
+			ServerGroupMapping sgMapping = null;
+			if(serverGroupList!=null&&!serverGroupList.isEmpty()){
+				sgMapping = (ServerGroupMapping)serverGroupList.get(0);
+			}
 			serverInfoForm.setCurrentPage(currentPage);
 			serverInfoForm.setQueryCountryId(queryCountryId);
 			serverInfoForm.setQueryProvinceId(queryProvinceId);
@@ -529,39 +336,12 @@ public class ServerInfoController extends MultiActionController {
 			serverInfoForm.setViewOrEdit(viewOrEdit);
 
 			map.put("transitServer", transitServer);
+			map.put("menuStrmenu", sgMapping.getServergroupid().toString());
 			map.put("viewOrEdit", viewOrEdit);
 			map.put("searchForm", serverInfoForm);
 		}
 		return new ModelAndView("/mss/jsp/server/serverInfoAdd.jsp?viewOrEdit=edit", RequestNameConstants.INFORMATION, map);
 	}
-//	
-//	/**
-//	 * 根据查询条件查询同类别服务器信息个数
-//	 * @param request
-//	 * @param response
-//	 * @return
-//	 * @throws ServletRequestBindingException
-//	 */
-//	public ModelAndView querySameGoodsCount(HttpServletRequest request, HttpServletResponse response)
-//	throws ServletRequestBindingException {
-//		HashMap map = new HashMap();
-//		String typeName = request.getParameter("typeName");
-//		GoodsInfoForm searchForm = new GoodsInfoForm(); 
-//		List list = null;
-//		if(typeName!=null&&!typeName.equals("")){
-//			typeName = typeName.lastIndexOf(",")!=-1 ? typeName.substring(0,typeName.length()-1):typeName; 
-//			searchForm.setGoodsTypeStr(typeName);
-//			list = goodsInfoBO.querySameGoodsCount(searchForm);
-//		}
-//		response.setContentType("text/html; charset=utf-8");
-//		try {
-//			response.getWriter().print(list.get(0));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
 	
 	/**
 	 * 删除用户选择的记录（逻辑删除）
@@ -587,7 +367,6 @@ public class ServerInfoController extends MultiActionController {
 		transTemplate.execute(new TransactionCallbackWithoutResult() {
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 				
-				List serverList = null;
 				String serverIdStr = "";
 				
 				//删除操作返回值

@@ -8,9 +8,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>服务器信息管理</title>
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="${contextPath}/mss/js/userManage.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/ajax.js"></script>
+		<script type="text/javascript" src="${contextPath}/mss/js/jquery-1.9.1.min.js"></script> 
 		<script type="text/javascript">
 		document.onkeydown = keyDown;
 		function keyDown(){
@@ -27,6 +27,80 @@
 		}
 		
 		
+	</script>
+	<script type="text/javascript">  
+
+		function changeProvince(countryId,pId){
+			var url="${contextPath}/mss/html/locationController.do?method=queryProvinceByCountryId";
+	    	$.post(url,{"countryId":countryId},function(json){
+	    		//清空省（州）下拉框 
+				$(".province").find("option").remove();
+				$(".province").append("<option value=''>---请选择省（州）---</option>");
+				for(var i=0;i<json.length;i++){  
+				//添加一个省（州）
+					$(".province").append("<option value='"+json[i].provinceid+"'>"+json[i].provincename+"</option>");  
+				}
+				//用于编辑页面选项回填
+				if(pId!=""&&pId!=null){
+					$(".province").val(pId);
+				}
+			},'json');
+	    	
+			//注册省（州）下拉框事件
+			$(".province").change(function(){  
+				changeCity($(this).val(),"");  
+			}); 
+		}
+	 	
+	 	function changeCity(provinceId,cId){
+			var url="${contextPath}/mss/html/locationController.do?method=queryCityByProvinceId";
+	    	$.post(url,{"provinceId":provinceId},function(json){
+	    		//清空城市下拉框 
+				$(".city").find("option").remove();
+				$(".city").append("<option value=''>---请选择城市---</option>");
+				//alert(json);
+				for(var i=0;i<json.length;i++){  
+				//添加一个城市
+					$(".city").append("<option value='"+json[i].cityid+"'>"+json[i].cityname+"</option>");  
+				}
+				//用于编辑页面选项回填
+				if(cId!=""&&cId!=null){
+					$(".city").val(cId);
+				}
+			},'json');  
+			
+		}
+		
+	 	$(function(){
+			var cid= ${information.searchForm.queryCountryId};
+			var pid= ${information.searchForm.queryProvinceId};
+			var tid= ${information.searchForm.queryCityId};
+			
+			//初始化国家下拉框  
+			var url="${contextPath}/mss/html/locationController.do?method=queryAllCountries";
+			$.post(url,null,function(json){
+				$(".country").find("option").remove();
+				$(".country").append("<option value=''>---请选择国家---</option>");
+		 	for(var i=0;i<json.length;i++){  
+				//添加一个国家  
+				$(".country").append("<option value='"+json[i].countryid+"'>"+json[i].countryname+"</option>");  
+		 	}
+				//用于编辑页面选项回填
+				if(cid!=""&&cid!=null){
+					//选中指定国家
+					$(".country").val(cid);
+					//选中指定省
+					changeProvince(cid,pid);
+					//选中指定市
+					changeCity(pid,tid);
+				}
+		 	},'json');
+			
+			//注册国家下拉框事件
+			$(".country").change(function(){  
+				changeProvince($(this).val(),"");  
+			}); 
+		});
 	</script>
 	</head>
 
@@ -59,19 +133,22 @@
 					</td>
 					<td class="qinggoudan_table_td1">
 						所属国家:
-						<pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="10"
-							title="---国家---" next="true" name="queryCountryId" mvalue="${information.searchForm.queryCountryId}" />
+						<select class="country" id="countryId" name="queryCountryId">
+						<option value="">---请选择国家---</option>
+						</select>
 					</td>
 					<td class="qinggoudan_table_td1">
 						所属省（州）:
-						<pub:link sql="<%=MssConstants.QUERY_PROVINCE_INFO_SQL%>" num="2" id="P.PROVINCEID" valueName="P.PROVINCENAME" selectSize="10"
-							fatherName="queryCountryId" title="---省（州）---" next="true" name="queryProvinceId" mvalue="${information.searchForm.queryProvinceId}" />
+						<select class="province" id="provinceId" name="queryProvinceId">
+						<option value="">---请选择省（州）---</option>
+						</select>
 						
 					</td>
 					<td class="qinggoudan_table_td1">
 						所属城市:
-						<pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="10"
-							fatherName="queryProvinceId" title="---城市---" next="false" name="queryCityId" mvalue="${information.searchForm.queryCityId}" />
+						<select class="city" id="cityId" name="queryCityId">
+						<option value="">---请选择城市---</option>
+						</select>
 					</td>
 					<td class="qinggoudan_table_td1">
 						服务器分组:

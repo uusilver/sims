@@ -242,19 +242,19 @@ public class TransitServerDAO extends BaseDao {
 		}
 
 		//服务器所在国家
-		if (searchForm.getQueryCountryId() != null && !"".equals(searchForm.getQueryCountryId())) {
+		if (searchForm.getQueryCountryId() != null && !"".equals(searchForm.getQueryCountryId()) && searchForm.getQueryCountryId().indexOf("-")==-1) {
 			filterHql.append(" and transitServer.countryid = ?");
 			paramList.add(new Integer (searchForm.getQueryCountryId()));
 		}
 
 		//服务器所在省（州）
-		if (searchForm.getQueryProvinceId() != null && !"".equals(searchForm.getQueryProvinceId())) {
+		if (searchForm.getQueryProvinceId() != null && !"".equals(searchForm.getQueryProvinceId()) && searchForm.getQueryProvinceId().indexOf("-")==-1) {
 			filterHql.append(" and transitServer.provinceid = ?");
 			paramList.add(new Integer (searchForm.getQueryProvinceId()));
 		}
 
 		//服务器所在城市
-		if (searchForm.getQueryCityId() != null && !"".equals(searchForm.getQueryCityId())) {
+		if (searchForm.getQueryCityId() != null && !"".equals(searchForm.getQueryCityId()) && searchForm.getQueryCityId().indexOf("-")==-1) {
 			filterHql.append(" and transitServer.cityid = ?");
 			paramList.add(new Integer (searchForm.getQueryCityId()));
 		}
@@ -335,6 +335,34 @@ public class TransitServerDAO extends BaseDao {
 
 		
 		List list = getHibernateTemplate().find((listHql.toString()+filterHql.toString()));
+		return list;
+	}
+
+	
+	/**
+	 * 根据服务器id查询服务器所属服务器组
+	 * @param serverId
+	 * @return
+	 */
+	public List queryServerGroup(String serverId){
+		Integer[] paramList = new Integer[1];
+		// 查询条数sql
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select sgMapping from ServerGroupMapping sgMapping ");
+
+
+		StringBuffer filterHql = new StringBuffer();
+			
+		filterHql.append(" where 1=1 ");
+
+		//服务器Id
+		if (serverId != null && !"".equals(serverId)) {
+			filterHql.append(" and sgMapping.serverid = ?");
+			paramList[0] = new Integer(serverId);
+		}
+
+		
+		List list = getHibernateTemplate().find((listHql.toString()+filterHql.toString()),paramList);
 		return list;
 	}
 }

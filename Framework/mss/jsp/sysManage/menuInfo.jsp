@@ -10,10 +10,21 @@
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/ajax.js"></script>
+		<script type="text/javascript" src="${contextPath}/mss/js/jquery-1.9.1.min.js"></script> 
 		
 		<script type="text/javascript">
 		function saveMenu(){
 			var passed = "0";
+			
+			var menuLevel= $('input:radio[name="menuLevel"]:checked').val();
+			
+			var fatherMenu = $("select[@name=parentMenuId] option[@selected]").val();
+			alert(fatherMenu);
+			
+			if(menuLevel=="2"){
+				menuLevel[0].value =="2";
+			}
+			
 			if(trim(document.getElementsByName("resourceName")[0].value)==""){
 				alert("请输入菜单名称！");
 				document.getElementsByName("resourceName")[0].focus();
