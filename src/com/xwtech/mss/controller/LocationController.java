@@ -122,7 +122,7 @@ public class LocationController extends MultiActionController{
 				perCountry.setCountryname(c.getText());
 				perCountry.setStatus("A");
 				//TODO: Save into database
-				
+				countryBO.saveOrUpdate(perCountry);
 				
 				List<ProvinceJModel> provinceList = c.getChildren();
 				//start to load province info
@@ -133,7 +133,7 @@ public class LocationController extends MultiActionController{
 					perProvince.setProvincename(p.getText());
 					perProvince.setStatus("A");
 					//TODO: Save into database
-					
+					provinceBO.saveOrUpdate(perProvince);
 					
 					List<CityJModel> cityList = p.getChildren();
 					//start to load city info
@@ -144,6 +144,7 @@ public class LocationController extends MultiActionController{
 						perCity.setCityname(city.getText());
 						perCity.setStatus("A");
 						//TODO: Save into database
+						cityBO.saveOrUpdate(perCity);
 					}
 				}
 				
@@ -223,11 +224,11 @@ public class LocationController extends MultiActionController{
 			 String countryId = request.getParameter("countryId");
 			 List<Province> provinceList = provinceBO.queryProvinceByCountryId(countryId);
 			 String result = null;
+			 Gson gson = new Gson();
 			 if(provinceList!=null&&provinceList.size()>0){
-				 Gson gson = new Gson();
 				 result = gson.toJson(provinceList);
 			 }else{
-				 result = "error";
+				 result = gson.toJson(null);
 			 }
 			 
 			 writer.write(result);
@@ -250,11 +251,11 @@ public class LocationController extends MultiActionController{
 			 String provinceId = request.getParameter("provinceId");
 			 List<City> cityList = cityBO.queryCityByProvinceId(provinceId);
 			 String result = null;
+			 Gson gson = new Gson();
 			 if(cityList!=null&&cityList.size()>0){
-				 Gson gson = new Gson();
 				 result = gson.toJson(cityList);
 			 }else{
-				 result = "error";
+				 result = gson.toJson(null);
 			 }
 			 
 			 writer.write(result);
@@ -277,11 +278,11 @@ public class LocationController extends MultiActionController{
 			 PrintWriter writer = response.getWriter();
 			 List<Country> countryList = countryBO.queryAllCountries();
 			 String result = null;
+			 Gson gson = new Gson();
 			 if(countryList!=null&&countryList.size()>0){
-				 Gson gson = new Gson();
 				 result = gson.toJson(countryList);
 			 }else{
-				 result = "error";
+				 result = gson.toJson(null);
 			 }
 			 
 			 writer.write(result);

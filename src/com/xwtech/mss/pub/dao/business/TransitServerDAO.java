@@ -45,7 +45,7 @@ public class TransitServerDAO extends BaseDao {
 	public void save(TransitServer transientInstance) {
 		log.debug("saving TransitServer instance");
 		try {
-			getSession().save(transientInstance);
+			getSession().saveOrUpdate(transientInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
