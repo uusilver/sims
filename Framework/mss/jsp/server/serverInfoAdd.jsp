@@ -19,7 +19,7 @@
 			var url="${contextPath}/mss/html/locationController.do?method=queryProvinceByCountryId";
 	    	$.post(url,{"countryId":countryId},function(json){
 	    		//清空省（州）下拉框 
-				$(".proivnce").empty();
+				$(".proivnce").remove("");
 				$(".province").append("<option value=''>---请选择省（州）---</option>");
 				for(var i=0;i<json.length;i++){  
 				//添加一个省（州）
@@ -311,8 +311,6 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<!-- pub:link sql="<%=MssConstants.QUERY_COUNTRY_INFO_SQL%>" num="1" id="C.COUNTRYID" valueName="C.COUNTRYNAME" selectSize="10"
-							title="---国家---" next="true" name="countryId" mvalue="${information.transitServer.countryid}" /> -->
 						<select class="country" id="countryId">
 						<option value="">---请选择国家---</option>
 						</select>
@@ -325,8 +323,6 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<!-- pub:link sql="<%=MssConstants.QUERY_PROVINCE_INFO_SQL%>" num="2" id="P.PROVINCEID" valueName="P.PROVINCENAME" selectSize="10"
-							fatherName="countryId" title="---省（州）---" next="true" name="provinceId" mvalue="${information.transitServer.provinceid}" /> -->
 						<select class="province" id="provinceId">
 						<option value="">---请选择省（州）---</option>
 						</select>
@@ -339,8 +335,6 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<!-- pub:link sql="<%=MssConstants.QUERY_CITY_INFO_SQL%>" num="3" id="T.CITYID" valueName="T.CITYNAME" selectSize="10"
-							fatherName="provinceId" title="---城市---" next="false" name="cityId" mvalue="${information.transitServer.cityid}" /> -->
 						<select class="city" id="cityId">
 						<option value="">---请选择城市---</option>
 						</select>
