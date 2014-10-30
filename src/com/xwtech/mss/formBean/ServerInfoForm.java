@@ -27,6 +27,8 @@ public class ServerInfoForm {
 	private String indexNO;
 	
 	private String queryStatus;
+	
+	private String showHeader;
 
 	public String getCurrentPage() {
 		return currentPage;
@@ -131,6 +133,14 @@ public class ServerInfoForm {
 
 	public void setQueryStatus(String queryStatus) {
 		this.queryStatus = queryStatus;
+	}
+
+	public String getShowHeader() {
+		return showHeader;
+	}
+
+	public void setShowHeader(String showHeader) {
+		this.showHeader = showHeader;
 	}
 	
 	

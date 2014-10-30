@@ -22,7 +22,7 @@
 		
 		function query(){
 			document.serverListForm.action = "${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoList"
-				+ constructParams("queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit,returnForm,indexNO");
+				+ constructParams("queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit,returnForm,indexNO");
 			document.serverListForm.submit();
 		}
 		
@@ -122,54 +122,54 @@
 					</td>
 				</tr>
 			</table>
-
-			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
-				style="margin:0px;">
-				<tr>
-					<td class="qinggoudan_table_td1">
-						服务类型:
-						<pub:link sql="<%=MssConstants.QUERY_SERVER_TYPE_SQL%>" num="1" selectSize="15"
-							title="---服务器类型---" next="false" name="queryServerType" mvalue="${information.searchForm.queryServerType}" />
-					</td>
-					<td class="qinggoudan_table_td1">
-						所属国家:
-						<select class="country" id="countryId" name="queryCountryId">
-						<option value="">---请选择国家---</option>
-						</select>
-					</td>
-					<td class="qinggoudan_table_td1">
-						所属省（州）:
-						<select class="province" id="provinceId" name="queryProvinceId">
-						<option value="">---请选择省（州）---</option>
-						</select>
-						
-					</td>
-					<td class="qinggoudan_table_td1">
-						所属城市:
-						<select class="city" id="cityId" name="queryCityId">
-						<option value="">---请选择城市---</option>
-						</select>
-					</td>
-					<td class="qinggoudan_table_td1">
-						服务器分组:
-						<pub:link sql="<%=MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" title="---请选择---"
-							next="false" name="quserServerGroup" mvalue="${information.searchForm.queryServerGroup}" />
-					</td>
-					<td class="qinggoudan_table_td1">
-						服务器状态:
-						<pub:link sql="<%=MssConstants.QUERY_SERVER_STATUS_SQL%>" num="1" title="---请选择---" next="false" 
-						name="quserServerStatus" mvalue="${information.searchForm.queryServerStatus}" />
-					</td>
-					<td class="qinggoudan_table_td1">
-						&nbsp;
-						<input type="button" class="anniu_out" value=" 搜 索 " onMouseOver="className='anniu_over'"
-							onMouseOut="className='anniu_out'" onclick="query()">
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" onclick="resetQuery('serverListForm')" class="anniu_out" value=" 重 填 "
-							onMouseOver="className='anniu_over'" onMouseOut="className='anniu_out'">
-					</td>
-				</tr>
-			</table>
+			<c:if test="${information.searchForm.showHeader=='yes' }">
+				<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table" style="margin:0px;">
+					<tr>
+						<td class="qinggoudan_table_td1">
+							服务类型:
+							<pub:link sql="<%=MssConstants.QUERY_SERVER_TYPE_SQL%>" num="1" selectSize="15"
+								title="---服务器类型---" next="false" name="queryServerType" mvalue="${information.searchForm.queryServerType}" />
+						</td>
+						<td class="qinggoudan_table_td1">
+							所属国家:
+							<select class="country" id="countryId" name="queryCountryId">
+							<option value="">---请选择国家---</option>
+							</select>
+						</td>
+						<td class="qinggoudan_table_td1">
+							所属省（州）:
+							<select class="province" id="provinceId" name="queryProvinceId">
+							<option value="">---请选择省（州）---</option>
+							</select>
+							
+						</td>
+						<td class="qinggoudan_table_td1">
+							所属城市:
+							<select class="city" id="cityId" name="queryCityId">
+							<option value="">---请选择城市---</option>
+							</select>
+						</td>
+						<td class="qinggoudan_table_td1">
+							服务器分组:
+							<pub:link sql="<%=MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" title="---请选择---"
+								next="false" name="queryServerGroup" mvalue="${information.searchForm.queryServerGroup}" />
+						</td>
+						<td class="qinggoudan_table_td1">
+							服务器状态:
+							<pub:link sql="<%=MssConstants.QUERY_SERVER_STATUS_SQL%>" num="1" title="---请选择---" next="false" 
+							name="quserServerStatus" mvalue="${information.searchForm.queryServerStatus}" />
+						</td>
+						<td class="qinggoudan_table_td1">
+							&nbsp;
+							<input type="button" class="anniu_out" value=" 搜 索 " onMouseOver="className='anniu_over'"
+								onMouseOut="className='anniu_out'" onclick="query()">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" onclick="resetQuery('serverListForm')" class="anniu_out" value=" 重 填 "
+								onMouseOver="className='anniu_over'" onMouseOut="className='anniu_out'">
+						</td>
+					</tr>
+				</table>
+			</c:if>
 
 			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">
@@ -259,17 +259,19 @@
 			</table>
 			<pub:page formName="serverListForm" currentPage="${information.currentPage}" totalCount="${information.totalCount}"
 				totalPage="${information.totalPage}" />
-			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
-				<tr>
-					<td align="center">
-						<input type="button" class="anniu_out" value=" 新 增  " onclick="addServer()" onMouseOver="className='anniu_over'"
-							onMouseOut="className='anniu_out'">
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" class="anniu_out" value=" 删 除  " onclick="delServer()" onMouseOver="className='anniu_over'"
-							onMouseOut="className='anniu_out'">
-					</td>
-				</tr>
-			</table>
+			<c:if test="${information.searchForm.showHeader=='yes' }">
+				<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+					<tr>
+						<td align="center">
+							<input type="button" class="anniu_out" value=" 新 增  " onclick="addServer()" onMouseOver="className='anniu_over'"
+								onMouseOut="className='anniu_out'">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" class="anniu_out" value=" 删 除  " onclick="delServer()" onMouseOver="className='anniu_over'"
+								onMouseOut="className='anniu_out'">
+						</td>
+					</tr>
+				</table>
+			</c:if>
 
 			<input type="hidden" name="viewOrEdit" value="${information.searchForm.viewOrEdit}" />
 			<input type="hidden" name="indexNO" value="${information.searchForm.indexNO}" />
@@ -281,12 +283,12 @@
 
 <script type="text/javascript">
 	function addServer(){
-		window.location = "${contextPath}/mss/jsp/server/serverInfoAdd.jsp?" + constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit');
+		window.location = "${contextPath}/mss/jsp/server/serverInfoAdd.jsp?" + constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit');
 	}
 		
 	function viewServer(serverId){
 		window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoById&serverId=" + serverId 
-			+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit');
+			+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit');
 	}
 		
 	function delServer(){
@@ -302,7 +304,7 @@
 			return;
 		}else if(confirm("您确定要删除选中的服务器信息吗？")){
 			window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=delServerInfo&serverIdStr=" + serverIdStr 
-				+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit');
+				+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit');
 		}
 	}
 </script>

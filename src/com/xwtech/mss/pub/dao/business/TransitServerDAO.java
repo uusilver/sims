@@ -205,9 +205,11 @@ public class TransitServerDAO extends BaseDao {
 		List paramList = new ArrayList();
 		// 查询列表sql
 		StringBuffer listHql = new StringBuffer();
+		StringBuffer fromHql = new StringBuffer();
 		listHql.append("select transitServer.serverid,cb_type.text,transitServer.serverip,"
-				+" sGroup.servergroupname,region.regionname,country.countryname,prov.provincename,city.cityname,cb_status.text"
-				+ " from TransitServer transitServer,ServerGroupMapping sgMapping,ServerGroup sGroup,"
+				+" sGroup.servergroupname,region.regionname,country.countryname,prov.provincename,city.cityname,cb_status.text ");
+		
+		fromHql.append(" from TransitServer transitServer,ServerGroupMapping sgMapping,ServerGroup sGroup,"
 				+ " CodeBook cb_type,CodeBook cb_status,Country country,Province prov,City city,Region region "
 				+ " where transitServer.countryid = country.countryid"
 				+ " and transitServer.provinceid = prov.provinceid"
@@ -219,10 +221,12 @@ public class TransitServerDAO extends BaseDao {
 				+ " and cb_type.tag = '"+MssConstants.SERVER_TYPE+"'"
 				+ " and transitServer.serverstatus = cb_status.value"
 				+ " and cb_status.tag = '"+MssConstants.SERVER_STATUS+"'");
-
+		
+		listHql.append(fromHql);
 		// 查询条数
 		StringBuffer countHql = new StringBuffer();
-		countHql.append("select count(transitServer.serverid) from TransitServer transitServer where 1=1");
+		countHql.append("select count(transitServer.serverid) ");
+		countHql.append(fromHql);
 
 		StringBuffer filterHql = new StringBuffer();
 			
@@ -283,6 +287,12 @@ public class TransitServerDAO extends BaseDao {
 		if (searchForm.getQueryStatus() != null && !"".equals(searchForm.getQueryStatus())) {
 			filterHql.append(" and transitServer.status = ?");
 			paramList.add(searchForm.getQueryStatus());
+		}
+
+		//服务器分组ID
+		if (searchForm.getQueryServerGroup() != null && !"".equals(searchForm.getQueryServerGroup())) {
+			filterHql.append(" and sGroup.servergroupid = ?");
+			paramList.add(new Integer (searchForm.getQueryServerGroup()));
 		}
 		
 		//按服务器类别和名称排序

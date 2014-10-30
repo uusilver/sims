@@ -12,12 +12,24 @@ public class OperationLog  implements java.io.Serializable {
     // Fields    
 
      private Long logId;
+     
+     //操作用户名
      private String loginName;
+     
+     //操作类型：1-增加/2-修改/3-删除
      private Long doType;
+     
+     //操作的对象，具体内容常见code_book表中的配置信息
      private Long doObject;
+     
+     //操作对象类型，具体内容常见code_book表中的配置信息
      private Long objType;
+     
+     //操作的主表
      private String tableName;
+     
      private String description;
+     
      private String doTime;
 
 

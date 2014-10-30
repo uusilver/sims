@@ -9,6 +9,8 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Example;
 
 import com.xwtech.framework.pub.dao.BaseDao;
+import com.xwtech.framework.pub.utils.StringUtils;
+import com.xwtech.framework.pub.web.FrameworkApplication;
 import com.xwtech.mss.pub.po.ServerGroupMapping;
 
 /**
@@ -149,4 +151,32 @@ public class ServerGroupMappingDAO extends BaseDao {
 			throw re;
 		}
 	}
+	
+	/**
+	 * 保存服务器和分组的对应关系
+	 * @param serverGroupId
+	 * @param serverIds,以‘,’隔开
+	 */
+	public int saveServerGroupLink(Integer serverGroupId, String serverIds) {
+		if (StringUtils.isEmpty(serverIds)) {
+			return 0;
+		}
+
+		try {
+			// 拼装SQL
+			StringBuffer sbSql = new StringBuffer("INSERT INTO SERVER_GROUP_MAPPING ( SERVERID, SERVERGROUPID)");
+			sbSql.append(" SELECT t.SERVER_ID," + serverGroupId + " AS  GROUP_ID  FROM");
+			// 服务器ID
+			sbSql.append(" (SELECT TS.SERVERID from TRANSIT_SERVER TS WHERE TS.SERVERID IN (" + serverIds + ")) t");
+
+			log.info(sbSql.toString());
+
+			return FrameworkApplication.baseJdbcDAO.update(sbSql.toString());
+		} catch (RuntimeException re) {
+			log.error("保存服务器和分组的对应关系", re);
+			throw re;
+		}
+
+	}
+	
 }

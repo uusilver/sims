@@ -43,28 +43,28 @@ public class OperLogController extends MultiActionController
 	
 /**
  * 日志查询
- * @param httpServletRequest
- * @param httpServletResponse
+ * @param request
+ * @param response
  * @param operLogSearForm
  * @return
  */	
 	
-	public ModelAndView listAll(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,OperLogSearForm operLogSearForm)
+	public ModelAndView listAll(HttpServletRequest request,HttpServletResponse response,OperLogSearForm operLogSearForm)
 	{
 
-		HttpSession httpSession=httpServletRequest.getSession();
+		HttpSession httpSession=request.getSession();
 		
 		Map operLogListMap = new HashMap();
 		
-		String loginName = httpServletRequest.getParameter("loginName")==null?null:httpServletRequest.getParameter("loginName").trim();
+		String loginName = request.getParameter("loginName")==null?null:request.getParameter("loginName").trim();
 
-		String doType = httpServletRequest.getParameter("doType")==null?null:httpServletRequest.getParameter("doType").trim();
+		String doType = request.getParameter("doType")==null?null:request.getParameter("doType").trim();
 
-		String objType = httpServletRequest.getParameter("objType")==null?null:httpServletRequest.getParameter("objType").trim();
+		String objType = request.getParameter("objType")==null?null:request.getParameter("objType").trim();
 
-		String currentPage = httpServletRequest.getParameter("currentPage")==null?null:httpServletRequest.getParameter("currentPage").trim();
+		String currentPage = request.getParameter("currentPage")==null?null:request.getParameter("currentPage").trim();
 
-		String logDesc = httpServletRequest.getParameter("logDesc")==null?null:httpServletRequest.getParameter("logDesc").trim();
+		String logDesc = request.getParameter("logDesc")==null?null:request.getParameter("logDesc").trim();
 		
 		operLogSearForm.setLoginName(loginName);
 		
@@ -76,7 +76,7 @@ public class OperLogController extends MultiActionController
 
 		operLogSearForm.setCurrentPage(currentPage);
 		
-		httpServletRequest.setAttribute("command", operLogSearForm);
+		request.setAttribute("command", operLogSearForm);
 		
 		httpSession.setAttribute("searchForm", operLogSearForm);
 		

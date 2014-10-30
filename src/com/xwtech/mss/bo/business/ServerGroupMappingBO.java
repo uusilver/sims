@@ -35,14 +35,13 @@ public class ServerGroupMappingBO {
 	}
 	
 	/**
-	 * 根据查询条件查询物品信息
-	 * @param searchForm
-	 * @param perPageCount
-	 * @return
+	 * 保存服务器和分组的对应关系
+	 * @param serverGroupId
+	 * @param serverIds,以‘,’隔开
 	 */
-//	public HashMap queryGoodsInfoList(GoodsInfoForm searchForm, String perPageCount){
-//		return this.goodsInfoDAO.queryGoodsInfoList(searchForm, perPageCount);
-//	}
+	public int saveServerGroupLink(Integer serverGroupId, String serverIds) {
+		return this.serverGroupMappingDAO.saveServerGroupLink(serverGroupId,serverIds);
+	}
 	
 	/**
 	 * 批量删除选中的物品记录（逻辑删除）
