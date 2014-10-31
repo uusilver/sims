@@ -156,7 +156,7 @@ public class ServerInfoController extends MultiActionController {
 					transitServer.setRegionid(new Integer(regionID));
 					transitServer.setNote(note);
 					transitServer.setStatus(MssConstants.STATE_A);
-					if(viewOrEdit==null || "add".equals(viewOrEdit)){
+					if(serverId==null || "".equals(serverId)){
 						transitServer.setAddWho(new Integer(userId.toString()));
 						transitServer.setAddTime(DateUtils.convertString2Date(DateUtils.getChar14()));			
 					}else{

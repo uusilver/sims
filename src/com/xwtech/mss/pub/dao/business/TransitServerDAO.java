@@ -206,26 +206,26 @@ public class TransitServerDAO extends BaseDao {
 		// 查询列表sql
 		StringBuffer listHql = new StringBuffer();
 		StringBuffer fromHql = new StringBuffer();
-		listHql.append("select transitServer.serverid,cb_type.text,transitServer.serverip,"
+		listHql.append("select ts.serverid,cb_type.text,ts.serverip,"
 				+" sGroup.servergroupname,region.regionname,country.countryname,prov.provincename,city.cityname,cb_status.text ");
 		
-		fromHql.append(" from TransitServer transitServer,ServerGroupMapping sgMapping,ServerGroup sGroup,"
+		fromHql.append(" from TransitServer ts left join ts.serverid ServerGroupMapping sgMapping left join sgMapping.servergroupid ServerGroup sGroup ,"
 				+ " CodeBook cb_type,CodeBook cb_status,Country country,Province prov,City city,Region region "
-				+ " where transitServer.countryid = country.countryid"
-				+ " and transitServer.provinceid = prov.provinceid"
-				+ " and transitServer.cityid = city.cityid"
-				+ " and transitServer.serverid = sgMapping.serverid"
+				+ " where ts.countryid = country.countryid"
+				+ " and ts.provinceid = prov.provinceid"
+				+ " and ts.cityid = city.cityid"
+				+ " and ts.serverid = sgMapping.serverid"
 				+ " and sgMapping.servergroupid = sGroup.servergroupid"
-				+ " and transitServer.regionid = region.regionid"
-				+ " and transitServer.servertype = cb_type.value"
+				+ " and ts.regionid = region.regionid"
+				+ " and ts.servertype = cb_type.value"
 				+ " and cb_type.tag = '"+MssConstants.SERVER_TYPE+"'"
-				+ " and transitServer.serverstatus = cb_status.value"
+				+ " and ts.serverstatus = cb_status.value"
 				+ " and cb_status.tag = '"+MssConstants.SERVER_STATUS+"'");
 		
 		listHql.append(fromHql);
 		// 查询条数
 		StringBuffer countHql = new StringBuffer();
-		countHql.append("select count(transitServer.serverid) ");
+		countHql.append("select count(ts.serverid) ");
 		countHql.append(fromHql);
 
 		StringBuffer filterHql = new StringBuffer();
@@ -234,58 +234,58 @@ public class TransitServerDAO extends BaseDao {
 
 		//服务器类型
 		if (searchForm.getQueryServerType() != null && !"".equals(searchForm.getQueryServerType())) {
-			filterHql.append(" and transitServer.servertype = ?");
+			filterHql.append(" and ts.servertype = ?");
 			paramList.add(new Integer (searchForm.getQueryServerType()));
 		}
 		//服务器状态
 		if (searchForm.getQueryServerStatus() != null && !"".equals(searchForm.getQueryServerStatus())) {
-			filterHql.append(" and transitServer.serverstatus = ?");
+			filterHql.append(" and ts.serverstatus = ?");
 			paramList.add(new Integer(searchForm.getQueryServerStatus()));
 		}else{
-			filterHql.append(" and transitServer.serverstatus in (0,1)");
+			filterHql.append(" and ts.serverstatus in (0,1)");
 		}
 
 		//服务器所在国家
 		if (searchForm.getQueryCountryId() != null && !"".equals(searchForm.getQueryCountryId()) && searchForm.getQueryCountryId().indexOf("-")==-1) {
-			filterHql.append(" and transitServer.countryid = ?");
+			filterHql.append(" and ts.countryid = ?");
 			paramList.add(new Integer (searchForm.getQueryCountryId()));
 		}
 
 		//服务器所在省（州）
 		if (searchForm.getQueryProvinceId() != null && !"".equals(searchForm.getQueryProvinceId()) && searchForm.getQueryProvinceId().indexOf("-")==-1) {
-			filterHql.append(" and transitServer.provinceid = ?");
+			filterHql.append(" and ts.provinceid = ?");
 			paramList.add(new Integer (searchForm.getQueryProvinceId()));
 		}
 
 		//服务器所在城市
 		if (searchForm.getQueryCityId() != null && !"".equals(searchForm.getQueryCityId()) && searchForm.getQueryCityId().indexOf("-")==-1) {
-			filterHql.append(" and transitServer.cityid = ?");
+			filterHql.append(" and ts.cityid = ?");
 			paramList.add(new Integer (searchForm.getQueryCityId()));
 		}
 
 		//服务器服务区域
 		if (searchForm.getQueryRegionId() != null && !"".equals(searchForm.getQueryRegionId())) {
-			filterHql.append(" and transitServer.regionid = ?");
+			filterHql.append(" and ts.regionid = ?");
 			paramList.add(new Integer (searchForm.getQueryRegionId()));
 		}
 
 		//有效期起始时间
 		if (searchForm.getQueryStartTime() != null && !"".equals(searchForm.getQueryStartTime())) {
 //			filterHql.append(" and subStr(goodsInfo.createTime,0,8) >= ?");
-			filterHql.append(" and transitServer.invalidtime >= ?");
+			filterHql.append(" and ts.invalidtime >= ?");
 			paramList.add((Object)DateUtils.formatDate(searchForm.getQueryStartTime(),"yyyy-MM-dd HH:mm:ss"));
 		}
 
 		//有效期截至时间
 		if (searchForm.getQueryEndTime() != null && !"".equals(searchForm.getQueryEndTime())) {
 //			filterHql.append(" and subStr(goodsInfo.createTime,0,8) <= ?");
-			filterHql.append(" and transitServer.invalidtime <= ?");
+			filterHql.append(" and ts.invalidtime <= ?");
 			paramList.add((Object)DateUtils.formatDate(searchForm.getQueryEndTime(),"yyyy-MM-dd HH:mm:ss"));
 		}
 
 		//服务器所在省（州）
 		if (searchForm.getQueryStatus() != null && !"".equals(searchForm.getQueryStatus())) {
-			filterHql.append(" and transitServer.status = ?");
+			filterHql.append(" and ts.status = ?");
 			paramList.add(searchForm.getQueryStatus());
 		}
 
@@ -296,7 +296,7 @@ public class TransitServerDAO extends BaseDao {
 		}
 		
 		//按服务器类别和名称排序
-		listHql.append(filterHql + "  order by transitServer.servertype ,transitServer.regionid asc ");
+		listHql.append(filterHql + "  order by ts.servertype ,ts.regionid asc ");
 		countHql.append(filterHql);
 
 		HashMap map = queryResultCount(listHql.toString(), countHql.toString(), paramList, searchForm.getCurrentPage(),
