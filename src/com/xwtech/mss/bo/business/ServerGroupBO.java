@@ -33,7 +33,7 @@ public class ServerGroupBO {
 	 * @param id
 	 * @return
 	 */
-	public ServerGroup findById(java.lang.Integer id) {
+	public ServerGroup findById(Integer id) {
 		return this.serverGroupDAO.findById(id);
 	}
 	

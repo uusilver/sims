@@ -29,6 +29,10 @@ public class ServerInfoForm {
 	private String queryStatus;
 	
 	private String showHeader;
+	
+	private String serverId;
+	
+	private String serverTag;
 
 	public String getCurrentPage() {
 		return currentPage;
@@ -142,6 +146,21 @@ public class ServerInfoForm {
 	public void setShowHeader(String showHeader) {
 		this.showHeader = showHeader;
 	}
-	
+
+	public String getServerId() {
+		return serverId;
+	}
+
+	public void setServerId(String serverId) {
+		this.serverId = serverId;
+	}
+
+	public String getServerTag() {
+		return serverTag;
+	}
+
+	public void setServerTag(String serverTag) {
+		this.serverTag = serverTag;
+	}
 	
 }

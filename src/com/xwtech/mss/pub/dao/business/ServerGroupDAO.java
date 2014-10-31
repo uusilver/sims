@@ -60,7 +60,7 @@ public class ServerGroupDAO extends BaseDao {
 		log.debug("getting ServerGroup instance with id: " + id);
 		try {
 			ServerGroup instance = (ServerGroup) getSession().get(
-					"com.xwtech.mss.pub.dao.business.ServerGroup", id);
+					"com.xwtech.mss.pub.po.ServerGroup", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

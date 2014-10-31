@@ -84,6 +84,8 @@ public class SetectTag extends TagSupport
   //列表的size
   private Long size = new Long(10);
   
+  private String contextPath = null;
+  
   /**
    * @return 返回 leftName。
    */
@@ -377,6 +379,14 @@ public void setSize(Long size) {
 	this.size = size;
 }
 
+public String getContextPath() {
+	return contextPath;
+}
+
+public void setContextPath(String contextPath) {
+	this.contextPath = contextPath;
+}
+
 /**
    * @param waitItem
    *            要设置的 waitItem。
@@ -451,7 +461,7 @@ public void setSize(Long size) {
     body = body
            .append("function MoveSingleItem(sel_source, sel_dest){\n if (sel_source.selectedIndex==-1)\n return;\n var slength = sel_source.options.length;\n for(i=0;i<sel_source.options.length; i++){\n if(sel_source.options[i].selected){\n var newOption = document.createElement(\"option\"); \n newOption.text = sel_source.options[i].text; \n newOption.value = sel_source.options[i].value; \n sel_dest.add(newOption);\n sel_source.options.remove(i);i=i-1;\n}\n}\n}\n");
     body = body
-           .append("function MoveAllItems(sel_source, sel_dest){\n var sel_source_len = sel_source.length;\n for (var j=0; j<sel_source_len; j++){\n var newOption = document.createElement(\"option\"); \n newOption.text = sel_source.options[j].text; \n newOption.value = sel_source.options[j].value;\n sel_dest.add(newOption);\n }\n while((k=sel_source.length-1)>=0){\n sel_source.options.remove(k);\n}\n}\n");
+           .append("function MoveAllItems(sel_source, sel_dest){\n var sel_source_len = sel_source.length;\n for (var j=0; j<sel_source_len; j++){\n var newOption = document.createElement(\"option\"); \n newOption.text = sel_source.options[j].text; \n newOption.value = sel_source.options[j].value;\n sel_dest.add(newOption);\n }\n while((k=sel_source.length-1)>=0){\n sel_source.options.remove(k);\n}\n return false;\n}\n");
     body = body
            .append("function SelectAll(theSel){\n for (i = 0 ;i<theSel.length;i++)\n theSel.options[i].selected = true;\n}\n");
     body = body.append("var curOption=new Option();\n");
@@ -509,10 +519,10 @@ public void setSize(Long size) {
     body = body.append("<table width=\"100%\"  border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n");
     body = body.append("<tr>\n <td height=\"159\" align=\"center\" bgcolor=\"#FFFFFF\">\n");
     body = body.append("<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\">\n");
-    body = body.append("<tr><td height=\"37\"><button class=\"" + moveStyle + "\" onClick=\"MoveAllItems(" + lid + ", " + rid + ")\">&gt;&gt;</button></td></tr>\n");
-    body = body.append("<tr><td height=\"37\"><button class=\"" + moveStyle + "\" onClick=\"MoveSingleItem(" + lid + ", " + rid + ")\">&gt;</button></td></tr>\n");
-    body = body.append("<tr><td height=\"37\"><button class=\"" + moveStyle + "\" onClick=\"MoveSingleItem(" + rid + ", " + lid + ")\">&lt;</button></td></tr>\n");
-    body = body.append("<tr><td height=\"37\"><button class=\"" + moveStyle + "\" onClick=\"MoveAllItems(" + rid + ", " + lid + ")\">&lt;&lt;</button></td></tr>\n");
+    body = body.append("<tr><td height=\"37\"><a class=\"" + moveStyle + "\" href=\"#\"><img border=\"0\" src=\""+contextPath+"/mss/image/move_all_to_right.png\" width='20' height='20' onclick=\"MoveAllItems(" + lid + ", " + rid + ")\"/></a></td></tr>\n");
+    body = body.append("<tr><td height=\"37\"><a class=\"" + moveStyle + "\" href=\"#\"><img border=\"0\" src=\""+contextPath+"/mss/image/move_single_to_right.png\" width='20' height='20' onclick=\"MoveSingleItem(" + lid + ", " + rid + ")\"/></a></td></tr>\n");
+    body = body.append("<tr><td height=\"37\"><a class=\"" + moveStyle + "\" href=\"#\"><img border=\"0\" src=\""+contextPath+"/mss/image/move_single_to_left.png\" width='20' height='20' onclick=\"MoveSingleItem(" + rid + ", " + lid + ")\"/></a></td></tr>\n");
+    body = body.append("<tr><td height=\"37\"><a class=\"" + moveStyle + "\" href=\"#\"><img border=\"0\" src=\""+contextPath+"/mss/image/move_all_to_left.png\"  width='20' height='20' onclick=\"MoveAllItems(" + rid + ", " + lid + ")\"/></a></td></tr>\n");
     body = body.append("</table>\n </td>\n </tr>\n </table>\n </td>\n");
     body = body.append("<td width=\"48%\" align=center valign=\"top\">\n");
     body = body.append("<table width=\"100%\"  border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n");

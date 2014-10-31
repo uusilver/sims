@@ -1,5 +1,6 @@
 package com.xwtech.mss.pub.dao.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -11,6 +12,7 @@ import org.hibernate.criterion.Example;
 import com.xwtech.framework.pub.dao.BaseDao;
 import com.xwtech.framework.pub.utils.StringUtils;
 import com.xwtech.framework.pub.web.FrameworkApplication;
+import com.xwtech.mss.pub.constants.MssConstants;
 import com.xwtech.mss.pub.po.ServerGroupMapping;
 
 /**
@@ -179,4 +181,43 @@ public class ServerGroupMappingDAO extends BaseDao {
 
 	}
 	
+	/**
+	 * 根据服务器组ID查询该组中服务器信息,用于服务器分组选择列表展示
+	 * @param searchForm
+	 * @param perPageCount
+	 * @return
+	 */
+	public List<?> queryServerTextByGroupId(String groupId){
+		List<?> list = null;
+		Object[] paramList = new Object[1];
+		// 查询列表sql
+		StringBuffer listHql = new StringBuffer();
+		StringBuffer filterHql = new StringBuffer();
+		listHql.append("select transitServer.serverid as serverId,"
+				+"CONCAT(transitServer.serverip,'-',cb_type.text,'-[',c.countryname,'/',prov.provincename,'/',t.cityname,']','-',r.regionname) as serverName"
+				+" from TransitServer transitServer,ServerGroupMapping sgMapping,ServerGroup sGroup,"
+				+"Country c,Province prov,City t,Region r,CodeBook cb_type"
+				+" where transitServer.countryid = c.countryid"
+				+" and transitServer.provinceid = prov.provinceid"
+				+" and transitServer.cityid = t.cityid"
+				+" and transitServer.serverid = sgMapping.serverid"
+				+" and sgMapping.servergroupid = sGroup.servergroupid"
+				+" and transitServer.regionid = r.regionid"
+				+" and transitServer.servertype = cb_type.value"
+				+" and cb_type.tag = '"+MssConstants.SERVER_TYPE+"'");
+
+
+		//服务器服务区域
+		if (groupId != null && !"".equals(groupId)) {
+			filterHql.append(" and sGroup.servergroupid = ?");
+			paramList[0]=new Integer (groupId);
+		}
+		if(paramList[0]==null){
+			list = getHibernateTemplate().find((listHql.toString()+filterHql.toString()));
+		}else{
+			list = getHibernateTemplate().find((listHql.toString()+filterHql.toString()),paramList);
+		}
+		
+		return list;
+	}
 }

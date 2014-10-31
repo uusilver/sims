@@ -1,8 +1,12 @@
 package com.xwtech.mss.bo.business;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.xwtech.mss.formBean.ServerInfoForm;
 import com.xwtech.mss.pub.dao.business.ServerGroupMappingDAO;
 import com.xwtech.mss.pub.po.ServerGroupMapping;
 
@@ -53,12 +57,25 @@ public class ServerGroupMappingBO {
 //	}
 	
 	/**
-	 * 根据查询条件查询同类别物品信息个数
+	 * 根据服务器组ID查询该组中服务器信息,用于服务器分组选择列表展示
 	 * @param searchForm
 	 * @param perPageCount
 	 * @return
 	 */
-//	public List querySameGoodsCount(GoodsInfoForm searchForm){
-//		return this.goodsInfoDAO.querySameGoodsCount(searchForm);
-//	}
+	public List<?> queryServerTextByGroupId(String groupId){
+		List list = this.serverGroupMappingDAO.queryServerTextByGroupId(groupId);
+		List<ServerInfoForm> resultList = null;
+		if(list!=null&&!list.isEmpty()){
+			resultList = new ArrayList();
+			ServerInfoForm serverInfoForm=null;
+			for(int i=0;i<list.size();i++){
+				Object[] server = (Object[])(list.get(i));
+				serverInfoForm = new ServerInfoForm();
+				serverInfoForm.setServerId(server[0].toString());
+				serverInfoForm.setServerTag(server[1].toString());
+				resultList.add(serverInfoForm);
+			}
+		}
+		return resultList;
+	}
 }

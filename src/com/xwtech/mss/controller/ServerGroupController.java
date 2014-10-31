@@ -302,6 +302,55 @@ public class ServerGroupController extends MultiActionController {
 	}
 	
 	/**
+	 * 根据服务器组ID查询服务器分组详细信息
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletRequestBindingException
+	 */
+	@SuppressWarnings("unchecked")
+	public ModelAndView queryServerGroupById(HttpServletRequest request, HttpServletResponse response)
+															throws ServletRequestBindingException {
+		HashMap map = new HashMap();
+		ServerGroupForm serverGroupForm = new ServerGroupForm();
+		String serverGroupId = request.getParameter("serverGroupId");
+		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
+		String currentPage = request.getParameter("currentPage");
+		String queryServerGroupName = request.getParameter("queryServerGroupName");
+		String queryNote = request.getParameter("queryNote");
+		String queryStatus = request.getParameter("queryStatus");
+		
+		ServerGroup serverGroup = null;
+		List sgMappingList = null;
+		
+		//查询所有服务器对象
+		List serverList = serverGroupMappingBO.queryServerTextByGroupId(null);
+		
+		if(serverGroupId!=null&&!serverGroupId.equals("")){
+			//查询服务器组对象
+			serverGroup = serverGroupBO.findById(new Integer(serverGroupId));
+			
+			//查询该服务器组中的服务器对象
+			if(serverGroup!=null){
+				sgMappingList = serverGroupMappingBO.queryServerTextByGroupId(serverGroupId);
+			}
+			
+			serverGroupForm.setQueryServerGroupName(queryServerGroupName);
+			serverGroupForm.setQueryNote(queryNote);
+			serverGroupForm.setQueryStatus(queryStatus);
+			serverGroupForm.setViewOrEdit(viewOrEdit);
+			serverGroupForm.setCurrentPage(currentPage);
+		}
+
+		map.put("serverGroup", serverGroup);
+		map.put("serverList", serverList);
+		map.put("sgMappingList", sgMappingList);
+		map.put("viewOrEdit", viewOrEdit);
+		map.put("searchForm", serverGroupForm);
+		return new ModelAndView("/mss/jsp/server/serverGroupAdd.jsp?viewOrEdit=edit", RequestNameConstants.INFORMATION, map);
+	}
+	
+	/**
 	 * 删除用户选择的记录（逻辑删除）
 	 * @param request
 	 * @param response
@@ -334,7 +383,7 @@ public class ServerGroupController extends MultiActionController {
 					String serverNumStr = request.getParameter("serverIdStr");
 					if(serverNumStr!=null&&!serverNumStr.equals("")){
 						// 根据权限ID删除相关权限信息
-						serverInfoBO.delServerInfo(serverNumStr.substring(0, serverNumStr.length()-1));
+						serverGroupBO.delServerGroup(serverNumStr.substring(0, serverNumStr.length()-1));
 					}
 					
 					//保存服务器删除记录
@@ -351,17 +400,17 @@ public class ServerGroupController extends MultiActionController {
 						oper.setDoTime(DateUtils.getChar12());
 						oper.setLoginName(userName);
 						oper.setTableName("goodsInfo");
-						oper.setDescription("删除服务器信息成功，ID【"+serverIdStr+"】");
+						oper.setDescription("删除服务器分组成功，ID【"+serverIdStr+"】");
 						operLogBO.save(oper);
 					}
 					
 					resultInfos.add(new ResultInfo(ResultConstants.DEL_SERVER_INFO_SUCCESS));
-					resultInfos.setGotoUrl("/mss/jsp/server/serverInfoController.do?method=queryServerInfoList" + "&ifSession=yes");
+					resultInfos.setGotoUrl("/mss/jsp/server/serverGroupController.do?method=queryServerGroupList" + "&ifSession=yes");
 				} catch (Exception ex) {
 					resultInfos.setGotoUrl(null);
-					log.error("删除服务器信息失败！");
+					log.error("删除服务器分组失败！");
 					resultInfos.add(new ResultInfo(ResultConstants.DEL_SERVER_INFO_FAILED));
-					resultInfos.setGotoUrl("/mss/jsp/server/goodsInfoController.do?method=queryServerInfoList" + "&ifSession=yes");
+					resultInfos.setGotoUrl("/mss/jsp/server/serverGroupController.do?method=queryServerGroupList" + "&ifSession=yes");
 					ex.printStackTrace();
 				}
 			}

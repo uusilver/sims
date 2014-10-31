@@ -40,7 +40,7 @@
 			api.options.dialog.width="1100",
 			api.options.dialog.height="500",
 			
-			$("img").click( function(){
+			$("#viewServer img").click( function(){
 				var groupId = $(this).parent().parent().find("input[name=groupId]").val();
 				var groupName = $(this).parent().parent().find("input[name=groupName]").val();
 				api.options.dialog.title = "服务器信息列表 - "+groupName;
@@ -147,16 +147,16 @@
 						<td class="qinggoudan_table_td2">
 								${serverGroup.status == "A" ? "有效" : "无效"}
 						</td>
-						<td class="qinggoudan_table_td2">
+						<td class="qinggoudan_table_td2" id="viewServer">
 							<a href="#"> 
-							<img class="viewServer" src="${contextPath}/mss/image/server.png" width="18" height="20" border="0">
+							<img src="${contextPath}/mss/image/server.png" width="18" height="20" border="0">
 							</a>
 							<input type="hidden" name="groupId" value="${serverGroup.servergroupid}">
 							<input type="hidden" name="groupName" value="${serverGroup.servergroupname}">
 						</td>
 						<td class="qinggoudan_table_td2">
-							<a href="javascript:viewServerGroup('${serverGroup.servergroupid}')"> <img src="${contextPath}/mss/image/see.gif" width="18" height="20"
-									border="0"> </a>
+							<a href="javascript:viewServerGroup('${serverGroup.servergroupid}')">
+							<img src="${contextPath}/mss/image/see.gif" width="18" height="20" border="0"> </a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -185,11 +185,12 @@
 
 <script type="text/javascript">
 	function addServerGroup(){
-		window.location = "${contextPath}/mss/jsp/server/serverGroupAdd.jsp?" + constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,quserServerGroup,quserServerStatus,currentPage,viewOrEdit');
+		window.location = "${contextPath}/mss/jsp/server/serverGroupController.do?method=queryServerGroupById" 
+				+ constructParams('queryServerGroupName,queryNote,queryStatus,currentPage,viewOrEdit');
 	}
 		
 	function viewServerGroup(serverGroupId){
-		window.location = "${contextPath}/mss/jsp/server/serverGroupController.do?method=queryServerGroupById&serverId=" + serverGroupId 
+		window.location = "${contextPath}/mss/jsp/server/serverGroupController.do?method=queryServerGroupById&serverGroupId=" + serverGroupId 
 			+ constructParams('queryServerGroupName,queryNote,queryStatus,currentPage,viewOrEdit');
 	}
 		

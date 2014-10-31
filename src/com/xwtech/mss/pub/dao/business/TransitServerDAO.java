@@ -323,11 +323,10 @@ public class TransitServerDAO extends BaseDao {
 
 	
 	/**
-	 * 根据服务器id查询服务器IP
-	 * @param goodsNumStr
+	 * 查询所有服务器信息
 	 * @return
 	 */
-	public List queryServerIP(String serverIds){
+	public List queryAllServer(){
 		String[] paramList = new String[1];
 		// 查询条数sql
 		StringBuffer listHql = new StringBuffer();
@@ -336,14 +335,8 @@ public class TransitServerDAO extends BaseDao {
 
 		StringBuffer filterHql = new StringBuffer();
 			
-		filterHql.append(" where 1=1 ");
+		filterHql.append(" order by  transitServer.countryid,transitServer.provinceid,transitServer.cityid ");
 
-		//服务器Id
-		if (serverIds != null && !"".equals(serverIds)) {
-			filterHql.append(" and transitServer.serverid in ("+serverIds+")");
-		}
-
-		
 		List list = getHibernateTemplate().find((listHql.toString()+filterHql.toString()));
 		return list;
 	}
@@ -359,7 +352,6 @@ public class TransitServerDAO extends BaseDao {
 		// 查询条数sql
 		StringBuffer listHql = new StringBuffer();
 		listHql.append("select sgMapping from ServerGroupMapping sgMapping ");
-
 
 		StringBuffer filterHql = new StringBuffer();
 			

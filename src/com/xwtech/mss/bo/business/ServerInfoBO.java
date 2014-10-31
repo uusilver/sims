@@ -58,13 +58,14 @@ public class ServerInfoBO {
 	}
 	
 	/**
-	 * 根据服务器id查询服务器IP
+	 * 查询所有服务器信息
 	 * @param ServerId
 	 * @return
 	 */
-	public List queryServerIP(String ServerIds){
-		return this.transitServerDAO.queryServerIP(ServerIds);
+	public List queryAllServer(){
+		return this.transitServerDAO.queryAllServer();
 	}
+	
 	/**
 	 * 根据服务器id查询服务器所属服务器组
 	 * @param serverId

@@ -10,8 +10,8 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>动感地带二期统计系统</title>
-		<link href="/framework/css/style.css" rel="stylesheet" type="text/css" />
+		<title>服务器信息管理系统</title>
+		<link href="${contextPath}/framework/css/style.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="${contextPath}/mss/js/roleManage.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
@@ -97,9 +97,9 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<pub:two align="center" arl="${information.unOwnerMenuList }" selectItem="系统菜单" waitItem="用户菜单" leftId="menuId"
+						<pub:two align="left" arl="${information.unOwnerMenuList }" selectItem="系统菜单" waitItem="用户菜单" leftId="menuId"
 							leftValue="menuName" rightId="menuId" rightValue="menuName" rightName="menuId" selectStyle="two_select"
-							itemStyle="item_two_select" moveStyle="button_select" size="15" />
+							itemStyle="item_two_select" moveStyle="button_select" size="15"  contextPath="${contextPath}" />
 
 						<input type="hidden" name="hiddenMenuId" value="">
 
