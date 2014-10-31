@@ -19,7 +19,7 @@ body {
 	width: 98%;
 }
 /* ================================================================================================ */
-/* ÒÔÏÂÎªÊ÷×´Ä¿Â¼ÑùÊ½ */
+
 .dtree {
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 11px;
@@ -49,11 +49,11 @@ body {
 .dtree .clip {
 	overflow: hidden;
 }
-/* Ê÷×´Ä¿Â¼ÑùÊ½½áÊø */
+
 /* ================================================================================================ */
-/* ÒÔÏÂÎª¶¥²¿±êÌâÑùÊ½ */
+
 .td_title {
-	font-family: "Ó×Ô²";
+	font-family: "ï¿½ï¿½Ô²";
 	font-size: 25px;
 	color: #FFFFFF;
 	background-color: #003DA2;
@@ -61,9 +61,9 @@ body {
 	padding-left: 10pt;
 	font-weight: bold;
 }
-/* ¶¥²¿±êÌâÑùÊ½½áÊø */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ */
 /* ================================================================================================ */
-/* ÆÕÍ¨Á´½ÓÑùÊ½ */
+/* ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ */
 a.link_normal:link {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -102,7 +102,7 @@ a.link_normal:active {
 	padding-left: 2px;
 }
 /* ================================================================================================ */
-/* ±í¸ñ´æÔÚ×ó±ß¾àÑùÊ½ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¾ï¿½ï¿½ï¿½Ê½ */
 .td_padding {
 	padding-left: 15px;
 	padding-right: 15px;
@@ -115,7 +115,7 @@ a.link_normal:active {
 }
 
 /* ================================================================================================ */
-/* COPYRIGHTS±í¸ñÑùÊ½ */
+/* COPYRIGHTSï¿½ï¿½ï¿½ï¿½ï¿½Ê½ */
 .td_copyright {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 9px;
@@ -131,7 +131,7 @@ a.link_normal:active {
 	filter: DropShadow(Color=#ffffff, OffX=1, OffY=1, Positive=1);
 }
 /* ================================================================================================ */
-/* twoselect±í¸ñÑùÊ½ */
+/* twoselectï¿½ï¿½ï¿½ï¿½ï¿½Ê½ */
 .two_select {
 	border: 1px solid #CCCCCC;
 	font-family: Arial, Helvetica, sans-serif;
@@ -181,7 +181,7 @@ a.link_normal:active {
 	padding-left: 5px;
 }
 /* ================================================================================================ */
-/* ¶þ¼¶Áª¶¯±í¸ñÑùÊ½ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ */
 .select_1 {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -198,7 +198,7 @@ a.link_normal:active {
 	font-size: 12px;
 }
 /* ================================================================================================ */
-/* ²éÑ¯ */
+/* ï¿½ï¿½Ñ¯ */
 .td_search_bottom_1 {
 	font-family: sans-serif;
 	font-size: 11px;
@@ -406,7 +406,7 @@ a:active {
 	padding-right: 2px;
 	padding-left: 2px;
 }
-/* ÒÔÏÂÎªÈÕÆÚÊ±¼äÑ¡ÔñÑùÊ½=============================================================================== */
+/* ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½Ê½=============================================================================== */
 
 .font_dropshadow {
 	FILTER: dropshadow(color=#F2F8DA,offx=1,offy=1)
@@ -476,7 +476,7 @@ a.link_date:active {
 	width: 55px
 }
 
-/* ÒÔÏÂÎªEXCELµ¼ÈëÑùÊ½=============================================================================== */
+/* ï¿½ï¿½ï¿½ï¿½ÎªEXCELï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½=============================================================================== */
 .input_auto {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -494,7 +494,7 @@ a.link_date:active {
 	width: 98%;
 	height: 20px;
 }
-/* ÒÔÏÂÎª¶¯Ì¬¿òÆ¥ÅäÑùÊ½=============================================================================== */
+/* ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ì¬ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½ï¿½Ê½=============================================================================== */
 .input_pipei {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -510,7 +510,7 @@ a.link_date:active {
 	border: 1px solid #e4e4e4;
 	width: 100%;
 }
-/* ÒÔÏÂÎªµÇÂ¼Ò³ÑùÊ½=============================================================================== */
+/* ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Â¼Ò³ï¿½ï¿½Ê½=============================================================================== */
 .font_user {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -540,7 +540,7 @@ a.link_date:active {
 }
 /* ================================================================================================ */
 
-/* tabÒ³Ãæ·ç¸ñ */
+/* tabÒ³ï¿½ï¿½ï¿½ï¿½ */
 #mainMenu{
     color: #FFFFFF;
 	font-family: Arial, Helvetica, sans-serif;
@@ -563,8 +563,8 @@ a.link_date:active {
 	font-family: Arial, Helvetica, sans-serif;
 	visibility: hidden;
 	width:100%;
-	padding-top: 7px;               /* ×Ó²Ëµ¥ÉÏ±ß¾à */
-	padding-bottom: 7px;		    /* ×Ó²Ëµ¥ÏÂ±ß¾à */
+	padding-top: 7px;               /* ï¿½Ó²Ëµï¿½ï¿½Ï±ß¾ï¿½ */
+	padding-bottom: 7px;		    /* ï¿½Ó²Ëµï¿½ï¿½Â±ß¾ï¿½ */
 	}
 	
 	html>body #clearmenu{ /* non IE browsers menu bottom spacing */
@@ -581,13 +581,13 @@ a.link_date:active {
 		border-left:1px solid #003DA2;
 		border-top:1px solid #003DA2;
 		border-right:1px solid #003DA2;		
-		background-color: #003DA2;	/* Ö÷²Ëµ¥±»Ñ¡ÖÐµÄ±³¾°É« */
+		background-color: #003DA2;	/* ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½Ñ¡ï¿½ÐµÄ±ï¿½ï¿½ï¿½É« */
 	}
 	/*
 	Style attributes of inactive menu items
 	*/
 	#mainMenu .inactiveMenuItem{		
-		color: #003DA2;	/* Î´Ñ¡ÖÐµÄÖ÷²Ëµ¥ÎÄ×ÖÑÕÉ« */
+		color: #003DA2;	/* Î´Ñ¡ï¿½Ðµï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É« */
 		cursor:pointer;	/* Cursor like a hand when the user moves the mouse over the menu item */
 		border-left:1px solid #e4e4e4;
 		border-top:1px solid #e4e4e4;
@@ -608,8 +608,8 @@ a.link_date:active {
 		color: #ffffff;	/* Red color when the user moves the mouse over sub menu items */
 		background-color: #003DA2;
 	}
-/* tabÒ³Ãæ·ç¸ñ½áÊø */
-/* ÒÔÏÂÎªXYÖá±¨±íÉú³ÉÑùÊ½=============================================================================== */
+/* tabÒ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+/* ï¿½ï¿½ï¿½ï¿½ÎªXYï¿½á±¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½=============================================================================== */
 .button_xy_normal {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -680,7 +680,7 @@ a.link_date:active {
 	height: 30px;
 }
 /* ================================================================================================== */
-/* ÒÔÏÂÎªÍ³¼Æ·ÖÎö&Éú³É±¨±íÑùÊ½ */
+/* ï¿½ï¿½ï¿½ï¿½ÎªÍ³ï¿½Æ·ï¿½ï¿½ï¿½&ï¿½ï¿½É±ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ */
 .td_xy_time {
 	height: 35px;
 	background-color: #004DCC;
@@ -757,7 +757,7 @@ a.link_date:active {
 	background-color: #F5FDEC;
 }
 /* ===================================================================================================
-ÒÔÏÂÎªADMIN×¨ÓÃ±í¸ñÑùÊ½ 
+ï¿½ï¿½ï¿½ï¿½ÎªADMIN×¨ï¿½Ã±ï¿½ï¿½ï¿½ï¿½Ê½ 
 ======================================================================================================*/
 .font_title_normal {
 	font-family: Arial, Helvetica, sans-serif;
@@ -922,12 +922,12 @@ a.link_sub_sub_menu:active {
 	cursor: hand;
 }
 /* added start by weizhen, 2009.02.01*/
-/* Õý³£ÐÅÏ¢ÑùÊ½ */
+/* ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ê½ */
 span.ok {
     color:#006600;
 }
 
-/* ¾¯¸æÐÅÏ¢ÑùÊ½ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ê½ */
 span.warning {
     color:#FF0000;
 }
