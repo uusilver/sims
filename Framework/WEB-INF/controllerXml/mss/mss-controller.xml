@@ -120,6 +120,11 @@
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 	
+	<bean name="/mss/html/mainPageInfoController.do"
+		class="com.xwtech.mss.controller.MainPageInfoController">
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
+	
 	
 	
 	
