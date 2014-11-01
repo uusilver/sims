@@ -16,14 +16,17 @@
     <script>
         jQuery(document).ready(function() {
             //Init orgnization chars
-            var url = window.location.href;
-            var cityCode = url.split('?')[1];
-            var html = '';
-            html+="<li>"+transCityCode(cityCode)+"<ul><li>组1<ul><li>用户1</li><li>用户2</li></ul></li><li>组2<ul><li>用户3</li><li>用户4</li></ul></li></ul><li>";
-            $("#org").html(html);
-            $("#org").jOrgChart({
-                chartElement : '#chart',
-                dragAndDrop  : true
+            $.get('/sims/mss/html/mainPageInfoController.do?method=queryTopologyInfo',function(data){
+                alert(data);
+	            var url = window.location.href;
+	            var cityCode = url.split('?')[1];
+	            var html = '';
+	            html+="<li>"+transCityCode(cityCode)+"<ul><li>组1<ul><li>用户1</li><li>用户2</li></ul></li><li>组2<ul><li>用户3</li><li>用户4</li></ul></li></ul><li>";
+	            $("#org").html(html);
+	            $("#org").jOrgChart({
+	                chartElement : '#chart',
+	                dragAndDrop  : true
+	            });
             });
         });
 
