@@ -198,7 +198,7 @@ public class BaseDao extends HibernateDaoSupport
    * 			countHSql:select count(tabA) from TabA where tabA.tabB.tabB=?;
    * 			values:Hash ,第一个值为("0",(Object)(new Long(tabBId))),tabBId为String类型的值
    */
-  public HashMap queryCommonSqlResultCount(final String listSql,final String countSql,final String currentPage,final String countPerPage)
+  public HashMap queryCommonSqlResultCount(final String listSql,final String countSql,final Object[] paramArray,final String currentPage,final String countPerPage)
   {
     return (HashMap)getHibernateTemplate().execute(new HibernateCallback() {
       public Object doInHibernate(Session session) throws HibernateException, SQLException {
@@ -258,12 +258,19 @@ public class BaseDao extends HibernateDaoSupport
 			}
 	        
 //	        query.setFirstResult(stratNum);
-//	        query.setMaxResults(fetchNum);
-	        String exListSql = "select * from ( select row_.*, rownum rownum_ from ("
+////	        query.setMaxResults(fetchNum);
+//	        String exListSql = "select * from ( select row_.*, rownum rownum_ from ("
+//	    			+ listSql
+//	    			+ ") row_ where rownum <= " + (fetchNum + stratNum) + ") where rownum_ > " + stratNum;
+	        String exListSql = "select row_.* from ("
 	    			+ listSql
-	    			+ ") row_ where rownum <= " + (fetchNum + stratNum) + ") where rownum_ > " + stratNum;
+	    			+ ") row_ limit " + stratNum + "," + (fetchNum + stratNum);
 	        System.out.println(exListSql.trim());
-	        resultList = FrameworkApplication.baseJdbcDAO.queryForList(exListSql);
+	        if(paramArray!=null){
+		        resultList = FrameworkApplication.baseJdbcDAO.queryForList(exListSql,paramArray);
+	        }else{
+		        resultList = FrameworkApplication.baseJdbcDAO.queryForList(exListSql);
+	        }
 	        
         }catch(Exception e){
         	log.error("查询结果集出错！");
