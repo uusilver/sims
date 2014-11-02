@@ -37,25 +37,28 @@ $(document).ready(function($){
 });
 
 function loadServerInfo(){
-    var greenHtml = '';
-    greenHtml += ""
-    greenHtml += "<img title='美国服务器1' src='image/server-green.gif' width='35' height='35'/>";
-    greenHtml += "<img title='美国服务器1' src='image/server-green.gif' width='35' height='35'/>";
-    greenHtml += ""
-    var warningHtml ='';
-    warningHtml += ""
-    warningHtml += "<img title='美国服务器1' src='image/server-warning.gif' width='35' height='35'/>";
-    warningHtml += ""
-
-    var grayHtml ='';
-    grayHtml += ""
-    grayHtml += "<img title='美国服务器1' src='image/server-gray.gif' width='35' height='35'/>";
-    grayHtml += ""
-
-    //append img on
-    $("#server_green").html(greenHtml);
-    $("#server_warning").html(warningHtml);
-    $("#server_gray").html(grayHtml);
+	$.get('/sims/mss/html/mainPageInfoController.do?method=queryServerInfo',function(data){
+		alert(data);
+	    var greenHtml = '';
+	    greenHtml += ""
+	    greenHtml += "<img title='美国服务器1' src='image/server-green.gif' width='35' height='35'/>";
+	    greenHtml += "<img title='美国服务器1' src='image/server-green.gif' width='35' height='35'/>";
+	    greenHtml += ""
+	    var warningHtml ='';
+	    warningHtml += ""
+	    warningHtml += "<img title='美国服务器1' src='image/server-warning.gif' width='35' height='35'/>";
+	    warningHtml += ""
+	
+	    var grayHtml ='';
+	    grayHtml += ""
+	    grayHtml += "<img title='美国服务器1' src='image/server-gray.gif' width='35' height='35'/>";
+	    grayHtml += ""
+	
+	    //append img on
+	    $("#server_green").html(greenHtml);
+	    $("#server_warning").html(warningHtml);
+	    $("#server_gray").html(grayHtml);
+	});
 }
 
 function refreshIFrame(url){
