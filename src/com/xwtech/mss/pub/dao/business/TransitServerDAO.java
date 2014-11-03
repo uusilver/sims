@@ -12,6 +12,7 @@ import org.hibernate.criterion.Example;
 
 import com.xwtech.framework.pub.dao.BaseDao;
 import com.xwtech.framework.pub.utils.DateUtils;
+import com.xwtech.framework.pub.utils.StringUtils;
 import com.xwtech.framework.pub.web.FrameworkApplication;
 import com.xwtech.mss.formBean.ServerInfoForm;
 import com.xwtech.mss.pub.constants.MssConstants;
@@ -293,8 +294,12 @@ public class TransitServerDAO extends BaseDao {
 
 		//服务器分组ID
 		if (searchForm.getQueryServerGroup() != null && !"".equals(searchForm.getQueryServerGroup())) {
-			filterHql.append(" and sGroup.servergroupid = ?");
-			paramList.add(new Integer (searchForm.getQueryServerGroup()));
+			if("0".equals(searchForm.getQueryServerGroup())){
+				filterHql.append(" and sGroup.servergroupname is NULL ");
+			}else{
+				filterHql.append(" and sGroup.servergroupid = ?");
+				paramList.add(new Integer (searchForm.getQueryServerGroup()));
+			}
 		}
 		
 		//按服务器类别和名称排序
@@ -378,4 +383,64 @@ public class TransitServerDAO extends BaseDao {
 		List list = getHibernateTemplate().find((listHql.toString()+filterHql.toString()),paramList);
 		return list;
 	}
+	
+	/**
+	 * 查询不在该服务器分组的所有服务器
+	 * @param groupId
+	 * @param isLoadGroupServer
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Object[]> queryUnGroupedServer(String groupId,Boolean isLoadGroupServer) {
+		List<Object[]> list = null;
+		Object[] paramList = new Object[1];
+		// 查询列表sql
+		StringBuffer listHql = new StringBuffer();
+		StringBuffer fromHql = new StringBuffer();
+		listHql.append("select ts.serverid as serverId,"
+				+"CONCAT(ts.serverip,' - ',cb_type.text,' - [',c.countryname,'/',prov.provincename,'/',t.cityname,']',' - ',r.regionname) as serverName ");
+		
+		fromHql.append(" from transit_server ts left join server_group_mapping sgMapping on ts.serverid=sgMapping.serverid"
+				+ " left join server_group sGroup on sGroup.servergroupid = sgMapping.servergroupid,"
+				+ " code_book cb_type,code_book cb_status,country c,province prov,city t,region r "
+				+ " where ts.countryid = c.countryid"
+				+ " and ts.provinceid = prov.provinceid"
+				+ " and ts.cityid = t.cityid"
+				+ " and ts.regionid = r.regionid"
+				+ " and ts.servertype = cb_type.value"
+				+ " and cb_type.tag = '"+MssConstants.SERVER_TYPE+"'"
+				+ " and ts.serverstatus = cb_status.value"
+				+ " and cb_status.tag = '"+MssConstants.SERVER_STATUS+"'");
+		
+		listHql.append(fromHql);
+
+		StringBuffer filterHql = new StringBuffer();
+			
+
+		
+		if (groupId != null && !"".equals(groupId)) {
+			//查询该分组中的服务器记录
+			if(isLoadGroupServer){
+				filterHql.append(" and sGroup.servergroupid = ? ");
+				paramList[0]=new Integer (groupId);
+			}
+			//查询未分组和不属于该分组的服务器
+			else{
+				filterHql.append(" and (sGroup.servergroupname is NULL or sGroup.servergroupid != ?)");
+				paramList[0]=new Integer (groupId);
+			}
+		}
+		
+		//按服务器类别和名称排序
+		listHql.append(filterHql + "  order by ts.serverid asc ");
+		
+		if(paramList[0]==null){
+			list = FrameworkApplication.baseJdbcDAO.queryForList((listHql.toString().toString()));
+		}else{
+			list = FrameworkApplication.baseJdbcDAO.queryForList((listHql.toString().toString()),paramList);
+		}
+		
+		return list;
+	}
+	
 }

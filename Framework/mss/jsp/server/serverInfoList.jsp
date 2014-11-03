@@ -233,7 +233,7 @@
 							&nbsp;${fn:escapeXml(serverInfo.serverip)}
 						</td>
 						<td class="qinggoudan_table_td2" width="12%" >
-							&nbsp;${serverInfo.servergroupname}
+							&nbsp;${(serverInfo.servergroupname==null||serverInfo.servergroupname=="")?"未分组":serverInfo.servergroupname}
 						</td>
 						<td class="qinggoudan_table_td2" width="12%" >
 							&nbsp;${fn:escapeXml(serverInfo.regionname)}

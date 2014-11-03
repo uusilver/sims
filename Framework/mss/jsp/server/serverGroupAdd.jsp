@@ -13,10 +13,31 @@
 		<script type="text/javascript" src="${contextPath}/mss/js/ajax.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/jquery-1.9.1.min.js"></script> 
 		<script type="text/javascript">
+		// 初始化页面，将所属服务器信息加入"已分配服务器"下拉框中
+		$(function(){
+			var sgMappingJsonObj = $.parseJSON('${information.sgMappingResult}');
+			var serverId;
+			var serverName;
+			var sel_dest = $("select[name=serverId]");
+			for(var i=0;i<sgMappingJsonObj.length;i++){
+					serverId = sgMappingJsonObj[i].serverId;
+					serverName = sgMappingJsonObj[i].serverTag;
+					sel_dest.append("<option value='"+serverId+"'>"+serverName+"</option>");
+			}
+		});
+		
+		</script>
+		<script type="text/javascript">
 
 		function saveServerGroup(){
+			var viewOrEdit = $("input[name=viewOrEdit]").val();
+			var alertMessage = "您确定要创建该服务器组么？";
+			
 			if(checkGroupName()&&checkComment()){
-				if(confirm("您确定要创建该服务器分组么？")){
+				if(viewOrEdit!=null&&viewOrEdit=="edit"){
+					alertMessage="您确定要修改该服务器组么？";
+				}
+				if(confirm(alertMessage)){
 					document.serverGroupAddForm.submit();
 				}
 			}else{

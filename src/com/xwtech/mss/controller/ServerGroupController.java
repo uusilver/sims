@@ -16,6 +16,7 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import com.google.gson.Gson;
 import com.xwtech.framework.pub.result.ResultInfo;
 import com.xwtech.framework.pub.result.ResultInfos;
 import com.xwtech.framework.pub.utils.DateUtils;
@@ -140,6 +141,10 @@ public class ServerGroupController extends MultiActionController {
 					
 					//保存服务器所属分组信息
 					if(serverIds!=null&&serverIds.length()>1){
+						//如果是编辑状态，则删除原有的服务器关系记录，然后再插入新选择的服务器与分组关系记录
+						if(viewOrEdit!=null&&"edit".equals(viewOrEdit)){
+							serverGroupMappingBO.delMappingRecords(serverIds,serverGroup.getServergroupid().toString());
+						}
 						serverGroupMappingBO.saveServerGroupLink(serverGroup.getServergroupid(),serverIds);
 					}
 					
@@ -322,17 +327,21 @@ public class ServerGroupController extends MultiActionController {
 		
 		ServerGroup serverGroup = null;
 		List sgMappingList = null;
+		List unGroupedServerList = null;
 		
-		//查询所有服务器对象
-		List serverList = serverGroupMappingBO.queryServerTextByGroupId(null);
 		
 		if(serverGroupId!=null&&!serverGroupId.equals("")){
+			//查询所有不在该分组的服务器对象
+//			List serverList = serverGroupMappingBO.queryServerTextByGroupId(null);
+			unGroupedServerList = serverInfoBO.queryUnGroupedServer(serverGroupId,false);
+			
 			//查询服务器组对象
 			serverGroup = serverGroupBO.findById(new Integer(serverGroupId));
 			
 			//查询该服务器组中的服务器对象
 			if(serverGroup!=null){
-				sgMappingList = serverGroupMappingBO.queryServerTextByGroupId(serverGroupId);
+				sgMappingList = serverInfoBO.queryUnGroupedServer(serverGroupId,true);
+//				sgMappingList = serverGroupMappingBO.queryServerTextByGroupId(serverGroupId);
 			}
 			
 			serverGroupForm.setQueryServerGroupName(queryServerGroupName);
@@ -341,10 +350,15 @@ public class ServerGroupController extends MultiActionController {
 			serverGroupForm.setViewOrEdit(viewOrEdit);
 			serverGroupForm.setCurrentPage(currentPage);
 		}
-
+		String sgMappingResult = "";
+		if(sgMappingList!=null&&!sgMappingList.isEmpty()){
+			Gson gson = new Gson();
+			sgMappingResult= gson.toJson(sgMappingList);
+		}
+		
 		map.put("serverGroup", serverGroup);
-		map.put("serverList", serverList);
-		map.put("sgMappingList", sgMappingList);
+		map.put("serverList", unGroupedServerList);
+		map.put("sgMappingResult", sgMappingResult);
 		map.put("viewOrEdit", viewOrEdit);
 		map.put("searchForm", serverGroupForm);
 		return new ModelAndView("/mss/jsp/server/serverGroupAdd.jsp?viewOrEdit=edit", RequestNameConstants.INFORMATION, map);

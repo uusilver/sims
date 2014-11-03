@@ -212,6 +212,7 @@ public class ServerGroupMappingDAO extends BaseDao {
 			filterHql.append(" and sGroup.servergroupid = ?");
 			paramList[0]=new Integer (groupId);
 		}
+		
 		if(paramList[0]==null){
 			list = getHibernateTemplate().find((listHql.toString()+filterHql.toString()));
 		}else{
@@ -219,5 +220,19 @@ public class ServerGroupMappingDAO extends BaseDao {
 		}
 		
 		return list;
+	}
+	
+	/**
+	 * 根据Id删除记录
+	 * 
+	 * @param idStr,以‘,’隔开
+	 */
+	public void delMappingRecords(String serverIdStr,String groupId) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("delete sgm from server_group_mapping sgm where sgm.serverid in (");
+		sql.append(serverIdStr.lastIndexOf(",") > 0 ? (serverIdStr.substring(0, serverIdStr.lastIndexOf(","))) : serverIdStr.trim());
+		sql.append(" ) ");
+		sql.append(" or sgm.servergroupid = "+groupId);
+		executeCommonSql(sql.toString());
 	}
 }

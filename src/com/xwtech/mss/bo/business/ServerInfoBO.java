@@ -1,8 +1,10 @@
 package com.xwtech.mss.bo.business;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.collections.map.ListOrderedMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -73,5 +75,27 @@ public class ServerInfoBO {
 	 */
 	public List queryServerGroup(String serverId){
 		return this.transitServerDAO.queryServerGroup(serverId);
+	}
+	
+	/**
+	 * 查询不在该服务器分组的所有服务器
+	 * @return List 服务器列表
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ServerInfoForm> queryUnGroupedServer(String groupId,Boolean isLoadGroupServer) {
+		List list = this.transitServerDAO.queryUnGroupedServer(groupId,isLoadGroupServer);
+		List<ServerInfoForm> resultList = null;
+		if(list!=null&&!list.isEmpty()){
+			resultList = new ArrayList();
+			ServerInfoForm serverInfoForm=null;
+			for(int i=0;i<list.size();i++){
+				ListOrderedMap server = (ListOrderedMap)(list.get(i));
+				serverInfoForm = new ServerInfoForm();
+				serverInfoForm.setServerId(server.get("serverId").toString());
+				serverInfoForm.setServerTag(server.get("serverName").toString());
+				resultList.add(serverInfoForm);
+			}
+		}
+		return resultList;
 	}
 }

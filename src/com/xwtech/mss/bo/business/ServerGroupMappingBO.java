@@ -48,13 +48,13 @@ public class ServerGroupMappingBO {
 	}
 	
 	/**
-	 * 批量删除选中的物品记录（逻辑删除）
-	 * @param typeNumStr
-	 * @return
+	 * 根据Id删除记录
+	 * 
+	 * @param idStr,以‘,’隔开
 	 */
-//	public int delGoodsInfo(String goodsNumStr) {
-//		return this.goodsInfoDAO.delGoodsInfo(goodsNumStr);
-//	}
+	public void delMappingRecords(String serverIdStr,String groupId) {
+		this.serverGroupMappingDAO.delMappingRecords(serverIdStr,groupId);
+	}
 	
 	/**
 	 * 根据服务器组ID查询该组中服务器信息,用于服务器分组选择列表展示
