@@ -219,10 +219,14 @@ public class BaseDao extends HibernateDaoSupport
         int fetchNum = 0;//取出记录的条数
 
         HashMap resultMap = new HashMap();
-        
+        List counttList = null;
         try{
 	        //取得记录数
-	        List counttList = FrameworkApplication.baseJdbcDAO.queryForList(countSql);
+        	if(paramArray!=null){
+    	        counttList = FrameworkApplication.baseJdbcDAO.queryForList(countSql,paramArray);
+        	}else{
+    	        counttList = FrameworkApplication.baseJdbcDAO.queryForList(countSql);
+        	}
 	        System.out.println(countSql.trim());
 	        if(counttList!=null && counttList.size()>0){
 	        	totalCount=(new Integer(String.valueOf(((ListOrderedMap)(counttList.get(0))).getValue(0)))).intValue();

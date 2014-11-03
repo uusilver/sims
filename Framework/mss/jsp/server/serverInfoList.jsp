@@ -151,7 +151,7 @@
 						</td>
 						<td class="qinggoudan_table_td1">
 							服务器分组:
-							<pub:link sql="<%=MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" title="---请选择---"
+							<pub:link sql="<%=MssConstants.QUERY_NO_SERVE_GROUP_INFO_SQL+MssConstants.SQL_UNION+MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" title="---请选择---"
 								next="false" name="queryServerGroup" mvalue="${information.searchForm.queryServerGroup}" />
 						</td>
 						<td class="qinggoudan_table_td1">
@@ -226,25 +226,25 @@
 								</c:if>
 							</c:if>
 						</td>
-						<td class="qinggoudan_table_td2" width="20%" >
+						<td class="qinggoudan_table_td2" width="10%" >
 							&nbsp;${fn:escapeXml(serverInfo.serverType)}
 						</td>
-						<td class="qinggoudan_table_td2" width="20%" >
+						<td class="qinggoudan_table_td2" width="12%" >
 							&nbsp;${fn:escapeXml(serverInfo.serverip)}
 						</td>
-						<td class="qinggoudan_table_td2">
+						<td class="qinggoudan_table_td2" width="12%" >
 							&nbsp;${serverInfo.servergroupname}
 						</td>
-						<td class="qinggoudan_table_td2">
+						<td class="qinggoudan_table_td2" width="12%" >
 							&nbsp;${fn:escapeXml(serverInfo.regionname)}
 						</td>
-						<td class="qinggoudan_table_td2">
+						<td class="qinggoudan_table_td2" width="10%" >
 							&nbsp;${fn:escapeXml(serverInfo.countryname)}
 						</td>
-						<td class="qinggoudan_table_td2">
+						<td class="qinggoudan_table_td2" width="10%" >
 							&nbsp;${fn:escapeXml(serverInfo.provincename)}
 						</td>
-						<td class="qinggoudan_table_td2">
+						<td class="qinggoudan_table_td2" width="10%" >
 							&nbsp;${fn:escapeXml(serverInfo.cityname)}
 						</td>
 						<td class="qinggoudan_table_td2">
