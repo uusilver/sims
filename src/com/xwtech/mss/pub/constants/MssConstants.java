@@ -78,8 +78,15 @@ public class MssConstants {
 	public static final String QUERY_SERVER_LIMIT_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
 			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='LIMITATION'";
 	
+
+	// 查询未分组SQL
+	public static final String QUERY_NO_SERVE_GROUP_INFO_SQL = "SELECT 0, '未分组' FROM DUAL ";
+	
+	// SQL - UNION
+	public static final String SQL_UNION = " UNION ";
+	
 	// 查询服务器分组信息SQL
-	public static final String QUERY_SERVE_GROUP_INFO_SQL = "SELECT G.SERVERGROUPID, G.SERVERGROUPNAME FROM SERVER_GROUP G"
+	public static final String QUERY_SERVE_GROUP_INFO_SQL = "SELECT G.SERVERGROUPID , G.SERVERGROUPNAME FROM SERVER_GROUP G"
 			+ " WHERE G.STATUS = '" + STATE_A + "'";
 	
 	// 19位日期格式

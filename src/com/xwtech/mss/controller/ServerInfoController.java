@@ -351,7 +351,7 @@ public class ServerInfoController extends MultiActionController {
 			serverInfoForm.setViewOrEdit(viewOrEdit);
 
 			map.put("transitServer", transitServer);
-			map.put("menuStrmenu", sgMapping.getServergroupid().toString());
+			map.put("serverGroupId", String.valueOf(sgMapping==null?"":sgMapping.getServergroupid()));
 			map.put("viewOrEdit", viewOrEdit);
 			map.put("searchForm", serverInfoForm);
 		}

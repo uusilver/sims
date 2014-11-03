@@ -202,21 +202,23 @@ public class TransitServerDAO extends BaseDao {
 	 */
 	@SuppressWarnings("unchecked")
 	public HashMap queryServerInfoList(ServerInfoForm searchForm, String perPageCount){
+		Object[] paramArray = null;
 		List paramList = new ArrayList();
 		// 查询列表sql
 		StringBuffer listHql = new StringBuffer();
 		StringBuffer fromHql = new StringBuffer();
-		listHql.append("select ts.serverid,cb_type.text,ts.serverip,"
-				+" sGroup.servergroupname,region.regionname,country.countryname,prov.provincename,city.cityname,cb_status.text ");
+		listHql.append("select ts.serverid,cb_type.text as serverType,ts.serverip,"
+				+" sGroup.servergroupname,r.regionname,c.countryname,prov.provincename,t.cityname,cb_status.text as serverStatus ");
 		
-		fromHql.append(" from TransitServer ts left join ts.serverid ServerGroupMapping sgMapping left join sgMapping.servergroupid ServerGroup sGroup ,"
-				+ " CodeBook cb_type,CodeBook cb_status,Country country,Province prov,City city,Region region "
-				+ " where ts.countryid = country.countryid"
+		fromHql.append(" from transit_server ts left join server_group_mapping sgMapping on ts.serverid=sgMapping.serverid"
+				+ " left join server_group sGroup on sGroup.servergroupid = sgMapping.servergroupid,"
+				+ " code_book cb_type,code_book cb_status,country c,province prov,city t,region r "
+				+ " where ts.countryid = c.countryid"
 				+ " and ts.provinceid = prov.provinceid"
-				+ " and ts.cityid = city.cityid"
-				+ " and ts.serverid = sgMapping.serverid"
-				+ " and sgMapping.servergroupid = sGroup.servergroupid"
-				+ " and ts.regionid = region.regionid"
+				+ " and ts.cityid = t.cityid"
+//				+ " and ts.serverid = sgMapping.serverid"
+//				+ " and sGMapping.servergroupid = sGroup.servergroupid"
+				+ " and ts.regionid = r.regionid"
 				+ " and ts.servertype = cb_type.value"
 				+ " and cb_type.tag = '"+MssConstants.SERVER_TYPE+"'"
 				+ " and ts.serverstatus = cb_status.value"
@@ -299,8 +301,17 @@ public class TransitServerDAO extends BaseDao {
 		listHql.append(filterHql + "  order by ts.servertype ,ts.regionid asc ");
 		countHql.append(filterHql);
 
-		HashMap map = queryResultCount(listHql.toString(), countHql.toString(), paramList, searchForm.getCurrentPage(),
-				perPageCount);
+//		HashMap map = queryResultCount(listHql.toString(), countHql.toString(), paramList, searchForm.getCurrentPage(),
+//				perPageCount);
+		HashMap map = null;
+		if(paramList.size()>0){
+			paramArray = new Object[paramList.size()];
+			for(int i=0;i<paramList.size();i++){
+				paramArray[i]=paramList.get(i);
+			}
+		}
+		
+		map = queryCommonSqlResultCount(listHql.toString(), countHql.toString(),paramArray, searchForm.getCurrentPage(),perPageCount);
 		return map;
 	}
 	

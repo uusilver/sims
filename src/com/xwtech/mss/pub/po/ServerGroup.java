@@ -1,6 +1,8 @@
 package com.xwtech.mss.pub.po;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * ServerGroup entity. @author MyEclipse Persistence Tools

@@ -45,7 +45,7 @@
  %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>物资管理系统－用户登陆</title>
+<title>服务器信息管理系统（SIMS）－用户登陆</title>
 <link href="${contextPath }/mss/css/login.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="${contextPath }/mss/js/userLogin.js"></script>
 <script type="text/javascript" language="javaScript">

@@ -28,6 +28,9 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 public class BaseJdbcDAO extends JdbcDaoSupport {
 	protected static final Logger logger = Logger.getLogger(BaseJdbcDAO.class);
 
+	public List queryForList(String sql,Object[] paramArray) {
+		return getJdbcTemplate().queryForList(sql,paramArray);
+	}
 	public List queryForList(String sql) {
 		return getJdbcTemplate().queryForList(sql);
 	}

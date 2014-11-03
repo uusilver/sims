@@ -1,6 +1,8 @@
 package com.xwtech.mss.pub.po;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * TransitServer entity. @author MyEclipse Persistence Tools

@@ -151,7 +151,7 @@
 						</td>
 						<td class="qinggoudan_table_td1">
 							服务器分组:
-							<pub:link sql="<%=MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" title="---请选择---"
+							<pub:link sql="<%=MssConstants.QUERY_NO_SERVE_GROUP_INFO_SQL+MssConstants.SQL_UNION+MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" title="---请选择---"
 								next="false" name="queryServerGroup" mvalue="${information.searchForm.queryServerGroup}" />
 						</td>
 						<td class="qinggoudan_table_td1">
@@ -218,7 +218,7 @@
 					<tr <c:if test="${(status.index+1)%2==0}"> bgcolor="#F0FFF0"</c:if>>
 						<td class="qinggoudan_table_td2">
 							<c:if test="${information.searchForm.viewOrEdit!=null&&information.searchForm.viewOrEdit=='edit'}">
-								<input type="checkbox" class="qinggoudan_input011" name="serverChk" value="${serverInfo[0]}"/>
+								<input type="checkbox" class="qinggoudan_input011" name="serverChk" value="${serverInfo.serverid}"/>
 							</c:if>
 							<c:if test="${information.searchForm.viewOrEdit!='edit'}">
 								<c:if test="${information.searchForm.indexNO==null || information.searchForm.indexNO==''}">
@@ -226,32 +226,32 @@
 								</c:if>
 							</c:if>
 						</td>
-						<td class="qinggoudan_table_td2" width="20%" >
-							&nbsp;${fn:escapeXml(serverInfo[1])}
+						<td class="qinggoudan_table_td2" width="10%" >
+							&nbsp;${fn:escapeXml(serverInfo.serverType)}
 						</td>
-						<td class="qinggoudan_table_td2" width="20%" >
-							&nbsp;${fn:escapeXml(serverInfo[2])}
+						<td class="qinggoudan_table_td2" width="12%" >
+							&nbsp;${fn:escapeXml(serverInfo.serverip)}
 						</td>
-						<td class="qinggoudan_table_td2">
-							&nbsp;${serverInfo[3]}
+						<td class="qinggoudan_table_td2" width="12%" >
+							&nbsp;${serverInfo.servergroupname}
 						</td>
-						<td class="qinggoudan_table_td2">
-							&nbsp;${fn:escapeXml(serverInfo[4])}
+						<td class="qinggoudan_table_td2" width="12%" >
+							&nbsp;${fn:escapeXml(serverInfo.regionname)}
 						</td>
-						<td class="qinggoudan_table_td2">
-							&nbsp;${fn:escapeXml(serverInfo[5])}
+						<td class="qinggoudan_table_td2" width="10%" >
+							&nbsp;${fn:escapeXml(serverInfo.countryname)}
 						</td>
-						<td class="qinggoudan_table_td2">
-							&nbsp;${fn:escapeXml(serverInfo[6])}
+						<td class="qinggoudan_table_td2" width="10%" >
+							&nbsp;${fn:escapeXml(serverInfo.provincename)}
 						</td>
-						<td class="qinggoudan_table_td2">
-							&nbsp;${fn:escapeXml(serverInfo[7])}
-						</td>
-						<td class="qinggoudan_table_td2">
-							&nbsp;${fn:escapeXml(serverInfo[8])}
+						<td class="qinggoudan_table_td2" width="10%" >
+							&nbsp;${fn:escapeXml(serverInfo.cityname)}
 						</td>
 						<td class="qinggoudan_table_td2">
-							<a href="javascript:viewServer('${serverInfo[0]}')"> <img src="${contextPath}/mss/image/see.gif" width="18" height="20"
+							&nbsp;${fn:escapeXml(serverInfo.serverStatus)}
+						</td>
+						<td class="qinggoudan_table_td2">
+							<a href="javascript:viewServer('${serverInfo.serverid}')"> <img src="${contextPath}/mss/image/see.gif" width="18" height="20"
 									border="0"> </a>
 						</td>
 					</tr>
