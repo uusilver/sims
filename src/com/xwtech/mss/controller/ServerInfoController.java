@@ -182,7 +182,7 @@ public class ServerInfoController extends MultiActionController {
 					oper.setObjType(new Long(MssConstants.OPER_OBJECT_SERVER));
 					
 					//1:新增
-					if(viewOrEdit==null || "add".equals(viewOrEdit)){
+					if(viewOrEdit==null || MssConstants.VIEW_OR_EDIT_ADD.equals(viewOrEdit)){
 						oper.setDoType(new Long(MssConstants.OPER_TYPE_INSERT));
 						oper.setDescription("新增服务器信息：【"+transitServer.getServerid()+" : "+serverIP+"】");						
 					}else{

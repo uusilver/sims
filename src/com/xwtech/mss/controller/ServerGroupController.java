@@ -130,7 +130,7 @@ public class ServerGroupController extends MultiActionController {
 					serverGroup.setNote(note);
 					serverGroup.setStatus(MssConstants.STATE_A);
 
-					if(viewOrEdit==null || "add".equals(viewOrEdit)){
+					if(viewOrEdit==null || MssConstants.VIEW_OR_EDIT_ADD.equals(viewOrEdit)){
 						serverGroup.setAddWho(new Integer(userId.toString()));
 						serverGroup.setAddTime(DateUtils.convertString2Date(DateUtils.getChar14()));
 					}else{
@@ -142,7 +142,7 @@ public class ServerGroupController extends MultiActionController {
 					//保存服务器所属分组信息
 					if(serverIds!=null&&serverIds.length()>1){
 						//如果是编辑状态，则删除原有的服务器关系记录，然后再插入新选择的服务器与分组关系记录
-						if(viewOrEdit!=null&&"edit".equals(viewOrEdit)){
+						if(viewOrEdit!=null&&MssConstants.VIEW_OR_EDIT_EDIT.equals(viewOrEdit)){
 							serverGroupMappingBO.delMappingRecords(serverIds,serverGroup.getServergroupid().toString());
 						}
 						serverGroupMappingBO.saveServerGroupLink(serverGroup.getServergroupid(),serverIds);
@@ -157,7 +157,7 @@ public class ServerGroupController extends MultiActionController {
 					oper.setObjType(new Long(MssConstants.OPER_OBJECT_SERVER_GROUP));
 					
 					//1:新增
-					if(viewOrEdit==null || "add".equals(viewOrEdit)){
+					if(viewOrEdit==null || MssConstants.VIEW_OR_EDIT_ADD.equals(viewOrEdit)){
 						oper.setDoType(new Long(MssConstants.OPER_TYPE_INSERT));
 						oper.setDescription("新增服务器组：【"+serverGroup.getServergroupid()+"】");						
 					}else{

@@ -44,6 +44,9 @@ public class MssConstants {
 	public static final String STATE_A = "A";	//状态-有效
 	public static final String STATE_U = "U";	//状态-无效
 	public static final String STATE_D = "D";	//状态-删除
+	
+	public static final String VIEW_OR_EDIT_EDIT = "edit";	//编辑
+	public static final String VIEW_OR_EDIT_ADD = "add";	//新增
 
 
 	// 查询状态值
