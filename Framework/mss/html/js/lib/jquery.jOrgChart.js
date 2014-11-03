@@ -41,9 +41,9 @@
             snapMode    : 'inner',
             stack       : 'div.node'
         });
-        
+
         $('div.node').droppable({
-            accept      : '.node',          
+            accept      : '.node',
             activeClass : 'drag-active',
             hoverClass  : 'drop-hover'
         });

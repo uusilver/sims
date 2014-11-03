@@ -16,8 +16,8 @@
     <script>
         jQuery(document).ready(function() {
             //Init orgnization chars
-            $.get('/sims/mss/html/mainPageInfoController.do?method=queryTopologyInfo',function(data){
-                alert(data);
+            //$.get('/sims/mss/html/mainPageInfoController.do?method=queryTopologyInfo',function(data){
+                //alert(data);
 	            var url = window.location.href;
 	            var cityCode = url.split('?')[1];
 	            var html = '';
@@ -27,7 +27,7 @@
 	                chartElement : '#chart',
 	                dragAndDrop  : true
 	            });
-            });
+            //});
         });
 
         function transCityCode(cityCode){
@@ -49,28 +49,10 @@
     </script>
 </head>
 <body>
-<body onload="prettyPrint();">
+<body>
 
 <div >
     <ul id="org" style="display:none">
-        <!--    <li>
-                南京
-                <ul>
-                    <li id="beer">组1
-                        <ul>网关1
-                            <li>用户1</li>
-                            <li>用户2</li>
-                         </ul>
-                    </li>
-                    <li>组2
-                            <ul>
-                                <li>用户3</li>
-
-                            </ul>
-                    </li>
-
-                </ul>
-            </li>-->
     </ul>
 </div>
 <div id="chart" class="orgChart"></div>
