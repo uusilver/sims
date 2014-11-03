@@ -86,8 +86,8 @@ public class MssConstants {
 	public static final String SQL_UNION = " UNION ";
 	
 	// 查询服务器分组信息SQL
-	public static final String QUERY_SERVE_GROUP_INFO_SQL = "SELECT G.SERVERGROUPID SERVERGROUPID, G.SERVERGROUPNAME SERVERGROUPNAME FROM SERVER_GROUP G"
-			+ " WHERE G.STATUS = '" + STATE_A + "' ORDER BY SERVERGROUPID ASC";
+	public static final String QUERY_SERVE_GROUP_INFO_SQL = "SELECT G.SERVERGROUPID , G.SERVERGROUPNAME FROM SERVER_GROUP G"
+			+ " WHERE G.STATUS = '" + STATE_A + "'";
 	
 	// 19位日期格式
 	public static final String DATE_FOMATTER_19 = "yyyy-MM-dd HH:mm:ss";
