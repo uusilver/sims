@@ -1,5 +1,6 @@
 package com.xwtech.mss.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -99,7 +100,7 @@ public class ServerGroupController extends MultiActionController {
 		final String serverGroupName = request.getParameter("serverGroupName");
 		
 		//服务器ID串,如：1，2，3，4
-		final String serverIds = request.getParameter("serverIds");
+		final String serverIds = request.getParameter("hiddenServerIds");
 		
 		//备注
 		final String note = request.getParameter("serverComment");
@@ -141,11 +142,13 @@ public class ServerGroupController extends MultiActionController {
 					
 					//保存服务器所属分组信息
 					if(serverIds!=null&&serverIds.length()>1){
-						//如果是编辑状态，则删除原有的服务器关系记录，然后再插入新选择的服务器与分组关系记录
-						if(viewOrEdit!=null&&MssConstants.VIEW_OR_EDIT_EDIT.equals(viewOrEdit)){
-							serverGroupMappingBO.delMappingRecords(serverIds,serverGroup.getServergroupid().toString());
+						//删除原有的服务器关系记录，然后再插入新选择的服务器与分组关系记录
+//						if(viewOrEdit!=null&&MssConstants.VIEW_OR_EDIT_EDIT.equals(viewOrEdit)){
+//						}
+						int returnValue = serverGroupMappingBO.delMappingRecords(serverIds,serverGroup.getServergroupid().toString());
+						if(returnValue>=0){
+							serverGroupMappingBO.saveServerGroupLink(serverGroup.getServergroupid(),serverIds);
 						}
-						serverGroupMappingBO.saveServerGroupLink(serverGroup.getServergroupid(),serverIds);
 					}
 					
 					//用户操作日志
@@ -194,7 +197,12 @@ public class ServerGroupController extends MultiActionController {
 	@SuppressWarnings("unchecked")
 	public ModelAndView queryServerGroupList(HttpServletRequest request, HttpServletResponse response)
 	throws ServletRequestBindingException {
-		
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		HashMap map = new HashMap();
 		ServerGroupForm serverGroupForm = new ServerGroupForm();
 		// 页面首次访问，即由菜单点击访问
@@ -205,6 +213,13 @@ public class ServerGroupController extends MultiActionController {
 		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
 		
 		String queryServerGroupName = request.getParameter("queryServerGroupName");
+		try {
+			if(queryServerGroupName!=null){
+				queryServerGroupName = new String(request.getParameter("queryServerGroupName").getBytes("ISO8859-1"),"UTF-8").trim();
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		
 		String queryNote = request.getParameter("queryNote");
 		
@@ -245,8 +260,6 @@ public class ServerGroupController extends MultiActionController {
 		map.put(RequestNameConstants.CURRENT_PAGE, serverResult.get(RequestNameConstants.CURRENT_PAGE));
 		map.put("searchForm", serverGroupForm);
 		map.put("accessType", accessType);
-//		map.put("rowId", rowId);
-//		map.put("roleId", roleId.intValue());
 
 		return new ModelAndView("/mss/jsp/server/serverGroupList.jsp", RequestNameConstants.INFORMATION, map);
 		
@@ -259,52 +272,51 @@ public class ServerGroupController extends MultiActionController {
 	 * @return
 	 * @throws ServletRequestBindingException
 	 */
-	@SuppressWarnings("unchecked")
-	public ModelAndView queryServerInfoById(HttpServletRequest request, HttpServletResponse response)
-															throws ServletRequestBindingException {
-		HashMap map = new HashMap();
-		ServerInfoForm serverInfoForm = new ServerInfoForm();
-		String serverId = request.getParameter("serverId");
-		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
-		String currentPage = request.getParameter("currentPage");
-		String queryCountryId = request.getParameter("queryCountryId");
-		String queryProvinceId = request.getParameter("queryProvinceId");
-		String queryCityId = request.getParameter("queryCityId");
-		String queryServerType = request.getParameter("queryServerType");
-		String queryServerStatus = request.getParameter("queryServerStatus");
-		String quserServerGroup = request.getParameter("quserServerGroup");
-		String queryRegionId = request.getParameter("queryRegionId");
-		String queryStartTime = request.getParameter("queryStartTime");
-		String queryEndTime = request.getParameter("queryEndTime");
-		serverInfoForm.setQueryStatus(SpmsConstants.STATE_A);
-		
-		TransitServer serverGroup = null;
-		if(serverId!=null&&!serverId.equals("")){
-			serverGroup = serverInfoBO.findById(new Integer(serverId));
-			List serverGroupList = serverInfoBO.queryServerGroup(serverId);
-			ServerGroupMapping sgMapping = null;
-			if(serverGroupList!=null&&!serverGroupList.isEmpty()){
-				sgMapping = (ServerGroupMapping)serverGroupList.get(0);
-			}
-			serverInfoForm.setCurrentPage(currentPage);
-			serverInfoForm.setQueryCountryId(queryCountryId);
-			serverInfoForm.setQueryProvinceId(queryProvinceId);
-			serverInfoForm.setQueryCityId(queryCityId);
-			serverInfoForm.setQueryServerType(queryServerType);
-			serverInfoForm.setQueryServerStatus(queryServerStatus);
-			serverInfoForm.setQueryServerGroup(quserServerGroup);
-			serverInfoForm.setQueryRegionId(queryRegionId);
-			serverInfoForm.setQueryStartTime(queryStartTime);
-			serverInfoForm.setQueryEndTime(queryEndTime);
-			serverInfoForm.setViewOrEdit(viewOrEdit);
-
-			map.put("serverGroup", serverGroup);
-			map.put("menuStrmenu", sgMapping.getServergroupid().toString());
-			map.put("viewOrEdit", viewOrEdit);
-			map.put("searchForm", serverInfoForm);
-		}
-		return new ModelAndView("/mss/jsp/server/serverInfoAdd.jsp?viewOrEdit=edit", RequestNameConstants.INFORMATION, map);
-	}
+//	@SuppressWarnings("unchecked")
+//	public ModelAndView queryServerInfoById(HttpServletRequest request, HttpServletResponse response)
+//															throws ServletRequestBindingException {
+//		HashMap map = new HashMap();
+//		ServerInfoForm serverInfoForm = new ServerInfoForm();
+//		String serverId = request.getParameter("serverId");
+//		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
+//		String currentPage = request.getParameter("currentPage");
+//		String queryCountryId = request.getParameter("queryCountryId");
+//		String queryProvinceId = request.getParameter("queryProvinceId");
+//		String queryCityId = request.getParameter("queryCityId");
+//		String queryServerType = request.getParameter("queryServerType");
+//		String queryServerStatus = request.getParameter("queryServerStatus");
+//		String quserServerGroup = request.getParameter("quserServerGroup");
+//		String queryRegionId = request.getParameter("queryRegionId");
+//		String queryStartTime = request.getParameter("queryStartTime");
+//		String queryEndTime = request.getParameter("queryEndTime");
+//		serverInfoForm.setQueryStatus(SpmsConstants.STATE_A);
+//		
+//		TransitServer serverGroup = null;
+//		if(serverId!=null&&!serverId.equals("")){
+//			serverGroup = serverInfoBO.findById(new Integer(serverId));
+//			List serverGroupList = serverInfoBO.queryServerGroup(serverId);
+//			ServerGroupMapping sgMapping = null;
+//			if(serverGroupList!=null&&!serverGroupList.isEmpty()){
+//				sgMapping = (ServerGroupMapping)serverGroupList.get(0);
+//			}
+//			serverInfoForm.setCurrentPage(currentPage);
+//			serverInfoForm.setQueryCountryId(queryCountryId);
+//			serverInfoForm.setQueryProvinceId(queryProvinceId);
+//			serverInfoForm.setQueryCityId(queryCityId);
+//			serverInfoForm.setQueryServerType(queryServerType);
+//			serverInfoForm.setQueryServerStatus(queryServerStatus);
+//			serverInfoForm.setQueryServerGroup(quserServerGroup);
+//			serverInfoForm.setQueryRegionId(queryRegionId);
+//			serverInfoForm.setQueryStartTime(queryStartTime);
+//			serverInfoForm.setQueryEndTime(queryEndTime);
+//			serverInfoForm.setViewOrEdit(viewOrEdit);
+//
+//			map.put("serverGroup", serverGroup);
+//			map.put("menuStrmenu", sgMapping.getServergroupid().toString());
+//			map.put("searchForm", serverInfoForm);
+//		}
+//		return new ModelAndView("/mss/jsp/server/serverInfoAdd.jsp?viewOrEdit=edit", RequestNameConstants.INFORMATION, map);
+//	}
 	
 	/**
 	 * 根据服务器组ID查询服务器分组详细信息
@@ -330,7 +342,7 @@ public class ServerGroupController extends MultiActionController {
 		List unGroupedServerList = null;
 		
 		
-		if(serverGroupId!=null&&!serverGroupId.equals("")){
+		if(serverGroupId!=null&&!"".equals(serverGroupId)){
 			//查询所有不在该分组的服务器对象
 //			List serverList = serverGroupMappingBO.queryServerTextByGroupId(null);
 			unGroupedServerList = serverInfoBO.queryUnGroupedServer(serverGroupId,false);
@@ -341,16 +353,21 @@ public class ServerGroupController extends MultiActionController {
 			//查询该服务器组中的服务器对象
 			if(serverGroup!=null){
 				sgMappingList = serverInfoBO.queryUnGroupedServer(serverGroupId,true);
-//				sgMappingList = serverGroupMappingBO.queryServerTextByGroupId(serverGroupId);
 			}
-			
-			serverGroupForm.setQueryServerGroupName(queryServerGroupName);
-			serverGroupForm.setQueryNote(queryNote);
-			serverGroupForm.setQueryStatus(queryStatus);
-			serverGroupForm.setViewOrEdit(viewOrEdit);
-			serverGroupForm.setCurrentPage(currentPage);
 		}
+		//新增服务器组
+		else if(viewOrEdit!=null&&MssConstants.VIEW_OR_EDIT_ADD.equals(viewOrEdit)) {
+			//查询所有服务器对象
+			unGroupedServerList = serverInfoBO.queryUnGroupedServer("",false);
+		}
+		
+		serverGroupForm.setQueryServerGroupName(queryServerGroupName);
+		serverGroupForm.setQueryNote(queryNote);
+		serverGroupForm.setQueryStatus(queryStatus);
+		serverGroupForm.setViewOrEdit(viewOrEdit);
+		serverGroupForm.setCurrentPage(currentPage);
 		String sgMappingResult = "";
+		
 		if(sgMappingList!=null&&!sgMappingList.isEmpty()){
 			Gson gson = new Gson();
 			sgMappingResult= gson.toJson(sgMappingList);
@@ -359,9 +376,9 @@ public class ServerGroupController extends MultiActionController {
 		map.put("serverGroup", serverGroup);
 		map.put("serverList", unGroupedServerList);
 		map.put("sgMappingResult", sgMappingResult);
-		map.put("viewOrEdit", viewOrEdit);
+//		map.put("viewOrEdit", viewOrEdit);
 		map.put("searchForm", serverGroupForm);
-		return new ModelAndView("/mss/jsp/server/serverGroupAdd.jsp?viewOrEdit=edit", RequestNameConstants.INFORMATION, map);
+		return new ModelAndView("/mss/jsp/server/serverGroupAdd.jsp", RequestNameConstants.INFORMATION, map);
 	}
 	
 	/**

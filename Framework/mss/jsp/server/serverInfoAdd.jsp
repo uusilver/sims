@@ -459,7 +459,7 @@
 			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
 					<td align="center">
-						<c:if test="${information.searchForm.showHeader=='yes' }">
+						<c:if test="${information.searchForm.showHeader==null || information.searchForm.showHeader=='yes' }">
 							&nbsp;
 							<input type="button" class="anniu_out" name="saveBtn" value=" 确 定 " onclick="saveServerInfo()"
 								onMouseOver="className='anniu_over'" onMouseOut="className='anniu_out'">

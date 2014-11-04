@@ -33,11 +33,20 @@
 			var viewOrEdit = $("input[name=viewOrEdit]").val();
 			var alertMessage = "您确定要创建该服务器组么？";
 			
-			if(checkGroupName()&&checkComment()){
+			if(checkGroupName()&&checkComment()&&checkSelectedServer()){
 				if(viewOrEdit!=null&&viewOrEdit=="edit"){
 					alertMessage="您确定要修改该服务器组么？";
 				}
 				if(confirm(alertMessage)){
+					var serverOptions = $("select[name=serverId]").find("option");
+					var serverIds = "";
+					for(var i=0;i < serverOptions.length; i++){
+						serverIds += serverOptions[i].value + ",";
+					}
+					serverIds = serverIds.substring(0, serverIds.length - 1);
+			
+					$("input[name=hiddenServerIds]").attr("value",serverIds);
+					alert($("input[name=hiddenServerIds]").val());
 					document.serverGroupAddForm.submit();
 				}
 			}else{
@@ -94,6 +103,23 @@
 		    infoDiv.innerHTML = "";
 		    return true;
 		}
+		
+		function checkSelectedServer(){
+			var serverList = $("select[name=serverId]").find("option");
+			
+			var infoDiv = document.getElementById("server_listDiv");
+			
+			if(serverList.length==0){
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "请选择至少一个服务器添加到右边列表框中！";
+				return false;
+			}
+
+			infoDiv.className = "OK";
+		    infoDiv.innerHTML = "";
+		    return true;
+		}
+		
 		</script>
 	 
 	</head>
@@ -140,8 +166,8 @@
 							leftValue="serverTag" rightId="serverId" rightValue="serverTag" rightName="serverId" selectStyle="two_select"
 							itemStyle="item_two_select" moveStyle="button_select" size="15" contextPath="${contextPath}" />
 
-						<input type="hidden" name="hiddenServerId" value="">
-
+						<input type="hidden" name="hiddenServerIds" value="">
+						<span id="server_listDiv"></span>
 					</td>
 				</tr>
 			</table>

@@ -287,7 +287,7 @@
 
 <script type="text/javascript">
 	function addServer(){
-		window.location = "${contextPath}/mss/jsp/server/serverInfoAdd.jsp?" + constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit');
+		window.location = "${contextPath}/mss/jsp/server/serverInfoAdd.jsp?" + constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit,showHeader');
 	}
 		
 	function viewServer(serverId){

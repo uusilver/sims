@@ -28,9 +28,9 @@
 		}
 		
 		function query(){
-			document.serverGroupListForm.action = "${contextPath}/mss/jsp/server/serverGroupController.do?method=queryServerGroupList"
+			document.serverGroupForm.action = "${contextPath}/mss/jsp/server/serverGroupController.do?method=queryServerGroupList"
 				+ constructParams("queryServerGroupName,queryNote,queryStatus,currentPage,viewOrEdit,returnForm,indexNO");
-			document.serverListForm.submit();
+			document.serverGroupForm.submit();
 		}
 		
 		$(function() {
@@ -105,17 +105,17 @@
 			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">
 				<tr>
-					<td width="30" class="qinggoudan_table_title">
+					<td width="10%" class="qinggoudan_table_title">
 							<input type="checkbox" class="qinggoudan_input011" name="serverChk"
 								onclick="javaScript:checkAll('serverChk','true');" />全选
 					</td>
-					<td width="30" class="qinggoudan_table_title">
+					<td width="8%" class="qinggoudan_table_title">
 						<c:if test="${information.searchForm.indexNO==null || information.searchForm.indexNO==''}">序号</c:if>
 					</td>
-					<td class="qinggoudan_table_title">
+					<td width="20%"  class="qinggoudan_table_title">
 						服务器分组名称
 					</td>
-					<td class="qinggoudan_table_title">
+					<td width="25%"  class="qinggoudan_table_title">
 						备注
 					</td>
 					<td class="qinggoudan_table_title">
@@ -125,7 +125,7 @@
 						服务器
 					</td>
 					<c:if test="${information.searchForm.indexNO==null || information.searchForm.indexNO==''}">
-						<td width="50" class="qinggoudan_table_title">
+						<td width="15%" class="qinggoudan_table_title">
 							详情
 						</td>
 					</c:if>
@@ -185,11 +185,13 @@
 
 <script type="text/javascript">
 	function addServerGroup(){
+		$("input[name=viewOrEdit]").attr("value","add");
 		window.location = "${contextPath}/mss/jsp/server/serverGroupController.do?method=queryServerGroupById" 
 				+ constructParams('queryServerGroupName,queryNote,queryStatus,currentPage,viewOrEdit');
 	}
 		
 	function viewServerGroup(serverGroupId){
+		$("input[name=viewOrEdit]").attr("value","edit");
 		window.location = "${contextPath}/mss/jsp/server/serverGroupController.do?method=queryServerGroupById&serverGroupId=" + serverGroupId 
 			+ constructParams('queryServerGroupName,queryNote,queryStatus,currentPage,viewOrEdit');
 	}

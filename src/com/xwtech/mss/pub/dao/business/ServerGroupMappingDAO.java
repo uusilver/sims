@@ -167,7 +167,7 @@ public class ServerGroupMappingDAO extends BaseDao {
 		try {
 			// 拼装SQL
 			StringBuffer sbSql = new StringBuffer("INSERT INTO SERVER_GROUP_MAPPING ( SERVERID, SERVERGROUPID)");
-			sbSql.append(" SELECT t.SERVER_ID," + serverGroupId + " AS  GROUP_ID  FROM");
+			sbSql.append(" SELECT t.SERVERID AS SERVER_ID," + serverGroupId + " AS  GROUP_ID  FROM");
 			// 服务器ID
 			sbSql.append(" (SELECT TS.SERVERID from TRANSIT_SERVER TS WHERE TS.SERVERID IN (" + serverIds + ")) t");
 
@@ -227,12 +227,14 @@ public class ServerGroupMappingDAO extends BaseDao {
 	 * 
 	 * @param idStr,以‘,’隔开
 	 */
-	public void delMappingRecords(String serverIdStr,String groupId) {
+	public int delMappingRecords(String serverIdStr,String groupId) {
+		int result = 0;
 		StringBuffer sql = new StringBuffer();
 		sql.append("delete sgm from server_group_mapping sgm where sgm.serverid in (");
 		sql.append(serverIdStr.lastIndexOf(",") > 0 ? (serverIdStr.substring(0, serverIdStr.lastIndexOf(","))) : serverIdStr.trim());
 		sql.append(" ) ");
 		sql.append(" or sgm.servergroupid = "+groupId);
-		executeCommonSql(sql.toString());
+		result = executeCommonSql(sql.toString());
+		return result;
 	}
 }

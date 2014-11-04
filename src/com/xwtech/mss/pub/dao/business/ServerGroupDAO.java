@@ -179,8 +179,8 @@ public class ServerGroupDAO extends BaseDao {
 			
 		//服务器组名
 		if (searchForm.getQueryServerGroupName() != null && !"".equals(searchForm.getQueryServerGroupName())) {
-			filterHql.append(" and serverGroup.servergroupname = ?");
-			paramList.add(searchForm.getQueryServerGroupName());
+			filterHql.append(" and serverGroup.servergroupname like ?");
+			paramList.add("%"+searchForm.getQueryServerGroupName()+"%");
 		}
 		
 		//服务器组状态

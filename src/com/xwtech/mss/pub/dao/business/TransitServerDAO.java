@@ -398,7 +398,8 @@ public class TransitServerDAO extends BaseDao {
 		StringBuffer listHql = new StringBuffer();
 		StringBuffer fromHql = new StringBuffer();
 		listHql.append("select ts.serverid as serverId,"
-				+"CONCAT(ts.serverip,' - ',cb_type.text,' - [',c.countryname,'/',prov.provincename,'/',t.cityname,']',' - ',r.regionname) as serverName ");
+				+"CONCAT(ts.serverip,' - ',cb_type.text,' - [',c.countryname,'/',prov.provincename,'/',t.cityname,']',' - ',r.regionname,"
+				+ "' - ',CASE WHEN sGroup.servergroupname IS NULL THEN '未分组' ELSE sGroup.servergroupname END) as serverName ");
 		
 		fromHql.append(" from transit_server ts left join server_group_mapping sgMapping on ts.serverid=sgMapping.serverid"
 				+ " left join server_group sGroup on sGroup.servergroupid = sgMapping.servergroupid,"
@@ -433,11 +434,11 @@ public class TransitServerDAO extends BaseDao {
 		
 		//按服务器类别和名称排序
 		listHql.append(filterHql + "  order by ts.serverid asc ");
-		
+		log.info("SQL:"+listHql.toString());
 		if(paramList[0]==null){
-			list = FrameworkApplication.baseJdbcDAO.queryForList((listHql.toString().toString()));
+			list = FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString());
 		}else{
-			list = FrameworkApplication.baseJdbcDAO.queryForList((listHql.toString().toString()),paramList);
+			list = FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString(),paramList);
 		}
 		
 		return list;
