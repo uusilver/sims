@@ -459,19 +459,19 @@
 			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
 					<td align="center">
-						&nbsp;
-						<input type="button" class="anniu_out" name="saveBtn" value=" 确 定 " onclick="saveServerInfo()"
-							onMouseOver="className='anniu_over'" onMouseOut="className='anniu_out'">
-						&nbsp;&nbsp;&nbsp;&nbsp;
+						<c:if test="${information.searchForm.showHeader=='yes' }">
+							&nbsp;
+							<input type="button" class="anniu_out" name="saveBtn" value=" 确 定 " onclick="saveServerInfo()"
+								onMouseOver="className='anniu_over'" onMouseOut="className='anniu_out'">
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						</c:if>
 						<input type="button" class="anniu_out" value=" 返 回 " onMouseOver="className='anniu_over'"
 							onMouseOut="className='anniu_out'"
-							onclick="goList('${contextPath }/mss/jsp/server/serverInfoController.do?method=queryServerInfoList','viewOrEdit,currentPage,queryCountryId,queryProvinceId,queryCityId,queryServerType,queryServerStatus,queryServerGroup')">
-						<!-- input type="button" class="anniu_out" value=" 返 回 " onMouseOver="className='anniu_over'"
-							onMouseOut="className='anniu_out'" onclick="history.go(-1);"> -->
+							onclick="goList('${contextPath }/mss/jsp/server/serverInfoController.do?method=queryServerInfoList','viewOrEdit,showHeader,currentPage,queryCountryId,queryProvinceId,queryCityId,queryServerType,queryServerStatus,queryServerGroup')">
 					</td>
 				</tr>
 			</table>
-				<input type="hidden" name="viewOrEdit" value=<%=request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit")%> />
+				<input type="hidden" name="viewOrEdit" value="${information.searchForm.viewOrEdit}"/>
 				<input type="hidden" name="currentPage" value="${information.searchForm.currentPage}" />
 				<input type="hidden" name="queryCountryId" value="${information.searchForm.queryCountryId}" />
 				<input type="hidden" name="queryProvinceId" value="${information.searchForm.queryProvinceId}" />
@@ -479,6 +479,7 @@
 				<input type="hidden" name="queryServerType" value="${information.searchForm.queryServerType}" />
 				<input type="hidden" name="queryServerStatus" value="${information.searchForm.queryServerStatus}" />
 				<input type="hidden" name="queryServerGroup" value="${information.searchForm.queryServerGroup}" />
+				<input type="hidden" name="showHeader" value="${information.searchForm.showHeader}" />
 				
 		</form>
 	</body>

@@ -324,10 +324,11 @@ public class ServerInfoController extends MultiActionController {
 		String queryCityId = request.getParameter("queryCityId");
 		String queryServerType = request.getParameter("queryServerType");
 		String queryServerStatus = request.getParameter("queryServerStatus");
-		String quserServerGroup = request.getParameter("quserServerGroup");
+		String queryServerGroup = request.getParameter("queryServerGroup");
 		String queryRegionId = request.getParameter("queryRegionId");
 		String queryStartTime = request.getParameter("queryStartTime");
 		String queryEndTime = request.getParameter("queryEndTime");
+		String showHeader = request.getParameter("showHeader");
 		serverInfoForm.setQueryStatus(SpmsConstants.STATE_A);
 		
 		TransitServer transitServer = null;
@@ -344,15 +345,15 @@ public class ServerInfoController extends MultiActionController {
 			serverInfoForm.setQueryCityId(queryCityId);
 			serverInfoForm.setQueryServerType(queryServerType);
 			serverInfoForm.setQueryServerStatus(queryServerStatus);
-			serverInfoForm.setQueryServerGroup(quserServerGroup);
+			serverInfoForm.setQueryServerGroup(queryServerGroup);
 			serverInfoForm.setQueryRegionId(queryRegionId);
 			serverInfoForm.setQueryStartTime(queryStartTime);
 			serverInfoForm.setQueryEndTime(queryEndTime);
 			serverInfoForm.setViewOrEdit(viewOrEdit);
+			serverInfoForm.setShowHeader(showHeader);
 
 			map.put("transitServer", transitServer);
 			map.put("serverGroupId", String.valueOf(sgMapping==null?"":sgMapping.getServergroupid()));
-			map.put("viewOrEdit", viewOrEdit);
 			map.put("searchForm", serverInfoForm);
 		}
 		return new ModelAndView("/mss/jsp/server/serverInfoAdd.jsp?viewOrEdit=edit", RequestNameConstants.INFORMATION, map);

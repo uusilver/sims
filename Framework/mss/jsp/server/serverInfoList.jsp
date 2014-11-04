@@ -275,6 +275,9 @@
 
 			<input type="hidden" name="viewOrEdit" value="${information.searchForm.viewOrEdit}" />
 			<input type="hidden" name="indexNO" value="${information.searchForm.indexNO}" />
+			<input type="hidden" name="showHeader" value="${information.searchForm.showHeader}" />
+			<input type="hidden" name="queryServerGroup" value="${information.searchForm.queryServerGroup}" />
+			
 
 		</form>
 
@@ -288,7 +291,7 @@
 		
 	function viewServer(serverId){
 		window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoById&serverId=" + serverId 
-			+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit');
+			+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit,showHeader');
 	}
 		
 	function delServer(){
