@@ -36,7 +36,7 @@
 	    		//清空省（州）下拉框 
 				$(".province").find("option").remove();
 				$(".province").append("<option value=''>---请选择省（州）---</option>");
-				for(var i=0;i<json.length;i++){  
+				for(var i in json){  
 				//添加一个省（州）
 					$(".province").append("<option value='"+json[i].provinceid+"'>"+json[i].provincename+"</option>");  
 				}
@@ -59,7 +59,7 @@
 				$(".city").find("option").remove();
 				$(".city").append("<option value=''>---请选择城市---</option>");
 				//alert(json);
-				for(var i=0;i<json.length;i++){  
+				for(var i in json){  
 				//添加一个城市
 					$(".city").append("<option value='"+json[i].cityid+"'>"+json[i].cityname+"</option>");  
 				}
@@ -81,10 +81,11 @@
 			$.post(url,null,function(json){
 				$(".country").find("option").remove();
 				$(".country").append("<option value=''>---请选择国家---</option>");
-		 	for(var i=0;i<json.length;i++){  
-				//添加一个国家  
-				$(".country").append("<option value='"+json[i].countryid+"'>"+json[i].countryname+"</option>");  
-		 	}
+				//alert(json);
+			 	for(var i in json){  
+					//添加一个国家  
+					$(".country").append("<option value='"+json[i].countryid+"'>"+json[i].countryname+"</option>");  
+			 	}
 				//用于编辑页面选项回填
 				if(cid!=""&&cid!=null){
 					//选中指定国家
