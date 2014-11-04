@@ -357,7 +357,7 @@ function constructParams(filterStr)
 		var fliterArr = filterStr.split(',');
 		for(var i=0; i<fliterArr.length; i++){
 			if(document.getElementsByName(fliterArr[i]).length>0 && document.getElementsByName(fliterArr[i])[0].value!=""){
-				returnParamStr += "&" + fliterArr[i] + "=" + encodeURI(document.getElementsByName(fliterArr[i])[0].value.trim());
+				returnParamStr += "&" + fliterArr[i] + "=" + encodeURI(document.getElementsByName(fliterArr[i])[0].value);
 			}
 		}
 	}
