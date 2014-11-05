@@ -26,7 +26,16 @@ function demo_delete() {
     var ref = $('#jstree_demo').jstree(true),
         sel = ref.get_selected();
     if(!sel.length) { return false; }
-    ref.delete_node(sel);
+    
+    var param = JSON.stringify(sel);
+    $.post('/sims/mss/html/locationController.do?method=deleteLocationInfo',{param:param},function(data){
+	    if(data=='success'){
+	    	  ref.delete_node(sel);
+        }else{
+        	alert("删除失败!");
+        }
+ });
+    
 };
 $(function () {
     var to = false;

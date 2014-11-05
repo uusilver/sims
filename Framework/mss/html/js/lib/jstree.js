@@ -4964,77 +4964,77 @@
 						inst.edit(obj);
 					}
 				},
-				"remove" : {
-					"separator_before"	: false,
-					"icon"				: false,
-					"separator_after"	: false,
-					"_disabled"			: false, //(this.check("delete_node", data.reference, this.get_parent(data.reference), "")),
-					"label"				: "删除",
-					"action"			: function (data) {
-						var inst = $.jstree.reference(data.reference),
-							obj = inst.get_node(data.reference);
-						if(inst.is_selected(obj)) {
-							inst.delete_node(inst.get_selected());
-						}
-						else {
-							inst.delete_node(obj);
-						}
-					}
-				},
-				"ccp" : {
-					"separator_before"	: true,
-					"icon"				: false,
-					"separator_after"	: false,
-					"label"				: "编辑",
-					"action"			: false,
-					"submenu" : {
-						"cut" : {
-							"separator_before"	: false,
-							"separator_after"	: false,
-							"label"				: "剪切",
-							"action"			: function (data) {
-								var inst = $.jstree.reference(data.reference),
-									obj = inst.get_node(data.reference);
-								if(inst.is_selected(obj)) {
-									inst.cut(inst.get_selected());
-								}
-								else {
-									inst.cut(obj);
-								}
-							}
-						},
-						"copy" : {
-							"separator_before"	: false,
-							"icon"				: false,
-							"separator_after"	: false,
-							"label"				: "复制",
-							"action"			: function (data) {
-								var inst = $.jstree.reference(data.reference),
-									obj = inst.get_node(data.reference);
-								if(inst.is_selected(obj)) {
-									inst.copy(inst.get_selected());
-								}
-								else {
-									inst.copy(obj);
-								}
-							}
-						},
-						"paste" : {
-							"separator_before"	: false,
-							"icon"				: false,
-							"_disabled"			: function (data) {
-								return !$.jstree.reference(data.reference).can_paste();
-							},
-							"separator_after"	: false,
-							"label"				: "黏贴",
-							"action"			: function (data) {
-								var inst = $.jstree.reference(data.reference),
-									obj = inst.get_node(data.reference);
-								inst.paste(obj);
-							}
-						}
-					}
-				}
+//				"remove" : {
+//					"separator_before"	: false,
+//					"icon"				: false,
+//					"separator_after"	: false,
+//					"_disabled"			: false, //(this.check("delete_node", data.reference, this.get_parent(data.reference), "")),
+//					"label"				: "删除",
+//					"action"			: function (data) {
+//						var inst = $.jstree.reference(data.reference),
+//							obj = inst.get_node(data.reference);
+//						if(inst.is_selected(obj)) {
+//							inst.delete_node(inst.get_selected());
+//						}
+//						else {
+//							inst.delete_node(obj);
+//						}
+//					}
+//				},
+//				"ccp" : {
+//					"separator_before"	: true,
+//					"icon"				: false,
+//					"separator_after"	: false,
+//					"label"				: "编辑",
+//					"action"			: false,
+//					"submenu" : {
+//						"cut" : {
+//							"separator_before"	: false,
+//							"separator_after"	: false,
+//							"label"				: "剪切",
+//							"action"			: function (data) {
+//								var inst = $.jstree.reference(data.reference),
+//									obj = inst.get_node(data.reference);
+//								if(inst.is_selected(obj)) {
+//									inst.cut(inst.get_selected());
+//								}
+//								else {
+//									inst.cut(obj);
+//								}
+//							}
+//						},
+//						"copy" : {
+//							"separator_before"	: false,
+//							"icon"				: false,
+//							"separator_after"	: false,
+//							"label"				: "复制",
+//							"action"			: function (data) {
+//								var inst = $.jstree.reference(data.reference),
+//									obj = inst.get_node(data.reference);
+//								if(inst.is_selected(obj)) {
+//									inst.copy(inst.get_selected());
+//								}
+//								else {
+//									inst.copy(obj);
+//								}
+//							}
+//						},
+//						"paste" : {
+//							"separator_before"	: false,
+//							"icon"				: false,
+//							"_disabled"			: function (data) {
+//								return !$.jstree.reference(data.reference).can_paste();
+//							},
+//							"separator_after"	: false,
+//							"label"				: "黏贴",
+//							"action"			: function (data) {
+//								var inst = $.jstree.reference(data.reference),
+//									obj = inst.get_node(data.reference);
+//								inst.paste(obj);
+//							}
+//						}
+//					}
+//				}
 			};
 		}
 	};
