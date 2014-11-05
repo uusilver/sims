@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -365,7 +366,7 @@ public class RoleManageController extends MultiActionController {
 			response.setDateHeader("Expires", 0);
 
 			// response.setLocale(Locale.SIMPLIFIED_CHINESE);
-			((ServletResponse) response).setCharacterEncoding("utf-8");
+			((ServletRequest) response).setCharacterEncoding("utf-8");
 			PrintWriter writer = response.getWriter();
 
 			writer.write(rowCount == 0 ? "true" : "false");

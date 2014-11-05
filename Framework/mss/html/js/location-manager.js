@@ -5,16 +5,9 @@
  * Time: 下午3:47
  * To change this template use File | Settings | File Templates.
  */
-function demo_create() {
-    var ref = $('#jstree_demo').jstree(true),
-        sel = ref.get_selected();
-    if(!sel.length) { return false; }
-    sel = sel[0];
-    sel = ref.create_node(sel, {"type":"file"});
-    if(sel) {
-        ref.edit(sel);
-    }
-};
+//function demo_create() {
+//    window.showModalDialog("region-manager.html");
+//};
 function demo_rename() {
     var ref = $('#jstree_demo').jstree(true),
         sel = ref.get_selected();
@@ -38,6 +31,20 @@ function demo_delete() {
     
 };
 $(function () {
+    //Open model dialog
+    // make instance
+    api = $.fn.MultiDialog();
+    api.options.dialog.enabled = true;
+    api.options.dialog.width="400";
+    api.options.dialog.height="300";
+    $("#open_region").click(function(){
+        api.options.dialog.title = "域信息管理";
+        api.openLink({
+            href: "region-manager.html",
+            type: "iframe"
+        });
+    });
+
     var to = false;
     $('#demo_q').keyup(function () {
         if(to) { clearTimeout(to); }

@@ -18,6 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import com.xwtech.mss.bo.business.CityBO;
 import com.xwtech.mss.bo.business.CountryBO;
 import com.xwtech.mss.bo.business.ProvinceBO;
+import com.xwtech.mss.bo.business.RegionBO;
 import com.xwtech.mss.bo.system.operator.OperLogBO;
 import com.xwtech.mss.json.bean.CityJModel;
 import com.xwtech.mss.json.bean.CountryJModel;
@@ -30,6 +31,7 @@ import com.xwtech.mss.json.bean.stateJModel;
 import com.xwtech.mss.pub.po.City;
 import com.xwtech.mss.pub.po.Country;
 import com.xwtech.mss.pub.po.Province;
+import com.xwtech.mss.pub.po.Region;
 
 public class LocationController extends MultiActionController{
 	
@@ -60,13 +62,19 @@ public class LocationController extends MultiActionController{
 
     private CityBO cityBO;
     
+    private RegionBO regionBO;
+    
     private OperLogBO operLogBO;
     
     
 
     
 
-    public void setOperLogBO(OperLogBO operLogBO) {
+    public void setRegionBO(RegionBO regionBO) {
+		this.regionBO = regionBO;
+	}
+
+	public void setOperLogBO(OperLogBO operLogBO) {
 		this.operLogBO = operLogBO;
 	}
 
@@ -389,6 +397,86 @@ public class LocationController extends MultiActionController{
 		}
 		 
 	} 
+	
+	//get Region list
+	public void queryAllRegion(HttpServletRequest request, HttpServletResponse response){
+		Gson gson = new Gson();
+		List<Region> regionList = regionBO.queryAllRegions();
+		response.setHeader("Content-type","text/html;charset=UTF-8");
+		try {
+			PrintWriter writer = response.getWriter();
+			writer.write(gson.toJson(regionList));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//Update
+	public void updateRegion(HttpServletRequest request, HttpServletResponse response){
+		String proName = request.getParameter("obj");
+		String nd = proName.replaceAll("[\\[\\]]","").replace("\"", "");
+		String id = nd.split(":")[0];
+		String name = nd.split(":")[1];
+		List<Region> regionList = regionBO.queryAllRegions();
+		for(Region r:regionList){
+			if(String.valueOf(r.getRegionid()).equalsIgnoreCase(id)){
+				r.setRegionname(name);
+				regionBO.saveOrUpdateRegion(r);
+			}
+		}
+		
+		response.setHeader("Content-type","text/html;charset=UTF-8");
+		try {
+			PrintWriter writer = response.getWriter();
+			writer.write("success");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	//save
+		public void saveRegion(HttpServletRequest request, HttpServletResponse response){
+			String proName = request.getParameter("obj");
+			String nd = proName.replaceAll("[\\[\\]]","").replace("\"", "");
+			Region region = new Region();
+			region.setRegionname(nd);
+			region.setStatus("A");
+			regionBO.saveOrUpdateRegion(region);
+			response.setHeader("Content-type","text/html;charset=UTF-8");
+			try {
+				PrintWriter writer = response.getWriter();
+				writer.write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
+	//delete
+		public void deleteRegion(HttpServletRequest request, HttpServletResponse response){
+			String proName = request.getParameter("obj");
+			String nd = proName.replaceAll("[\\[\\]]","").replace("\"", "");
+			List<Region> regionList = regionBO.queryAllRegions();
+			for(Region r:regionList){
+				if(r.getRegionname().equals(nd)){
+					r.setStatus("D");
+					regionBO.saveOrUpdateRegion(r);
+					break;
+				}
+			}
+			response.setHeader("Content-type","text/html;charset=UTF-8");
+			try {
+				PrintWriter writer = response.getWriter();
+				writer.write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
 	
 	public static void main(String args[]){
 		CityJModel city = new CityJModel("2012","nanjing");

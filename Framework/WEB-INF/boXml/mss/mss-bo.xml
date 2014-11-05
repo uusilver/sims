@@ -47,5 +47,8 @@
 	<bean id="serverGroupBO" class="com.xwtech.mss.bo.business.ServerGroupBO">     
 		<property name="serverGroupDAO" ref="serverGroupDAO" />
 	</bean>
+	<bean id="regionBO" class="com.xwtech.mss.bo.business.RegionBO">     
+		<property name="regionDAO" ref="regionDAO" />
+	</bean>
 	
 </beans>
