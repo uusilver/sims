@@ -18,6 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import com.xwtech.mss.bo.business.CityBO;
 import com.xwtech.mss.bo.business.CountryBO;
 import com.xwtech.mss.bo.business.ProvinceBO;
+import com.xwtech.mss.bo.business.RegionBO;
 import com.xwtech.mss.bo.system.operator.OperLogBO;
 import com.xwtech.mss.json.bean.CityJModel;
 import com.xwtech.mss.json.bean.CountryJModel;
@@ -30,6 +31,7 @@ import com.xwtech.mss.json.bean.stateJModel;
 import com.xwtech.mss.pub.po.City;
 import com.xwtech.mss.pub.po.Country;
 import com.xwtech.mss.pub.po.Province;
+import com.xwtech.mss.pub.po.Region;
 
 public class LocationController extends MultiActionController{
 	
@@ -60,13 +62,19 @@ public class LocationController extends MultiActionController{
 
     private CityBO cityBO;
     
+    private RegionBO regionBO;
+    
     private OperLogBO operLogBO;
     
     
 
     
 
-    public void setOperLogBO(OperLogBO operLogBO) {
+    public void setRegionBO(RegionBO regionBO) {
+		this.regionBO = regionBO;
+	}
+
+	public void setOperLogBO(OperLogBO operLogBO) {
 		this.operLogBO = operLogBO;
 	}
 
@@ -106,6 +114,65 @@ public class LocationController extends MultiActionController{
 		 
 	}
 	
+	//delete
+	public void deleteLocationInfo(HttpServletRequest request, HttpServletResponse response){
+		String id = request.getParameter("param");
+		//String nd = id.substring(2, id.length()-2);
+		String nd = id.replaceAll("[\\[\\]]","").replace("\"", "");
+		String prefix = nd.split("-")[0];
+		String realId = nd.split("-")[1];
+		//3-city, 2-province, 1-country
+		if(prefix.equalsIgnoreCase("3")){
+			List<City> cityList = cityBO.queryAllCitys();
+			for(City c:cityList){
+				if(String.valueOf(c.getCityid()).equalsIgnoreCase(realId)){
+					c.setStatus("D");
+					cityBO.saveOrUpdate(c);
+				}
+			}
+		}else if(prefix.equalsIgnoreCase("2")){
+			List<Province> provinceList = provinceBO.queryAllProvinces();
+			for(Province p:provinceList){
+				if(String.valueOf(p.getProvinceid()).equalsIgnoreCase(realId)){
+					p.setStatus("D");
+					provinceBO.saveOrUpdate(p);
+					List<City> cityList = cityBO.queryCityByProvinceId(String.valueOf(p.getProvinceid()));
+					for(City c:cityList){
+						c.setStatus("D");
+						cityBO.saveOrUpdate(c);
+					}
+				}
+			}
+			
+		}else if(prefix.equalsIgnoreCase("1")){
+			List<Country> countryList = countryBO.queryAllCountries();
+			for(Country c:countryList){
+				if(String.valueOf(c.getCountryid()).equalsIgnoreCase(realId)){
+					c.setStatus("D");
+					countryBO.saveOrUpdate(c);
+					List<Province> provinceList = provinceBO.queryProvinceByCountryId(String.valueOf(c.getCountryid()));
+					for(Province p:provinceList){
+						p.setStatus("D");
+						provinceBO.saveOrUpdate(p);
+						List<City> cityList = cityBO.queryCityByProvinceId(String.valueOf(p.getProvinceid()));
+						for(City city:cityList){
+							city.setStatus("D");
+							cityBO.saveOrUpdate(city);
+						}
+					}
+				}
+			}
+		}
+		response.setHeader("Content-type","text/html;charset=UTF-8");
+		 PrintWriter writer = null;
+		try {
+			writer = response.getWriter();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 writer.write("success");
+	}
 	public void saveLocationInfo(HttpServletRequest request, HttpServletResponse response){
 		String jsonString = request.getParameter("result");
 		Gson gson = new Gson();
@@ -115,36 +182,74 @@ public class LocationController extends MultiActionController{
 			List<CountryJModel> countryList = r.getChildren();
 			//start to load country info
 			for(CountryJModel c:countryList){
+				String coutryId = null;
 				Country perCountry = new Country();
-				//id like = "1-1", the first is the prefix, the second number which is after "-" is the real id
+				//if starts with j means it is a new country
+				if(c.getId().startsWith("j")){
+					perCountry.setCountryname(c.getText());
+					perCountry.setStatus("A");
+					countryBO.saveOrUpdate(perCountry);
+					List<Country> countryListTemp = countryBO.queryAllCountries();
+					for(Country cTemp:countryListTemp){
+						if(cTemp.getCountryname().equalsIgnoreCase(c.getText())){
+							coutryId = String.valueOf(cTemp.getCountryid());
+						}
+					}
+					
+				}else{				//id like = "1-1", the first is the prefix, the second number which is after "-" is the real id
 				//same for below
-				perCountry.setCountryid(Integer.valueOf(c.getId().split("-")[1]));
-				perCountry.setCountryname(c.getText());
-				perCountry.setStatus("A");
-				//TODO: Save into database
-				countryBO.saveOrUpdate(perCountry);
+					perCountry.setCountryid(Integer.valueOf(c.getId().split("-")[1]));
+					perCountry.setCountryname(c.getText());
+					perCountry.setStatus("A");
+					//TODO: Save into database
+					countryBO.saveOrUpdate(perCountry);
+					coutryId = c.getId().split("-")[1];
+				}
 				
 				List<ProvinceJModel> provinceList = c.getChildren();
 				//start to load province info
 				for(ProvinceJModel p:provinceList){
 					Province perProvince = new Province();
-					perProvince.setCountryid(Integer.valueOf(c.getId().split("-")[1]));
-					perProvince.setProvinceid(Integer.valueOf(p.getId().split("-")[1]));
-					perProvince.setProvincename(p.getText());
-					perProvince.setStatus("A");
-					//TODO: Save into database
-					provinceBO.saveOrUpdate(perProvince);
+					String provinceId = null;
+					if(p.getId().startsWith("j")){
+						perProvince.setCountryid(Integer.valueOf(coutryId));
+						perProvince.setProvincename(p.getText());
+						perProvince.setStatus("A");
+						provinceBO.saveOrUpdate(perProvince);
+						List<Province> proTempList = provinceBO.queryAllProvinces();
+						for(Province pTemp:proTempList){
+							if(pTemp.getProvincename().equalsIgnoreCase(p.getText())){
+								provinceId = String.valueOf(pTemp.getProvinceid());
+							}
+						}
+						
+					}else{
+						perProvince.setCountryid(Integer.valueOf(coutryId));
+						perProvince.setProvinceid(Integer.valueOf(p.getId().split("-")[1]));
+						perProvince.setProvincename(p.getText());
+						perProvince.setStatus("A");
+						//TODO: Save into database
+						provinceBO.saveOrUpdate(perProvince);
+						provinceId = p.getId().split("-")[1];
+					}
 					
 					List<CityJModel> cityList = p.getChildren();
 					//start to load city info
 					for(CityJModel city:cityList){
 						City perCity = new City();
-						perCity.setProvinceid(Integer.valueOf(p.getId().split("-")[1]));
-						perCity.setCityid(Integer.valueOf(city.getId().split("-")[1]));
-						perCity.setCityname(city.getText());
-						perCity.setStatus("A");
-						//TODO: Save into database
-						cityBO.saveOrUpdate(perCity);
+						if(city.getId().startsWith("j")){
+							perCity.setProvinceid(Integer.valueOf(provinceId));
+							perCity.setCityname(city.getText());
+							perCity.setStatus("A");
+							cityBO.saveOrUpdate(perCity);
+						}else{
+							perCity.setProvinceid(Integer.valueOf(provinceId));
+							perCity.setCityid(Integer.valueOf(city.getId().split("-")[1]));
+							perCity.setCityname(city.getText());
+							perCity.setStatus("A");
+							//TODO: Save into database
+							cityBO.saveOrUpdate(perCity);
+						}
 					}
 				}
 				
@@ -292,6 +397,86 @@ public class LocationController extends MultiActionController{
 		}
 		 
 	} 
+	
+	//get Region list
+	public void queryAllRegion(HttpServletRequest request, HttpServletResponse response){
+		Gson gson = new Gson();
+		List<Region> regionList = regionBO.queryAllRegions();
+		response.setHeader("Content-type","text/html;charset=UTF-8");
+		try {
+			PrintWriter writer = response.getWriter();
+			writer.write(gson.toJson(regionList));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//Update
+	public void updateRegion(HttpServletRequest request, HttpServletResponse response){
+		String proName = request.getParameter("obj");
+		String nd = proName.replaceAll("[\\[\\]]","").replace("\"", "");
+		String id = nd.split(":")[0];
+		String name = nd.split(":")[1];
+		List<Region> regionList = regionBO.queryAllRegions();
+		for(Region r:regionList){
+			if(String.valueOf(r.getRegionid()).equalsIgnoreCase(id)){
+				r.setRegionname(name);
+				regionBO.saveOrUpdateRegion(r);
+			}
+		}
+		
+		response.setHeader("Content-type","text/html;charset=UTF-8");
+		try {
+			PrintWriter writer = response.getWriter();
+			writer.write("success");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	//save
+		public void saveRegion(HttpServletRequest request, HttpServletResponse response){
+			String proName = request.getParameter("obj");
+			String nd = proName.replaceAll("[\\[\\]]","").replace("\"", "");
+			Region region = new Region();
+			region.setRegionname(nd);
+			region.setStatus("A");
+			regionBO.saveOrUpdateRegion(region);
+			response.setHeader("Content-type","text/html;charset=UTF-8");
+			try {
+				PrintWriter writer = response.getWriter();
+				writer.write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
+	//delete
+		public void deleteRegion(HttpServletRequest request, HttpServletResponse response){
+			String proName = request.getParameter("obj");
+			String nd = proName.replaceAll("[\\[\\]]","").replace("\"", "");
+			List<Region> regionList = regionBO.queryAllRegions();
+			for(Region r:regionList){
+				if(r.getRegionname().equals(nd)){
+					r.setStatus("D");
+					regionBO.saveOrUpdateRegion(r);
+					break;
+				}
+			}
+			response.setHeader("Content-type","text/html;charset=UTF-8");
+			try {
+				PrintWriter writer = response.getWriter();
+				writer.write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
 	
 	public static void main(String args[]){
 		CityJModel city = new CityJModel("2012","nanjing");

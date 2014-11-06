@@ -31,7 +31,7 @@ public class RegionDAO extends BaseDao {
 	public void save(Region transientInstance) {
 		log.debug("saving Region instance");
 		try {
-			getSession().save(transientInstance);
+			getSession().saveOrUpdate(transientInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
@@ -103,7 +103,7 @@ public class RegionDAO extends BaseDao {
 	public List findAll() {
 		log.debug("finding all Region instances");
 		try {
-			String queryString = "from Region";
+			String queryString = "from Region where STATUS='A'";
 			Query queryObject = getSession().createQuery(queryString);
 			return queryObject.list();
 		} catch (RuntimeException re) {

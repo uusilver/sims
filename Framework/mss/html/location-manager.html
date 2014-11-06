@@ -9,11 +9,15 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/tree.min.css">
     <link rel="stylesheet" href="css/docs.css">
+    <link href="../css/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
+    <link href="../css/jquery.multiDialog.css" rel="stylesheet" type="text/css" />
+    <link href="../css/jquery.multiDialog.plain.css" rel="stylesheet" type="text/css" />
 
 
 	<!--[if lt IE 9]><script src="js/lib/html5.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="js/lib/respond.js"></script><![endif]-->
     <script>window.$q=[];window.$=window.jQuery=function(a){window.$q.push(a);};</script>
+   
     <script src="js/location-manager.js"></script>
 
 </head>
@@ -24,7 +28,9 @@
 			<div class="col-md-12">
 				<h3>地址基础信息修改</h3>
 				<div class="row">
+				
 					<div class="col-md-4 col-sm-8 col-xs-8">
+	                    <button type="button" class="btn btn-success btn-sm" id="open_region"><i class="glyphicon glyphicon-asterisk"></i> 域信息修改</button>
 						<button type="button" class="btn btn-warning btn-sm" onclick="demo_rename();"><i class="glyphicon glyphicon-pencil"></i> 重命名</button>
 						<button type="button" class="btn btn-danger btn-sm" onclick="demo_delete();"><i class="glyphicon glyphicon-remove"></i> 删除</button>
 					</div>
@@ -48,6 +54,8 @@
 
 	</div>
 	<script src="js/lib/jquery-1.9.1.min.js"></script>
+    <script src="js/lib/jquery-ui-1.9.2.js"></script>
+	<script src="../js/jquery.multiDialog.js"></script>
 	<script src="js/lib/jquery.address-1.6.js"></script>
 	<script src="js/lib/vakata.js"></script>
 	<script src="js/lib/jstree.js"></script>
