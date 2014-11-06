@@ -1,11 +1,15 @@
 package com.xwtech.mss.bo.business;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import org.apache.commons.collections.map.ListOrderedMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.xwtech.mss.formBean.ClientInfoForm;
+import com.xwtech.mss.formBean.ServerInfoForm;
 import com.xwtech.mss.pub.dao.business.ClientDAO;
 import com.xwtech.mss.pub.po.Client;
 import com.xwtech.mss.pub.po.ClientInfo;
@@ -44,6 +48,28 @@ public class ClientInfoBO {
 	 */
 	public int delClientInfo(String clientNumStr) {
 		return this.clientDAO.delClientInfo(clientNumStr);
+	}
+	
+	/**
+	 * 查询不在该服务器分组的所有服务器
+	 * @return List 服务器列表
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ClientInfoForm> queryUnGroupedClient(String groupId,Boolean isLoadGroupClient) {
+		List list = this.clientDAO.queryUnGroupedClient(groupId,isLoadGroupClient);
+		List<ClientInfoForm> resultList = null;
+		if(list!=null&&!list.isEmpty()){
+			resultList = new ArrayList();
+			ClientInfoForm clientInfoForm=null;
+			for(int i=0;i<list.size();i++){
+				ListOrderedMap client = (ListOrderedMap)(list.get(i));
+				clientInfoForm = new ClientInfoForm();
+				clientInfoForm.setClientId(client.get("clientId").toString());
+				clientInfoForm.setClientTag(client.get("clientName").toString());
+				resultList.add(clientInfoForm);
+			}
+		}
+		return resultList;
 	}
 	
 }

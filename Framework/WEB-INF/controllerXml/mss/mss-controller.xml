@@ -119,6 +119,14 @@
 		<property name="operLogBO" ref="operLogBO"/>
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
+	<bean name="/mss/jsp/client/clientGroupController.do" class="com.xwtech.mss.controller.ClientGroupController">
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="clientGroupBO" ref="clientGroupBO" />
+		<property name="clientInfoBO" ref="clientInfoBO" />
+		<property name="clientGroupMappingBO" ref="clientGroupMappingBO" />
+		<property name="operLogBO" ref="operLogBO"/>
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
 	
 	
 </beans>

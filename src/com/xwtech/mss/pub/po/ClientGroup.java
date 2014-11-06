@@ -1,5 +1,7 @@
 package com.xwtech.mss.pub.po;
 
+import java.util.Date;
+
 /**
  * ClientGroup entity. @author MyEclipse Persistence Tools
  */
@@ -12,6 +14,10 @@ public class ClientGroup implements java.io.Serializable {
 	private String clientgroupname;
 	private String note;
 	private String status;
+	private Integer addWho;
+	private Date addTime;
+	private Integer editWho;
+	private Date editTime;
 
 	// Constructors
 
@@ -58,6 +64,38 @@ public class ClientGroup implements java.io.Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Integer getAddWho() {
+		return addWho;
+	}
+
+	public void setAddWho(Integer addWho) {
+		this.addWho = addWho;
+	}
+
+	public Date getAddTime() {
+		return addTime;
+	}
+
+	public void setAddTime(Date addTime) {
+		this.addTime = addTime;
+	}
+
+	public Integer getEditWho() {
+		return editWho;
+	}
+
+	public void setEditWho(Integer editWho) {
+		this.editWho = editWho;
+	}
+
+	public Date getEditTime() {
+		return editTime;
+	}
+
+	public void setEditTime(Date editTime) {
+		this.editTime = editTime;
 	}
 
 }

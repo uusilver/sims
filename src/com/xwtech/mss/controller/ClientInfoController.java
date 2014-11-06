@@ -177,6 +177,7 @@ public class ClientInfoController extends MultiActionController {
 	 * @return
 	 * @throws ServletRequestBindingException
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ModelAndView queryClientInfoList(HttpServletRequest request, HttpServletResponse response)
 	throws ServletRequestBindingException {
 		
@@ -186,22 +187,31 @@ public class ClientInfoController extends MultiActionController {
 		String accessType = request.getParameter("accessType");
 		
 		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
+		//是否显示查询条件框
+		String showHeader = request.getParameter("showHeader");
+		if(showHeader==null||"".equals(showHeader)){
+			showHeader="yes";
+		}
 		
 		// ifSession只在修改页面跳转至查询页面时有值
 		String ifSession = request.getParameter("ifSession");
 
 		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
-			clientInfoForm.setQueryClientState(SpmsConstants.STATE_A);
+			clientInfoForm.setQueryStatus(SpmsConstants.STATE_A);
 			clientInfoForm.setViewOrEdit(viewOrEdit);
+			clientInfoForm.setShowHeader(showHeader);
 			SessionUtils.setObjectAttribute(request, "clientInfoFormSession", clientInfoForm);
 		} else if (ifSession != null && ifSession.equals("yes")) {
 			clientInfoForm = (ClientInfoForm) SessionUtils.getObjectAttribute(request, "clientInfoFormSession");
 		} else {
 			String currentPage = request.getParameter("currentPage");
 			String queryClientName = request.getParameter("queryClientName");
-			String queryClientNick = request.getParameter("queryClientNick");
-			String queryClientState = request.getParameter("queryClientState");
-			String queryClientType = request.getParameter("queryClientType");
+			String queryAuthType = request.getParameter("queryAuthType");
+			String queryDisableFlag = request.getParameter("queryDisableFlag");
+			String queryStatus = request.getParameter("queryStatus");
+			String queryUserType = request.getParameter("queryUserType");
+			String queryClientGroup = request.getParameter("queryClientGroup");
+			
 
 			if (null == currentPage || "".equals(currentPage)) {
 				currentPage = "1";
@@ -209,20 +219,23 @@ public class ClientInfoController extends MultiActionController {
 
 			clientInfoForm.setCurrentPage(currentPage);
 			clientInfoForm.setQueryClientName(queryClientName);
-			clientInfoForm.setQueryClientNick(queryClientNick);
-			clientInfoForm.setQueryClientState(queryClientState);
-			clientInfoForm.setQueryClientType(queryClientType);
+			clientInfoForm.setQueryAuthType(queryAuthType);
+			clientInfoForm.setQueryDisableFlag(queryDisableFlag);
+			clientInfoForm.setQueryStatus(queryStatus);
+			clientInfoForm.setQueryUserType(queryUserType);
 			clientInfoForm.setViewOrEdit(viewOrEdit);
+			clientInfoForm.setShowHeader(showHeader);
+			clientInfoForm.setQueryClientGroup(queryClientGroup);
 
 			SessionUtils.setObjectAttribute(request, "clientInfoFormSession", clientInfoForm);
 		}
 
-		HashMap goodsTypeResult = clientInfoBO.queryClientInfoList(clientInfoForm,String.valueOf(SpmsConstants.COUNT_FOR_EVERY_PAGE));
+		HashMap clientInfoResult = clientInfoBO.queryClientInfoList(clientInfoForm,String.valueOf(SpmsConstants.COUNT_FOR_EVERY_PAGE));
 
-		map.put("clientInfoList", (List) goodsTypeResult.get(RequestNameConstants.RESULT_LIST));
-		map.put(RequestNameConstants.TOTAL_COUNT, goodsTypeResult.get(RequestNameConstants.TOTAL_COUNT));
-		map.put(RequestNameConstants.TOTAL_PAGE, goodsTypeResult.get(RequestNameConstants.TOTAL_PAGE));
-		map.put(RequestNameConstants.CURRENT_PAGE, goodsTypeResult.get(RequestNameConstants.CURRENT_PAGE));
+		map.put("clientInfoList", (List) clientInfoResult.get(RequestNameConstants.RESULT_LIST));
+		map.put(RequestNameConstants.TOTAL_COUNT, clientInfoResult.get(RequestNameConstants.TOTAL_COUNT));
+		map.put(RequestNameConstants.TOTAL_PAGE, clientInfoResult.get(RequestNameConstants.TOTAL_PAGE));
+		map.put(RequestNameConstants.CURRENT_PAGE, clientInfoResult.get(RequestNameConstants.CURRENT_PAGE));
 		map.put("searchForm", clientInfoForm);
 		map.put("accessType", ("menu".equals(accessType) ? "" : accessType));
 
@@ -240,17 +253,38 @@ public class ClientInfoController extends MultiActionController {
 	public ModelAndView queryClientInfoById(HttpServletRequest request, HttpServletResponse response)
 															throws ServletRequestBindingException {
 		HashMap map = new HashMap();
-		String clientNum = request.getParameter("clientNum");
+		ClientInfoForm clientInfoForm = new ClientInfoForm();
+		String clientId = request.getParameter("clientNum");
 		
 		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
+		String showHeader = request.getParameter("showHeader");
+		String currentPage = request.getParameter("currentPage");
+		String queryUserName = request.getParameter("queryUserName");
+		String queryAuthType = request.getParameter("queryAuthType");
+		String queryDisableFlag = request.getParameter("queryDisableFlag");
+		String queryUserType = request.getParameter("queryUserType");
+		String queryStatus = request.getParameter("queryStatus");
+		String queryClientGroup = request.getParameter("queryClientGroup");
+		clientInfoForm.setQueryStatus(SpmsConstants.STATE_A);
 		
 		Client clientInfo = null;
 		String typeNameStr = "";
 		String typeNumStr = "";
-		if(clientNum!=null&&!clientNum.equals("")){
-			clientInfo = clientInfoBO.findById(new Integer(clientNum));
+		if(clientId!=null&&!clientId.equals("")){
+			clientInfo = clientInfoBO.findById(new Integer(clientId));
 		}
-			map.put("clientInfo", clientInfo);
+		clientInfoForm.setClientId(clientId);
+		clientInfoForm.setCurrentPage(currentPage);
+		clientInfoForm.setQueryAuthType(queryAuthType);
+		clientInfoForm.setQueryClientName(queryUserName);
+		clientInfoForm.setQueryDisableFlag(queryDisableFlag);
+		clientInfoForm.setQueryUserType(queryUserType);
+		clientInfoForm.setQueryStatus(queryStatus);
+		clientInfoForm.setQueryClientGroup(queryClientGroup);
+		clientInfoForm.setShowHeader(showHeader);
+		
+		map.put("clientInfo", clientInfo);
+		map.put("searchForm",clientInfoForm);
 		return new ModelAndView("/mss/jsp/client/clientInfoAdd.jsp?viewOrEdit="+viewOrEdit, RequestNameConstants.INFORMATION, map);
 	}
 	

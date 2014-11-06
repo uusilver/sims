@@ -5,15 +5,23 @@ public class ClientInfoForm {
 	
 	private String queryClientName;
 	
-	private String queryClientNick;
+	private String queryAuthType;
 	
-	private String queryClientType;
+	private String queryDisableFlag;
 		
-	private String queryClientState;
+	private String queryUserType;
 	
-	private String queryDisable;
+	private String queryStatus;
+	
+	private String queryClientGroup;
 	
 	private String viewOrEdit;
+	
+	private String clientId;
+	
+	private String clientTag;
+	
+	private String showHeader;
 
 	public String getCurrentPage() {
 		return currentPage;
@@ -31,36 +39,45 @@ public class ClientInfoForm {
 		this.queryClientName = queryClientName;
 	}
 
-	public String getQueryClientNick() {
-		return queryClientNick;
+
+	public String getQueryAuthType() {
+		return queryAuthType;
 	}
 
-	public void setQueryClientNick(String queryClientNick) {
-		this.queryClientNick = queryClientNick;
+	public void setQueryAuthType(String queryAuthType) {
+		this.queryAuthType = queryAuthType;
 	}
 
-	public String getQueryClientType() {
-		return queryClientType;
+	public String getQueryDisableFlag() {
+		return queryDisableFlag;
 	}
 
-	public void setQueryClientType(String queryClientType) {
-		this.queryClientType = queryClientType;
+	public void setQueryDisableFlag(String queryDisableFlag) {
+		this.queryDisableFlag = queryDisableFlag;
 	}
 
-	public String getQueryClientState() {
-		return queryClientState;
+	public String getQueryUserType() {
+		return queryUserType;
 	}
 
-	public void setQueryClientState(String queryClientState) {
-		this.queryClientState = queryClientState;
+	public void setQueryUserType(String queryUserType) {
+		this.queryUserType = queryUserType;
 	}
 
-	public String getQueryDisable() {
-		return queryDisable;
+	public String getQueryStatus() {
+		return queryStatus;
 	}
 
-	public void setQueryDisable(String queryDisable) {
-		this.queryDisable = queryDisable;
+	public void setQueryStatus(String queryStatus) {
+		this.queryStatus = queryStatus;
+	}
+
+	public String getQueryClientGroup() {
+		return queryClientGroup;
+	}
+
+	public void setQueryClientGroup(String queryClientGroup) {
+		this.queryClientGroup = queryClientGroup;
 	}
 
 	public String getViewOrEdit() {
@@ -69,6 +86,30 @@ public class ClientInfoForm {
 
 	public void setViewOrEdit(String viewOrEdit) {
 		this.viewOrEdit = viewOrEdit;
+	}
+
+	public String getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
+	}
+
+	public String getClientTag() {
+		return clientTag;
+	}
+
+	public void setClientTag(String clientTag) {
+		this.clientTag = clientTag;
+	}
+
+	public String getShowHeader() {
+		return showHeader;
+	}
+
+	public void setShowHeader(String showHeader) {
+		this.showHeader = showHeader;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package com.xwtech.mss.pub.dao.business;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -9,6 +11,9 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Example;
 
 import com.xwtech.framework.pub.dao.BaseDao;
+import com.xwtech.framework.pub.web.FrameworkApplication;
+import com.xwtech.mss.formBean.ClientGroupForm;
+import com.xwtech.mss.pub.constants.MssConstants;
 import com.xwtech.mss.pub.po.ClientGroup;
 
 /**
@@ -29,10 +34,10 @@ public class ClientGroupDAO extends BaseDao {
 	public static final String NOTE = "note";
 	public static final String STATUS = "status";
 
-	public void save(ClientGroup transientInstance) {
+	public void saveOrUpdate(ClientGroup transientInstance) {
 		log.debug("saving ClientGroup instance");
 		try {
-			getSession().save(transientInstance);
+			getSession().saveOrUpdate(transientInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
@@ -55,7 +60,7 @@ public class ClientGroupDAO extends BaseDao {
 		log.debug("getting ClientGroup instance with id: " + id);
 		try {
 			ClientGroup instance = (ClientGroup) getSession().get(
-					"com.xwtech.mss.pub.dao.business.ClientGroup", id);
+					"com.xwtech.mss.pub.po.ClientGroup", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -68,7 +73,7 @@ public class ClientGroupDAO extends BaseDao {
 		try {
 			List results = getSession()
 					.createCriteria(
-							"com.xwtech.mss.pub.dao.business.ClientGroup")
+							"com.xwtech.mss.pub.po.ClientGroup")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -151,5 +156,68 @@ public class ClientGroupDAO extends BaseDao {
 			log.error("attach failed", re);
 			throw re;
 		}
+	}
+	
+	/**
+	 * 根据查询条件查询客户端分组信息
+	 * @param searchForm
+	 * @param perPageCount
+	 * @return
+	 */
+	public HashMap queryClientGroupList(ClientGroupForm searchForm, String perPageCount){
+		List<String> paramList = new ArrayList<String>();
+		// 查询列表sql
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select clientGroup from ClientGroup clientGroup where 1=1 ");
+
+		// 查询条数
+		StringBuffer countHql = new StringBuffer();
+		countHql.append("select count(clientGroup.clientgroupid) from  ClientGroup clientGroup where 1=1 ");
+
+		StringBuffer filterHql = new StringBuffer();
+			
+		//服务器组名
+		if (searchForm.getQueryClientGroupName() != null && !"".equals(searchForm.getQueryClientGroupName())) {
+			filterHql.append(" and clientGroup.clientgroupname like ?");
+			paramList.add("%"+searchForm.getQueryClientGroupName()+"%");
+		}
+		
+		//服务器组状态
+		if (searchForm.getQueryStatus() != null && !"".equals(searchForm.getQueryStatus())) {
+			filterHql.append(" and clientGroup.status = ?");
+			paramList.add(searchForm.getQueryStatus());
+		}else{
+			filterHql.append(" and clientGroup.status in ('A','U')");
+		}
+		
+		//服务器组名
+		if (searchForm.getQueryNote() != null && !"".equals(searchForm.getQueryNote())) {
+			filterHql.append(" and clientGroup.note like ?");
+			paramList.add("%"+searchForm.getQueryNote()+"%");
+		}
+		
+		//按服务器类别和名称排序
+		listHql.append(filterHql + "  order by clientGroup.clientgroupname asc ");
+		countHql.append(filterHql);
+
+		HashMap<?, ?> map = queryResultCount(listHql.toString(), countHql.toString(), paramList, searchForm.getCurrentPage(),
+				perPageCount);
+		return map;
+	}
+	
+	/**
+	 * 批量删除选中的客户端分组记录（逻辑删除）
+	 * @param groupIdStr
+	 * @return
+	 */
+	public int delClientGroup(String groupIdStr) {
+		// 拼装SQL
+		StringBuffer sbSql = new StringBuffer("UPDATE CLIENT_GROUP CG SET CG.STATUS = ");
+		sbSql.append("'" + MssConstants.STATE_D + "'"); // 状态设置为删除
+		sbSql.append(" WHERE CG.CLIENTGROUPID IN (");
+		sbSql.append(groupIdStr);
+		sbSql.append(")");
+
+		return FrameworkApplication.baseJdbcDAO.update(sbSql.toString());
 	}
 }

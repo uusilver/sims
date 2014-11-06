@@ -53,7 +53,7 @@ body {
 /* ================================================================================================ */
 
 .td_title {
-	font-family: "��Բ";
+	font-family: "锟斤拷圆";
 	font-size: 25px;
 	color: #FFFFFF;
 	background-color: #003DA2;
@@ -61,9 +61,9 @@ body {
 	padding-left: 10pt;
 	font-weight: bold;
 }
-/* ����������ʽ���� */
+/* 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷式锟斤拷锟斤拷 */
 /* ================================================================================================ */
-/* ��ͨ������ʽ */
+/* 锟斤拷通锟斤拷锟斤拷锟斤拷式 */
 a.link_normal:link {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -102,7 +102,7 @@ a.link_normal:active {
 	padding-left: 2px;
 }
 /* ================================================================================================ */
-/* ��������߾���ʽ */
+/* 锟斤拷锟斤拷锟斤拷锟斤拷呔锟斤拷锟绞�*/
 .td_padding {
 	padding-left: 15px;
 	padding-right: 15px;
@@ -115,7 +115,7 @@ a.link_normal:active {
 }
 
 /* ================================================================================================ */
-/* COPYRIGHTS�����ʽ */
+/* COPYRIGHTS锟斤拷锟斤拷锟绞�*/
 .td_copyright {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 9px;
@@ -131,7 +131,7 @@ a.link_normal:active {
 	filter: DropShadow(Color=#ffffff, OffX=1, OffY=1, Positive=1);
 }
 /* ================================================================================================ */
-/* twoselect�����ʽ */
+/* twoselect*/
 .two_select {
 	border: 1px solid #CCCCCC;
 	font-family: Arial, Helvetica, sans-serif;
@@ -181,7 +181,7 @@ a.link_normal:active {
 	padding-left: 5px;
 }
 /* ================================================================================================ */
-/* �������������ʽ */
+/* 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟绞�*/
 .select_1 {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -198,7 +198,7 @@ a.link_normal:active {
 	font-size: 12px;
 }
 /* ================================================================================================ */
-/* ��ѯ */
+/* 锟斤拷询 */
 .td_search_bottom_1 {
 	font-family: sans-serif;
 	font-size: 11px;
@@ -406,7 +406,7 @@ a:active {
 	padding-right: 2px;
 	padding-left: 2px;
 }
-/* ����Ϊ����ʱ��ѡ����ʽ=============================================================================== */
+/* 锟斤拷锟斤拷为锟斤拷锟斤拷时锟斤拷选锟斤拷锟斤拷式=============================================================================== */
 
 .font_dropshadow {
 	FILTER: dropshadow(color=#F2F8DA,offx=1,offy=1)
@@ -476,7 +476,7 @@ a.link_date:active {
 	width: 55px
 }
 
-/* ����ΪEXCEL������ʽ=============================================================================== */
+/* 锟斤拷锟斤拷为EXCEL锟斤拷锟斤拷锟斤拷式=============================================================================== */
 .input_auto {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -494,7 +494,7 @@ a.link_date:active {
 	width: 98%;
 	height: 20px;
 }
-/* ����Ϊ��̬��ƥ����ʽ=============================================================================== */
+/* 锟斤拷锟斤拷为锟斤拷态锟斤拷匹锟斤拷锟斤拷式=============================================================================== */
 .input_pipei {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -510,7 +510,7 @@ a.link_date:active {
 	border: 1px solid #e4e4e4;
 	width: 100%;
 }
-/* ����Ϊ��¼ҳ��ʽ=============================================================================== */
+/* 锟斤拷锟斤拷为锟斤拷录页锟斤拷式=============================================================================== */
 .font_user {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -540,7 +540,7 @@ a.link_date:active {
 }
 /* ================================================================================================ */
 
-/* tabҳ���� */
+/* tab页锟斤拷锟斤拷 */
 #mainMenu{
     color: #FFFFFF;
 	font-family: Arial, Helvetica, sans-serif;
@@ -563,8 +563,8 @@ a.link_date:active {
 	font-family: Arial, Helvetica, sans-serif;
 	visibility: hidden;
 	width:100%;
-	padding-top: 7px;               /* �Ӳ˵��ϱ߾� */
-	padding-bottom: 7px;		    /* �Ӳ˵��±߾� */
+	padding-top: 7px;               /* 锟接菜碉拷锟较边撅拷 */
+	padding-bottom: 7px;		    /* 锟接菜碉拷锟铰边撅拷 */
 	}
 	
 	html>body #clearmenu{ /* non IE browsers menu bottom spacing */
@@ -581,13 +581,13 @@ a.link_date:active {
 		border-left:1px solid #003DA2;
 		border-top:1px solid #003DA2;
 		border-right:1px solid #003DA2;		
-		background-color: #003DA2;	/* ���˵���ѡ�еı���ɫ */
+		background-color: #003DA2;	/* 锟斤拷锟剿碉拷锟斤拷选锟叫的憋拷锟斤拷色 */
 	}
 	/*
 	Style attributes of inactive menu items
 	*/
 	#mainMenu .inactiveMenuItem{		
-		color: #003DA2;	/* δѡ�е����˵�������ɫ */
+		color: #003DA2;	/* 未选锟叫碉拷锟斤拷锟剿碉拷锟斤拷锟斤拷锟斤拷色 */
 		cursor:pointer;	/* Cursor like a hand when the user moves the mouse over the menu item */
 		border-left:1px solid #e4e4e4;
 		border-top:1px solid #e4e4e4;
@@ -608,8 +608,8 @@ a.link_date:active {
 		color: #ffffff;	/* Red color when the user moves the mouse over sub menu items */
 		background-color: #003DA2;
 	}
-/* tabҳ������� */
-/* ����ΪXY�ᱨ�������ʽ=============================================================================== */
+/* tab页锟斤拷锟斤拷锟斤拷锟�*/
+/* 锟斤拷锟斤拷为XY锟结报锟斤拷锟斤拷锟斤拷锟绞�============================================================================== */
 .button_xy_normal {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -680,7 +680,7 @@ a.link_date:active {
 	height: 30px;
 }
 /* ================================================================================================== */
-/* ����Ϊͳ�Ʒ���&��ɱ�����ʽ */
+/* 锟斤拷锟斤拷为统锟狡凤拷锟斤拷&锟斤拷杀锟斤拷锟斤拷锟绞�*/
 .td_xy_time {
 	height: 35px;
 	background-color: #004DCC;
@@ -757,7 +757,7 @@ a.link_date:active {
 	background-color: #F5FDEC;
 }
 /* ===================================================================================================
-����ΪADMINר�ñ����ʽ 
+锟斤拷锟斤拷为ADMIN专锟矫憋拷锟斤拷锟绞�
 ======================================================================================================*/
 .font_title_normal {
 	font-family: Arial, Helvetica, sans-serif;
@@ -922,12 +922,12 @@ a.link_sub_sub_menu:active {
 	cursor: hand;
 }
 /* added start by weizhen, 2009.02.01*/
-/* ����Ϣ��ʽ */
+/* 锟斤拷锟斤拷息锟斤拷式 */
 span.ok {
     color:#006600;
 }
 
-/* ������Ϣ��ʽ */
+/* 锟斤拷锟斤拷锟斤拷息锟斤拷式 */
 span.warning {
     color:#FF0000;
 }
