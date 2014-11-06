@@ -1,5 +1,7 @@
 package com.xwtech.mss.pub.po;
 
+import java.util.Date;
+
 /**
  * Client entity. @author MyEclipse Persistence Tools
  */
@@ -17,8 +19,13 @@ public class Client implements java.io.Serializable {
 	private Integer disable;
 	private Integer usertype;
 	private String truename;
+	private String firstLetter;
 	private String note;
 	private String status;
+	private Integer addWho;
+	private Date addTime;
+	private Integer editWho;
+	private Date editTime;
 
 	// Constructors
 
@@ -34,7 +41,7 @@ public class Client implements java.io.Serializable {
 	/** full constructor */
 	public Client(String keyid, String username, String password,
 			Integer modifypass, Integer authenticationtype, Integer disable,
-			Integer usertype, String truename, String note, String status) {
+			Integer usertype, String truename,String firstLetter, String note, String status) {
 		this.keyid = keyid;
 		this.username = username;
 		this.password = password;
@@ -43,6 +50,7 @@ public class Client implements java.io.Serializable {
 		this.disable = disable;
 		this.usertype = usertype;
 		this.truename = truename;
+		this.firstLetter = firstLetter;
 		this.note = note;
 		this.status = status;
 	}
@@ -121,6 +129,14 @@ public class Client implements java.io.Serializable {
 		this.truename = truename;
 	}
 
+	public String getFirstLetter() {
+		return firstLetter;
+	}
+
+	public void setFirstLetter(String firstLetter) {
+		this.firstLetter = firstLetter;
+	}
+
 	public String getNote() {
 		return this.note;
 	}
@@ -135,6 +151,38 @@ public class Client implements java.io.Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Integer getAddWho() {
+		return addWho;
+	}
+
+	public void setAddWho(Integer addWho) {
+		this.addWho = addWho;
+	}
+
+	public Date getAddTime() {
+		return addTime;
+	}
+
+	public void setAddTime(Date addTime) {
+		this.addTime = addTime;
+	}
+
+	public Integer getEditWho() {
+		return editWho;
+	}
+
+	public void setEditWho(Integer editWho) {
+		this.editWho = editWho;
+	}
+
+	public Date getEditTime() {
+		return editTime;
+	}
+
+	public void setEditTime(Date editTime) {
+		this.editTime = editTime;
 	}
 
 }

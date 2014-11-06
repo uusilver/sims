@@ -11,6 +11,8 @@ public class ClientInfoForm {
 		
 	private String queryClientState;
 	
+	private String queryDisable;
+	
 	private String viewOrEdit;
 
 	public String getCurrentPage() {
@@ -51,6 +53,14 @@ public class ClientInfoForm {
 
 	public void setQueryClientState(String queryClientState) {
 		this.queryClientState = queryClientState;
+	}
+
+	public String getQueryDisable() {
+		return queryDisable;
+	}
+
+	public void setQueryDisable(String queryDisable) {
+		this.queryDisable = queryDisable;
 	}
 
 	public String getViewOrEdit() {

@@ -92,6 +92,22 @@ public class MssConstants {
 	public static final String QUERY_SERVE_GROUP_INFO_SQL = "SELECT G.SERVERGROUPID , G.SERVERGROUPNAME FROM SERVER_GROUP G"
 			+ " WHERE G.STATUS = '" + STATE_A + "'";
 	
+	// 查询客户属性信息SQL:ModifyPass
+	public static final String QUERY_CLIENT_MODIFYPASS_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
+			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='MODIFY_PASS'";
+	
+	// 查询客户属性信息SQL:AUTH_TYPE
+	public static final String QUERY_CLIENT_AUTH_TYPE_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
+			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='AUTH_TYPE'";
+	
+	// 查询客户属性信息SQL:DISABLE_FLAG
+	public static final String QUERY_CLIENT_DISABLE_FLAG_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
+			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='DISABLE_FLAG'";
+	
+	// 查询客户属性信息SQL:USER_TYPE
+	public static final String QUERY_CLIENT_USER_TYPE_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
+			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='USER_TYPE'";
+	
 	// 19位日期格式
 	public static final String DATE_FOMATTER_19 = "yyyy-MM-dd HH:mm:ss";
 

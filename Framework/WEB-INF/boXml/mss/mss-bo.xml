@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
 <beans>
 	<bean id="operLogBO" class="com.xwtech.mss.bo.system.OperLogBO">     
 		<property name="operationLogDAO" ref="operationLogDAO" />
 	</bean>
 	
 	<!-- 以下为业务内容 -->
-	<bean id="goodsTypeBO" class="com.xwtech.mss.bo.business.GoodsTypeBO">     
-		<property name="goodsTypeDAO" ref="goodsTypeDAO" />
-	</bean>
-	
-	<bean id="goodsInfoBO" class="com.xwtech.mss.bo.business.GoodsInfoBO">     
-		<property name="goodsInfoDAO" ref="goodsInfoDAO" />
-	</bean>
-	
-	<bean id="goodsRecordBO" class="com.xwtech.mss.bo.business.GoodsRecordBO">     
-		<property name="goodsRecordDAO" ref="goodsRecordDAO" />
-	</bean>
-	
-	<bean id="clientInfoBO" class="com.xwtech.mss.bo.business.ClientInfoBO">     
-		<property name="clientInfoDAO" ref="clientInfoDAO" />
-	</bean>
 	
 	<bean id="authorizationBO" class="com.xwtech.mss.bo.business.AuthorizationBO">     
 		<property name="mpmsAuthorizationDAO" ref="mpmsAuthorizationDAO" />
@@ -31,6 +17,7 @@
 	<bean id="serverInfoBO" class="com.xwtech.mss.bo.business.ServerInfoBO">     
 		<property name="transitServerDAO" ref="transitServerDAO" />
 	</bean>
+	
 	<bean id="serverGroupMappingBO" class="com.xwtech.mss.bo.business.ServerGroupMappingBO">     
 		<property name="serverGroupMappingDAO" ref="serverGroupMappingDAO" />
 	</bean>
@@ -38,14 +25,21 @@
 	<bean id="countryBO" class="com.xwtech.mss.bo.business.CountryBO">     
 		<property name="countryDAO" ref="countryDAO" />
 	</bean>
+	
 	<bean id="provinceBO" class="com.xwtech.mss.bo.business.ProvinceBO">     
 		<property name="provinceDAO" ref="provinceDAO" />
 	</bean>
+	
 	<bean id="cityBO" class="com.xwtech.mss.bo.business.CityBO">     
 		<property name="cityDAO" ref="cityDAO" />
 	</bean>
+	
 	<bean id="serverGroupBO" class="com.xwtech.mss.bo.business.ServerGroupBO">     
 		<property name="serverGroupDAO" ref="serverGroupDAO" />
+	</bean>
+	
+	<bean id="clientInfoBO" class="com.xwtech.mss.bo.business.ClientInfoBO">     
+		<property name="clientDAO" ref="clientDAO" />
 	</bean>
 	
 </beans>

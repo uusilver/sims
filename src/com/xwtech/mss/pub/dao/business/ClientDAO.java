@@ -1,5 +1,7 @@
 package com.xwtech.mss.pub.dao.business;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -9,6 +11,9 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Example;
 
 import com.xwtech.framework.pub.dao.BaseDao;
+import com.xwtech.framework.pub.web.FrameworkApplication;
+import com.xwtech.mss.formBean.ClientInfoForm;
+import com.xwtech.mss.pub.constants.SpmsConstants;
 import com.xwtech.mss.pub.po.Client;
 
 /**
@@ -62,7 +67,7 @@ public class ClientDAO extends BaseDao {
 		log.debug("getting Client instance with id: " + id);
 		try {
 			Client instance = (Client) getSession().get(
-					"com.xwtech.mss.pub.dao.business.Client", id);
+					"com.xwtech.mss.pub.po.Client", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -74,7 +79,7 @@ public class ClientDAO extends BaseDao {
 		log.debug("finding Client instance by example");
 		try {
 			List results = getSession()
-					.createCriteria("com.xwtech.mss.pub.dao.business.Client")
+					.createCriteria("com.xwtech.mss.pub.po.Client")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -184,5 +189,101 @@ public class ClientDAO extends BaseDao {
 			log.error("attach failed", re);
 			throw re;
 		}
+	}
+	
+	/**
+	 * 根据查询条件查询客户信息
+	 * @param searchForm
+	 * @param perPageCount
+	 * @return
+	 */
+	public HashMap queryClientInfoList(ClientInfoForm searchForm, String perPageCount){
+		List paramList = new ArrayList();
+		// 查询列表sql
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select clientInfo from Client clientInfo ");
+
+		// 查询条数
+		StringBuffer countHql = new StringBuffer();
+		countHql.append("select count(clientInfo.clientid) from Client clientInfo ");
+
+		StringBuffer filterHql = new StringBuffer();
+			
+		filterHql.append(" where 1=1 ");
+
+		//客户名称
+		if (searchForm.getQueryClientName() != null && !"".equals(searchForm.getQueryClientName())) {
+			filterHql.append(" and clientInfo.truename like ?");
+			paramList.add((Object) ("%" + searchForm.getQueryClientName() + "%"));
+		}
+		//客户状态
+		if (searchForm.getQueryClientState() != null && !"".equals(searchForm.getQueryClientState())) {
+			filterHql.append(" and clientInfo.status = ?");
+			paramList.add(searchForm.getQueryClientState());
+		}else{
+			filterHql.append(" and clientInfo.status in ('A','U')");
+		}
+
+		//客户类型
+		if (searchForm.getQueryClientType() != null && !"".equals(searchForm.getQueryClientType())) {
+			filterHql.append(" and clientInfo.usertype = ?");
+			paramList.add(searchForm.getQueryClientType());
+		}
+
+		//客户是否被禁用 0 – 未禁用，1 – 已禁用
+		if (searchForm.getQueryDisable() != null && !"".equals(searchForm.getQueryDisable())) {
+			filterHql.append(" and clientInfo.disable = ?");
+			paramList.add(searchForm.getQueryDisable());
+		}
+
+		//按客户类别和名称排序
+		listHql.append(filterHql + "  order by clientInfo.usertype ,clientInfo.truename asc ");
+		countHql.append(filterHql);
+
+		HashMap map = queryResultCount(listHql.toString(), countHql.toString(), paramList, searchForm.getCurrentPage(),
+				perPageCount);
+		return map;
+	}
+	
+	
+	/**
+	 * 批量删除选中的客户记录（逻辑删除）
+	 * @param typeNumStr
+	 * @return
+	 */
+	public int delClientInfo(String clientNumStr) {
+		// 拼装SQL
+		StringBuffer sbSql = new StringBuffer("UPDATE client fr SET fr.status = ");
+		sbSql.append("'" + SpmsConstants.STATE_D + "'"); 
+		sbSql.append(" WHERE fr.clientid IN (");
+		sbSql.append(clientNumStr);
+		sbSql.append(")");
+
+		return FrameworkApplication.baseJdbcDAO.update(sbSql.toString());
+	}
+	
+	/**
+	 * 根据客户id查询客户信息
+	 * @param clientNumStr
+	 * @return
+	 */
+	public List queryClientsName(String clientNumStr){
+		// 查询条数sql
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select clientInfo from Client clientInfo ");
+
+
+		StringBuffer filterHql = new StringBuffer();
+			
+		filterHql.append(" where 1=1 ");
+
+		//物品Id
+		if (clientNumStr != null && !"".equals(clientNumStr)) {
+			filterHql.append(" and clientInfo.clientid in ("+clientNumStr+")");
+		}
+
+		
+		List list = getHibernateTemplate().find((listHql.toString()+filterHql.toString()));
+		return list;
 	}
 }

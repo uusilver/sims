@@ -24,10 +24,9 @@ import com.xwtech.framework.pub.web.RequestNameConstants;
 import com.xwtech.mss.bo.business.ClientInfoBO;
 import com.xwtech.mss.bo.system.operator.OperLogBO;
 import com.xwtech.mss.formBean.ClientInfoForm;
+import com.xwtech.mss.pub.constants.MssConstants;
 import com.xwtech.mss.pub.constants.SpmsConstants;
-import com.xwtech.mss.pub.po.ClientInfo;
-import com.xwtech.mss.pub.po.GoodsInfo;
-import com.xwtech.mss.pub.po.GoodsType;
+import com.xwtech.mss.pub.po.Client;
 import com.xwtech.mss.pub.po.OperationLog;
 import com.xwtech.mss.pub.po.UserInfo;
 import com.xwtech.mss.pub.result.ResultConstants;
@@ -74,28 +73,28 @@ public class ClientInfoController extends MultiActionController {
 		map.put(RequestNameConstants.RESULTINFOS, resultInfos);
 		
 		//客户id
-		final String clientNum = request.getParameter("clientNum");
+		final String clientId = request.getParameter("clientNum");
 		
 		//客户名称
-		final String clientName = request.getParameter("clientName");
-		
-		//客户昵称
-		final String clientNick = request.getParameter("clientNick");
+		final String trueName = request.getParameter("clientName");
 		
 		//收件地址
-		final String clientAddr = request.getParameter("clientAddr");
+		final String loginName = request.getParameter("userName");
 		
 		//客户联系电话
-		final String clientTel = request.getParameter("clientTel");
+		final String password = request.getParameter("password");
 		
-		//客户邮编
-		final String zipCode = request.getParameter("zipCode");
+		//是否要求修改密码
+		final String modifyPass = request.getParameter("modifyPass");
 		
-		//Email
-		final String eMail = request.getParameter("eMail");
+		//校验类型
+		final String authenticationType = request.getParameter("authType");
 		
-		//客户类型，1：购买人，2：询价人
-		final String clientType = request.getParameter("clientType");
+		//Disable
+		final String disableFlag = request.getParameter("disableFlag");
+		
+		//用户类型
+		final String userType = request.getParameter("userType");
 		
 		//备注
 		final String clientComment = request.getParameter("clientComment");
@@ -103,61 +102,66 @@ public class ClientInfoController extends MultiActionController {
 		CommonOperation commonOpera = new CommonOperation();
 		UserInfo sysUser = commonOpera.getLoginUserInfo(request).getSysUser();
 		final String userName = sysUser.getUserName();
+		final Long userId = sysUser.getUserId();
 
 		transTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 		transTemplate.execute(new TransactionCallbackWithoutResult() {
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 
 				// 1.添加客户信息
-				ClientInfo clientInfo = null;
-				//新增客户信息
+				Client clientInfo = null;
 				OperationLog oper = new OperationLog();
-				oper.setDoObject(new Long(5));
-				//5：客户信息
-				oper.setObjType(new Long(5));
 				
 				// 新增
-				if (null == clientNum || "".equals(clientNum)) {
-					clientInfo = new ClientInfo();
-					clientInfo.setCreateTime(DateUtils.getChar12());
-					oper.setDoType(new Long(1));
-					oper.setDescription("新增客户信息：姓名：【"+clientName+"】 - 昵称：【"+clientNick+"】");
+				if (null == clientId || "".equals(clientId)) {
+					clientInfo = new Client();
+					clientInfo.setAddWho(new Integer(userId.toString()));
+					clientInfo.setAddTime(DateUtils.convertString2Date(DateUtils.getChar14()));	
+					oper.setDoType(new Long(MssConstants.OPER_TYPE_INSERT));
+					oper.setDescription("新增客户信息：姓名：【"+trueName+"】");
 				}
 				// 更新
 				else { 
-					clientInfo = clientInfoBO.findById(new Long(clientNum));
-					clientInfo.setModifyTime(DateUtils.getChar12());
-					oper.setDoType(new Long(2));
-					oper.setDescription("修改客户信息，ID：【"+clientInfo.getClientNum()+"】，姓名：【"+clientInfo.getClientName()+"】 为 ：【"+clientName+"】 - 昵称：【"+clientInfo.getClientNick()+"】 为 【"+clientNick+"】");
+					clientInfo = clientInfoBO.findById(new Integer(clientId));
+					clientInfo.setEditWho(new Integer(userId.toString()));
+					clientInfo.setEditTime(DateUtils.convertString2Date(DateUtils.getChar14()));	
+					oper.setDoType(new Long(MssConstants.OPER_TYPE_UPDATE));
+					oper.setDescription("修改客户信息，ID：【"+clientInfo.getClientid()+"】，姓名：【"+clientInfo.getTruename()+"】 为 ：【"+trueName+"】");
 				}
 
 				try{
-					clientInfo.setClientName(clientName);
-					clientInfo.setClientNick(clientNick);
-					clientInfo.setClientAddr(clientAddr);
-					clientInfo.setClientTel(clientTel);
-					clientInfo.setZipCode(zipCode);
-					clientInfo.seteMail(eMail);
-					clientInfo.setClientType(clientType);
-					clientInfo.setClientState(SpmsConstants.STATE_A);
-					clientInfo.setClientComm(clientComment);
+					clientInfo.setUsername(loginName);
+					clientInfo.setPassword(password);
+					clientInfo.setAuthenticationtype((authenticationType!=null&&!"".equals(authenticationType))?new Integer(authenticationType):null);
+					clientInfo.setModifypass((modifyPass!=null&&!"".equals(modifyPass))?new Integer(modifyPass):null);
+					clientInfo.setDisable((disableFlag!=null&&!"".equals(disableFlag))?new Integer(disableFlag):null);
+					clientInfo.setTruename(trueName);
+					clientInfo.setUsertype((userType!=null&&!"".equals(userType))?new Integer(userType):null);
+					clientInfo.setStatus(SpmsConstants.STATE_A);
+					clientInfo.setNote(clientComment);
+					//用户姓名首字母
 			      	ChineseSpellingToPinYin py2 = new ChineseSpellingToPinYin();
-					clientInfo.setFirstLetterName(py2.getFirstletterByName(clientName));
-					clientInfo.setFirstLetterNick(py2.getFirstletterByName(clientNick));
+					clientInfo.setFirstLetter(py2.getFirstletterByName(trueName));
 					clientInfoBO.saveOrUpdate(clientInfo);
 					resultInfos.add(new ResultInfo(ResultConstants.ADD_CLIENT_INFO_SUCCESS));
 					
 					//保存操作日志
+					
+					//新增客户信息
+					oper.setDoObject(new Long(MssConstants.OPER_OBJECT_CLIENT));
+					//50：客户信息
+					oper.setObjType(new Long(MssConstants.OPER_OBJECT_CLIENT));
 					oper.setDoTime(DateUtils.getChar12());
 					oper.setLoginName(userName);
-					oper.setTableName("clientInfo");
+					oper.setTableName(MssConstants.OPER_TABLE_CLIENT);
 					operLogBO.save(oper);
 					
 				}catch(Exception e){
 					resultInfos.add(new ResultInfo(ResultConstants.ADD_CLIENT_INFO_FAILED));
+					e.printStackTrace();
 					status.setRollbackOnly();
 				}
-				resultInfos.setGotoUrl("/mss/jsp/business/clientInfoController.do?method=queryClientInfoList&addOrView='edit'");
+				resultInfos.setGotoUrl("/mss/jsp/client/clientInfoController.do?method=queryClientInfoList&addOrView='edit'");
 				resultInfos.setIsAlert(true);
 				resultInfos.setIsRedirect(true);
 			}
@@ -222,7 +226,7 @@ public class ClientInfoController extends MultiActionController {
 		map.put("searchForm", clientInfoForm);
 		map.put("accessType", ("menu".equals(accessType) ? "" : accessType));
 
-		return new ModelAndView("/mss/jsp/business/clientInfoList.jsp", RequestNameConstants.INFORMATION, map);
+		return new ModelAndView("/mss/jsp/client/clientInfoList.jsp", RequestNameConstants.INFORMATION, map);
 		
 	}
 	
@@ -240,14 +244,14 @@ public class ClientInfoController extends MultiActionController {
 		
 		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
 		
-		ClientInfo clientInfo = null;
+		Client clientInfo = null;
 		String typeNameStr = "";
 		String typeNumStr = "";
 		if(clientNum!=null&&!clientNum.equals("")){
-			clientInfo = clientInfoBO.findById(new Long(clientNum));
+			clientInfo = clientInfoBO.findById(new Integer(clientNum));
 		}
 			map.put("clientInfo", clientInfo);
-		return new ModelAndView("/mss/jsp/business/clientInfoAdd.jsp?viewOrEdit="+viewOrEdit, RequestNameConstants.INFORMATION, map);
+		return new ModelAndView("/mss/jsp/client/clientInfoAdd.jsp?viewOrEdit="+viewOrEdit, RequestNameConstants.INFORMATION, map);
 	}
 	
 	/**
@@ -283,41 +287,29 @@ public class ClientInfoController extends MultiActionController {
 				String clientIdStr = "";
 				try {
 					if(clientNumStr!=null&&!clientNumStr.equals("")){
-						clientNameList = clientInfoBO.queryGoodsName(clientNumStr.substring(0, clientNumStr.length()-1));
+//						clientNameList = clientInfoBO.queryGoodsName(clientNumStr.substring(0, clientNumStr.length()-1));
 						// 根据权限ID删除相关权限信息
 						clientInfoBO.delClientInfo(clientNumStr.substring(0, clientNumStr.length()-1));
 					}
-					
-					if(clientNameList!=null&&clientNameList.size()>0){
-						for (int i = 0; i < clientNameList.size(); i++) {
-							clientNameStr += ((ClientInfo)clientNameList.get(i)).getClientName();
-							clientIdStr += String.valueOf(((ClientInfo)clientNameList.get(i)).getClientNum().longValue());
-							if(i< clientNameList.size()-1){
-								clientNameStr += " | ";
-								clientIdStr += " | ";
-							}
-						}
-					}
-					
 					if(!"".equals(clientNameStr)){
 						//删除客户信息
 						OperationLog oper = new OperationLog();
-						oper.setDoObject(new Long(5));
+						oper.setDoObject(new Long(MssConstants.OPER_TYPE_INSERT));
 						
 						//5：客户信息
-						oper.setObjType(new Long(5));
+						oper.setDoType(new Long(MssConstants.OPER_TYPE_INSERT));
 						
 						//2:删除
-						oper.setDoType(new Long(3));
+						oper.setDoType(new Long(MssConstants.OPER_TYPE_DELETE));
 						oper.setDoTime(DateUtils.getChar12());
 						oper.setLoginName(userName);
-						oper.setTableName("clientInfo");
+						oper.setTableName(MssConstants.OPER_OBJECT_CLIENT);
 						oper.setDescription("删除客户信息，ID：【"+clientIdStr+"】，姓名：【"+clientNameStr+"】");
 						operLogBO.save(oper);
 					}	
 					
 					resultInfos.add(new ResultInfo(ResultConstants.DEL_CLIENT_INFO_SUCCESS));
-					resultInfos.setGotoUrl("/mss/jsp/business/clientInfoController.do?method=queryClientInfoList" + "&ifSession=yes");
+					resultInfos.setGotoUrl("/mss/jsp/client/clientInfoController.do?method=queryClientInfoList" + "&ifSession=yes");
 				} catch (Exception ex) {
 					resultInfos.setGotoUrl(null);
 					log.error("删除客户信息失败！");

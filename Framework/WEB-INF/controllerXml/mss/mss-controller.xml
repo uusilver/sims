@@ -67,40 +67,6 @@
 		
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
-	
-
-
-	<bean name="/mss/jsp/business/goodsTypeController.do" class="com.xwtech.mss.controller.GoodsTypeController">
-		<property name="transTemplate" ref="transTemplate" />
-		<property name="goodsTypeBO" ref="goodsTypeBO" />
-		<property name="operLogBO" ref="operLogBO" />
-		<property name="methodNameResolver" ref="paraMethodResolver" />
-	</bean>
-	
-	<bean name="/mss/jsp/business/goodsInfoController.do" class="com.xwtech.mss.controller.GoodsInfoController">
-		<property name="transTemplate" ref="transTemplate" />
-		<property name="goodsInfoBO" ref="goodsInfoBO" />
-		<property name="goodsTypeBO" ref="goodsTypeBO" />
-		<property name="goodsRecordBO" ref="goodsRecordBO"/>
-		<property name="operLogBO" ref="operLogBO"/>
-		<property name="methodNameResolver" ref="paraMethodResolver" />
-	</bean>
-	
-	<bean name="/mss/jsp/business/goodsRecordController.do" class="com.xwtech.mss.controller.GoodsRecordController">
-		<property name="transTemplate" ref="transTemplate" />
-		<property name="goodsRecordBO" ref="goodsRecordBO" />
-		<property name="goodsInfoBO" ref="goodsInfoBO" />
-		<property name="clientInfoBO" ref="clientInfoBO" />
-		<property name="operLogBO" ref="operLogBO" />
-		<property name="methodNameResolver" ref="paraMethodResolver" />
-	</bean>
-	
-	<bean name="/mss/jsp/business/clientInfoController.do" class="com.xwtech.mss.controller.ClientInfoController">
-		<property name="transTemplate" ref="transTemplate" />
-		<property name="clientInfoBO" ref="clientInfoBO" />
-		<property name="operLogBO" ref="operLogBO"/>
-		<property name="methodNameResolver" ref="paraMethodResolver" />
-	</bean>
 
 
 	<!-- Configuration For SIMS project -->
@@ -142,6 +108,13 @@
 		<property name="serverGroupBO" ref="serverGroupBO" />
 		<property name="serverInfoBO" ref="serverInfoBO" />
 		<property name="serverGroupMappingBO" ref="serverGroupMappingBO" />
+		<property name="operLogBO" ref="operLogBO"/>
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
+	
+	<bean name="/mss/jsp/client/clientInfoController.do" class="com.xwtech.mss.controller.ClientInfoController">
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="clientInfoBO" ref="clientInfoBO" />
 		<property name="operLogBO" ref="operLogBO"/>
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>

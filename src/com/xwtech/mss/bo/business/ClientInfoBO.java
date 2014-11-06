@@ -1,30 +1,30 @@
 package com.xwtech.mss.bo.business;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.xwtech.mss.formBean.ClientInfoForm;
-import com.xwtech.mss.pub.dao.business.ClientInfoDAO;
+import com.xwtech.mss.pub.dao.business.ClientDAO;
+import com.xwtech.mss.pub.po.Client;
 import com.xwtech.mss.pub.po.ClientInfo;
 
 public class ClientInfoBO {
 	private static final Log log = LogFactory.getLog(ClientInfoBO.class);
 	
-	private ClientInfoDAO clientInfoDAO;
+	private ClientDAO clientDAO;
 
-	public void setClientInfoDAO(ClientInfoDAO clientInfoDAO) {
-		this.clientInfoDAO = clientInfoDAO;
+	public void setClientDAO(ClientDAO clientDAO) {
+		this.clientDAO = clientDAO;
 	}
 	
-	public void saveOrUpdate(ClientInfo transientInstance) {
-		this.clientInfoDAO.save(transientInstance);
+	public void saveOrUpdate(Client transientInstance) {
+		this.clientDAO.save(transientInstance);
 	}
 	
-	public ClientInfo findById(java.lang.Long id) {
-		return this.clientInfoDAO.findById(id);
+	public Client findById(Integer id) {
+		return this.clientDAO.findById(id);
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public class ClientInfoBO {
 	 * @return
 	 */
 	public HashMap queryClientInfoList(ClientInfoForm searchForm, String perPageCount){
-		return this.clientInfoDAO.queryClientInfoList(searchForm, perPageCount);
+		return this.clientDAO.queryClientInfoList(searchForm, perPageCount);
 	}
 	
 	/**
@@ -43,15 +43,7 @@ public class ClientInfoBO {
 	 * @return
 	 */
 	public int delClientInfo(String clientNumStr) {
-		return this.clientInfoDAO.delClientInfo(clientNumStr);
+		return this.clientDAO.delClientInfo(clientNumStr);
 	}
 	
-	/**
-	 * 根据客户id查询客户信息
-	 * @param clientNumStr
-	 * @return
-	 */
-	public List queryGoodsName(String clientNumStr){
-		return this.clientInfoDAO.queryClientsName(clientNumStr);
-	}
 }
