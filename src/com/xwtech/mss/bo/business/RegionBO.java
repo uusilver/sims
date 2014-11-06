@@ -13,6 +13,7 @@ public class RegionBO {
 	@SuppressWarnings("unused")
 	private static final Log log = LogFactory.getLog(ProvinceBO.class);
 	
+	
 	private RegionDAO regionDAO;
 
 	public void setRegionDAO(RegionDAO regionDAO) {

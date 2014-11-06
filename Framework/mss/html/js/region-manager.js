@@ -15,6 +15,7 @@ $(document).ready(function () {
 		 $("tbody").html(html);
 	 });
 
+	 
     //Create new
     $("#create").click(function(){
         var  html ='<tr><td class="idseq qinggoudan_table_td1"></td><td class="change qinggoudan_table_td1">请输入</td><td class="qinggoudan_table_td1"><button class="btn btn-primary">保存</button><button class="btn btn-danger">删除</button></td></tr>';
