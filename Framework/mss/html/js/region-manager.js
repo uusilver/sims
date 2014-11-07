@@ -77,6 +77,12 @@ $(document).ready(function () {
                 tdObj.html(text);
             }
         });
+        
+        inputObj.blur(function(){
+        	var inputtext = $(this).val();
+            //将td的内容修改成文本框中的内容
+            tdObj.html(inputtext);
+        });
     }) ;
 
 
@@ -92,6 +98,8 @@ function saveObj(obj, id){
 		$.post('/sims/mss/html/locationController.do?method=updateRegion',{obj:obj},function(data){
 		    if(data=='success'){
 		    	 alert("操作成功");
+	        }else if(data=="error1"){
+	        	alert("已存在，保存失败");
 	        }else{
 	        	alert("操作失败!");
 	        }
@@ -101,7 +109,10 @@ function saveObj(obj, id){
 		$.post('/sims/mss/html/locationController.do?method=saveRegion',{obj:obj},function(data){
 		    if(data=='success'){
 		    	 alert("操作成功");
-	        }else{
+	        }else if(data=="error1"){
+	        	alert("已存在，保存失败");
+	        }
+		    else{
 	        	alert("操作失败!");
 	        }
 	    });
@@ -116,7 +127,10 @@ function deleteObj(obj){
 	$.post('/sims/mss/html/locationController.do?method=deleteRegion',{obj:obj},function(data){
 	    if(data=='success'){
 	    	 alert("操作成功");
-        }else{
+        }else if(data=="error1"){
+        	alert("已存在，保存失败");
+        }
+	    else{
         	alert("操作失败!");
         }
  });

@@ -33,7 +33,7 @@ public class CityDAO extends BaseDao {
 	public void save(City transientInstance) {
 		log.debug("saving City instance");
 		try {
-			getSession().saveOrUpdate(transientInstance);
+			getSession().merge(transientInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);

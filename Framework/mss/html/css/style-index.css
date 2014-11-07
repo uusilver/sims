@@ -1,0 +1,190 @@
+body
+{
+	background: url(../images/bg.jpg) no-repeat left bottom #e9ffe8;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+	color:#999;
+}
+
+
+.fullBg {position: fixed;top: 0;left: 0;overflow: hidden;}
+
+
+#wide-wrapper
+{
+	
+	/*height:600px;*/
+}
+
+
+#header
+{
+	width:280px;
+	margin:0px auto;
+	padding-top:75px;
+}
+
+
+
+
+/*
+arranges the images in a grid
+
+this style will be applied only before the 
+carousel is instantiated or if the user doesn't have
+javascript enabled;
+
+feel free to replace this style with your preferred one
+*/
+#carousel
+{
+	list-style:none;
+}
+
+#carousel li
+{
+	float:left;
+}
+
+#carousel .tooltip, #carousel .bigImage, #carousel .title, #carousel .description
+{
+	position:absolute;
+	left:-9999px;
+}
+
+
+#text
+{
+	width:650px;
+	margin:0px auto;
+	margin-top:-20px;
+}
+
+
+#text p
+{	
+	padding: 5px 10px;
+}
+
+
+#text #selected-title
+{
+	width:80px;
+	background-color:#111;
+	font-style:italic;
+}
+
+
+#text #selected-description
+{
+	background-color:#111;
+}
+
+
+#controls
+{
+	width:234px;
+	margin:0px auto;
+}
+
+
+#controls a
+{
+	margin:0px 20px;
+	cursor:pointer;
+}
+
+
+#controls #left
+{
+	background:url(arrows.png);
+	width:38px;
+	height:38px;
+	float:left;
+}
+
+
+#controls #right
+{
+	background:url(arrows.png) -38px 0px;
+	width:38px;
+	height:38px;
+	float:left;
+}
+
+
+#controls #auto-scroll
+{
+	background:url(playpause.png);
+	width:38px;
+	height:38px;
+	float:left;
+}
+
+
+#example-description
+{
+	margin:0px;
+	padding:0px;
+	background-color:#DDD;
+	border-top:solid 1px #CCC;
+	border-bottom:solid 1px #CCC;
+}
+
+
+#example-description p
+{
+	color:#666;
+	font-style:italic;
+	width:750px;
+	margin:0px auto;
+	padding:10px 0px;
+}
+
+
+#example-description #navigation
+{
+	width:300px;
+	height:25px;
+	margin:10px auto 0px;
+}
+
+
+#example-description #navigation a
+{
+	background-color:#F1F1F1;
+	text-decoration:none;
+	color:#666;
+	padding:5px 10px;
+	margin:0px 5px;
+	border:#CCC solid 1px;
+}
+
+.nav_right { width:42%; height:100%; background:url(../images/right.png) repeat; position:absolute; top:0px; right:0px; }
+.top_text { background:url(../images/top_text.png); width:130px; height:89px; margin:0 auto; text-align:center; }
+.top_text p { margin:0px; padding:0px; font-family:"微软雅黑"; }
+.top_text p.a { color:#FFF; font-size:24px; font-weight:bold; padding-top:8px; }
+.top_text p.b { color:#CCCCCC; font-size:12px; }
+
+.service_div { clear:both; width:483px; height:161px; padding-top:15px; margin:0 auto; font-family:"微软雅黑"; font-weight:bold; }
+.service_a { background:url(../images/service_1.png); width:161px; height:161px; float:left; position:relative; }
+.service_a span { display:block; position:absolute; width:55px; right:25px; top:72px; font-size:26px; color:#00bc00; text-align:center; }
+.service_b { background:url(../images/service_2.png); width:161px; height:161px; float:left; position:relative; }
+.service_b span { display:block; position:absolute; width:55px; right:25px; top:72px; font-size:26px; color:#ff1200; text-align:center; }
+.service_c { background:url(../images/service_3.png); width:161px; height:161px; float:left; position:relative; }
+.service_c span { display:block; position:absolute; width:55px; right:25px; top:72px; font-size:26px; color:#787878; text-align:center; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

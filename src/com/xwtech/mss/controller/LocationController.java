@@ -420,17 +420,23 @@ public class LocationController extends MultiActionController{
 		String id = nd.split(":")[0];
 		String name = nd.split(":")[1];
 		List<Region> regionList = regionBO.queryAllRegions();
-		for(Region r:regionList){
-			if(String.valueOf(r.getRegionid()).equalsIgnoreCase(id)){
-				r.setRegionname(name);
-				regionBO.saveOrUpdateRegion(r);
+		String result = null;
+		if(dulName(regionList,name)){
+			result = "error1";
+		}else{
+			for(Region r:regionList){
+				if(String.valueOf(r.getRegionid()).equalsIgnoreCase(id)){
+					r.setRegionname(name);
+					regionBO.saveOrUpdateRegion(r);
+					result = "success";
+				}
 			}
 		}
 		
 		response.setHeader("Content-type","text/html;charset=UTF-8");
 		try {
 			PrintWriter writer = response.getWriter();
-			writer.write("success");
+			writer.write(result);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -441,14 +447,22 @@ public class LocationController extends MultiActionController{
 		public void saveRegion(HttpServletRequest request, HttpServletResponse response){
 			String proName = request.getParameter("obj");
 			String nd = proName.replaceAll("[\\[\\]]","").replace("\"", "");
-			Region region = new Region();
-			region.setRegionname(nd);
-			region.setStatus("A");
-			regionBO.saveOrUpdateRegion(region);
+			List<Region> regionList = regionBO.queryAllRegions();
+			String result = null;
+			if(dulName(regionList,nd)){
+				result = "error1";
+			}else{
+				Region region = new Region();
+				region.setRegionname(nd);
+				region.setStatus("A");
+				regionBO.saveOrUpdateRegion(region);
+				result = "success";
+			}
+			
 			response.setHeader("Content-type","text/html;charset=UTF-8");
 			try {
 				PrintWriter writer = response.getWriter();
-				writer.write("success");
+				writer.write(result);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -508,4 +522,14 @@ public class LocationController extends MultiActionController{
 		
 	}
 	
+	private boolean dulName(List<Region> regionList, String name){
+		boolean flag = false;
+		for(Region r:regionList){
+			if(r.getRegionname().equals(name)){
+				flag = true;
+				break;
+			}
+		}
+		return flag;
+	}
 }
