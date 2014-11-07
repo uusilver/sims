@@ -141,7 +141,7 @@ public class ServerGroupController extends MultiActionController {
 					serverGroupBO.saveOrUpdate(serverGroup);
 					
 					//保存服务器所属分组信息
-					if(serverIds!=null&&serverIds.length()>1){
+					if(serverIds!=null&&serverIds.length()>0){
 						//删除原有的服务器关系记录，然后再插入新选择的服务器与分组关系记录
 //						if(viewOrEdit!=null&&MssConstants.VIEW_OR_EDIT_EDIT.equals(viewOrEdit)){
 //						}
@@ -213,15 +213,18 @@ public class ServerGroupController extends MultiActionController {
 		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
 		
 		String queryServerGroupName = request.getParameter("queryServerGroupName");
+		
+		String queryNote = request.getParameter("queryNote");
 		try {
 			if(queryServerGroupName!=null){
 				queryServerGroupName = new String(request.getParameter("queryServerGroupName").getBytes("ISO8859-1"),"UTF-8").trim();
 			}
+			if(queryNote!=null){
+				queryNote = new String(request.getParameter("queryNote").getBytes("ISO8859-1"),"UTF-8").trim();
+			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		
-		String queryNote = request.getParameter("queryNote");
 		
 		String queryStatus = request.getParameter("queryStatus");
 		

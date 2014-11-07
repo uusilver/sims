@@ -11,8 +11,10 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Example;
 
 import com.xwtech.framework.pub.dao.BaseDao;
+import com.xwtech.framework.pub.utils.DateUtils;
 import com.xwtech.framework.pub.web.FrameworkApplication;
 import com.xwtech.mss.formBean.ClientInfoForm;
+import com.xwtech.mss.pub.constants.MssConstants;
 import com.xwtech.mss.pub.constants.SpmsConstants;
 import com.xwtech.mss.pub.po.Client;
 
@@ -197,51 +199,155 @@ public class ClientDAO extends BaseDao {
 	 * @param perPageCount
 	 * @return
 	 */
+//	public HashMap queryClientInfoList(ClientInfoForm searchForm, String perPageCount){
+//		List paramList = new ArrayList();
+//		// 查询列表sql
+//		StringBuffer listHql = new StringBuffer();
+//		listHql.append("select clientInfo.clientid,clientInfo.username,clientInfo.truename,cb_authType.text,"
+//				+ " cb_disable.text,cb_userType.text,clientInfo.note,clientInfo.status"
+//				+ " from client clientInfo,code_book cb_authType,code_book cb_disable,code_book cb_userType"
+//				+ " where clientInfo.authenticationtype = cb_authType.value"
+//				+ " and clientInfo.disable = cb_disable.value"
+//				+ " and clientInfo.usertype = cb_userType.value"
+//				+ " and cb_authType.tag = '"+MssConstants.AUTH_TYPE+"'"
+//				+ " and cb_disable.tag = '"+MssConstants.DISABLE_FLAG+"'"
+//				+ " and cb_userType.tag = '"+MssConstants.USER_TYPE+"'");
+//
+//		// 查询条数
+//		StringBuffer countHql = new StringBuffer();
+//		countHql.append("select count(clientInfo.clientid) from Client clientInfo where 1=1 ");
+//
+//		StringBuffer filterHql = new StringBuffer();
+//			
+//		//客户名称
+//		if (searchForm.getQueryClientName() != null && !"".equals(searchForm.getQueryClientName())) {
+//			filterHql.append(" and clientInfo.truename like ?");
+//			paramList.add((Object) ("%" + searchForm.getQueryClientName() + "%"));
+//		}
+//		//客户状态
+//		if (searchForm.getQueryStatus() != null && !"".equals(searchForm.getQueryStatus())) {
+//			filterHql.append(" and clientInfo.status = ?");
+//			paramList.add(searchForm.getQueryStatus());
+//		}else{
+//			filterHql.append(" and clientInfo.status in ('A','U')");
+//		}
+//
+//		//客户类型
+//		if (searchForm.getQueryUserType() != null && !"".equals(searchForm.getQueryUserType())) {
+//			filterHql.append(" and clientInfo.usertype = ?");
+//			paramList.add(new Integer(searchForm.getQueryUserType()));
+//		}
+//
+//		//客户端是否被禁用 0 – 未禁用，1 – 已禁用
+//		if (searchForm.getQueryDisableFlag() != null && !"".equals(searchForm.getQueryDisableFlag())) {
+//			filterHql.append(" and clientInfo.disable = ?");
+//			paramList.add(new Integer(searchForm.getQueryDisableFlag()));
+//		}
+//
+//		//客户端认证类型
+//		if (searchForm.getQueryAuthType() != null && !"".equals(searchForm.getQueryAuthType())) {
+//			filterHql.append(" and clientInfo.authenticationtype = ?");
+//			paramList.add(new Integer(searchForm.getQueryAuthType()));
+//		}
+//
+//		//按客户类别和名称排序
+//		listHql.append(filterHql + "  order by clientInfo.usertype ,clientInfo.truename asc ");
+//		countHql.append(filterHql);
+//
+//		HashMap map = queryResultCount(listHql.toString(), countHql.toString(), paramList, searchForm.getCurrentPage(),
+//				perPageCount);
+//		return map;
+//	}
+	
+	/**
+	 * 根据查询条件查询客户信息
+	 * @param searchForm
+	 * @param perPageCount
+	 * @return
+	 */
 	public HashMap queryClientInfoList(ClientInfoForm searchForm, String perPageCount){
+		Object[] paramArray = null;
 		List paramList = new ArrayList();
 		// 查询列表sql
 		StringBuffer listHql = new StringBuffer();
-		listHql.append("select clientInfo from Client clientInfo ");
-
+		StringBuffer fromHql = new StringBuffer();
+		listHql.append("select c.clientid,c.username,c.truename,cGroup.clientgroupname,cb_authType.text as authType,"
+				+ " cb_disable.text as disableFlag,cb_userType.text as userType,c.note,c.status");
+		
+		fromHql.append(" from client c left join client_group_mapping cgMapping on c.clientid=cgMapping.clientid"
+				+ " left join client_group cGroup on cGroup.clientgroupid = cgMapping.clientgroupid,"
+				+ " code_book cb_authType,code_book cb_disable,code_book cb_userType "
+				+ " where c.authenticationtype = cb_authType.value"
+				+ " and c.disable = cb_disable.value"
+				+ " and c.usertype = cb_userType.value"
+				+ " and cb_authType.tag = '"+MssConstants.AUTH_TYPE+"'"
+				+ " and cb_disable.tag = '"+MssConstants.DISABLE_FLAG+"'"
+				+ " and cb_userType.tag = '"+MssConstants.USER_TYPE+"'");
+		
+		listHql.append(fromHql);
 		// 查询条数
 		StringBuffer countHql = new StringBuffer();
-		countHql.append("select count(clientInfo.clientid) from Client clientInfo ");
+		countHql.append("select count(c.clientid) ");
+		countHql.append(fromHql);
 
 		StringBuffer filterHql = new StringBuffer();
 			
-		filterHql.append(" where 1=1 ");
+//		filterHql.append(" where 1=1 ");
 
 		//客户名称
 		if (searchForm.getQueryClientName() != null && !"".equals(searchForm.getQueryClientName())) {
-			filterHql.append(" and clientInfo.truename like ?");
+			filterHql.append(" and c.truename like ?");
 			paramList.add((Object) ("%" + searchForm.getQueryClientName() + "%"));
 		}
 		//客户状态
-		if (searchForm.getQueryClientState() != null && !"".equals(searchForm.getQueryClientState())) {
-			filterHql.append(" and clientInfo.status = ?");
-			paramList.add(searchForm.getQueryClientState());
+		if (searchForm.getQueryStatus() != null && !"".equals(searchForm.getQueryStatus())) {
+			filterHql.append(" and c.status = ?");
+			paramList.add(searchForm.getQueryStatus());
 		}else{
-			filterHql.append(" and clientInfo.status in ('A','U')");
+			filterHql.append(" and c.status in ('A','U')");
 		}
 
 		//客户类型
-		if (searchForm.getQueryClientType() != null && !"".equals(searchForm.getQueryClientType())) {
-			filterHql.append(" and clientInfo.usertype = ?");
-			paramList.add(searchForm.getQueryClientType());
+		if (searchForm.getQueryUserType() != null && !"".equals(searchForm.getQueryUserType())) {
+			filterHql.append(" and c.usertype = ?");
+			paramList.add(new Integer(searchForm.getQueryUserType()));
 		}
 
-		//客户是否被禁用 0 – 未禁用，1 – 已禁用
-		if (searchForm.getQueryDisable() != null && !"".equals(searchForm.getQueryDisable())) {
-			filterHql.append(" and clientInfo.disable = ?");
-			paramList.add(searchForm.getQueryDisable());
+		//客户端是否被禁用 0 – 未禁用，1 – 已禁用
+		if (searchForm.getQueryDisableFlag() != null && !"".equals(searchForm.getQueryDisableFlag())) {
+			filterHql.append(" and c.disable = ?");
+			paramList.add(new Integer(searchForm.getQueryDisableFlag()));
 		}
 
-		//按客户类别和名称排序
-		listHql.append(filterHql + "  order by clientInfo.usertype ,clientInfo.truename asc ");
+		//客户端认证类型
+		if (searchForm.getQueryAuthType() != null && !"".equals(searchForm.getQueryAuthType())) {
+			filterHql.append(" and c.authenticationtype = ?");
+			paramList.add(new Integer(searchForm.getQueryAuthType()));
+		}
+
+		//客户端分组ID
+		if (searchForm.getQueryClientGroup() != null && !"".equals(searchForm.getQueryClientGroup())) {
+			if("0".equals(searchForm.getQueryClientGroup())){
+				filterHql.append(" and cGroup.clientgroupname is NULL ");
+			}else{
+				filterHql.append(" and cGroup.clientgroupid = ?");
+				paramList.add(new Integer (searchForm.getQueryClientGroup()));
+			}
+		}
+		
+		//按服务器类别和名称排序
+		listHql.append(filterHql + "  order by c.clientid,c.username asc ");
 		countHql.append(filterHql);
 
-		HashMap map = queryResultCount(listHql.toString(), countHql.toString(), paramList, searchForm.getCurrentPage(),
-				perPageCount);
+		HashMap map = null;
+		if(paramList.size()>0){
+			paramArray = new Object[paramList.size()];
+			for(int i=0;i<paramList.size();i++){
+				paramArray[i]=paramList.get(i);
+			}
+		}
+		
+		map = queryCommonSqlResultCount(listHql.toString(), countHql.toString(),paramArray, searchForm.getCurrentPage(),perPageCount);
 		return map;
 	}
 	
@@ -284,6 +390,66 @@ public class ClientDAO extends BaseDao {
 
 		
 		List list = getHibernateTemplate().find((listHql.toString()+filterHql.toString()));
+		return list;
+	}
+	
+	/**
+	 * 查询不在该服务器分组的所有客户端
+	 * @param groupId
+	 * @param isLoadGroupClient
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Object[]> queryUnGroupedClient(String groupId,Boolean isLoadGroupClient) {
+		List<Object[]> list = null;
+		Object[] paramList = new Object[1];
+		// 查询列表sql
+		StringBuffer listHql = new StringBuffer();
+		StringBuffer fromHql = new StringBuffer();
+		listHql.append("select c.clientid as clientId,"
+				+"CONCAT(c.username,' - [',cb_userType.text,' / ',cb_authType.text,'/',cb_disable.text,'] - ',"
+				+ "' - ',CASE WHEN cGroup.clientgroupname IS NULL THEN '未分组' ELSE cGroup.clientgroupname END) as clientName ");
+		
+		fromHql.append(" from client c left join client_group_mapping cgMapping on c.clientid=cgMapping.clientid"
+				+ " left join client_group cGroup on cGroup.clientgroupid = cgMapping.clientgroupid,"
+				+" code_book cb_modPass,code_book cb_authType,code_book cb_disable,code_book cb_userType"
+				+ " where c.modifypass = cb_modPass.value"
+				+" and cb_modPass.tag = '"+MssConstants.MODIFY_PASS+"'"
+				+" and c.authenticationtype = cb_authType.value"
+				+" and cb_authType.tag = '"+MssConstants.AUTH_TYPE+"'"
+				+" and c.disable = cb_disable.value"
+				+" and cb_disable.tag = '"+MssConstants.DISABLE_FLAG+"'"
+				+" and c.usertype = cb_userType.value"
+				+" and cb_userType.tag = '"+MssConstants.USER_TYPE+"'");
+		
+		listHql.append(fromHql);
+
+		StringBuffer filterHql = new StringBuffer();
+			
+
+		
+		if (groupId != null && !"".equals(groupId)) {
+			//查询该分组中的服务器记录
+			if(isLoadGroupClient){
+				filterHql.append(" and cGroup.clientgroupid = ? ");
+				paramList[0]=new Integer (groupId);
+			}
+			//查询未分组和不属于该分组的服务器
+			else{
+				filterHql.append(" and (cGroup.clientgroupname is NULL or cGroup.clientgroupid != ?)");
+				paramList[0]=new Integer (groupId);
+			}
+		}
+		
+		//按服务器类别和名称排序
+		listHql.append(filterHql + "  order by c.clientid asc ");
+		log.info("SQL:"+listHql.toString());
+		if(paramList[0]==null){
+			list = FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString());
+		}else{
+			list = FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString(),paramList);
+		}
+		
 		return list;
 	}
 }

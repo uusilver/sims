@@ -45,4 +45,12 @@
 		<property name="clientDAO" ref="clientDAO" />
 	</bean>
 	
+	<bean id="clientGroupBO" class="com.xwtech.mss.bo.business.ClientGroupBO">     
+		<property name="clientGroupDAO" ref="clientGroupDAO" />
+	</bean>
+	
+	<bean id="clientGroupMappingBO" class="com.xwtech.mss.bo.business.ClientGroupMappingBO">     
+		<property name="clientGroupMappingDAO" ref="clientGroupMappingDAO" />
+	</bean>
+	
 </beans>

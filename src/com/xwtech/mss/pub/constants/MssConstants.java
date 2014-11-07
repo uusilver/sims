@@ -120,6 +120,18 @@ public class MssConstants {
 	// 服务器状态
 	public static final String SERVER_STATUS = "SERVER_STATUS"; 
 	
+	// 是否修改密码
+	public static final String MODIFY_PASS = "MODIFY_PASS"; 
+	
+	// 认证类型
+	public static final String AUTH_TYPE = "AUTH_TYPE"; 
+	
+	// 客户端状态
+	public static final String DISABLE_FLAG = "DISABLE_FLAG"; 
+	
+	// 客户类型
+	public static final String USER_TYPE = "USER_TYPE"; 
+	
 	/***************************************************************************
 	 * 基本常量
 	 **************************************************************************/

@@ -198,23 +198,23 @@ public class ClientInfoDAO extends BaseDao {
 			paramList.add((Object) ("%" + searchForm.getQueryClientName() + "%"));
 		}
 		//客户昵称
-		if (searchForm.getQueryClientNick() != null && !"".equals(searchForm.getQueryClientNick())) {
-			filterHql.append(" and clientInfo.clientNick like ?");
-			paramList.add((Object) ("%" + searchForm.getQueryClientNick() + "%"));
-		}
-		//客户状态
-		if (searchForm.getQueryClientState() != null && !"".equals(searchForm.getQueryClientState())) {
-			filterHql.append(" and clientInfo.clientState = ?");
-			paramList.add(searchForm.getQueryClientState());
-		}else{
-			filterHql.append(" and clientInfo.clientState in ('A','U')");
-		}
-
-		//客户类型
-		if (searchForm.getQueryClientType() != null && !"".equals(searchForm.getQueryClientType())) {
-			filterHql.append(" and clientInfo.clientType = ?");
-			paramList.add(searchForm.getQueryClientType());
-		}
+//		if (searchForm.getQueryClientNick() != null && !"".equals(searchForm.getQueryClientNick())) {
+//			filterHql.append(" and clientInfo.clientNick like ?");
+//			paramList.add((Object) ("%" + searchForm.getQueryClientNick() + "%"));
+//		}
+//		//客户状态
+//		if (searchForm.getQueryClientState() != null && !"".equals(searchForm.getQueryClientState())) {
+//			filterHql.append(" and clientInfo.clientState = ?");
+//			paramList.add(searchForm.getQueryClientState());
+//		}else{
+//			filterHql.append(" and clientInfo.clientState in ('A','U')");
+//		}
+//
+//		//客户类型
+//		if (searchForm.getQueryClientType() != null && !"".equals(searchForm.getQueryClientType())) {
+//			filterHql.append(" and clientInfo.clientType = ?");
+//			paramList.add(searchForm.getQueryClientType());
+//		}
 
 		//按客户类别和名称排序
 		listHql.append(filterHql + "  order by clientInfo.clientType ,clientInfo.clientName asc ");

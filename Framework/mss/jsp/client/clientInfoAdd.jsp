@@ -15,7 +15,8 @@
 		<script type="text/javascript">
 
 		function saveClientInfo(){
-			if(checkUserName()&&checkPassword()&&checkAuthType()&&checkUserType()&&checkClientComment()){
+			if(checkUserName()&&checkPassword()&&checkModifyPass()&&checkAuthType()&&checkDisableFlag()
+					&&checkUserType()&&checkClientComment()){
 				if(confirm("您确定要保存该客户信息么？")){
 					document.clientInfoAddForm.submit();
 				}
@@ -71,6 +72,21 @@
 			
 		}
 		
+		function checkModifyPass(){
+			var modifyPass = document.getElementsByName("modifyPass")[0];
+			var infoDiv = document.getElementById("modify_passDiv");
+			if (modifyPass.value == "") {
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "是否修改密码不能为空，请选择！";
+		        modifyPass.focus();
+				return false;
+			}
+			
+			infoDiv.className = "OK";
+		    infoDiv.innerHTML = "符合要求";
+		    return true;
+		}
+		
 		function checkAuthType(){
 			var authType = document.getElementsByName("authType")[0];
 			var infoDiv = document.getElementById("auth_typeDiv");
@@ -83,6 +99,22 @@
 			
 			infoDiv.className = "OK";
 		    infoDiv.innerHTML = "认证类型符合要求";
+		    return true;
+		}
+		
+		
+		function checkDisableFlag(){
+			var disableFlag = document.getElementsByName("disableFlag")[0];
+			var infoDiv = document.getElementById("disable_flagDiv");
+			if (disableFlag.value == "") {
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "客户端状态不能为空，请选择！";
+		        disableFlag.focus();
+				return false;
+			}
+			
+			infoDiv.className = "OK";
+		    infoDiv.innerHTML = "符合要求";
 		    return true;
 		}
 		
@@ -168,17 +200,18 @@
 						<input name="clientName" id="client_name" type="text" class="qinggoudan_input023" size="20" maxlength="50"
 							value="${information.clientInfo.truename}"
 							onchange="checkClientName()">
-						<input type="hidden" name="clientNum" id="client_num" value="${information.client.clientid }" />
+						<input type="hidden" name="clientNum" id="client_num" value="${information.clientInfo.clientid }" />
 						<span id="client_nameDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						是否修改密码
+						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:link sql="<%=MssConstants.QUERY_CLIENT_MODIFYPASS_SQL%>" num="1" selectSize="20"
-							title="------请选择------" next="false" name="modifyPass" mvalue="${information.client.modifypass}" />
+							title="------请选择------" next="false" name="modifyPass" mvalue="${information.clientInfo.modifypass}" />
 					<span id="modify_passDiv"></span>
 					</td>
 				</tr>
@@ -189,17 +222,18 @@
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:link sql="<%=MssConstants.QUERY_CLIENT_AUTH_TYPE_SQL%>" num="1" selectSize="20"
-							title="------请选择认证类型------" next="false" name="authType" mvalue="${information.client.authenticationtype}" />
+							title="------请选择认证类型------" next="false" name="authType" mvalue="${information.clientInfo.authenticationtype}" />
 					<span id="auth_typeDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
-						是否禁用
+						客户端状态
+						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:link sql="<%=MssConstants.QUERY_CLIENT_DISABLE_FLAG_SQL%>" num="1" selectSize="20"
-							title="请选择是否禁用" next="false" name="disableFlag" mvalue="${information.client.disable}" />
+							title="请选择是否禁用" next="false" name="disableFlag" mvalue="${information.clientInfo.disable}" />
 					<span id="disable_flagDiv"></span>
 					</td>
 				</tr>
@@ -210,7 +244,7 @@
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:link sql="<%=MssConstants.QUERY_CLIENT_USER_TYPE_SQL%>" num="1" selectSize="20"
-							title="请选择客户类型" next="false" name="userType" mvalue="${information.client.usertype}" />
+							title="请选择客户类型" next="false" name="userType" mvalue="${information.clientInfo.usertype}" />
 					<span id="user_typeDiv"></span>
 					</td>
 				</tr>
@@ -219,7 +253,7 @@
 						备注
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<textarea name="clientComment" id="client_comment" rows="10" cols="30" onchange="checkClientComment()">${information.clientInfo.clientComm}</textarea>
+						<textarea name="clientComment" id="client_comment" rows="10" cols="30" onchange="checkClientComment()">${information.clientInfo.note}</textarea>
 					<span id="client_commDiv"></span>
 					</td>
 				</tr>
@@ -229,17 +263,27 @@
 			<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
 					<td align="center">
+					<c:if test="${information.searchForm.showHeader==null || information.searchForm.showHeader=='yes' }">
 						&nbsp;
 						<input type="button" class="anniu_out" name="saveBtn" value=" 确 定 " onclick="saveClientInfo()"
 							onMouseOver="className='anniu_over'" onMouseOut="className='anniu_out'">
 						&nbsp;&nbsp;&nbsp;&nbsp;
+					</c:if>
 						<input type="button" class="anniu_out" value=" 返 回 " onMouseOver="className='anniu_over'"
 							onMouseOut="className='anniu_out'"
-							onclick="goList('${contextPath }/mss/jsp/client/clientInfoController.do?method=queryClientInfoList','viewOrEdit')">
+							onclick="goList('${contextPath }/mss/jsp/client/clientInfoController.do?method=queryClientInfoList','viewOrEdit,currentPage,queryClientName,queryAuthType,queryDisableFlag,queryUserType,queryStatus,queryClientGroup,showHeader')">
 					</td>
 				</tr>
 			</table>
-				<input type="hidden" id="viewOrEdit" value="${information.searchForm.viewOrEdit }" />
+				<input type="hidden" name="viewOrEdit" value="${information.searchForm.viewOrEdit}"/>
+				<input type="hidden" name="currentPage" value="${information.searchForm.currentPage}" />
+				<input type="hidden" name="queryClientName" value="${information.searchForm.queryClientName}" />
+				<input type="hidden" name="queryAuthType" value="${information.searchForm.queryAuthType}" />
+				<input type="hidden" name="queryDisableFlag" value="${information.searchForm.queryDisableFlag}" />
+				<input type="hidden" name="queryUserType" value="${information.searchForm.queryUserType}" />
+				<input type="hidden" name="queryStatus" value="${information.searchForm.queryStatus}" />
+				<input type="hidden" name="queryClientGroup" value="${information.searchForm.queryClientGroup}" />
+				<input type="hidden" name="showHeader" value="${information.searchForm.showHeader}" />
 				
 		</form>
 	</body>
