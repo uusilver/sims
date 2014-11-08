@@ -18,84 +18,22 @@
     #carousel .tooltip, #carousel .bigImage, #carousel .title, #carousel .description{position:absolute;left:-9999px;}
 </style>
 
-<link rel="stylesheet" type="text/css" href="css/carousel.css" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/jquery.jOrgChart.css"/>
-<link rel="stylesheet" href="css/custom.css"/>
-<link href="css/prettify.css" type="text/css" rel="stylesheet" />
 
-<script type="text/javascript" src="js/lib/prettify.js"></script>
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="js/lib/jquery-ui-1.9.2.js"></script>
-<script type="text/javascript" src="js/lib/"></script>
-<script type="text/javascript" src="js/jquery.carousel.min.js"></script>
-<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-<script src="js/lib/jquery.jOrgChart.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-
-<body style="background:url(images/bg.jpg)">
-<!-- Div for Charts info-->
-<div id="exhibitor114" >
-    <div id="exhibitorleft" >
-        <div id="wide-wrapper">
-            <div id="header">
-                <!--<a href="#"><img src="images/name.jpg" width="280" height="50" alt="3d carousel"/></a>-->
-            </div>
-
-            <ul id="carousel">
-                <li><img src="images/nj.jpg" id="nj" alt=""/></li>
-                <li>
-                    <img src="images/cz.jpg" alt="" id="cz"/>
-                    <div class="tooltip">Image description</div>
-                </li>
-                <li><img src="images/lyg.jpg" alt="" id="lyg"/></li>
-                <li>
-                    <img src="images/ha.jpg" alt="" id="ha"/>
-                    <div class="tooltip"><u>Image title</u><br/><br alt=""/>Tooltips support <i>HTML</i> text.</div>
-                </li>                                                                                                                                                                                       t
-                <li><img src="images/nt.jpg" alt="" id="nt"/></li>
-                <li><img src="images/st.jpg" alt="" id="st"/></li>
-                <li>
-                    <img src="images/stc.jpg" alt="" id="stc"/>
-                    <div class="tooltip"><u></u><br/><br/><img src="images/stc.jpg" width="60" height="50" style="float:left; margin-right:10px; margin-bottom:10px;" alt=""/>省统筹</div>
-                </li>
-                <li><img src="images/sq.jpg" alt="" id="sq"/></li>
-                <li><img src="images/sz.jpg" alt="" id="sz"/></li>
-                <li>
-                    <img src="images/tz.jpg" alt="" id="tz"/>
-                    <div class="tooltip">Image description</div>
-                </li>
-                <li><img src="images/wx.jpg" alt="" id="wx"/></li>
-                <li><img src="images/xz.jpg" alt="" id="xz"/></li>
-                <li>
-                    <img src="images/yz.jpg" alt="" id="yz"/>
-                    <div class="tooltip"><u>Image title</u><br/><br/>Tooltips support <i>HTML</i> text.</div>
-                </li>
-                <li><img src="images/zj.jpg" alt="" id="zj"/></li>
-                <li><img src="images/yc.jpg" alt="" id="yc"/></li>
-
-
-            </ul>
-        </div>
-    </div>
-    <div id="exhibitorright" >
-        <ul id="" style="margin:0px; padding:0px;  text-align:left;">
-            <div id="header">
-                <!--<a href="#"><img src="images/right-name.png" width="280" height="50" alt="3d carousel"/></a>-->
-            </div>
-            <font size="3" color="white">正常服务器:2台</font><li id="server_green" style="margin-left: 30px;"></li>
-            <font size="3" color="white">繁忙服务器:1台</font><li id="server_warning" style="margin-left: 30px;"></li>
-            <font size="3" color="white">未使用服务器:1台</font><li id="server_gray" style="margin-left: 30px;"></li>
-        </ul>
-              <!--<iframe id="orgChart" name="tt"  width="900" height="600" scrolling="no" frameborder="0"></iframe>-->
-
-        <div>
-            <ul id="org" style="display:none">
-            </ul>
-        </div>
-        <div id="chart" class="orgChart"></div>
-    </div>
-</div>
-
+<script>
+	$(function(){
+		openNew();
+		$("#openIndex").click(function(){
+			window.open("index.html");
+			});
+		});
+	
+	function openNew(){
+			window.open("index.html");
+		}
+</script>
+<body>
+<button id="openIndex">服务器统计状态</button>
 </body>
 </html>
