@@ -53,4 +53,8 @@
 		<property name="clientGroupMappingDAO" ref="clientGroupMappingDAO" />
 	</bean>
 	
+	<bean id="clientServerMappingBO" class="com.xwtech.mss.bo.business.ClientServerMappingBO">     
+		<property name="clientServerMappingDAO" ref="clientServerMappingDAO" />
+	</bean>
+	
 </beans>

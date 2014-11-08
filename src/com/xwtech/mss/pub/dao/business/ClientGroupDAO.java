@@ -206,14 +206,13 @@ public class ClientGroupDAO extends BaseDao {
 	}
 	
 	/**
-	 * 批量删除选中的客户端分组记录（逻辑删除）
+	 * 批量删除选中的客户端分组记录（物除删除）
 	 * @param groupIdStr
 	 * @return
 	 */
 	public int delClientGroup(String groupIdStr) {
 		// 拼装SQL
-		StringBuffer sbSql = new StringBuffer("UPDATE CLIENT_GROUP CG SET CG.STATUS = ");
-		sbSql.append("'" + MssConstants.STATE_D + "'"); // 状态设置为删除
+		StringBuffer sbSql = new StringBuffer("DELETE CG FROM CLIENT_GROUP CG ");
 		sbSql.append(" WHERE CG.CLIENTGROUPID IN (");
 		sbSql.append(groupIdStr);
 		sbSql.append(")");

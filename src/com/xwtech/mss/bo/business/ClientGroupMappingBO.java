@@ -52,8 +52,8 @@ public class ClientGroupMappingBO {
 	 * 
 	 * @param idStr,以‘,’隔开
 	 */
-	public int delMappingRecords(String serverIdStr,String groupId) {
-		return this.clientGroupMappingDAO.delMappingRecords(serverIdStr,groupId);
+	public int delMappingRecords(String clientGroupIdStr) {
+		return this.clientGroupMappingDAO.delMappingRecords(clientGroupIdStr);
 	}
 	
 	/**

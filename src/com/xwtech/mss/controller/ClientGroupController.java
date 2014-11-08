@@ -141,7 +141,7 @@ public class ClientGroupController extends MultiActionController {
 						//删除原有的服务器关系记录，然后再插入新选择的服务器与分组关系记录
 //						if(viewOrEdit!=null&&MssConstants.VIEW_OR_EDIT_EDIT.equals(viewOrEdit)){
 //						}
-						int returnValue = clientGroupMappingBO.delMappingRecords(clientIds,clientGroup.getClientgroupid().toString());
+						int returnValue = clientGroupMappingBO.delMappingRecords(clientGroup.getClientgroupid().toString());
 						if(returnValue>=0){
 							clientGroupMappingBO.saveClientGroupLink(clientGroup.getClientgroupid(),clientIds);
 						}
@@ -356,10 +356,15 @@ public class ClientGroupController extends MultiActionController {
 				int result = 0;
 				try {
 					// 获得页面表单信息
-					String clientNumStr = request.getParameter("clientIdStr");
-					if(clientNumStr!=null&&!clientNumStr.equals("")){
+					String clientGroupIdStr = request.getParameter("clientIdStr");
+					if(clientGroupIdStr!=null&&!clientGroupIdStr.equals("")){
+						clientGroupIdStr = clientGroupIdStr.substring(0, clientGroupIdStr.length()-1);
+						//根据客户端ID和GroupID删除映射记录
+						result = clientGroupMappingBO.delMappingRecords(clientGroupIdStr);
 						// 根据权限ID删除相关权限信息
-						clientGroupBO.delClientGroup(clientNumStr.substring(0, clientNumStr.length()-1));
+						if(result>=0){
+							clientGroupBO.delClientGroup(clientGroupIdStr);
+						}
 					}
 					
 					//保存服务器删除记录

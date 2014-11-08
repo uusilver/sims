@@ -228,13 +228,12 @@ public class ClientGroupMappingDAO extends BaseDao {
 	 * 
 	 * @param idStr,以‘,’隔开
 	 */
-	public int delMappingRecords(String clientIdStr,String groupId) {
+	public int delMappingRecords(String clientGroupIdStr) {
 		int result = 0;
 		StringBuffer sql = new StringBuffer();
-		sql.append("delete cgm from client_group_mapping cgm where cgm.clientid in (");
-		sql.append(clientIdStr.lastIndexOf(",") > 0 ? (clientIdStr.substring(0, clientIdStr.lastIndexOf(","))) : clientIdStr.trim());
+		sql.append("delete cgm from client_group_mapping cgm where cgm.clientgroupid in (");
+		sql.append(clientGroupIdStr.lastIndexOf(",") > 0 ? (clientGroupIdStr.substring(0, clientGroupIdStr.lastIndexOf(","))) : clientGroupIdStr.trim());
 		sql.append(" ) ");
-		sql.append(" or cgm.clientgroupid = "+groupId);
 		result = executeCommonSql(sql.toString());
 		return result;
 	}

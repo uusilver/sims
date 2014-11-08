@@ -116,6 +116,7 @@
 	<bean name="/mss/jsp/client/clientInfoController.do" class="com.xwtech.mss.controller.ClientInfoController">
 		<property name="transTemplate" ref="transTemplate" />
 		<property name="clientInfoBO" ref="clientInfoBO" />
+		<property name="clientServerMappingBO" ref="clientServerMappingBO" />
 		<property name="operLogBO" ref="operLogBO"/>
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>

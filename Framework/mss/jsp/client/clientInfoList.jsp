@@ -23,12 +23,13 @@
 		}
 		
 		function addClientInfo(){
-			window.location = "${contextPath}/mss/jsp/client/clientInfoAdd.jsp?viewOrEdit='add'";
+			window.location = "${contextPath}/mss/jsp/client/clientInfoController.do?method=queryClientInfoById&viewOrEdit=add"
+			+ constructParams('queryClientGroup,quserStatus,currentPage,showHeader');
 		}
 		
 		function viewClientInfo(clientNum){
 			window.location = "${contextPath}/mss/jsp/client/clientInfoController.do?method=queryClientInfoById&clientNum=" + clientNum
-			+ constructParams('queryClientGroup,quserStatus,currentPage,viewOrEdit,showHeader');;
+			+ constructParams('queryClientGroup,quserStatus,currentPage,viewOrEdit,showHeader');
 		}
 		
 		function delClientInfo(){
@@ -127,7 +128,7 @@
 					<td class="qinggoudan_table_title" width="10%">
 						认证类型
 					</td>
-					<td class="qinggoudan_table_title" width="20%">
+					<td class="qinggoudan_table_title" width="10%">
 						客户端状态
 					</td>
 					<td class="qinggoudan_table_title" width="10%">
@@ -167,7 +168,7 @@
 							<input type="hidden" id="trueName${clientInfo.clientid}" value="${fn:escapeXml(clientInfo.truename)}" />
 						</td>
 						<td class="qinggoudan_table_td2">
-							&nbsp;${fn:escapeXml(clientInfo.clientgroupname)}
+							&nbsp;${(clientInfo.clientgroupname==null||clientInfo.clientgroupname=="")?"未分组":clientInfo.clientgroupname}
 							<input type="hidden" id="clientGroup${clientInfo.clientid}" value="${fn:escapeXml(clientInfo.clientgroupname)}" />
 						</td>
 						<td class="qinggoudan_table_td2">

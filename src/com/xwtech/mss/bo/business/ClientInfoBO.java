@@ -72,4 +72,26 @@ public class ClientInfoBO {
 		return resultList;
 	}
 	
+	/**
+	 * 查询该客户端不能访问的所有服务器
+	 * @return List 服务器列表
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ServerInfoForm> queryUnAccessedServer(String clientId,Boolean isLoadGroupServer) {
+		List list = this.clientDAO.queryUnAccessedServer(clientId,isLoadGroupServer);
+		List<ServerInfoForm> resultList = null;
+		if(list!=null&&!list.isEmpty()){
+			resultList = new ArrayList();
+			ServerInfoForm serverInfoForm=null;
+			for(int i=0;i<list.size();i++){
+				ListOrderedMap server = (ListOrderedMap)(list.get(i));
+				serverInfoForm = new ServerInfoForm();
+				serverInfoForm.setServerId(server.get("serverId").toString());
+				serverInfoForm.setServerTag(server.get("serverName").toString());
+				resultList.add(serverInfoForm);
+			}
+		}
+		return resultList;
+	}
+	
 }

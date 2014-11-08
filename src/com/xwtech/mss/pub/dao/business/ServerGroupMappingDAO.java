@@ -231,7 +231,7 @@ public class ServerGroupMappingDAO extends BaseDao {
 		int result = 0;
 		StringBuffer sql = new StringBuffer();
 		sql.append("delete sgm from server_group_mapping sgm where sgm.serverid in (");
-		sql.append(serverIdStr.lastIndexOf(",") > 0 ? (serverIdStr.substring(0, serverIdStr.lastIndexOf(","))) : serverIdStr.trim());
+		sql.append(serverIdStr.trim());
 		sql.append(" ) ");
 		sql.append(" or sgm.servergroupid = "+groupId);
 		result = executeCommonSql(sql.toString());

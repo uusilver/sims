@@ -384,6 +384,7 @@ public class BaseDao extends HibernateDaoSupport
          try {
            stmt = conn.createStatement();
            result = stmt.executeUpdate(sql);
+           conn.commit();
          }catch (Exception ex) {
            log.error("执行sql错误"+sql,ex);
            throw new HibernateException(ex);

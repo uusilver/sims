@@ -16,12 +16,14 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import com.google.gson.Gson;
 import com.xwtech.framework.pub.result.ResultInfo;
 import com.xwtech.framework.pub.result.ResultInfos;
 import com.xwtech.framework.pub.utils.DateUtils;
 import com.xwtech.framework.pub.utils.SessionUtils;
 import com.xwtech.framework.pub.web.RequestNameConstants;
 import com.xwtech.mss.bo.business.ClientInfoBO;
+import com.xwtech.mss.bo.business.ClientServerMappingBO;
 import com.xwtech.mss.bo.system.operator.OperLogBO;
 import com.xwtech.mss.formBean.ClientInfoForm;
 import com.xwtech.mss.pub.constants.MssConstants;
@@ -43,6 +45,8 @@ public class ClientInfoController extends MultiActionController {
 	
 	private ClientInfoBO clientInfoBO;
 	
+	private ClientServerMappingBO clientServerMappingBO;
+	
 	private OperLogBO operLogBO;
 
 
@@ -54,6 +58,10 @@ public class ClientInfoController extends MultiActionController {
 		this.clientInfoBO = clientInfoBO;
 	}
 	
+	public void setClientServerMappingBO(ClientServerMappingBO clientServerMappingBO) {
+		this.clientServerMappingBO = clientServerMappingBO;
+	}
+
 	public void setOperLogBO(OperLogBO operLogBO) {
 		this.operLogBO = operLogBO;
 	}
@@ -95,6 +103,9 @@ public class ClientInfoController extends MultiActionController {
 		
 		//用户类型
 		final String userType = request.getParameter("userType");
+		
+		//服务器ID串,如：1，2，3，4
+		final String serverIds = request.getParameter("hiddenServerIds");
 		
 		//备注
 		final String clientComment = request.getParameter("clientComment");
@@ -141,8 +152,17 @@ public class ClientInfoController extends MultiActionController {
 					clientInfo.setNote(clientComment);
 					//用户姓名首字母
 			      	ChineseSpellingToPinYin py2 = new ChineseSpellingToPinYin();
-					clientInfo.setFirstLetter(py2.getFirstletterByName(trueName));
+					clientInfo.setFirstLetter(py2.getFirstletterByName(loginName));
 					clientInfoBO.saveOrUpdate(clientInfo);
+					
+					//保存客户端可以访问的服务器记录
+					if(serverIds!=null&&!"".equals(serverIds)){
+						int result = clientServerMappingBO.delMappingRecords(serverIds, clientInfo.getClientid().toString());
+						if(result>=0){
+							clientServerMappingBO.saveClientServerLink(clientInfo.getClientid(), serverIds);
+						}
+					}
+					
 					resultInfos.add(new ResultInfo(ResultConstants.ADD_CLIENT_INFO_SUCCESS));
 					
 					//保存操作日志
@@ -250,6 +270,7 @@ public class ClientInfoController extends MultiActionController {
 	 * @return
 	 * @throws ServletRequestBindingException
 	 */
+	@SuppressWarnings("unchecked")
 	public ModelAndView queryClientInfoById(HttpServletRequest request, HttpServletResponse response)
 															throws ServletRequestBindingException {
 		HashMap map = new HashMap();
@@ -270,9 +291,32 @@ public class ClientInfoController extends MultiActionController {
 		Client clientInfo = null;
 		String typeNameStr = "";
 		String typeNumStr = "";
+		List csMappingList = null;
+		List unAccessedServerList = null;
+		String csMappingResult = "";
+		
 		if(clientId!=null&&!clientId.equals("")){
+			
 			clientInfo = clientInfoBO.findById(new Integer(clientId));
+			
+			//查询所有该客户端不能访问的服务器对象
+//			List serverList = serverGroupMappingBO.queryServerTextByGroupId(null);
+			unAccessedServerList = clientInfoBO.queryUnAccessedServer(clientId,false);
+
+			//查询该客户端可以访问的服务器对象
+			csMappingList = clientInfoBO.queryUnAccessedServer(clientId,true);
+			
+			if(csMappingList!=null&&!csMappingList.isEmpty()){
+				Gson gson = new Gson();
+				csMappingResult= gson.toJson(csMappingList);
+			}
 		}
+		//新增客户端
+		else if(viewOrEdit!=null&&MssConstants.VIEW_OR_EDIT_ADD.equals(viewOrEdit)) {
+			//查询所有服务器对象
+			unAccessedServerList = clientInfoBO.queryUnAccessedServer(null,false);
+		}
+		
 		clientInfoForm.setClientId(clientId);
 		clientInfoForm.setCurrentPage(currentPage);
 		clientInfoForm.setQueryAuthType(queryAuthType);
@@ -285,6 +329,8 @@ public class ClientInfoController extends MultiActionController {
 		
 		map.put("clientInfo", clientInfo);
 		map.put("searchForm",clientInfoForm);
+		map.put("serverList", unAccessedServerList);
+		map.put("csMappingResult", csMappingResult);
 		return new ModelAndView("/mss/jsp/client/clientInfoAdd.jsp?viewOrEdit="+viewOrEdit, RequestNameConstants.INFORMATION, map);
 	}
 	

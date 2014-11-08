@@ -46,7 +46,7 @@
 					serverIds = serverIds.substring(0, serverIds.length - 1);
 			
 					$("input[name=hiddenServerIds]").attr("value",serverIds);
-					alert($("input[name=hiddenServerIds]").val());
+					//alert($("input[name=hiddenServerIds]").val());
 					document.serverGroupAddForm.submit();
 				}
 			}else{

@@ -6,18 +6,42 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>物资管理系统-客户信息管理</title>
+		<title>物资管理系统-客户端信息创建</title>
 		<link href="${contextPath }/framework/css/style.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="${contextPath}/mss/js/GoodsManage.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/ajax.js"></script>
+		<script type="text/javascript" src="${contextPath}/mss/js/jquery-1.9.1.min.js"></script> 
+		<script type="text/javascript">
+		// 初始化页面，将所属服务器信息加入"已分配服务器"下拉框中
+		$(function(){
+			var csMappingJsonObj = $.parseJSON('${information.csMappingResult}');
+			var serverId;
+			var serverName;
+			var sel_dest = $("select[name=serverId]");
+			for(var i=0;i<csMappingJsonObj.length;i++){
+					serverId = csMappingJsonObj[i].serverId;
+					serverName = csMappingJsonObj[i].serverTag;
+					sel_dest.append("<option value='"+serverId+"'>"+serverName+"</option>");
+			}
+		});
+		
+		</script>
 		<script type="text/javascript">
 
 		function saveClientInfo(){
 			if(checkUserName()&&checkPassword()&&checkModifyPass()&&checkAuthType()&&checkDisableFlag()
 					&&checkUserType()&&checkClientComment()){
 				if(confirm("您确定要保存该客户信息么？")){
+					var serverOptions = $("select[name=serverId]").find("option");
+					var serverIds = "";
+					for(var i=0;i < serverOptions.length; i++){
+						serverIds += serverOptions[i].value + ",";
+					}
+					serverIds = serverIds.substring(0, serverIds.length - 1);
+			
+					$("input[name=hiddenServerIds]").attr("value",serverIds);
+					
 					document.clientInfoAddForm.submit();
 				}
 			}else{
@@ -37,10 +61,10 @@
 				return false;
 			}
 			
-			if(trim(userName.value).length>16)
+			if(trim(userName.value).length>20)
 			{
 				infoDiv.className = "warning";
-		        infoDiv.innerHTML = "用户名不能超过16个字符，请修改";
+		        infoDiv.innerHTML = "用户名不能超过20个字符，请修改";
 		        userName.focus();
 				return false;
 			}
@@ -162,12 +186,12 @@
 				style="margin:0px;">
 				<tr>
 					<td class="qinggoudan_title01_td1">
-						创建新客户档案
+						创建新客户端档案
 					</td>
 				</tr>
 			</table>
 
-			<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table">
+			<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table">
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						用户名
@@ -248,7 +272,18 @@
 					<span id="user_typeDiv"></span>
 					</td>
 				</tr>
-				<tr height="30">
+				<tr>
+					<td align="center" class="qinggoudan_table_title">
+						可访问服务器
+					</td>
+					<td align="left" class="qinggoudan_table_td1">
+						<pub:two align="left" arl="${information.serverList }" selectItem="服务器列表" waitItem="可访问服务器列表" leftId="serverId"
+							leftValue="serverTag" rightId="serverId" rightValue="serverTag" rightName="serverId" selectStyle="two_select"
+							itemStyle="item_two_select" moveStyle="button_select" size="15" contextPath="${contextPath}" />
+						<input type="hidden" name="hiddenServerIds" value=""/>
+					</td>
+				</tr>
+				<tr height="167">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						备注
 					</td>

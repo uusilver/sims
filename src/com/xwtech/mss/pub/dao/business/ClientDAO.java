@@ -288,6 +288,7 @@ public class ClientDAO extends BaseDao {
 		// 查询条数
 		StringBuffer countHql = new StringBuffer();
 		countHql.append("select count(c.clientid) ");
+		
 		countHql.append(fromHql);
 
 		StringBuffer filterHql = new StringBuffer();
@@ -443,6 +444,82 @@ public class ClientDAO extends BaseDao {
 		
 		//按服务器类别和名称排序
 		listHql.append(filterHql + "  order by c.clientid asc ");
+		log.info("SQL:"+listHql.toString());
+		if(paramList[0]==null){
+			list = FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString());
+		}else{
+			list = FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString(),paramList);
+		}
+		
+		return list;
+	}
+	
+	/**
+	 * 查询该客户端不能访问的所有服务器
+	 * @param clientId
+	 * @param isLoadAccessedServer
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Object[]> queryUnAccessedServer(String clientId,Boolean isLoadAccessedServer) {
+		List<Object[]> list = null;
+		Object[] paramList = new Object[1];
+		// 查询列表sql
+		StringBuffer listHql = new StringBuffer();
+		StringBuffer fromHql = new StringBuffer();
+		StringBuffer whereHql =  new StringBuffer();
+		StringBuffer notExistsHql = new StringBuffer();
+		listHql.append("select ts.serverid as serverId,"
+				+"CONCAT(ts.serverip,' - ',cb_type.text,' - [',c.countryname,'/',prov.provincename,'/',t.cityname,']',"
+				+ "' - ',r.regionname) as serverName ");
+		
+		fromHql.append(" from transit_server ts,code_book cb_type,code_book cb_status,country c,province prov,city t,region r ");
+		
+		whereHql.append(" where ts.countryid = c.countryid"
+				+ " and ts.provinceid = prov.provinceid"
+				+ " and ts.cityid = t.cityid"
+				+ " and ts.regionid = r.regionid"
+				+ " and ts.servertype = cb_type.value"
+				+ " and cb_type.tag = '"+MssConstants.SERVER_TYPE+"'"
+				+ " and ts.serverstatus = cb_status.value"
+				+ " and cb_status.tag = '"+MssConstants.SERVER_STATUS+"'");
+		
+		notExistsHql.append(" and not exists ( "
+				+ " select csMapping.serverid from client cl,client_server_mapping csMapping"
+				+" where cl.clientid = csMapping.clientid"
+				+" and ts.serverid = csMapping.serverid");
+		
+		listHql.append(fromHql);
+
+		StringBuffer filterHql = new StringBuffer();
+			
+
+		
+		if (clientId != null && !"".equals(clientId)) {
+			//查询客户端可以访问的服务器
+			if(isLoadAccessedServer){
+				filterHql.append(",client cl,client_server_mapping csMapping");
+				filterHql.append(whereHql);
+				filterHql.append(" and cl.clientid = csMapping.clientid "
+								+" and ts.serverid = csMapping.serverid"
+								+" and cl.clientid=?");
+				paramList[0]=new Integer (clientId);
+			}
+			//查询所有该客户端不能访问的服务器
+			else{
+				filterHql.append(whereHql);
+				filterHql.append(notExistsHql);
+				filterHql.append(" and cl.clientid=?)");
+				paramList[0]=new Integer (clientId);
+			}
+		}
+		//查询所有不能访问的服务器
+		else{
+			filterHql.append(whereHql);
+		}
+		
+		//按服务器类别和名称排序
+		listHql.append(filterHql + "  order by ts.serverid asc ");
 		log.info("SQL:"+listHql.toString());
 		if(paramList[0]==null){
 			list = FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString());

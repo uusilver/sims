@@ -9,6 +9,8 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Example;
 
 import com.xwtech.framework.pub.dao.BaseDao;
+import com.xwtech.framework.pub.utils.StringUtils;
+import com.xwtech.framework.pub.web.FrameworkApplication;
 import com.xwtech.mss.pub.po.ClientServerMapping;
 
 /**
@@ -148,5 +150,49 @@ public class ClientServerMappingDAO extends BaseDao {
 			log.error("attach failed", re);
 			throw re;
 		}
+	}
+	
+	/**
+	 * 保存服务器和客户端的对应关系
+	 * @param clientId
+	 * @param serverIds,以‘,’隔开
+	 */
+	public int saveClientServerLink(Integer clientId, String serverIds) {
+		if (StringUtils.isEmpty(serverIds)) {
+			return 0;
+		}
+
+		try {
+			// 拼装SQL
+			StringBuffer sbSql = new StringBuffer("INSERT INTO CLIENT_SERVER_MAPPING ( CLIENTID,SERVERID)");
+			sbSql.append(" SELECT "+clientId+" AS CLIENT_ID,T.SERVERID AS SERVER_ID FROM");
+			// 服务器ID
+			sbSql.append(" (SELECT TS.SERVERID from TRANSIT_SERVER TS WHERE TS.SERVERID IN (" + serverIds + ")) T");
+
+			log.info(sbSql.toString());
+
+			return FrameworkApplication.baseJdbcDAO.update(sbSql.toString());
+		} catch (RuntimeException re) {
+			log.error("保存服务器和客户端的对应关系", re);
+			throw re;
+		}
+
+	}
+	
+	/**
+	 * 根据Id删除记录
+	 * 
+	 * @param idStr,以‘,’隔开
+	 */
+	public int delMappingRecords(String serverIdStr,String clientId) {
+		int result = 0;
+		StringBuffer sql = new StringBuffer();
+		sql.append("delete csm from client_server_mapping csm where csm.serverid in (");
+		sql.append(serverIdStr.trim());
+		sql.append(" ) ");
+		sql.append(" or csm.clientid = "+clientId);
+		log.info(sql.toString());
+		result = executeCommonSql(sql.toString());
+		return result;
 	}
 }
