@@ -2,19 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"  alt=""/>
-<title>服务器信息展示</title>
+<title>jQ 3D圆形立体旋转 - 16素材网</title>
+
+<link href="css/jquery-ui-1.9.2.css" rel="stylesheet" type="text/css" />
 <link href="css/carousel.css" rel="stylesheet" type="text/css" />
 <link href="css/style-index.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-ui-1.9.2.js"></script>
 <script type="text/javascript" src="js/jquery.carousel.min.js"></script>
 <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript">
 
-
-	
-</script>
 
 
 <!--背景图自适应-->
@@ -70,71 +69,95 @@ $(window).resize(function() {
         <div class="service_b"><span>9</span></div>
         <div class="service_c"><span>9</span></div>
     </div>
+    
+    <!--服务器节点-->
+    <div class="line_bg">
 
+    </div>
 </div>	
+
+
+
+
+
+
+<!--服务器信息弹出框-->
+<div class="service_info" id="service_info" style="display:none">
+  <div class="service_info_close" onclick="showServerMsgWindow();"></div>
+  <div class="service_info_main">
+     <div class="service_info_shadow"></div>
+     <div class="service_info_title">服务器信息</div>
+     <div class="service_info_nav">
+           服务器信息初始化中........
+     </div>
+  </div>
+</div>
+
+<!--服务器信息弹出按钮-->
+<div class="service_info_open" id="service_info_open" onclick="hideServerMsgWindow();"></div>
 
 
 	<div id="wide-wrapper">	
 		<ul id="carousel">
 			<li>
-				<img src="images/image1.png" alt="nj"/>
+				<img class="city" src="images/image1.png" alt=""/>
 				<div class="tooltip">南京</div>
 			</li>
 			<li>
-				<img src="images/image2.png" alt="xz"/>
+				<img class="city" src="images/image2.png" alt=""/>
                 <div class="tooltip">徐州</div>
 			</li>
 			<li>
-				<img src="images/image3.png" alt=""/>
+				<img class="city" src="images/image3.png" alt=""/>
                 <div class="tooltip">盐城</div>                   
 			</li>
 			<li>
-				<img src="images/image4.png" alt=""/>
+				<img class="city" src="images/image4.png" alt=""/>
                 <div class="tooltip">镇江</div>                   
 			</li>
 			<li>
-				<img src="images/image5.png" alt=""/>
+				<img class="city" src="images/image5.png" alt=""/>
                 <div class="tooltip">常州</div>
 			</li>
 			<li>
-				<img src="images/image6.png" alt=""/>
+				<img class="city" src="images/image6.png" alt=""/>
                 <div class="tooltip">扬州</div>
 			</li>
 			<li>
-				<img src="images/image7.png" alt=""/>
+				<img class="city" src="images/image7.png" alt=""/>
                 <div class="tooltip">南通</div>
 
 			</li>
 			<li>
-				<img src="images/image8.png" alt=""/>
+				<img class="city" src="images/image8.png" alt=""/>
                 <div class="tooltip">连云港</div>
 			</li>
 			<li>
-				<img src="images/image9.png" alt=""/>
+				<img class="city" src="images/image9.png" alt=""/>
                 <div class="tooltip">泰州</div>
 			</li>
 			<li>
-				<img src="images/image10.png" alt=""/>
+				<img class="city" src="images/image10.png" alt=""/>
 				<div class="tooltip">淮安</div>
 			</li>
 			<li>
-				<img src="images/image11.png" alt=""/>
+				<img class="city" src="images/image11.png" alt=""/>
                 <div class="tooltip">无锡</div>
 			</li>
 			<li>
-				<img src="images/image12.png" alt=""/>
+				<img class="city" src="images/image12.png" alt=""/>
                 <div class="tooltip">苏州</div>
 			</li>
 			<li>
-				<img src="images/image13.png" alt=""/>
+				<img class="city" src="images/image13.png" alt=""/>
                 <div class="tooltip">宿迁</div>
 			</li>
             <li>
-				<img src="images/image14.png" alt=""/>
+				<img class="city" src="images/image14.png" alt=""/>
                 <div class="tooltip">江苏省</div>
 			</li>
             <li>
-				<img src="images/image15.png" alt=""/>
+				<img class="city" src="images/image15.png" alt=""/>
                 <div class="tooltip">省统筹</div>
 			</li>
 
