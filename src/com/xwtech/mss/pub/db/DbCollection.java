@@ -17,6 +17,7 @@ import com.xwtech.mss.pub.dao.business.GoodsInfoDAO;
 import com.xwtech.mss.pub.dao.business.GoodsRecordDAO;
 import com.xwtech.mss.pub.dao.business.GoodsTypeDAO;
 import com.xwtech.mss.pub.dao.business.MpmsAuthorizationDAO;
+import com.xwtech.mss.pub.dao.business.OperDNSServerDAO;
 import com.xwtech.mss.pub.dao.business.ProvinceDAO;
 import com.xwtech.mss.pub.dao.business.RegionDAO;
 import com.xwtech.mss.pub.dao.business.ServerGroupDAO;
@@ -101,6 +102,8 @@ public class DbCollection {
 	private ServerGroupMappingDAO serverGroupMappingDAO;
 	
 	private ServerStatusDAO serverStatusDAO;
+	
+	private OperDNSServerDAO operDNSServerDAO;
 	
 	
 	
@@ -373,6 +376,14 @@ public class DbCollection {
 
 	public void setServerStatusDAO(ServerStatusDAO serverStatusDAO) {
 		this.serverStatusDAO = serverStatusDAO;
+	}
+
+	public OperDNSServerDAO getOperDNSServerDAO() {
+		return operDNSServerDAO;
+	}
+
+	public void setOperDNSServerDAO(OperDNSServerDAO operDNSServerDAO) {
+		this.operDNSServerDAO = operDNSServerDAO;
 	}
 
 }

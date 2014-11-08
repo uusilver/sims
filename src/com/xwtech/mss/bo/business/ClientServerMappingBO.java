@@ -43,8 +43,8 @@ public class ClientServerMappingBO {
 	 * @param clientId
 	 * @param serverIds,以‘,’隔开
 	 */
-	public int saveClientServerLink(Integer clientId, String serverIds) {
-		return this.clientServerMappingDAO.saveClientServerLink(clientId,serverIds);
+	public int saveClientServerLink(String clientIds, String serverIds) {
+		return this.clientServerMappingDAO.saveClientServerLink(clientIds,serverIds);
 	}
 	
 	/**

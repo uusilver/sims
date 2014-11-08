@@ -18,6 +18,10 @@
 		<property name="transitServerDAO" ref="transitServerDAO" />
 	</bean>
 	
+	<bean id="dnsServerBO" class="com.xwtech.mss.bo.business.DnsServerBO">     
+		<property name="operDNSServerDAO" ref="operDNSServerDAO" />
+	</bean>
+	
 	<bean id="serverGroupMappingBO" class="com.xwtech.mss.bo.business.ServerGroupMappingBO">     
 		<property name="serverGroupMappingDAO" ref="serverGroupMappingDAO" />
 	</bean>

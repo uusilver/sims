@@ -58,16 +58,34 @@ public class ClientInfoBO {
 	public List<ClientInfoForm> queryUnGroupedClient(String groupId,Boolean isLoadGroupClient) {
 		List list = this.clientDAO.queryUnGroupedClient(groupId,isLoadGroupClient);
 		List<ClientInfoForm> resultList = null;
+		HashMap map = null;
+		String clientId="";
+		String clientName="";
+		String clientNameTemp="";
 		if(list!=null&&!list.isEmpty()){
-			resultList = new ArrayList();
+			map = new HashMap();
 			ClientInfoForm clientInfoForm=null;
 			for(int i=0;i<list.size();i++){
 				ListOrderedMap client = (ListOrderedMap)(list.get(i));
-				clientInfoForm = new ClientInfoForm();
-				clientInfoForm.setClientId(client.get("clientId").toString());
-				clientInfoForm.setClientTag(client.get("clientName").toString());
-				resultList.add(clientInfoForm);
+				
+				if(!clientId.equals(client.get("clientId").toString())){
+					clientInfoForm = new ClientInfoForm();
+					clientInfoForm.setClientId(client.get("clientId").toString());
+					clientInfoForm.setClientTag(client.get("clientName").toString());
+					map.put(clientInfoForm.getClientId(), clientInfoForm);
+					clientId = clientInfoForm.getClientId();
+				}else{
+					ClientInfoForm clientForm = (ClientInfoForm)map.get(clientId);
+					clientName = clientForm.getClientTag();
+					clientNameTemp = client.get("clientName").toString();
+					clientName += " / "+clientNameTemp.substring(clientNameTemp.lastIndexOf("]")+1,clientNameTemp.length());
+					clientForm.setClientTag(clientName);
+					map.put(clientId, clientForm);
+				}
 			}
+		}
+		if(map!=null&&!map.isEmpty()){
+			resultList = new ArrayList(map.values());
 		}
 		return resultList;
 	}
@@ -83,12 +101,16 @@ public class ClientInfoBO {
 		if(list!=null&&!list.isEmpty()){
 			resultList = new ArrayList();
 			ServerInfoForm serverInfoForm=null;
+			String serverId="";
 			for(int i=0;i<list.size();i++){
 				ListOrderedMap server = (ListOrderedMap)(list.get(i));
-				serverInfoForm = new ServerInfoForm();
-				serverInfoForm.setServerId(server.get("serverId").toString());
-				serverInfoForm.setServerTag(server.get("serverName").toString());
-				resultList.add(serverInfoForm);
+				if(!serverId.equals(server.get("serverId").toString())){
+					serverId = server.get("serverId").toString();
+					serverInfoForm = new ServerInfoForm();
+					serverInfoForm.setServerId(serverId);
+					serverInfoForm.setServerTag(server.get("serverName").toString());
+					resultList.add(serverInfoForm);
+				}
 			}
 		}
 		return resultList;

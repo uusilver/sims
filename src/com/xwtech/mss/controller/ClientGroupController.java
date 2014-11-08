@@ -26,9 +26,11 @@ import com.xwtech.framework.pub.web.RequestNameConstants;
 import com.xwtech.mss.bo.business.ClientGroupBO;
 import com.xwtech.mss.bo.business.ClientGroupMappingBO;
 import com.xwtech.mss.bo.business.ClientInfoBO;
+import com.xwtech.mss.bo.business.ClientServerMappingBO;
 import com.xwtech.mss.bo.system.operator.OperLogBO;
 import com.xwtech.mss.formBean.ClientGroupForm;
 import com.xwtech.mss.pub.constants.MssConstants;
+import com.xwtech.mss.pub.po.Client;
 import com.xwtech.mss.pub.po.ClientGroup;
 import com.xwtech.mss.pub.po.OperationLog;
 import com.xwtech.mss.pub.po.UserInfo;
@@ -49,6 +51,8 @@ public class ClientGroupController extends MultiActionController {
 	
 	private ClientGroupMappingBO clientGroupMappingBO;
 	
+	private ClientServerMappingBO clientServerMappingBO;
+	
 	private OperLogBO operLogBO;
 	
 	public void setTransTemplate(TransactionTemplate transTemplate) {
@@ -64,7 +68,10 @@ public class ClientGroupController extends MultiActionController {
 	public void setClientGroupMappingBO(ClientGroupMappingBO clientGroupMappingBO) {
 		this.clientGroupMappingBO = clientGroupMappingBO;
 	}
-
+	
+	public void setClientServerMappingBO(ClientServerMappingBO clientServerMappingBO) {
+		this.clientServerMappingBO = clientServerMappingBO;
+	}
 
 	public void setOperLogBO(OperLogBO operLogBO) {
 		this.operLogBO = operLogBO;
@@ -95,8 +102,11 @@ public class ClientGroupController extends MultiActionController {
 		//服务器分组名称
 		final String clientGroupName = request.getParameter("clientGroupName");
 		
-		//服务器ID串,如：1，2，3，4
+		//客户端ID串,如：1，2，3，4
 		final String clientIds = request.getParameter("hiddenClientIds");
+		
+		//服务器ID串,如：1，2，3，4
+		final String serverIds = request.getParameter("hiddenServerIds");
 		
 		//备注
 		final String note = request.getParameter("clientComment");
@@ -144,6 +154,15 @@ public class ClientGroupController extends MultiActionController {
 						int returnValue = clientGroupMappingBO.delMappingRecords(clientGroup.getClientgroupid().toString());
 						if(returnValue>=0){
 							clientGroupMappingBO.saveClientGroupLink(clientGroup.getClientgroupid(),clientIds);
+						}
+					}
+					
+					//保存客户端可以访问的服务器记录
+					if(serverIds!=null&&!"".equals(serverIds)){
+						//先删除客户端与服务器的关系记录
+						int result = clientServerMappingBO.delMappingRecords(serverIds, clientIds);
+						if(result>=0){
+							clientServerMappingBO.saveClientServerLink(clientIds, serverIds);
 						}
 					}
 					
@@ -272,7 +291,7 @@ public class ClientGroupController extends MultiActionController {
 	 * @return
 	 * @throws ServletRequestBindingException
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ModelAndView queryClientGroupById(HttpServletRequest request, HttpServletResponse response)
 															throws ServletRequestBindingException {
 		HashMap map = new HashMap();
@@ -285,10 +304,15 @@ public class ClientGroupController extends MultiActionController {
 		String queryStatus = request.getParameter("queryStatus");
 		
 		ClientGroup clientGroup = null;
+//		Client clientInfo = null;
 		List cgMappingList = null;
 		List unGroupedClientList = null;
 		
+		List csMappingList = null;
+		List unAccessedServerList = null;
+		String csMappingResult = "";
 		
+		//加载未分组的客户端和该组中的客户端列表
 		if(clientGroupId!=null&&!"".equals(clientGroupId)){
 			//查询所有不在该分组的服务器对象
 			unGroupedClientList = clientInfoBO.queryUnGroupedClient(clientGroupId,false);
@@ -307,6 +331,40 @@ public class ClientGroupController extends MultiActionController {
 			unGroupedClientList = clientInfoBO.queryUnGroupedClient("",false);
 		}
 		
+		
+
+		//加载不可访问的服务器和该组可以访问的服务器列表
+		if(clientGroup!=null){
+			
+			List clientList = clientGroupBO.queryClientsByGroupId(clientGroup.getClientgroupid().toString());
+			String clientIds = "";
+			if(clientList!=null&&!clientList.isEmpty()){
+				Client client = null;
+				for(int i=0;i<clientList.size();i++){
+					client = (Client)clientList.get(i);
+					clientIds += client.getClientid().toString()+",";
+				}
+				clientIds = clientIds.substring(0,clientIds.lastIndexOf(","));
+			}
+			
+			//查询所有该客户端不能访问的服务器对象
+//			List serverList = serverGroupMappingBO.queryServerTextByGroupId(null);
+			unAccessedServerList = clientInfoBO.queryUnAccessedServer(clientIds,false);
+
+			//查询该客户端可以访问的服务器对象
+			csMappingList = clientInfoBO.queryUnAccessedServer(clientIds,true);
+			
+			if(csMappingList!=null&&!csMappingList.isEmpty()){
+				Gson gson = new Gson();
+				csMappingResult= gson.toJson(csMappingList);
+			}
+		}
+		//新增客户端
+		else if(viewOrEdit!=null&&MssConstants.VIEW_OR_EDIT_ADD.equals(viewOrEdit)) {
+			//查询所有服务器对象
+			unAccessedServerList = clientInfoBO.queryUnAccessedServer(null,false);
+		}
+		
 		clientGroupForm.setQueryClientGroupName(queryClientGroupName);
 		clientGroupForm.setQueryNote(queryNote);
 		clientGroupForm.setQueryStatus(queryStatus);
@@ -323,6 +381,9 @@ public class ClientGroupController extends MultiActionController {
 		map.put("clientList", unGroupedClientList);
 		map.put("cgMappingResult", cgMappingResult);
 		map.put("searchForm", clientGroupForm);
+		map.put("serverList", unAccessedServerList);
+		map.put("csMappingResult", csMappingResult);
+		
 		return new ModelAndView("/mss/jsp/client/clientGroupAdd.jsp", RequestNameConstants.INFORMATION, map);
 	}
 	

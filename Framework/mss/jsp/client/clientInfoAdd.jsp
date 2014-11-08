@@ -31,7 +31,7 @@
 
 		function saveClientInfo(){
 			if(checkUserName()&&checkPassword()&&checkModifyPass()&&checkAuthType()&&checkDisableFlag()
-					&&checkUserType()&&checkClientComment()){
+					&&checkUserType()&&checkTelePhone()&&checkMobilePhone()&&checkClientComment()){
 				if(confirm("您确定要保存该客户信息么？")){
 					var serverOptions = $("select[name=serverId]").find("option");
 					var serverIds = "";
@@ -157,6 +157,68 @@
 		    return true;
 		}
 		
+		/**
+		 * 校验固定电话
+		 */
+		function checkTelePhone(){
+			var clientTel = document.getElementById("tele_phone").value;
+			var numLength = clientTel.length;
+			if(numLength==0){
+				var infoDiv = document.getElementById("tele_phoneDiv");
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "固定电话不能为空，请填写！";
+				return false;
+			}
+			if(numLength>20){
+				var infoDiv = document.getElementById("tele_phoneDiv");
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "号码长度不能超过20位，请修改！";
+				return false;
+			}
+			if(!isPhoneRegex(clientTel)){
+				var infoDiv = document.getElementById("tele_phoneDiv");
+				infoDiv.className = "warning";
+			    infoDiv.innerHTML = "固定电话只能为数字,()或者-，请修改！";
+				return false;
+			}
+			
+			var infoDiv = document.getElementById("tele_phoneDiv");
+			infoDiv.className = "OK";
+		    infoDiv.innerHTML = "固定电话格式符合要求";
+		    return true;
+		}
+		
+		/**
+		 * 校验移动电话
+		 */
+		function checkMobilePhone(){
+			var mobilePhone = document.getElementById("mobile_phone").value;
+			var numLength = mobilePhone.length;
+			if(numLength==0){
+				var infoDiv = document.getElementById("mobile_phoneDiv");
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "移动电话不能为空，请填写！";
+				return false;
+			}
+			if(numLength>20){
+				var infoDiv = document.getElementById("mobile_phoneDiv");
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "移动电话号码长度不能超过20位，请修改！";
+				return false;
+			}
+			if(!VerifyMobilePhone(mobilePhone)){
+				var infoDiv = document.getElementById("mobile_phoneDiv");
+				infoDiv.className = "warning";
+			    infoDiv.innerHTML = "移动电话只能为数字，请修改！";
+				return false;
+			}
+			
+			var infoDiv = document.getElementById("mobile_phoneDiv");
+			infoDiv.className = "OK";
+		    infoDiv.innerHTML = "移动电话格式符合要求";
+		    return true;
+		}
+		
 		//校验备注
 		function checkClientComment() {
 			var clientComment = document.getElementById("client_comment");
@@ -270,6 +332,30 @@
 						<pub:link sql="<%=MssConstants.QUERY_CLIENT_USER_TYPE_SQL%>" num="1" selectSize="20"
 							title="请选择客户类型" next="false" name="userType" mvalue="${information.clientInfo.usertype}" />
 					<span id="user_typeDiv"></span>
+					</td>
+				</tr>
+				<tr height="30">
+					<td width="20%" align="center" class="qinggoudan_table_title">
+						固定电话
+						<font color="red">*</font>
+					</td>
+					<td align="left" class="qinggoudan_table_td1">
+						<input name="telePhone" id="tele_phone" type="text" class="qinggoudan_input023" size="20" maxlength="20"
+							value="${information.clientInfo.telephone}"
+							onchange="checkTelePhone();">
+						<span id="tele_phoneDiv"></span>
+					</td>
+				</tr>
+				<tr height="30">
+					<td width="20%" align="center" class="qinggoudan_table_title">
+						移动电话
+						<font color="red">*</font>
+					</td>
+					<td align="left" class="qinggoudan_table_td1">
+						<input name="mobilePhone" id="mobile_phone" type="text" class="qinggoudan_input023" size="20" maxlength="20"
+							value="${information.clientInfo.mobilephone}"
+							onchange="checkMobilePhone();">
+						<span id="mobile_phoneDiv"></span>
 					</td>
 				</tr>
 				<tr>

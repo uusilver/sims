@@ -19,6 +19,8 @@ public class Client implements java.io.Serializable {
 	private Integer disable;
 	private Integer usertype;
 	private String truename;
+	private String telephone;
+	private String mobilephone;
 	private String firstLetter;
 	private String note;
 	private String status;
@@ -41,7 +43,7 @@ public class Client implements java.io.Serializable {
 	/** full constructor */
 	public Client(String keyid, String username, String password,
 			Integer modifypass, Integer authenticationtype, Integer disable,
-			Integer usertype, String truename,String firstLetter, String note, String status) {
+			Integer usertype, String truename,String telephone,String mobilephone,String firstLetter, String note, String status) {
 		this.keyid = keyid;
 		this.username = username;
 		this.password = password;
@@ -50,6 +52,8 @@ public class Client implements java.io.Serializable {
 		this.disable = disable;
 		this.usertype = usertype;
 		this.truename = truename;
+		this.telephone = telephone;
+		this.mobilephone = mobilephone;
 		this.firstLetter = firstLetter;
 		this.note = note;
 		this.status = status;
@@ -127,6 +131,22 @@ public class Client implements java.io.Serializable {
 
 	public void setTruename(String truename) {
 		this.truename = truename;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getMobilephone() {
+		return mobilephone;
+	}
+
+	public void setMobilephone(String mobilephone) {
+		this.mobilephone = mobilephone;
 	}
 
 	public String getFirstLetter() {

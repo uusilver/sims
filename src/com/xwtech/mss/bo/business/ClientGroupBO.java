@@ -1,6 +1,7 @@
 package com.xwtech.mss.bo.business;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -54,5 +55,14 @@ public class ClientGroupBO {
 	 */
 	public int delClientGroup(String groupIdStr) {
 		return this.clientGroupDAO.delClientGroup(groupIdStr);
+	}
+	
+	/**
+	 * 根据客户端组ID查询该组中的客户端信息
+	 * @param groupId
+	 * @return
+	 */
+	public List<?> queryClientsByGroupId(String groupId){
+		return this.clientGroupDAO.queryClientsByGroupId(groupId);
 	}
 }

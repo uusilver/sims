@@ -597,7 +597,7 @@ function delOneRow(delTabRow){
 }
 
 function VerifyMobilePhone(phoneNum){
-  var condition = /^1[3,5]{1}[0-9]{9}$/;
+  var condition = /^1[3,4,5,8]{1}[0-9]{9}$/;
   if(!condition.exec(phoneNum)){
 	  return false;
   }else

@@ -408,7 +408,7 @@ public class ClientDAO extends BaseDao {
 		StringBuffer listHql = new StringBuffer();
 		StringBuffer fromHql = new StringBuffer();
 		listHql.append("select c.clientid as clientId,"
-				+"CONCAT(c.username,' - [',cb_userType.text,' / ',cb_authType.text,'/',cb_disable.text,'] - ',"
+				+"CONCAT(c.username,' - [',cb_userType.text,' / ',cb_disable.text,']',"
 				+ "' - ',CASE WHEN cGroup.clientgroupname IS NULL THEN '未分组' ELSE cGroup.clientgroupname END) as clientName ");
 		
 		fromHql.append(" from client c left join client_group_mapping cgMapping on c.clientid=cgMapping.clientid"
@@ -502,15 +502,13 @@ public class ClientDAO extends BaseDao {
 				filterHql.append(whereHql);
 				filterHql.append(" and cl.clientid = csMapping.clientid "
 								+" and ts.serverid = csMapping.serverid"
-								+" and cl.clientid=?");
-				paramList[0]=new Integer (clientId);
+								+" and cl.clientid in("+clientId+")");
 			}
 			//查询所有该客户端不能访问的服务器
 			else{
 				filterHql.append(whereHql);
 				filterHql.append(notExistsHql);
-				filterHql.append(" and cl.clientid=?)");
-				paramList[0]=new Integer (clientId);
+				filterHql.append(" and cl.clientid in ("+clientId+"))");
 			}
 		}
 		//查询所有不能访问的服务器
@@ -521,11 +519,8 @@ public class ClientDAO extends BaseDao {
 		//按服务器类别和名称排序
 		listHql.append(filterHql + "  order by ts.serverid asc ");
 		log.info("SQL:"+listHql.toString());
-		if(paramList[0]==null){
-			list = FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString());
-		}else{
-			list = FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString(),paramList);
-		}
+		
+		list = FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString());
 		
 		return list;
 	}
