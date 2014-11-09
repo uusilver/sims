@@ -3,6 +3,7 @@ package com.xwtech.mss.pub.dao.business;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -443,5 +444,51 @@ public class TransitServerDAO extends BaseDao {
 		
 		return list;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Object[]> queryServerStatusInfo(String cityName){
+		List<Object[]> list = null;
+		Object[] paramList = new Object[1];
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select r.regionname,cb.text,count(ts.serverid) " +
+				" from transit_server ts,region r,code_book cb" +
+				" where ts.regionid = r.regionid" +
+				" and cb.value = ts.serverstatus" +
+				" and cb.tag = 'SERVER_STATUS'" +
+				" and r.regionname = ?" +
+				" group by r.regionname,cb.text");
+		paramList[0] = cityName;
+		log.info(cityName);
+		log.info(listHql.toString());
+		list = 	FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString(),paramList);
+
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Object[]> queryServerOrgInfo(String cityName){
+		List<Object[]> list = null;
+		Object[] paramList = new Object[1];
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select c.CLIENTID,c.USERNAME,g.GATEWAYID" +
+				" from transit_server ts,region r, client c, client_server_mapping csm,client_gateway cg,gateway g" +
+				" where ts.REGIONID = r.REGIONID" +
+				" and ts.SERVERID = csm.SERVERID" +
+				" and c.CLIENTID = csm.CLIENTID" +
+				" and c.CLIENTID = cg.CLIENTID" +
+				" and g.GATEWAYID = cg.GATEWAYID" +
+				" and r.REGIONNAME = ?" +
+				" ORDER BY g.GATEWAYID ASC" +
+				"");
+
+
+		paramList[0] = cityName;
+		log.info(cityName);
+		log.info(listHql.toString());
+		list = 	FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString(),paramList);
+
+		return list;
+	}
+	
 	
 }

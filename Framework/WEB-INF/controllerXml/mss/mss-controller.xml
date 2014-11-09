@@ -137,5 +137,8 @@
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 	
-	
+	<bean name="/mss/html/indexPageController.do" class="com.xwtech.mss.controller.IndexPageController">
+		<property name="serverInfoBO" ref="serverInfoBO" />
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
 </beans>

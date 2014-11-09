@@ -98,4 +98,14 @@ public class ServerInfoBO {
 		}
 		return resultList;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Object[]> queryServerStatusInfo(String cityName){
+		return this.transitServerDAO.queryServerStatusInfo(cityName);
+	}
+	
+	public List<Object[]> queryServerOrgInfo(String cityName){
+		return this.transitServerDAO.queryServerOrgInfo(cityName);
+	}
+	
 }
