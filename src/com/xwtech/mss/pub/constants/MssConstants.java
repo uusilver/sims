@@ -75,6 +75,10 @@ public class MssConstants {
 	public static final String QUERY_SERVER_TYPE_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
 			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='SERVER_TYPE'";
 	
+	// 查询DNS服务器类型信息SQL
+	public static final String QUERY_DNS_SERVER_TYPE_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
+			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='DNS_SERVER_TYPE'";
+	
 	// 查询服务器状态信息SQL
 	public static final String QUERY_SERVER_STATUS_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
 			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='SERVER_STATUS'";

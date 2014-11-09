@@ -22,7 +22,7 @@
 		
 		function query(){
 			document.serverListForm.action = "${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoList"
-				+ constructParams("queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit,returnForm,indexNO");
+				+ constructParams("queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,queryServerStatus,currentPage,viewOrEdit,returnForm,indexNO");
 			document.serverListForm.submit();
 		}
 		
@@ -158,7 +158,7 @@
 						<td class="qinggoudan_table_td1">
 							服务器状态:
 							<pub:link sql="<%=MssConstants.QUERY_SERVER_STATUS_SQL%>" num="1" title="---请选择---" next="false" 
-							name="quserServerStatus" mvalue="${information.searchForm.queryServerStatus}" />
+							name="queryServerStatus" mvalue="${information.searchForm.queryServerStatus}" />
 						</td>
 						<td class="qinggoudan_table_td1">
 							&nbsp;
@@ -287,12 +287,12 @@
 
 <script type="text/javascript">
 	function addServer(){
-		window.location = "${contextPath}/mss/jsp/server/serverInfoAdd.jsp?" + constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit,showHeader');
+		window.location = "${contextPath}/mss/jsp/server/serverInfoAdd.jsp?" + constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,queryServerStatus,currentPage,viewOrEdit,showHeader');
 	}
 		
 	function viewServer(serverId){
 		window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=queryServerInfoById&serverId=" + serverId 
-			+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit,showHeader');
+			+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,queryServerStatus,currentPage,viewOrEdit,showHeader');
 	}
 		
 	function delServer(){
@@ -308,7 +308,7 @@
 			return;
 		}else if(confirm("您确定要删除选中的服务器信息吗？")){
 			window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=delServerInfo&serverIdStr=" + serverIdStr 
-				+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,quserServerStatus,currentPage,viewOrEdit');
+				+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,queryServerStatus,currentPage,viewOrEdit');
 		}
 	}
 </script>

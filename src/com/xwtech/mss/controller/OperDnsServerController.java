@@ -151,7 +151,7 @@ public class OperDnsServerController extends MultiActionController {
 					e.printStackTrace();
 				}
 				//resultInfos.setGotoUrl("/mss/jsp/business/goodsRecordController.do?method=queryGoodsRecordList&addOrView='edit'");
-				resultInfos.setGotoUrl("/mss/jsp/server/operDnsServerController.do?method=queryServerInfoList&viewOrEdit="+viewOrEdit);
+				resultInfos.setGotoUrl("/mss/jsp/server/operDnsServerController.do?method=queryServerInfoList&viewOrEdit=edit");
 				resultInfos.setIsAlert(true);
 				resultInfos.setIsRedirect(true);
 			}
@@ -168,7 +168,7 @@ public class OperDnsServerController extends MultiActionController {
 	 * @return
 	 * @throws ServletRequestBindingException
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ModelAndView queryServerInfoList(HttpServletRequest request, HttpServletResponse response)
 	throws ServletRequestBindingException {
 		
@@ -177,19 +177,23 @@ public class OperDnsServerController extends MultiActionController {
 		// 页面首次访问，即由菜单点击访问
 		String accessType = request.getParameter("accessType");
 		
-		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
+		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "edit" : request.getParameter("viewOrEdit").trim();
 		
 		String currentPage = request.getParameter("currentPage");
 		
 		String queryServerType = request.getParameter("queryServerType");
 		
-		String queryServerStatus = request.getParameter("queryServerStatus");
+		String queryStatus = request.getParameter("queryStatus");
 		
 		//是否显示查询条件框
 		String showHeader = request.getParameter("showHeader");
 		if(showHeader==null||"".equals(showHeader)){
 			showHeader="yes";
 		}
+		
+		String indexNO = request.getParameter("indexNO");
+		
+		
 		
 		
 		// ifSession只在修改页面跳转至查询页面时有值
@@ -200,9 +204,10 @@ public class OperDnsServerController extends MultiActionController {
 		Long roleId = sysUser.getRole().getRoleId();
 
 		serverInfoForm.setQueryServerType(queryServerType);
-		serverInfoForm.setQueryServerStatus(queryServerStatus);
+		serverInfoForm.setQueryStatus((queryStatus==null||"".equals(queryStatus))?"A":queryStatus);
 		serverInfoForm.setViewOrEdit(viewOrEdit);
 		serverInfoForm.setShowHeader(showHeader);
+		serverInfoForm.setIndexNO(indexNO);
 
 		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
 
@@ -283,6 +288,7 @@ public class OperDnsServerController extends MultiActionController {
 		CommonOperation commonOpera = new CommonOperation();
 		UserInfo sysUser = commonOpera.getLoginUserInfo(request).getSysUser();
 		final String userName = sysUser.getUserName();
+		final ServerInfoForm serverInfoForm = new ServerInfoForm();
 
 		
 		transTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
@@ -300,6 +306,8 @@ public class OperDnsServerController extends MultiActionController {
 						// 根据权限ID删除相关权限信息
 						dnsServerBO.delServerInfo(serverNumStr.substring(0, serverNumStr.length()-1));
 					}
+					
+					serverInfoForm.setQueryStatus(MssConstants.STATE_A);
 					
 					//保存服务器删除记录
 					if(!"".equals(serverIdStr)){

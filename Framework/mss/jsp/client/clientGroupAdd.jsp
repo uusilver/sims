@@ -96,6 +96,14 @@
 				return false;
 			}
 			
+			if(groupName.value.indexOf("[")!=-1 || groupName.value.indexOf("]")!=-1 )
+			{
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "【客户端组名】不能包含字符'['或者']'，请修改！";
+		        groupName.focus();
+				return false;
+			}
+			
 			infoDiv.className = "OK";
 		    infoDiv.innerHTML = "符合要求";
 		    return true;

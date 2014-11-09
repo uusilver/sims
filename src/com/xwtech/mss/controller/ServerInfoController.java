@@ -200,7 +200,7 @@ public class ServerInfoController extends MultiActionController {
 					e.printStackTrace();
 				}
 				//resultInfos.setGotoUrl("/mss/jsp/business/goodsRecordController.do?method=queryGoodsRecordList&addOrView='edit'");
-				resultInfos.setGotoUrl("/mss/jsp/server/serverInfoController.do?method=queryServerInfoList&viewOrEdit="+viewOrEdit);
+				resultInfos.setGotoUrl("/mss/jsp/server/serverInfoController.do?method=queryServerInfoList&viewOrEdit=edit");
 				resultInfos.setIsAlert(true);
 				resultInfos.setIsRedirect(true);
 			}

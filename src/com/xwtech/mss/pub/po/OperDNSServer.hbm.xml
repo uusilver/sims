@@ -15,8 +15,8 @@
                 <comment>服务器地址</comment>
             </column>
         </property>
-        <property name="serverport" type="string">
-            <column name="SERVERPORT" length="10">
+        <property name="serverport" type="integer">
+            <column name="SERVERPORT">
                 <comment>服务器端口</comment>
             </column>
         </property>

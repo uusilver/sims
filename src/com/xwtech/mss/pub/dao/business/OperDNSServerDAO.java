@@ -177,7 +177,7 @@ public class OperDNSServerDAO extends BaseDao {
 		// 查询列表sql
 		StringBuffer listHql = new StringBuffer();
 		StringBuffer fromHql = new StringBuffer();
-		listHql.append("select ods.dnsserverid,cb_type.text as serverType,ods.serverip,ods.serverport");
+		listHql.append("select ods.dnsserverid,cb_type.text as serverType,ods.serverip,ods.serverport,ods.status");
 		
 		fromHql.append(" from oper_dns_server ods ,code_book cb_type "
 				+ " where ods.servertype = cb_type.value"
@@ -197,6 +197,12 @@ public class OperDNSServerDAO extends BaseDao {
 		if (searchForm.getQueryServerType() != null && !"".equals(searchForm.getQueryServerType())) {
 			filterHql.append(" and ods.servertype = ?");
 			paramList.add(new Integer (searchForm.getQueryServerType()));
+		}
+
+		//服务器状态
+		if (searchForm.getQueryStatus() != null && !"".equals(searchForm.getQueryStatus())) {
+			filterHql.append(" and ods.status = ?");
+			paramList.add(searchForm.getQueryStatus());
 		}
 
 		//有效期起始时间
