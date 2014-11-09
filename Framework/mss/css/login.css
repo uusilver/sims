@@ -44,3 +44,10 @@ body {
 	border: 1px solid #555555;
 	font-weight: bold;
 }
+
+
+.login_input { width:350px; height:48px; background:#FFF; border: none; padding-left:10px; font-size:14px; }
+.login_span { width:80px; height:50px; background:#a5c0e4; line-height:50px; text-align:center; font-size:14px; font-family:"Î¢ÈíÑÅºÚ"; font-weight:bold; float:left; display:block; color:#00034e; }
+
+.login_btn_a { width:200px; height:50px; border:none; background:#a5c0e4; color:#38414e; float:left; font-family:"Î¢ÈíÑÅºÚ"; font-size:14px; font-weight:bold; cursor:pointer; }
+.login_btn_b { width:200px; height:50px; border:none; background:#009812; color:#fff; float:right; font-family:"Î¢ÈíÑÅºÚ"; font-size:14px; font-weight:bold; cursor:pointer; }

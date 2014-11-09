@@ -26,6 +26,6 @@ for (int i = 0; cookies != null && i < cookies.length; i++)
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>南京移动物资采购管理系统</title>
 </head >
- <body onLoad='window.parent.location.href = "${contextPath }/index.jsp"'>
+ <body onLoad='window.parent.location.href = "${contextPath }/login.jsp"'>
  </body>
 </html>

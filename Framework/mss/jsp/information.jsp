@@ -5,6 +5,7 @@
 <%@ page import="com.xwtech.framework.pub.result.ResultInfos" %>
 <%@ page import="com.xwtech.framework.pub.web.RequestNameConstants" %>
 <%@ include file="/framework/jsp/taglibs.jsp"%>
+<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
 <%
   HashMap map = (HashMap)request.getAttribute(RequestNameConstants.INFORMATION);
   ResultInfos resultInfos = (ResultInfos)map.get(RequestNameConstants.RESULTINFOS);
@@ -56,11 +57,21 @@
 		</script>
 		<%
 	    }else if(flag!=null&&flag.equals("s")){
-		   out.println("<a class=\"xuqiu_title\">" + resultInfoStr + "</a>");
-		   out.println("<br>");
-		   out.println("<a href=\"#\" onclick=\"sendR('${contextPath}/" + resultInfos.getGotoUrl() + "')\"  class=\"xuqiu_title\">自动跳转到相关页面</a>");
+		   out.println("<table width=\"35%\" height=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">");
+		   out.println("<tr align=\"center\">");
+	       out.println("<td><img id=\"info_alert\" width=\"150\" height=\"150\"></td>");
+		   out.println("<td>");
+		   out.println("<a class=\"qinggoudan_title01_td1\">" + resultInfoStr + "</a>");
+		   out.println("<br><br>");
+		   out.println("<a href=\"#\" onclick=\"sendR('${contextPath}/" + resultInfos.getGotoUrl() + "')\"  class=\"qinggoudan_title01_td1\">自动跳转到相关页面</a>");
+		   out.println("</td>");
+		   out.println("</tr>");
+		   out.println("</table>");
 %>
 <script language="javascript" type="text/javascript">
+
+document.getElementById("info_alert").setAttribute("src", "${contextPath}/mss/image/info-alert.png");
+
 function sendR(){
 	parent.location = "${contextPath}/index.jsp";
 	
@@ -69,10 +80,16 @@ var t = setTimeout("sendR()", 4000);
 </script>
 <%
 		}else{
-			out.println("<a class=\"xuqiu_title\">" + resultInfoStr + "</a>");
+		   out.println("<table width=\"35%\" height=\"100%\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">");
+		   out.println("<tr align=\"center\">");
+	       out.println("<td><img src=\"../../mss/image/info-alert.png\" width=\"150\" height=\"150\"></td>");
+		   out.println("<td>");
+		   out.println("<a class=\"xuqiu_title\">" + resultInfoStr + "</a>");
 		   out.println("<br>");
 		   out.println("<a href=\"${contextPath}"+resultInfos.getGotoUrl()+"\"  class=\"xuqiu_title\">自动跳转到相关页面</a>");
-		   out.println("<meta http-equiv=\"refresh\" content=\"4;URL=${contextPath}/"+resultInfos.getGotoUrl()+"\">");
+		   out.println("<meta http-equiv=\"refresh\" content=\"4;URL=${contextPath}/"+resultInfos.getGotoUrl()+"\">");		   out.println("</td>");
+		   out.println("</tr>");
+		   out.println("</table>");
 		}
   	}
   	

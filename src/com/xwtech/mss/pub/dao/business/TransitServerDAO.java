@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.map.ListOrderedMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
@@ -446,11 +447,11 @@ public class TransitServerDAO extends BaseDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Object[]> queryServerStatusInfo(String cityName){
-		List<Object[]> list = null;
+	public List<ListOrderedMap> queryServerStatusInfo(String cityName){
+		List<ListOrderedMap> list = null;
 		Object[] paramList = new Object[1];
 		StringBuffer listHql = new StringBuffer();
-		listHql.append("select r.regionname,cb.text,count(ts.serverid) " +
+		listHql.append("select r.regionname,cb.text as status,count(ts.serverid) as num " +
 				" from transit_server ts,region r,code_book cb" +
 				" where ts.regionid = r.regionid" +
 				" and cb.value = ts.serverstatus" +
@@ -466,8 +467,8 @@ public class TransitServerDAO extends BaseDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Object[]> queryServerOrgInfo(String cityName){
-		List<Object[]> list = null;
+	public List<ListOrderedMap> queryServerOrgInfo(String cityName){
+		List<ListOrderedMap> list = null;
 		Object[] paramList = new Object[1];
 		StringBuffer listHql = new StringBuffer();
 		listHql.append("select c.CLIENTID,c.USERNAME,g.GATEWAYID" +
@@ -490,5 +491,13 @@ public class TransitServerDAO extends BaseDao {
 		return list;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<ListOrderedMap> queryLog(){
+		List<ListOrderedMap> list = null;
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("SELECT DESCRIPTION AS LOG FROM frame_operation_log limit 0, 10");
+		list = 	FrameworkApplication.baseJdbcDAO.queryForList(listHql.toString());
+		return list;
+	}
 	
 }

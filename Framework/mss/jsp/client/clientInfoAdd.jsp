@@ -74,8 +74,9 @@
 				return false;
 			}
 			
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "用户名符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "用户名符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -90,8 +91,9 @@
 				return false;
 			}
 			
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "密码符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "密码符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 			
 		}
@@ -106,8 +108,9 @@
 				return false;
 			}
 			
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -121,8 +124,9 @@
 				return false;
 			}
 			
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "认证类型符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "认证类型符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -137,8 +141,9 @@
 				return false;
 			}
 			
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -152,8 +157,9 @@
 				return false;
 			}
 			
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "客户类型符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "客户类型符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -183,8 +189,9 @@
 			}
 			
 			var infoDiv = document.getElementById("tele_phoneDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "固定电话格式符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "固定电话格式符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -214,8 +221,9 @@
 			}
 			
 			var infoDiv = document.getElementById("mobile_phoneDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "移动电话格式符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "移动电话格式符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -235,8 +243,9 @@
 				return false;
 			}
 			
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		</script>

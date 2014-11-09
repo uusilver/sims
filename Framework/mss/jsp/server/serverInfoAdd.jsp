@@ -128,8 +128,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_IpDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器IP地址符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器IP地址符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -147,8 +148,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_countryDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器所在国家符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器所在国家符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -166,8 +168,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_provinceDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器所在省（州）符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器所在省（州）符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -185,8 +188,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_cityDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器所在城市符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器所在城市符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -204,8 +208,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_typeDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器类型符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器类型符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -223,8 +228,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_statusDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器状态符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器状态符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -251,8 +257,9 @@
 			}
 			
 			var infoDiv = document.getElementById("invalid_timeDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器失效日期合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器失效日期合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -270,8 +277,9 @@
 			}
 			
 			var infoDiv = document.getElementById("limitDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器约束信息符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器约束信息符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -288,8 +296,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_regionDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器服务地域符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器服务地域符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -311,8 +320,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_commDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		</script>

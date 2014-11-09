@@ -100,12 +100,16 @@ public class ServerInfoBO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Object[]> queryServerStatusInfo(String cityName){
+	public List<ListOrderedMap> queryServerStatusInfo(String cityName){
 		return this.transitServerDAO.queryServerStatusInfo(cityName);
 	}
 	
-	public List<Object[]> queryServerOrgInfo(String cityName){
+	public List<ListOrderedMap> queryServerOrgInfo(String cityName){
 		return this.transitServerDAO.queryServerOrgInfo(cityName);
+	}
+	
+	public List<ListOrderedMap> queryLog(){
+		return this.transitServerDAO.queryLog();
 	}
 	
 }

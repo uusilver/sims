@@ -41,12 +41,10 @@ jQuery(document).ready(function($){
 function loadServerMsg(){
     //below codes are just for demo
     //Generate random number
-    var times = parseInt(10*Math.random())
-    var html = ''
-    for(var index=0;index<times;index++){
-        html += '服务器信息'+index+'<br/>';
-    }
-    $(".service_info_nav").html(html);
+	$.post('/sims/mss/html/indexPageController.do?method=queryLog',function(data){
+		$(".service_info_nav").html(data);
+});
+    
 }
 
 function showServerMsgWindow(){
@@ -63,10 +61,13 @@ function loadServerStatus(cityName){
 //     $(".service_a").html('<span>9</span>');
 //     $(".service_b").html('<span>8</span>');
 //     $(".service_c").html('<span>7</span>');
-	
+	var obj = JSON.stringify(cityName+":"+cityName);
 	$.post('/sims/mss/html/indexPageController.do?method=getServerInfoByCityName',{cityName:cityName},function(data){
-	     
-	     alert(data);
+	     //clean html
+		 $(".service_a").html('');
+	     $(".service_b").html('');
+	     $(".service_c").html('');
+	     //alert(data);
 	     var value = data.split(",");
 	     $(".service_a").html('<span>'+value[0]+'</span>');
 	     $(".service_b").html('<span>'+value[1]+'</span>');
@@ -76,10 +77,18 @@ function loadServerStatus(cityName){
 }
 
 function loadServerOrg(cityName){
-    
+	//var obj = JSON.stringify(cityName+":"+cityName);
 	$.post('/sims/mss/html/indexPageController.do?method=getServerOrgInfoByCityName',{cityName:cityName},function(data){
-	     
-	     alert(data);
+		 //clean html
+		 $(".net_a").hide();
+	     //alert(data);
+	     var values = data.split("@");
+	     var numbers = values[0];
+	     var titles = values[1].split(",");
+	     for(var index=1;index<=numbers;index++){
+	    	 $("#id"+index).attr("title",titles[parseInt(index)-1]);
+	    	 $("#id"+index).show();
+	     }
 	    
 });
      

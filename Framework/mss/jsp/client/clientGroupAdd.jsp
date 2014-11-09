@@ -104,8 +104,9 @@
 				return false;
 			}
 			
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -128,8 +129,9 @@
 				return false;
 			}
 
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -144,8 +146,9 @@
 				return false;
 			}
 
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		

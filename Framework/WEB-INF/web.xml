@@ -84,6 +84,10 @@
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
+		<filter-name>LoginTokenFilterMss</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
 		<filter-name>hibernateFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>

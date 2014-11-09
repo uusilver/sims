@@ -48,8 +48,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_IpDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器IP地址符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器IP地址符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -75,8 +76,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_portDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器端口符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器端口符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -94,8 +96,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_typeDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "服务器类型符合要求";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "服务器类型符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		
@@ -117,8 +120,9 @@
 			}
 			
 			var infoDiv = document.getElementById("server_commDiv");
-			infoDiv.className = "OK";
-		    infoDiv.innerHTML = "";
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
 		</script>
