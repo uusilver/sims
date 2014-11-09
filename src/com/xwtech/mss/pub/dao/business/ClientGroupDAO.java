@@ -219,4 +219,41 @@ public class ClientGroupDAO extends BaseDao {
 
 		return FrameworkApplication.baseJdbcDAO.update(sbSql.toString());
 	}
+	
+	/**
+	 * 根据客户端组ID查询该组中的客户端信息
+	 * @param groupId
+	 * @return
+	 */
+	public List<?> queryClientsByGroupId(String groupId){
+		
+		List<?> resultList = null;
+		
+		List<Integer> paramList = new ArrayList<Integer>();
+		// 查询列表sql
+		StringBuffer listHql = new StringBuffer();
+		listHql.append("select client from Client client,ClientGroup cGroup,ClientGroupMapping cgMapping "
+				+ " where client.clientid = cgMapping.clientid"
+				+ " and cGroup.clientgroupid = cgMapping.clientgroupid");
+
+		StringBuffer filterHql = new StringBuffer();
+			
+		//客户端组ID
+		if (groupId != null && !"".equals(groupId)) {
+			filterHql.append(" and cgMapping.clientgroupid = ?");
+			paramList.add(new Integer(groupId));
+		}
+		
+		if(paramList.size()>0){
+			Object[] paramObj = new Object[paramList.size()];
+			for(int i=0;i<paramList.size();i++){
+				paramObj[i] = paramList.get(i);
+			}
+			resultList = getHibernateTemplate().find(listHql.append(filterHql).toString(),paramObj);
+		}else{
+			resultList = getHibernateTemplate().find(listHql.append(filterHql).toString());
+		}
+		return resultList;
+	}
+	
 }

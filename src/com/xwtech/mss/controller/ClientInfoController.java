@@ -104,6 +104,12 @@ public class ClientInfoController extends MultiActionController {
 		//用户类型
 		final String userType = request.getParameter("userType");
 		
+		//固定电话
+		final String telePhone = request.getParameter("telePhone");
+		
+		//移动电话
+		final String mobilePhone = request.getParameter("mobilePhone");
+		
 		//服务器ID串,如：1，2，3，4
 		final String serverIds = request.getParameter("hiddenServerIds");
 		
@@ -148,6 +154,8 @@ public class ClientInfoController extends MultiActionController {
 					clientInfo.setDisable((disableFlag!=null&&!"".equals(disableFlag))?new Integer(disableFlag):null);
 					clientInfo.setTruename(trueName);
 					clientInfo.setUsertype((userType!=null&&!"".equals(userType))?new Integer(userType):null);
+					clientInfo.setTelephone(telePhone);
+					clientInfo.setMobilephone(mobilePhone);
 					clientInfo.setStatus(SpmsConstants.STATE_A);
 					clientInfo.setNote(clientComment);
 					//用户姓名首字母
@@ -159,7 +167,7 @@ public class ClientInfoController extends MultiActionController {
 					if(serverIds!=null&&!"".equals(serverIds)){
 						int result = clientServerMappingBO.delMappingRecords(serverIds, clientInfo.getClientid().toString());
 						if(result>=0){
-							clientServerMappingBO.saveClientServerLink(clientInfo.getClientid(), serverIds);
+							clientServerMappingBO.saveClientServerLink(clientInfo.getClientid().toString(), serverIds);
 						}
 					}
 					

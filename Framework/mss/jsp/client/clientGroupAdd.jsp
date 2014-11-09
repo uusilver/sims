@@ -24,6 +24,17 @@
 					clientName = cgMappingJsonObj[i].clientTag;
 					sel_dest.append("<option value='"+clientId+"'>"+clientName+"</option>");
 			}
+			
+			
+			var csMappingJsonObj = $.parseJSON('${information.csMappingResult}');
+			var serverId;
+			var serverName;
+			var sel_dest = $("select[name=serverId]");
+			for(var i=0;i<csMappingJsonObj.length;i++){
+					serverId = csMappingJsonObj[i].serverId;
+					serverName = csMappingJsonObj[i].serverTag;
+					sel_dest.append("<option value='"+serverId+"'>"+serverName+"</option>");
+			}
 		});
 		
 		</script>
@@ -46,7 +57,17 @@
 					clientIds = clientIds.substring(0, clientIds.length - 1);
 			
 					$("input[name=hiddenClientIds]").attr("value",clientIds);
-					alert($("input[name=hiddenClientIds]").val());
+
+
+					var serverOptions = $("select[name=serverId]").find("option");
+					var serverIds = "";
+					for(var i=0;i < serverOptions.length; i++){
+						serverIds += serverOptions[i].value + ",";
+					}
+					serverIds = serverIds.substring(0, serverIds.length - 1);
+			
+					$("input[name=hiddenServerIds]").attr("value",serverIds);
+					
 					document.clientGroupAddForm.submit();
 				}
 			}else{
@@ -71,6 +92,14 @@
 			{
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "【客户端组名】不能超过20个字符，请修改！";
+		        groupName.focus();
+				return false;
+			}
+			
+			if(groupName.value.indexOf("[")!=-1 || groupName.value.indexOf("]")!=-1 )
+			{
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "【客户端组名】不能包含字符'['或者']'，请修改！";
 		        groupName.focus();
 				return false;
 			}
@@ -148,7 +177,7 @@
 						<span id="client_group_nameDiv"></span>
 					</td>
 				</tr>
-				<tr height="20">
+				<tr height="100">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						备注
 					</td>
@@ -159,15 +188,26 @@
 				</tr>
 				<tr>
 					<td align="center" class="qinggoudan_table_title">
-						客户端信息
+						客户端列表
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:two align="left" arl="${information.clientList }" selectItem="客户端列表" waitItem="已分配客户端列表" leftId="clientId"
 							leftValue="clientTag" rightId="clientId" rightValue="clientTag" rightName="clientId" selectStyle="two_select"
-							itemStyle="item_two_select" moveStyle="button_select" size="15" width="100%" contextPath="${contextPath}" />
+							itemStyle="item_two_select" moveStyle="button_select" size="15" width="80%" contextPath="${contextPath}" />
 
 						<input type="hidden" name="hiddenClientIds" value="">
 						<span id="client_listDiv"></span>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" class="qinggoudan_table_title">
+						可访问服务器
+					</td>
+					<td align="left" class="qinggoudan_table_td1">
+						<pub:two align="left" arl="${information.serverList }" selectItem="服务器列表" waitItem="可访问服务器列表" leftId="serverId"
+							leftValue="serverTag" rightId="serverId" rightValue="serverTag" rightName="serverId" selectStyle="two_select"
+							itemStyle="item_two_select" moveStyle="button_select" size="15" width="80%" contextPath="${contextPath}" />
+						<input type="hidden" name="hiddenServerIds" value=""/>
 					</td>
 				</tr>
 			</table>

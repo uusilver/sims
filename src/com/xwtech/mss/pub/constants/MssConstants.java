@@ -13,6 +13,7 @@ public class MssConstants {
 	public static final String OPER_OBJECT_SYSMENU = "30"; // 系统菜单
 	public static final String OPER_OBJECT_SERVER = "40"; // 服务器
 	public static final String OPER_OBJECT_SERVER_GROUP = "41"; // 服务器分组
+	public static final String OPER_OBJECT_DNS_SERVER = "42"; // 服务器分组
 	public static final String OPER_OBJECT_CLIENT = "50"; // 客户信息
 	public static final String OPER_OBJECT_CLIENT_GROUP = "51"; // 客户分组	
 	public static final String OPER_OBJECT_CLIENT_GATEWAY = "52"; // 客户与网关映射关系
@@ -28,6 +29,7 @@ public class MssConstants {
 	public static final String OPER_TABLE_SYSROLE = "frame_role"; // 系统角色
 	public static final String OPER_TABLE_SYSMENU = "frame_menu"; // 系统菜单
 	public static final String OPER_TABLE_SERVER = "transit_server"; // 服务器
+	public static final String OPER_TABLE_DNS_SERVER = "oper_dns_server"; // 服务器
 	public static final String OPER_TABLE_SERVER_GROUP = "server_group"; // 服务器分组
 	public static final String OPER_TABLE_CLIENT = "client"; // 客户信息
 	public static final String OPER_TABLE_CLIENT_GROUP = "client_group"; // 客户分组	
@@ -73,6 +75,10 @@ public class MssConstants {
 	public static final String QUERY_SERVER_TYPE_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
 			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='SERVER_TYPE'";
 	
+	// 查询DNS服务器类型信息SQL
+	public static final String QUERY_DNS_SERVER_TYPE_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
+			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='DNS_SERVER_TYPE'";
+	
 	// 查询服务器状态信息SQL
 	public static final String QUERY_SERVER_STATUS_SQL = "SELECT S.VALUE, S.TEXT FROM CODE_BOOK S"
 			+ " WHERE S.STATUS = '" + STATE_A + "' AND S.TAG='SERVER_STATUS'";
@@ -115,8 +121,11 @@ public class MssConstants {
 	public static final String DATE_FOMATTER_15 = "yyyyMMddHHmmss";
 	
 	// 服务器类型
-	
 	public static final String SERVER_TYPE = "SERVER_TYPE"; 
+	
+	// DNS服务器类型
+	public static final String DNS_SERVER_TYPE = "DNS_SERVER_TYPE"; 
+	
 	// 服务器状态
 	public static final String SERVER_STATUS = "SERVER_STATUS"; 
 	

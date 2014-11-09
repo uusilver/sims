@@ -41,7 +41,7 @@
 		<property name="serverGroupDAO" ref="serverGroupDAO" />
 		<property name="serverGroupMappingDAO" ref="serverGroupMappingDAO" />
 		<property name="serverStatusDAO" ref="serverStatusDAO" />
-		
+		<property name="operDNSServerDAO" ref="operDNSServerDAO" />
 		
 	</bean>
 
@@ -194,6 +194,11 @@
 
 	<bean id="serverStatusDAO"
 		class="com.xwtech.mss.pub.dao.business.ServerStatusDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="operDNSServerDAO"
+		class="com.xwtech.mss.pub.dao.business.OperDNSServerDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	

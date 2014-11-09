@@ -125,6 +125,14 @@
 		<property name="clientGroupBO" ref="clientGroupBO" />
 		<property name="clientInfoBO" ref="clientInfoBO" />
 		<property name="clientGroupMappingBO" ref="clientGroupMappingBO" />
+		<property name="clientServerMappingBO" ref="clientServerMappingBO" />
+		<property name="operLogBO" ref="operLogBO"/>
+		<property name="methodNameResolver" ref="paraMethodResolver" />
+	</bean>
+	
+	<bean name="/mss/jsp/server/operDnsServerController.do" class="com.xwtech.mss.controller.OperDnsServerController">
+		<property name="transTemplate" ref="transTemplate" />
+		<property name="dnsServerBO" ref="dnsServerBO" />
 		<property name="operLogBO" ref="operLogBO"/>
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>

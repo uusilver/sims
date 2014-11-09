@@ -58,7 +58,7 @@
 				style="margin:0px;">
 				<tr>
 					<td class="qinggoudan_title01_td1">
-						客户信息查询
+						客户端信息查询
 					</td>
 				</tr>
 			</table>
@@ -70,11 +70,11 @@
 							<input name="queryClientName" type="text" class="qinggoudan_input02" size="40"
 								value="${information.searchForm.queryClientName}" maxlength="50" />
 						</td>
-						<td class="qinggoudan_table_td1" width="15%">
+						<!-- td class="qinggoudan_table_td1" width="15%">
 							认证类型:
 							<pub:link sql="<%=MssConstants.QUERY_CLIENT_AUTH_TYPE_SQL%>" num="1" selectSize="20"
 								title="------请选择认证类型------" next="false" name="queryAuthType" mvalue="${information.searchForm.queryAuthType}" />
-						</td>
+						</td> -->
 						<td class="qinggoudan_table_td1" width="15%">
 							客户端状态:
 							<pub:link sql="<%=MssConstants.QUERY_CLIENT_DISABLE_FLAG_SQL%>" num="1" selectSize="20"
@@ -125,20 +125,20 @@
 					<td class="qinggoudan_table_title" width="10%">
 						所属分组
 					</td>
-					<td class="qinggoudan_table_title" width="10%">
+					<!-- td class="qinggoudan_table_title" width="10%">
 						认证类型
-					</td>
+					</td> -->
 					<td class="qinggoudan_table_title" width="10%">
 						客户端状态
 					</td>
 					<td class="qinggoudan_table_title" width="10%">
 						客户端类型
 					</td>
-					<td class="qinggoudan_table_title" width="8%">
+					<td class="qinggoudan_table_title" width="15%">
 						备注
 					</td>
 					<c:if test="${information.accessType==null||information.accessType==''||information.accessType=='menu'}">
-						<td class="qinggoudan_table_title">
+						<td class="qinggoudan_table_title" width="8%">
 								详情
 						</td>
 					</c:if>
@@ -171,10 +171,10 @@
 							&nbsp;${(clientInfo.clientgroupname==null||clientInfo.clientgroupname=="")?"未分组":clientInfo.clientgroupname}
 							<input type="hidden" id="clientGroup${clientInfo.clientid}" value="${fn:escapeXml(clientInfo.clientgroupname)}" />
 						</td>
-						<td class="qinggoudan_table_td2">
+						<!-- td class="qinggoudan_table_td2">
 							&nbsp;${fn:escapeXml(clientInfo.authType)}
 							<input type="hidden" id="authType${clientInfo.clientid}" value="${fn:escapeXml(clientInfo.authType)}" />
-						</td>
+						</td> -->
 						<td class="qinggoudan_table_td2">
 							&nbsp;${fn:escapeXml(clientInfo.disableFlag)}
 							<input type="hidden" id="clientStatus${clientInfo.clientid}" value="${fn:escapeXml(clientInfo.disableFlag)}" />
@@ -184,7 +184,7 @@
 							<input type="hidden" id="userType${clientInfo.clientid}" value="${fn:escapeXml(clientInfo.userType)}" />
 						</td>
 						<td class="qinggoudan_table_td2">
-							<textarea name="clientComment" id="client_comment" rows="1" cols="15">${fn:escapeXml(clientInfo.note)}</textarea>
+							<textarea name="clientComment" id="client_comment" rows="1" cols="25">${fn:escapeXml(clientInfo.note)}</textarea>
 						</td>
 						<c:if test="${information.accessType==null||information.accessType==''||information.accessType=='menu'}">
 							<td class="qinggoudan_table_td2">

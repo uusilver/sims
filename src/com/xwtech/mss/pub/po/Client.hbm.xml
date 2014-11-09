@@ -50,6 +50,16 @@
                 <comment>用户真实姓名，可空</comment>
             </column>
         </property>
+        <property name="telephone" type="string">
+            <column name="TELEPHONE" length="20">
+                <comment>固定电话</comment>
+            </column>
+        </property>
+        <property name="mobilephone" type="string">
+            <column name="MOBILEPHONE" length="20">
+                <comment>移动电话</comment>
+            </column>
+        </property>
         <property name="firstLetter" type="java.lang.String">
             <column name="FIRSTLETTER" length="1" />
         </property>

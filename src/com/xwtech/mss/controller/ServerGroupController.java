@@ -177,7 +177,7 @@ public class ServerGroupController extends MultiActionController {
 					status.setRollbackOnly();
 					e.printStackTrace();
 				}
-				resultInfos.setGotoUrl("/mss/jsp/server/serverGroupController.do?method=queryServerGroupList&viewOrEdit="+viewOrEdit);
+				resultInfos.setGotoUrl("/mss/jsp/server/serverGroupController.do?method=queryServerGroupList&viewOrEdit=edit");
 				resultInfos.setIsAlert(true);
 				resultInfos.setIsRedirect(true);
 			}

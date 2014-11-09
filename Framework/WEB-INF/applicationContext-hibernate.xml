@@ -60,6 +60,7 @@
                              <value>com/xwtech/mss/pub/po/MpmsAuthorization.hbm.xml</value>
                              
                             
+                            <value>com/xwtech/mss/pub/po/OperDNSServer.hbm.xml</value> 
                             <value>com/xwtech/mss/pub/po/TransitServer.hbm.xml</value> 
                             <value>com/xwtech/mss/pub/po/Region.hbm.xml</value>
 							<value>com/xwtech/mss/pub/po/Gateway.hbm.xml</value>
