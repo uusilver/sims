@@ -9,9 +9,14 @@
 		<title>物资管理系统-服务器信息管理</title>
 		<link href="${contextPath }/framework/css/style.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
+		<link href="${contextPath}/mss/html/css/jquery-ui-1.9.2.css" rel="stylesheet" type="text/css" />
+		<link href="${contextPath}/mss/css/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/ajax.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/jquery-1.9.1.min.js"></script> 
+		<script type="text/javascript" src="${contextPath}/mss/js/jquery-ui-1.9.2.js"></script>
+		<script type="text/javascript" src="${contextPath}/mss/js/jquery-ui-timepicker-addon.js"></script>
+		<script type="text/javascript" src="${contextPath}/mss/js/jquery-ui-datepicker-regional.js"></script>
 		
 		<script type="text/javascript">  
 
@@ -88,6 +93,22 @@
 			$(".country").change(function(){  
 				changeProvince($(this).val(),"");  
 			}); 
+			
+			//初始化日历控件
+			$( "#datepicker" ).datetimepicker({
+			      changeMonth: true,
+			      changeYear: true,
+			      showOn: "button",
+			      buttonImage: "${contextPath }/mss/image/calendar.jpg",
+			      buttonImageOnly: true,
+			      buttonText: "Select date",
+			      dateFormat:"yy-mm-dd",
+			      timeFormat: 'HH:mm:ss',
+			  	  stepHour: 1,
+			  	  stepMinute: 1,
+			  	  stepSecond: 1
+			    });
+			$.datepicker.setDefaults( $.datepicker.regional["zh-CN"] );
 		});
 	</script>
 		
@@ -417,9 +438,8 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<pub:dtp format="yyyy-MM-dd HH:mm:ss" name="invalidTime" size="10" styleClass="qinggoudan_input023" 
-						value="${information.transitServer.invalidtime}"/>
-					<span id="invalid_timeDiv"></span>
+						<input type="text" id="datepicker" name="invalidTime" style='width:150px;' size="20" value="${information.transitServer.invalidtime}" />
+						<span id="invalid_timeDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">

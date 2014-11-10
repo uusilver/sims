@@ -73,7 +73,7 @@
 document.getElementById("info_alert").setAttribute("src", "${contextPath}/mss/image/info-alert.png");
 
 function sendR(){
-	parent.location = "${contextPath}/index.jsp";
+	parent.location = "${contextPath}/login.jsp";
 	
 }
 var t = setTimeout("sendR()", 4000);

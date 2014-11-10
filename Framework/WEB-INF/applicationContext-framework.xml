@@ -99,6 +99,7 @@
 			<list>
 				<!-- 不需要进行校验的url -->
 				<value>index.jsp</value>
+				<value>index.html</value>
 				<value>login.jsp</value>
 				<value>information.jsp</value>
 				<value>userLoginController.do</value>
