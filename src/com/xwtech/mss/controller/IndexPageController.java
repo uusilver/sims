@@ -45,7 +45,7 @@ public class IndexPageController extends MultiActionController{
 					 if(serverNum<5){
 						 busyServer = String.valueOf(serverNum);
 					 }else{
-						 busyServer = String.valueOf(Math.ceil((serverNum*(0.8))));
+						 busyServer = String.valueOf((int)Math.ceil((serverNum*(0.8))));
 						 activeServer = String.valueOf(serverNum - Integer.valueOf(busyServer));
 					 }
 				 }
