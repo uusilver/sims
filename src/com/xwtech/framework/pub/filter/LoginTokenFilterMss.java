@@ -79,7 +79,7 @@ public class LoginTokenFilterMss extends OncePerRequestFilter
 	       {
 	         HashMap map = new HashMap();
 	         ResultInfos resultInfos = new ResultInfos();
-	         resultInfos.setGotoUrl("/index.jsp");
+	         resultInfos.setGotoUrl("/login.jsp");
 //	         resultInfos.setIsRedirect(true);
 	         resultInfos.add(new ResultInfo(ResultConstants.NOT_LOGIN_NOT_ACCESS_ROLE,null));
 	         map.put(RequestNameConstants.RESULTINFOS,resultInfos);

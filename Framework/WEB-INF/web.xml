@@ -172,7 +172,7 @@
 		<mime-type>video/x-ms-asf</mime-type>
 	</mime-mapping>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
 	</welcome-file-list>
 	<jsp-config>
 	<taglib>
