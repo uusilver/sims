@@ -354,7 +354,7 @@ public class RoleManageController extends MultiActionController {
 			// }
 
 			sbSql.append(" WHERE ");
-			sbSql.append(colName + " = '" + colVal + "'");
+			sbSql.append(colName + " = '" + colVal.trim() + "'");
 			sbSql.append(" and "+stateColName+" != "+"'D'");
 
 			log.info("检查是否存在SQL：" + sbSql.toString());
@@ -366,7 +366,7 @@ public class RoleManageController extends MultiActionController {
 			response.setDateHeader("Expires", 0);
 
 			// response.setLocale(Locale.SIMPLIFIED_CHINESE);
-			((ServletRequest) response).setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
 			PrintWriter writer = response.getWriter();
 
 			writer.write(rowCount == 0 ? "true" : "false");

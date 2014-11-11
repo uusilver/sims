@@ -29,10 +29,11 @@
 		function checkServerIP() {
 			//校验IP地址格式
 			var condition = /^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$/; 
-			var serverIP = document.getElementById("server_IP");
+			var serverIP = document.getElementById("serverip");
+			var editFlag = $("input[name='viewOrEdit']").val();
 			
 			if (serverIP.value == "") {
-				var infoDiv = document.getElementById("server_IpDiv");
+				var infoDiv = document.getElementById("serveripDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器IP地址不能为空，请填写！";
 		        serverIP.focus();
@@ -40,14 +41,19 @@
 			}
 			
 			if(!condition.test(trim(serverIP.value))) {
-				var infoDiv = document.getElementById("server_IpDiv");
+				var infoDiv = document.getElementById("serveripDiv");
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "服务器IP地址格式不正确，请修改！例如：192.54.6.20";
 		        serverIP.focus();
 				return false;
 			}
+
+			if((editFlag==null||editFlag==''||editFlag!='edit')&&checkIsExist(serverIP, '', 'oper_dns_server') == "false") {
+		        serverIP.focus();
+				return false;
+			}
 			
-			var infoDiv = document.getElementById("server_IpDiv");
+			var infoDiv = document.getElementById("serveripDiv");
 			//infoDiv.className = "OK";
 		    //infoDiv.innerHTML = "服务器IP地址符合要求";
 		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
@@ -130,6 +136,7 @@
 	</head>
 	<body>
 		<form name="serverInfoAddForm" method="post" action="${contextPath}/mss/jsp/server/operDnsServerController.do?method=saveServerInfo">
+		<input type="hidden" name="checkUrl" value="${contextPath}/mss/jsp/sysManage/roleManageController.do?method=checkIsExist&stateColName=status" />
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">
 				<tr>
@@ -146,11 +153,11 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<input name="serverIP" id="server_IP" type="text" class="qinggoudan_input023" size="20" maxlength="50"
+						<input name="serverIP" id="serverip" type="text" class="qinggoudan_input023" size="20" maxlength="50"
 							value="${information.operDNSServer.serverip}"
 							onchange="checkServerIP()">
-						<input type="hidden" name="serverId" id="server_ID" value="${information.transitServer.serverid }" />
-						<span id="server_IpDiv"></span>
+						<input type="hidden" name="serverId" id="server_ID" value="${information.operDNSServer.dnsserverid }" />
+						<span id="serveripDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">

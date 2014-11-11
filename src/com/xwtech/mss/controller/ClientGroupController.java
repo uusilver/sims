@@ -225,7 +225,7 @@ public class ClientGroupController extends MultiActionController {
 		
 		// 进行服务器选择查询时使用
 		
-		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
+		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "edit" : request.getParameter("viewOrEdit").trim();
 		
 		String queryClientGroupName = request.getParameter("queryClientGroupName");
 		

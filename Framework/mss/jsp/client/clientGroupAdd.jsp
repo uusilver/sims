@@ -77,9 +77,10 @@
 		
 		//校验
 		function checkGroupName() {
-			var groupName = document.getElementById("client_group_name");
+			var groupName = document.getElementById("clientgroupname");
 			
-			var infoDiv = document.getElementById("client_group_nameDiv");
+			var infoDiv = document.getElementById("clientgroupnameDiv");
+			var editFlag = $("input[name='viewOrEdit']").val();
 			
 			if(groupName.value==""){
 				infoDiv.className = "warning";
@@ -100,6 +101,11 @@
 			{
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "【客户端组名】不能包含字符'['或者']'，请修改！";
+		        groupName.focus();
+				return false;
+			}
+
+			if((editFlag==null||editFlag==''||editFlag!='edit')&&checkIsExist(groupName, '', 'client_group') == "false") {
 		        groupName.focus();
 				return false;
 			}
@@ -157,6 +163,7 @@
 	</head>
 	<body>
 		<form name="clientGroupAddForm" method="post" action="${contextPath}/mss/jsp/client/clientGroupController.do?method=saveClientGroup">
+		<input type="hidden" name="checkUrl" value="${contextPath}/mss/jsp/sysManage/roleManageController.do?method=checkIsExist&stateColName=status" />
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">
 				<tr>
@@ -173,11 +180,11 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<input name="clientGroupName" id="client_group_name" type="text" class="qinggoudan_input023" size="20" maxlength="50"
+						<input name="clientGroupName" id="clientgroupname" type="text" class="qinggoudan_input023" size="20" maxlength="50"
 							value="${information.clientGroup.clientgroupname}"
 							onchange="checkGroupName()">
 						<input type="hidden" name="clientGroupId" id="client_group_id" value="${information.clientGroup.clientgroupid }" />
-						<span id="client_group_nameDiv"></span>
+						<span id="clientgroupnameDiv"></span>
 					</td>
 				</tr>
 				<tr height="100">
@@ -228,7 +235,7 @@
 					</td>
 				</tr>
 			</table>
-				<input type="hidden" name="viewOrEdit" value=<%=request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit")%> />
+				<input type="hidden" name="viewOrEdit" value="${information.searchForm.viewOrEdit}" />
 				<input type="hidden" name="currentPage" value="${information.searchForm.currentPage}" />
 				<input type="hidden" name="queryClientGroupName" value="${information.searchForm.queryClientGroupName}" />
 				<input type="hidden" name="queryNote" value="${information.searchForm.queryNote}" />

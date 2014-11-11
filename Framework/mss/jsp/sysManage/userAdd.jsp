@@ -16,7 +16,8 @@
 
 	<body>
 		<form name="userForm" method="post" action="${contextPath}/mss/jsp/sysManage/userManageController.do?method=saveUser">
-		<input type="hidden" name="checkUrl" value="${contextPath}/mss/jsp/sysManage/roleManageController.do?method=checkIsExist" />
+		<input type="hidden" name="checkUrl" value="${contextPath}/mss/jsp/sysManage/roleManageController.do?method=checkIsExist&stateColName=user_state" />
+		
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">
 				<tr>

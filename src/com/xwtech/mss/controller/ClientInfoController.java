@@ -214,7 +214,7 @@ public class ClientInfoController extends MultiActionController {
 		// 页面首次访问，即由菜单点击访问
 		String accessType = request.getParameter("accessType");
 		
-		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
+		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "edit" : request.getParameter("viewOrEdit").trim();
 		//是否显示查询条件框
 		String showHeader = request.getParameter("showHeader");
 		if(showHeader==null||"".equals(showHeader)){
@@ -333,13 +333,14 @@ public class ClientInfoController extends MultiActionController {
 		clientInfoForm.setQueryUserType(queryUserType);
 		clientInfoForm.setQueryStatus(queryStatus);
 		clientInfoForm.setQueryClientGroup(queryClientGroup);
+		clientInfoForm.setViewOrEdit(viewOrEdit);
 		clientInfoForm.setShowHeader(showHeader);
 		
 		map.put("clientInfo", clientInfo);
 		map.put("searchForm",clientInfoForm);
 		map.put("serverList", unAccessedServerList);
 		map.put("csMappingResult", csMappingResult);
-		return new ModelAndView("/mss/jsp/client/clientInfoAdd.jsp?viewOrEdit="+viewOrEdit, RequestNameConstants.INFORMATION, map);
+		return new ModelAndView("/mss/jsp/client/clientInfoAdd.jsp", RequestNameConstants.INFORMATION, map);
 	}
 	
 	/**

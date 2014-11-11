@@ -56,9 +56,10 @@
 		
 		//校验
 		function checkGroupName() {
-			var groupName = document.getElementById("server_group_name");
+			var groupName = document.getElementById("servergroupname");
 			
-			var infoDiv = document.getElementById("server_group_nameDiv");
+			var infoDiv = document.getElementById("servergroupnameDiv");
+			var editFlag = $("input[name='viewOrEdit']").val();
 			
 			if(groupName.value==""){
 				infoDiv.className = "warning";
@@ -71,6 +72,11 @@
 			{
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "【服务器组名】不能超过20个字符，请修改！";
+		        groupName.focus();
+				return false;
+			}
+
+			if((editFlag==null||editFlag==''||editFlag!='edit')&&checkIsExist(groupName, '', 'server_group') == "false") {
 		        groupName.focus();
 				return false;
 			}
@@ -128,6 +134,7 @@
 	</head>
 	<body>
 		<form name="serverGroupAddForm" method="post" action="${contextPath}/mss/jsp/server/serverGroupController.do?method=saveServerGroup">
+		<input type="hidden" name="checkUrl" value="${contextPath}/mss/jsp/sysManage/roleManageController.do?method=checkIsExist&stateColName=status" />
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">
 				<tr>
@@ -144,11 +151,11 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<input name="serverGroupName" id="server_group_name" type="text" class="qinggoudan_input023" size="20" maxlength="50"
+						<input name="serverGroupName" id="servergroupname" type="text" class="qinggoudan_input023" size="20" maxlength="50"
 							value="${information.serverGroup.servergroupname}"
 							onchange="checkGroupName()">
 						<input type="hidden" name="serverGroupId" id="server_group_id" value="${information.serverGroup.servergroupid }" />
-						<span id="server_group_nameDiv"></span>
+						<span id="servergroupnameDiv"></span>
 					</td>
 				</tr>
 				<tr height="20">

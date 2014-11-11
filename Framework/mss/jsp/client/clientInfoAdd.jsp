@@ -30,7 +30,7 @@
 		<script type="text/javascript">
 
 		function saveClientInfo(){
-			if(checkUserName()&&checkPassword()&&checkModifyPass()&&checkAuthType()&&checkDisableFlag()
+			if(checkUserName()&&checkPassword()&&checkModifyPass()&&checkTrueName()&&checkAuthType()&&checkDisableFlag()
 					&&checkUserType()&&checkTelePhone()&&checkMobilePhone()&&checkClientComment()){
 				if(confirm("您确定要保存该客户信息么？")){
 					var serverOptions = $("select[name=serverId]").find("option");
@@ -50,9 +50,10 @@
 		}
 		
 		function checkUserName() {
-			var userName = document.getElementById("user_name");
+			var userName = document.getElementById("username");
 			var condition = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){0,31}$/;
-			var infoDiv = document.getElementById("user_nameDiv");
+			var infoDiv = document.getElementById("usernameDiv");
+			var editFlag = $("input[name='viewOrEdit']").val();
 			
 			if(trim(userName.value) == "") {
 				infoDiv.className = "warning";
@@ -71,6 +72,11 @@
 			if(!condition.test(trim(userName.value))) {
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "用户名必须以字母开头，由数字、字母、'.'或是'_'组成，请修改！";
+				return false;
+			}
+
+			if((editFlag==null||editFlag==''||editFlag!='edit')&&checkIsExist(userName, '', 'client') == "false") {
+		        userName.focus();
 				return false;
 			}
 			
@@ -97,7 +103,34 @@
 		    return true;
 			
 		}
-		
+		function checkTrueName(){
+			var condition = /[^\u4E00-\u9FA5]/g; //校验是否汉字
+			var trueName = $("#client_name");
+			var infoDiv = document.getElementById("client_nameDiv");
+			if(trueName.val()==""){
+				infoDiv.innerHTML = "";
+				return true;
+			}
+			
+			if(trim(trueName.val()).length>8)
+			{
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "用户姓名不能超过8个字符，请修改";
+		        trueName.focus();
+				return false;
+			}
+
+			if(condition.test(trim(trueName.val()))) {
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "用户姓名必须为汉字，请修改！";
+		        trueName.focus();
+				return false;
+			}
+			
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
+		    return true;
+			
+		}
 		function checkModifyPass(){
 			var modifyPass = document.getElementsByName("modifyPass")[0];
 			var infoDiv = document.getElementById("modify_passDiv");
@@ -253,6 +286,7 @@
 
 	<body>
 		<form name="clientInfoAddForm" method="post" action="${contextPath}/mss/jsp/client/clientInfoController.do?method=saveClientInfo">
+		<input type="hidden" name="checkUrl" value="${contextPath}/mss/jsp/sysManage/roleManageController.do?method=checkIsExist&stateColName=status" />
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">
 				<tr>
@@ -269,10 +303,10 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<input name="userName" id="user_name" type="text" class="qinggoudan_input023" size="20" maxlength="50"
+						<input name="userName" id="username" type="text" class="qinggoudan_input023" size="20" maxlength="50"
 							value="${information.clientInfo.username}"
 							onchange="checkUserName()">
-						<span id="user_nameDiv"></span>
+						<span id="usernameDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
@@ -294,7 +328,7 @@
 					<td align="left" class="qinggoudan_table_td1">
 						<input name="clientName" id="client_name" type="text" class="qinggoudan_input023" size="20" maxlength="50"
 							value="${information.clientInfo.truename}"
-							onchange="checkClientName()">
+							onchange="checkTrueName()">
 						<input type="hidden" name="clientNum" id="client_num" value="${information.clientInfo.clientid }" />
 						<span id="client_nameDiv"></span>
 					</td>
