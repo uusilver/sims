@@ -16,41 +16,6 @@
 <script type="text/javascript" src="${contextPath}/mss/js/jquery-1.9.1.min.js" />
  
 <script language="javaScript" type="text/javascript">
-
-     function VerifyUserName(loginName){
-    	 var loginName = document.getElementsByName("loginName")[0];
-       	 var condition = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){0,31}$/;
-       	 if(loginName.value==''){
-       		 alert('请输入用户名！');
-       		 loginName.focus();
-       		 return false;
-       	 }
-		
-       	 if(!condition.exec(loginName.value)){
-       		alert("用户名必须以字母开头，由数字、字母、'.'或是'_'组成，请您检查您输入的用户名是否正确！");
-       		loginName.focus();
-       		return false;
-       	 }
-       		
-       	 return true;
-     }
-
-     function VerifyPassword(){
-       var condition = /^[a-zA-Z0-9]{1,64}$/;
-  	   var loginPwd = document.getElementsByName("loginPwd")[0];
-       if(loginPwd.value==''){
-       	loginPwd.focus();
-       	alert('请输入密码！');
-       	return false;
-       }
-	
-       if(!condition.exec(loginPwd.value)){
-    	   loginPwd.focus();
-    	   alert('请输入正确的密码！');
-    	   return false;
-       }
-       return true;
-     }
      
      document.onkeydown = keyDown;
      
@@ -114,34 +79,45 @@
 	}
 	
 	function VerifyPassword(){
-	       var condition = /^[a-zA-Z0-9]{1,64}$/;
-			 var loginPwd = $("#login_pwd");
-	       if(loginPwd.val()==''){
-	       	loginPwd.focus();
+	    var condition = /^[a-zA-Z0-9]{1,64}$/;
+		var loginPwd = $("#login_pwd");
+	    if(loginPwd.val()==''){
+	    	loginPwd.focus();
 	       	alert('请输入密码！');
 	       	return false;
-	       }
+	    }
 		
-	       if(!condition.exec(loginPwd.val())){
-	    	   loginPwd.focus();
-	    	   alert('请输入正确的密码！');
-	    	   return false;
-	       }
-	       return true;
-	     }
+	    if(!condition.exec(loginPwd.val())){
+	       loginPwd.focus();
+	       alert('请输入正确的密码！');
+	       return false;
+	    }
+	    return true;
+	}
 
 
-<!--背景图自适应-->
-$(window).load(function(){
-	fullBg($("#background"));
-});
 
 $(function() {
-$(".login_btn_b").click(function(){
-	if(VerifyUserName()&&VerifyPassword()){
-        $(".userLoginForm").submit();
-    }
-});
+	<!--背景图自适应-->
+	$(window).load(function(){
+		fullBg($("#background"));
+	});
+	
+	$(".login_btn_b").click(function(){
+		if(VerifyUserName()&&VerifyPassword()){
+	        $(".userLoginForm").submit();
+	    }
+	});
+
+	$(window).keydown(function(event){
+		var keyCode = event.which;
+		if(keyCode==13){
+			if(VerifyUserName()&&VerifyPassword()){
+		        $(".userLoginForm").submit();
+		    }
+		}
+	});
+
 });
 
 </script>
@@ -204,11 +180,11 @@ $(".login_btn_b").click(function(){
 </form>
 
 
-<iframe 
-name="subFrame" height="0" src="about:blank" frameborder="0" style="display: none;"></iframe> 
+<iframe name="subFrame" height="0" src="about:blank" frameborder="0" style="display: none;"></iframe> 
 
 <script language="javaScript" type="text/javascript">
 document.UserLogin.loginName.focus();
+
 </script>
 
 </body>
