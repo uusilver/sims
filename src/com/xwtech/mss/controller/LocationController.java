@@ -116,53 +116,6 @@ public class LocationController extends MultiActionController{
 	
 	//delete
 	public void deleteLocationInfo(HttpServletRequest request, HttpServletResponse response){
-		String id = request.getParameter("param");
-		//String nd = id.substring(2, id.length()-2);
-		String nd = id.replaceAll("[\\[\\]]","").replace("\"", "");
-		String prefix = nd.split("-")[0];
-		String realId = nd.split("-")[1];
-		//3-city, 2-province, 1-country
-		if(prefix.equalsIgnoreCase("3")){
-			List<City> cityList = cityBO.queryAllCitys();
-			for(City c:cityList){
-				if(String.valueOf(c.getCityid()).equalsIgnoreCase(realId)){
-					c.setStatus("D");
-					cityBO.saveOrUpdate(c);
-				}
-			}
-		}else if(prefix.equalsIgnoreCase("2")){
-			List<Province> provinceList = provinceBO.queryAllProvinces();
-			for(Province p:provinceList){
-				if(String.valueOf(p.getProvinceid()).equalsIgnoreCase(realId)){
-					p.setStatus("D");
-					provinceBO.saveOrUpdate(p);
-					List<City> cityList = cityBO.queryCityByProvinceId(String.valueOf(p.getProvinceid()));
-					for(City c:cityList){
-						c.setStatus("D");
-						cityBO.saveOrUpdate(c);
-					}
-				}
-			}
-			
-		}else if(prefix.equalsIgnoreCase("1")){
-			List<Country> countryList = countryBO.queryAllCountries();
-			for(Country c:countryList){
-				if(String.valueOf(c.getCountryid()).equalsIgnoreCase(realId)){
-					c.setStatus("D");
-					countryBO.saveOrUpdate(c);
-					List<Province> provinceList = provinceBO.queryProvinceByCountryId(String.valueOf(c.getCountryid()));
-					for(Province p:provinceList){
-						p.setStatus("D");
-						provinceBO.saveOrUpdate(p);
-						List<City> cityList = cityBO.queryCityByProvinceId(String.valueOf(p.getProvinceid()));
-						for(City city:cityList){
-							city.setStatus("D");
-							cityBO.saveOrUpdate(city);
-						}
-					}
-				}
-			}
-		}
 		response.setHeader("Content-type","text/html;charset=UTF-8");
 		 PrintWriter writer = null;
 		try {
@@ -171,7 +124,60 @@ public class LocationController extends MultiActionController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 writer.write("success");
+		String id = request.getParameter("param");
+		//String nd = id.substring(2, id.length()-2);
+		String nd = id.replaceAll("[\\[\\]]","").replace("\"", "");
+		if(nd.startsWith("j")){ //new node
+			 writer.write("success");
+		}else{
+			String prefix = nd.split("-")[0];
+			String realId = nd.split("-")[1];
+			
+			//3-city, 2-province, 1-country
+			if(prefix.equalsIgnoreCase("3")){
+				List<City> cityList = cityBO.queryAllCitys();
+				for(City c:cityList){
+					if(String.valueOf(c.getCityid()).equalsIgnoreCase(realId)){
+						c.setStatus("D");
+						cityBO.saveOrUpdate(c);
+					}
+				}
+			}else if(prefix.equalsIgnoreCase("2")){
+				List<Province> provinceList = provinceBO.queryAllProvinces();
+				for(Province p:provinceList){
+					if(String.valueOf(p.getProvinceid()).equalsIgnoreCase(realId)){
+						p.setStatus("D");
+						provinceBO.saveOrUpdate(p);
+						List<City> cityList = cityBO.queryCityByProvinceId(String.valueOf(p.getProvinceid()));
+						for(City c:cityList){
+							c.setStatus("D");
+							cityBO.saveOrUpdate(c);
+						}
+					}
+				}
+				
+			}else if(prefix.equalsIgnoreCase("1")){
+				List<Country> countryList = countryBO.queryAllCountries();
+				for(Country c:countryList){
+					if(String.valueOf(c.getCountryid()).equalsIgnoreCase(realId)){
+						c.setStatus("D");
+						countryBO.saveOrUpdate(c);
+						List<Province> provinceList = provinceBO.queryProvinceByCountryId(String.valueOf(c.getCountryid()));
+						for(Province p:provinceList){
+							p.setStatus("D");
+							provinceBO.saveOrUpdate(p);
+							List<City> cityList = cityBO.queryCityByProvinceId(String.valueOf(p.getProvinceid()));
+							for(City city:cityList){
+								city.setStatus("D");
+								cityBO.saveOrUpdate(city);
+							}
+						}
+					}
+				}
+			}
+			
+			 writer.write("success");
+		}
 	}
 	public void saveLocationInfo(HttpServletRequest request, HttpServletResponse response){
 		String jsonString = request.getParameter("result");
