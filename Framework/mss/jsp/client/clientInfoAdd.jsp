@@ -30,7 +30,7 @@
 		<script type="text/javascript">
 
 		function saveClientInfo(){
-			if(checkUserName()&&checkPassword()&&checkModifyPass()&&checkTrueName()&&checkAuthType()&&checkDisableFlag()
+			if(checkUserName()&&checkPassword()&&checkModifyPass()&&checkTrueName()&&checkDisableFlag()
 					&&checkUserType()&&checkTelePhone()&&checkMobilePhone()&&checkClientComment()){
 				if(confirm("您确定要保存该客户信息么？")){
 					var serverOptions = $("select[name=serverId]").find("option");
@@ -344,17 +344,17 @@
 					<span id="modify_passDiv"></span>
 					</td>
 				</tr>
-				<tr height="30">
+				<!-- tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						认证类型
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<pub:link sql="<%=MssConstants.QUERY_CLIENT_AUTH_TYPE_SQL%>" num="1" selectSize="20"
+						<pub:link sql="<--%=MssConstants.QUERY_CLIENT_AUTH_TYPE_SQL%>" num="1" selectSize="20"
 							title="------请选择认证类型------" next="false" name="authType" mvalue="${information.clientInfo.authenticationtype}" />
 					<span id="auth_typeDiv"></span>
 					</td>
-				</tr>
+				</tr> -->
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						客户端状态

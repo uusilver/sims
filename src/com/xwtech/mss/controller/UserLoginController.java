@@ -98,12 +98,17 @@ public class UserLoginController extends SimpleFormController {
 //                }
                 break;
             case ResultConstants.LOGIN_NAME_AND_PWD_ERROR: //登录失败,登录名和密码不正确!
-            	gotoUrl = "/index.jsp";
+            	gotoUrl = "/login.jsp";
             	map.put("falg", "1");
                 resultInfos.setGotoUrl(gotoUrl);
                 break;
             case ResultConstants.NOT_ACCESS_ROLE: //登录失败,没有权限!
-            	gotoUrl = "/index.jsp";
+            	gotoUrl = "/login.jsp";
+            	map.put("falg", "1");
+                resultInfos.setGotoUrl(gotoUrl);
+                break;
+            case ResultConstants.LOGIN_NAME_IS_DISABLED: //登录失败,用户账号无效!
+            	gotoUrl = "/login.jsp";
             	map.put("falg", "1");
                 resultInfos.setGotoUrl(gotoUrl);
                 break;

@@ -195,6 +195,27 @@ public class UserInfoDAO extends BaseDao {
     }
 
     /**
+     * 根据用户名查询用户是否为无效用户，用于系统登陆
+     * @param loginName String
+     * @return SysUser
+     */
+    public Boolean isDisabledUser(String loginName) {
+    	Boolean disabled = false;
+        String hql = "select sysUser from UserInfo sysUser"
+                     + " where sysUser.loginName = ? and sysUser.userState='U' ";
+        Object[] params = new Object[1];
+        params[0] = loginName;
+        List l = getHibernateTemplate().find(hql, params);
+        if (l.isEmpty()) {
+            logger.warn("not find sysUser,should be available user, loginName=" + loginName);
+        } else {
+        	disabled = true;
+            logger.warn(loginName + " is an unavailable user");
+        }
+        return disabled;
+    }
+    
+    /**
      * 根据用户id获取用户权限
      * @param userId Long
      * @return UserProperty

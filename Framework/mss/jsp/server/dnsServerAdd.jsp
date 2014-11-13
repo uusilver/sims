@@ -6,7 +6,7 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>物资管理系统-DNS服务器管理</title>
+		<title>物资管理系统-辅助服务器管理</title>
 		<link href="${contextPath }/framework/css/style.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
@@ -16,8 +16,8 @@
 		<script type="text/javascript">
 
 		function saveServerInfo(){
-			if(checkServerIP()&&checkServerPort()&&checkServerType()&&checkServerComment()){
-				if(confirm("您确定要保存该DNS服务器信息么？")){
+			if(checkServerIP()&&checkServerType()&&checkServerComment()){
+				if(confirm("您确定要保存该辅助服务器信息么？")){
 					document.serverInfoAddForm.submit();
 				}
 			}else{
@@ -160,7 +160,7 @@
 						<span id="serveripDiv"></span>
 					</td>
 				</tr>
-				<tr height="30">
+				<!-- tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						服务器端口
 						<font color="red">*</font>
@@ -171,7 +171,7 @@
 							onchange="checkServerPort()">
 						<span id="server_portDiv"></span>
 					</td>
-				</tr>
+				</tr> -->
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						服务器类型

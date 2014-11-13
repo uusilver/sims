@@ -163,6 +163,7 @@ public class ServerInfoController extends MultiActionController {
 						transitServer.setEditWho(new Integer(userId.toString()));
 						transitServer.setEditTime(DateUtils.convertString2Date(DateUtils.getChar14()));	
 					}
+					transitServer.setUpdatetime(DateUtils.convertString2Date(DateUtils.getChar14()));	
 					serverInfoBO.saveOrUpdate(transitServer);
 					
 					//保存服务器所属分组信息

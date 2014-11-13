@@ -39,6 +39,8 @@ public class ResultConstants {
 
 	public static final int NOT_LOGIN_NOT_ACCESS_ROLE = 10005; // 您尚未登录系统，没有权限进行此操作！
 
+	public static final int LOGIN_NAME_IS_DISABLED = 10006; // 登录失败,用户名失效，请联系管理员!
+
 	public static final int USER_RINGSETTING_SUCCESS = 10200; // 铃音设置成功
 
 	public static final int USER_RINGSETTING_FAILURE = 10201; // 铃音设置失败

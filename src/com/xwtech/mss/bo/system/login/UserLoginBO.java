@@ -71,6 +71,17 @@ public class UserLoginBO {
 
     //检查登录名和密码是否正确
 //    Long roleId = new Long(request.getParameter("roleId"));
+    
+    //检查登录名是否有效
+    Boolean disabledUser = userInfoDAO.isDisabledUser(String.valueOf(sysUser.getLoginName()));
+    if(disabledUser){
+        frameLoginLog.setLoginResultCode(String.valueOf(ResultConstants.LOGIN_NAME_IS_DISABLED));
+        frameLoginLogDAO.save(frameLoginLog);
+        ResultInfo resultInfo = new ResultInfo(ResultConstants.LOGIN_NAME_IS_DISABLED, null);
+        resultInfos.add(resultInfo);
+        return;
+    }
+    
     sysUser = userInfoDAO.queryFrameLoginByLoginNameAndLoginPwd(String.valueOf(sysUser.getLoginName()), sysUser.getLoginPwd());
     if(sysUser == null)
     {

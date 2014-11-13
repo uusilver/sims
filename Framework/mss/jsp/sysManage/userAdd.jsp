@@ -80,6 +80,7 @@
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						用户角色
+						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:select sql="<%=SpmsConstants.QUERY_ROLE_INFO%>" title="---请选择---" next="true" name="userRole"

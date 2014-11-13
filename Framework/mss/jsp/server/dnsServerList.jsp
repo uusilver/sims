@@ -6,7 +6,7 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>DNS服务器信息管理</title>
+		<title>辅助服务器信息管理</title>
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/ajax.js"></script>
@@ -38,13 +38,13 @@
 				style="margin:0px;">
 				<tr>
 					<td class="qinggoudan_title01_td1">
-						DNS服务器信息查询
+						辅助服务器信息查询
 					</td>
 				</tr>
 				<tr>
 					<td class="qinggoudan_title01_td2" style="text-align:center;">
 						<hr size="1" noshade>
-						
+						<font style="color:red;">注意事项：只能有4个DNS服务器和一个运维中心。</font>
 					</td>
 				</tr>
 			</table>
@@ -91,9 +91,9 @@
 					<td class="qinggoudan_table_title">
 						IP地址
 					</td>
-					<td class="qinggoudan_table_title">
+					<!-- td class="qinggoudan_table_title">
 						服务器端口
-					</td>
+					</td> -->
 					<td class="qinggoudan_table_title">
 						状态
 					</td>
@@ -119,9 +119,9 @@
 						<td class="qinggoudan_table_td2" width="17%" >
 							&nbsp;${fn:escapeXml(serverInfo.serverip)}
 						</td>
-						<td class="qinggoudan_table_td2" width="17%" >
+						<!-- td class="qinggoudan_table_td2" width="17%" >
 							&nbsp;${fn:escapeXml(serverInfo.serverport)}
-						</td>
+						</td>-->
 						<td class="qinggoudan_table_td2" width="17%" >
 								${serverInfo.status == "A" ? "有效" : "无效"}
 						</td>

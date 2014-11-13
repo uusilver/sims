@@ -352,6 +352,8 @@
 		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 		    return true;
 		}
+		
+		
 		</script>
 	 
 	</head>

@@ -72,7 +72,7 @@
 						</td>
 						<!-- td class="qinggoudan_table_td1" width="15%">
 							认证类型:
-							<pub:link sql="<%=MssConstants.QUERY_CLIENT_AUTH_TYPE_SQL%>" num="1" selectSize="20"
+							<pub:link sql="<--%=MssConstants.QUERY_CLIENT_AUTH_TYPE_SQL%>" num="1" selectSize="20"
 								title="------请选择认证类型------" next="false" name="queryAuthType" mvalue="${information.searchForm.queryAuthType}" />
 						</td> -->
 						<td class="qinggoudan_table_td1" width="15%">
