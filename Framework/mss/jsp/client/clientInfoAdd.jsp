@@ -31,7 +31,7 @@
 
 		function saveClientInfo(){
 			if(checkUserName()&&checkPassword()&&checkModifyPass()&&checkTrueName()&&checkDisableFlag()
-					&&checkUserType()&&checkTelePhone()&&checkMobilePhone()&&checkClientComment()){
+					&&checkUserType()&&checkTelePhone()&&checkMobilePhone()&&checkAccessedServer()&&checkClientComment()){
 				if(confirm("您确定要保存该客户信息么？")){
 					var serverOptions = $("select[name=serverId]").find("option");
 					var serverIds = "";
@@ -89,8 +89,9 @@
 		function checkPassword(){
 			var password = document.getElementById("password");
 			var infoDiv = document.getElementById("client_pwdDiv");
-			
-			if(trim(password.value) == "") {
+			var viewOrEdit = document.getElementsByName("viewOrEdit")[0];
+		
+			if(viewOrEdit.value=="add" && trim(password.value) == "") {
 				infoDiv.className = "warning";
 		        infoDiv.innerHTML = "密码不能为空，请填写！";
 		        password.focus();
@@ -260,6 +261,26 @@
 		    return true;
 		}
 		
+
+		//检查可访问服务器是否没有选择
+		function checkAccessedServer(){
+			var accessedServer = $("select[name=serverId]");
+			var options = accessedServer.find("option");
+			var infoDiv = document.getElementById("accessed_serverDiv");
+			if (options.length == 0) {
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "请为该客户端指定跳转服务器！";
+		        accessedServer.focus();
+				return false;
+			}
+			
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "客户类型符合要求";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
+		    return true;
+		}
+		
+		
 		//校验备注
 		function checkClientComment() {
 			var clientComment = document.getElementById("client_comment");
@@ -316,9 +337,10 @@
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<input name="password" id="password" type="text" class="qinggoudan_input023" size="20" maxlength="20"
-							value="${information.clientInfo.password}"
+							value=""
 							onchange="checkPassword();">
 						<span id="client_pwdDiv"></span>
+						<c:if test="${information.searchForm.viewOrEdit=='edit'}"><font color="blue">提示：如需修改密码请直接输入新密码保存即可</font></c:if>
 					</td>
 				</tr>
 				<tr height="30">
@@ -350,7 +372,7 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<pub:link sql="<--%=MssConstants.QUERY_CLIENT_AUTH_TYPE_SQL%>" num="1" selectSize="20"
+						<pub:link sql="" num="1" selectSize="20"
 							title="------请选择认证类型------" next="false" name="authType" mvalue="${information.clientInfo.authenticationtype}" />
 					<span id="auth_typeDiv"></span>
 					</td>
@@ -404,12 +426,14 @@
 				<tr>
 					<td align="center" class="qinggoudan_table_title">
 						可访问服务器
+						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:two align="left" arl="${information.serverList }" selectItem="服务器列表" waitItem="可访问服务器列表" leftId="serverId"
 							leftValue="serverTag" rightId="serverId" rightValue="serverTag" rightName="serverId" selectStyle="two_select"
 							itemStyle="item_two_select" moveStyle="button_select" size="15" contextPath="${contextPath}" />
 						<input type="hidden" name="hiddenServerIds" value=""/>
+						<span id="accessed_serverDiv"></span>
 					</td>
 				</tr>
 				<tr height="167">

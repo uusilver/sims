@@ -305,7 +305,7 @@ public class TransitServerDAO extends BaseDao {
 		}
 		
 		//按服务器类别和名称排序
-		listHql.append(filterHql + "  order by ts.servertype ,ts.regionid asc ");
+		listHql.append(filterHql + "  order by ts.servertype ,sGroup.servergroupname,ts.regionid asc ");
 		countHql.append(filterHql);
 
 //		HashMap map = queryResultCount(listHql.toString(), countHql.toString(), paramList, searchForm.getCurrentPage(),

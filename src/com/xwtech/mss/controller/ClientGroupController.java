@@ -264,6 +264,7 @@ public class ClientGroupController extends MultiActionController {
 				currentPage = "1";
 			}
 			clientGroupForm.setCurrentPage(currentPage);
+			clientGroupForm.setQueryStatus(MssConstants.STATE_A);
 			
 			SessionUtils.setObjectAttribute(request, "clientGroupFormSession", clientGroupForm);
 		} else if (ifSession != null && ifSession.equals("yes")) {

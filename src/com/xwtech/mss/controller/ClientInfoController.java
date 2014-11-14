@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.xwtech.framework.pub.result.ResultInfo;
 import com.xwtech.framework.pub.result.ResultInfos;
 import com.xwtech.framework.pub.utils.DateUtils;
+import com.xwtech.framework.pub.utils.MD5Utils;
 import com.xwtech.framework.pub.utils.SessionUtils;
 import com.xwtech.framework.pub.web.RequestNameConstants;
 import com.xwtech.mss.bo.business.ClientInfoBO;
@@ -148,7 +149,10 @@ public class ClientInfoController extends MultiActionController {
 
 				try{
 					clientInfo.setUsername(loginName);
-					clientInfo.setPassword(password);
+					//MD5加密
+					if(password!=null&&!"".equals(password)){
+						clientInfo.setPassword(MD5Utils.toMD5(password));
+					}
 					clientInfo.setAuthenticationtype((authenticationType!=null&&!"".equals(authenticationType))?new Integer(authenticationType):null);
 					clientInfo.setModifypass((modifyPass!=null&&!"".equals(modifyPass))?new Integer(modifyPass):null);
 					clientInfo.setDisable((disableFlag!=null&&!"".equals(disableFlag))?new Integer(disableFlag):null);
@@ -225,7 +229,7 @@ public class ClientInfoController extends MultiActionController {
 		String ifSession = request.getParameter("ifSession");
 
 		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
-			clientInfoForm.setQueryStatus(SpmsConstants.STATE_A);
+			clientInfoForm.setQueryStatus(MssConstants.STATE_A);
 			clientInfoForm.setViewOrEdit(viewOrEdit);
 			clientInfoForm.setShowHeader(showHeader);
 			SessionUtils.setObjectAttribute(request, "clientInfoFormSession", clientInfoForm);

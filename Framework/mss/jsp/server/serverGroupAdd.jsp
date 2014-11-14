@@ -170,6 +170,7 @@
 				<tr>
 					<td align="center" class="qinggoudan_table_title">
 						服务器信息
+						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:two align="left" arl="${information.serverList }" selectItem="服务器列表" waitItem="已分配服务器列表" leftId="serverId"

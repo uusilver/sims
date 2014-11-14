@@ -21,7 +21,7 @@
             </column>
         </property>
         <property name="password" type="string">
-            <column name="PASSWORD" length="20">
+            <column name="PASSWORD" length="100">
                 <comment>默认密码88888888，可空</comment>
             </column>
         </property>

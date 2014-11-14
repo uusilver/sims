@@ -203,7 +203,7 @@
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:two align="left" arl="${information.clientList }" selectItem="客户端列表" waitItem="已分配客户端列表" leftId="clientId"
 							leftValue="clientTag" rightId="clientId" rightValue="clientTag" rightName="clientId" selectStyle="two_select"
-							itemStyle="item_two_select" moveStyle="button_select" size="15" width="80%" contextPath="${contextPath}" />
+							itemStyle="item_two_select" moveStyle="button_select" size="15" width="95%" contextPath="${contextPath}" />
 
 						<input type="hidden" name="hiddenClientIds" value="">
 						<span id="client_listDiv"></span>
@@ -216,7 +216,7 @@
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:two align="left" arl="${information.serverList }" selectItem="服务器列表" waitItem="可访问服务器列表" leftId="serverId"
 							leftValue="serverTag" rightId="serverId" rightValue="serverTag" rightName="serverId" selectStyle="two_select"
-							itemStyle="item_two_select" moveStyle="button_select" size="15" width="80%" contextPath="${contextPath}" />
+							itemStyle="item_two_select" moveStyle="button_select" size="15" width="90%" contextPath="${contextPath}" />
 						<input type="hidden" name="hiddenServerIds" value=""/>
 					</td>
 				</tr>

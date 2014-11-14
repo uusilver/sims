@@ -271,16 +271,18 @@ public class ClientDAO extends BaseDao {
 		// 查询列表sql
 		StringBuffer listHql = new StringBuffer();
 		StringBuffer fromHql = new StringBuffer();
-		listHql.append("select c.clientid,c.username,c.truename,cGroup.clientgroupname,cb_authType.text as authType,"
+		listHql.append("select c.clientid,c.username,c.truename,cGroup.clientgroupname,"
+//				+ " cb_authType.text as authType,"
 				+ " cb_disable.text as disableFlag,cb_userType.text as userType,c.note,c.status");
 		
 		fromHql.append(" from client c left join client_group_mapping cgMapping on c.clientid=cgMapping.clientid"
 				+ " left join client_group cGroup on cGroup.clientgroupid = cgMapping.clientgroupid,"
-				+ " code_book cb_authType,code_book cb_disable,code_book cb_userType "
-				+ " where c.authenticationtype = cb_authType.value"
-				+ " and c.disable = cb_disable.value"
+//				+ " code_book cb_authType,"
+				+ " code_book cb_disable,code_book cb_userType "
+				+ " where c.disable = cb_disable.value"
 				+ " and c.usertype = cb_userType.value"
-				+ " and cb_authType.tag = '"+MssConstants.AUTH_TYPE+"'"
+//				+ " and c.authenticationtype = cb_authType.value"
+//				+ " and cb_authType.tag = '"+MssConstants.AUTH_TYPE+"'"
 				+ " and cb_disable.tag = '"+MssConstants.DISABLE_FLAG+"'"
 				+ " and cb_userType.tag = '"+MssConstants.USER_TYPE+"'");
 		

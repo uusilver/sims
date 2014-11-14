@@ -65,27 +65,27 @@
 			<c:if test="${information.searchForm.showHeader=='yes' }">
 				<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"  style="margin:0px;">
 					<tr>
-						<td class="qinggoudan_table_td1" width="15%">
+						<td class="qinggoudan_table_td1" width="20%">
 							客户端用户名:
 							<input name="queryClientName" type="text" class="qinggoudan_input02" size="40"
 								value="${information.searchForm.queryClientName}" maxlength="50" />
 						</td>
 						<!-- td class="qinggoudan_table_td1" width="15%">
 							认证类型:
-							<pub:link sql="<--%=MssConstants.QUERY_CLIENT_AUTH_TYPE_SQL%>" num="1" selectSize="20"
+							<pub:link sql="" num="1" selectSize="20"
 								title="------请选择认证类型------" next="false" name="queryAuthType" mvalue="${information.searchForm.queryAuthType}" />
 						</td> -->
-						<td class="qinggoudan_table_td1" width="15%">
+						<td class="qinggoudan_table_td1" width="20%">
 							客户端状态:
 							<pub:link sql="<%=MssConstants.QUERY_CLIENT_DISABLE_FLAG_SQL%>" num="1" selectSize="20"
 								title="请选择是否禁用" next="false" name="queryDisableFlag" mvalue="${information.searchForm.queryDisableFlag}" />
 						</td>
-						<td class="qinggoudan_table_td1" width="18%">
+						<td class="qinggoudan_table_td1" width="20%">
 							客户类型:
 							<pub:link sql="<%=MssConstants.QUERY_CLIENT_USER_TYPE_SQL%>" num="1" selectSize="20"
 								title="请选择客户类型" next="false" name="queryUserType" mvalue="${information.searchForm.queryUserType}" />
 						</td>
-						<td class="qinggoudan_table_td1" width="18%">
+						<td class="qinggoudan_table_td1" width="20%" style="display:none">
 							状态:
 								<pub:link sql="<%=MssConstants.QUERY_ROLE_STATE%>" num="1" title="---请选择---" next="false" 
 								name="quserStatus" mvalue="${information.searchForm.queryStatus}" />

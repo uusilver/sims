@@ -81,7 +81,7 @@
 						<input type="text" name="queryClientGroupName" class="qinggoudan_input02" size="30"
 							value="${fn:escapeXml(information.searchForm.queryClientGroupName)}" />
 					</td>
-					<td class="qinggoudan_table_td1">
+					<td class="qinggoudan_table_td1" style="display:none">
 						客户端组状态：
 						<pub:link sql="<%=MssConstants.QUERY_ROLE_STATE%>" num="1" id="t.role_id" valueName="t.role_name"
 							title="---请选择---" next="false" name="queryStatus" mvalue="${information.searchForm.queryStatus}" />
