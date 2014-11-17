@@ -277,7 +277,7 @@ public class CommonConstants
 	public static final String MMS_REGION_CONSTRAINT_NO = "0";
 
 	/**
-	 * 操作类型登陆
+	 * 操作类型登录
 	 */
 	public static long OPERATE_TYPE_LOGIN = 0;
 

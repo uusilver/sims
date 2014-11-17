@@ -29,7 +29,7 @@
     }  
 	%>
 	<script language="javascript">
-		if("<%=resultInfos.getIsAlert()%>" == "true" && "<%=resultInfoStr%>"!="登陆成功，欢迎您！"){
+		if("<%=resultInfos.getIsAlert()%>" == "true" && "<%=resultInfoStr%>"!="登录成功，欢迎您！"){
 			alert("<%=resultInfoStr%>");
 			if("<%=resultInfoStr%>"=="请购单成功提交到OA！" && confirm("您需要跳转到OA系统进行请购单的下一步处理吗？")){
 				window.open("http://emis.js.cmcc/","","toolbar=yes, location=yes, directories=yes, status=yes, menubar=yes, scrollbars=yes, resizable=yes,width=800, height=600");

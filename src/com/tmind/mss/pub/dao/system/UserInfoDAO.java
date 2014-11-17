@@ -166,7 +166,7 @@ public class UserInfoDAO extends BaseDao {
 	}
 	
 	/**
-     * 根据用户名、密码进行系统登陆
+     * 根据用户名、密码进行系统登录
      * @param loginName String
      * @param loginPwd String
      * @param role String
@@ -195,7 +195,7 @@ public class UserInfoDAO extends BaseDao {
     }
 
     /**
-     * 根据用户名查询用户是否为无效用户，用于系统登陆
+     * 根据用户名查询用户是否为无效用户，用于系统登录
      * @param loginName String
      * @return SysUser
      */

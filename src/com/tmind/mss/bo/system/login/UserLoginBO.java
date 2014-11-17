@@ -49,7 +49,7 @@ public class UserLoginBO {
     }
 
     /**
-     * 根据用户名、密码和用户角色进行系统登陆校验
+     * 根据用户名、密码和用户角色进行系统登录校验
      * @param loginName String
      * @param loginPwd String
      * @param roleId Long

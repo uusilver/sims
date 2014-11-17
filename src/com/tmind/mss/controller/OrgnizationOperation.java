@@ -21,7 +21,7 @@ import com.tmind.framework.pub.result.ResultInfos;
 import com.tmind.framework.pub.web.RequestNameConstants;
 import com.tmind.mss.bo.system.orgnization.OrgnizationBO;
 import com.tmind.mss.formBean.OrgnizationSearchForm;
-import com.tmind.mss.pub.constants.SpmsConstants;
+import com.tmind.mss.pub.constants.MssConstants;
 import com.tmind.mss.pub.tools.StructForm;
 import com.tmind.mss.pub.web.SysOperLog;
 
@@ -90,7 +90,7 @@ public class OrgnizationOperation extends MultiActionController
 			orgnizationSearchForm.setIsPaging("Y");
 
 			Map mapOrgInfo = orgnizationBO.getOrgnizationListByForm(orgnizationSearchForm, currentPage, String
-					.valueOf(SpmsConstants.COUNT_FOR_EVERY_PAGE));
+					.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));
 
 			//传递组织信息列表
 			mapResult.put("orgInfoList", (List) mapOrgInfo.get(RequestNameConstants.RESULT_LIST));
@@ -146,7 +146,7 @@ public class OrgnizationOperation extends MultiActionController
 			orgnizationSearchForm.setIsPaging("Y");
 
 			Map mapOrgInfo = orgnizationBO.getOrgnizationListByForm(orgnizationSearchForm, currentPage, String
-					.valueOf(SpmsConstants.COUNT_FOR_EVERY_PAGE));
+					.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));
 
 			//传递组织信息列表
 			mapResult.put("orgInfoList", (List) mapOrgInfo.get(RequestNameConstants.RESULT_LIST));

@@ -49,7 +49,7 @@
 				</tr>
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
-						登陆名
+						登录名
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">

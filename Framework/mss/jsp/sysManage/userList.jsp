@@ -110,7 +110,7 @@
 						姓名
 					</td>
 					<td class="qinggoudan_table_title">
-						登陆名
+						登录名
 					</td>
 					<td class="qinggoudan_table_title">
 						联系电话

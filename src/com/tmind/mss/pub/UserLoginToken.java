@@ -45,7 +45,7 @@ public void load(UserInfo sysUser)
   {
     //记录登录日志
     FrameLoginLog frameLoginLog = new FrameLoginLog();
-    //设置user登陆信息
+    //设置user登录信息
 //    this.setSysUser(sysUser);
     UserBaseInfo userBaseInfo = new UserBaseInfo();
     UserInfo sysUser_login = sysUserDAO.querySysUserByUserId(sysUser.getUserId());

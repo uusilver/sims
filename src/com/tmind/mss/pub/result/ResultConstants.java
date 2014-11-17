@@ -1,10 +1,10 @@
 package com.tmind.mss.pub.result;
 
 public class ResultConstants{
-  public static final int LOGIN_SUECCESS = 10000;  //登陆成功，欢迎您！
-  public static final int LOGIN_NAME_AND_PWD_ERROR = 10003;  //登陆失败,用户名或密码不正确！
+  public static final int LOGIN_SUECCESS = 10000;  //登录成功，欢迎您！
+  public static final int LOGIN_NAME_AND_PWD_ERROR = 10003;  //登录失败,用户名或密码不正确！
   public static final int NOT_ACCESS_ROLE = 10004;  //权限验证失败,您没有访问权限,请联系管理员！
-  public static final int NOT_LOGIN_NOT_ACCESS_ROLE = 10005;  //您尚未登陆系统，没有权限进行此操作！
+  public static final int NOT_LOGIN_NOT_ACCESS_ROLE = 10005;  //您尚未登录系统，没有权限进行此操作！
   public static final int USER_ADD_SUCCESS = 80001;  //用户信息添加成功！
   public static final int USER_ADD_FAILED = 80002;  //用户信息添加失败！
   public static final int USER_MOD_SUCCESS = 80003;  //用户信息修改成功！

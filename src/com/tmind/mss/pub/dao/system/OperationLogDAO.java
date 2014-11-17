@@ -245,7 +245,7 @@ public class OperationLogDAO extends BaseDao {
 			}
 		}
 
-		return queryResultCount(stringBuffer.toString(),countHSql.toString(),list,operLogSearForm.getCurrentPage(),String.valueOf(SpmsConstants.COUNT_FOR_EVERY_PAGE));
+		return queryResultCount(stringBuffer.toString(),countHSql.toString(),list,operLogSearForm.getCurrentPage(),String.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));
 //		List operLogList=this.getHibernateTemplate().find(stringBuffer.toString(),obj);
 //		return operLogList;
 	}

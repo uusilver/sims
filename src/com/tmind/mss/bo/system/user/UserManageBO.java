@@ -99,7 +99,7 @@ public class UserManageBO
 	}
 	
 	/**
-	 * 校验工号或是登陆名是否唯一
+	 * 校验工号或是登录名是否唯一
 	 */
 	public List checkNoOrNameExist(String userNum, String loginName, String userId){
 		return userInfoDAO.checkNoOrNameExist(userNum, loginName, userId);

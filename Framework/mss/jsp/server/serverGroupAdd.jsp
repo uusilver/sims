@@ -139,7 +139,7 @@
 				style="margin:0px;">
 				<tr>
 					<td class="qinggoudan_title01_td1">
-						创建新服务器分组
+						服务器分组档案
 					</td>
 				</tr>
 			</table>

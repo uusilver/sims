@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"  alt=""/>
-<title>服务器信息管理系统（SIMS）－用户登陆</title>
+<title>服务器信息管理系统（SIMS）－用户登录</title>
 <link rel="stylesheet" type="text/css" href="${contextPath }/mss/css/login.css" />
 <script type="text/javascript" src="${contextPath}/mss/js/jquery-1.9.1.min.js" />
  

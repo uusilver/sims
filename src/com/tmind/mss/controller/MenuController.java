@@ -275,7 +275,7 @@ public class MenuController extends MultiActionController {
 	}
 
 	/**
-	 * 根据登陆用户取得用户菜单 按照一级菜单、二级菜单的顺序排列，各级菜单按照顺序排列
+	 * 根据登录用户取得用户菜单 按照一级菜单、二级菜单的顺序排列，各级菜单按照顺序排列
 	 */
 	public ModelAndView queryTopMenu(HttpServletRequest request, HttpServletResponse response)
 			throws ServletRequestBindingException {

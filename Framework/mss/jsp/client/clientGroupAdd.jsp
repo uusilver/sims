@@ -6,7 +6,7 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>物资管理系统-客户端信息创建</title>
+		<title>物资管理系统-客户端分组详情</title>
 		<link href="${contextPath }/framework/css/style.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
@@ -44,7 +44,7 @@
 			var viewOrEdit = $("input[name=viewOrEdit]").val();
 			var alertMessage = "您确定要创建该客户端组么？";
 			
-			if(checkGroupName()&&checkComment()&&checkSelectedClient()){
+			if(checkGroupName()&&checkComment()&&checkSelectedClient()&&checkSelectedServer()){
 				if(viewOrEdit!=null&&viewOrEdit=="edit"){
 					alertMessage="您确定要修改该客户端组么？";
 				}
@@ -158,6 +158,23 @@
 		    return true;
 		}
 		
+		function checkSelectedServer(){
+			var serverList = $("select[name=serverId]").find("option");
+			
+			var infoDiv = document.getElementById("server_listDiv");
+			
+			if(serverList.length==0){
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "请选择至少一个服务器添加到右边列表框中！";
+				return false;
+			}
+
+			//infoDiv.className = "OK";
+		    //infoDiv.innerHTML = "";
+		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
+		    return true;
+		}
+		
 		</script>
 	 
 	</head>
@@ -168,7 +185,7 @@
 				style="margin:0px;">
 				<tr>
 					<td class="qinggoudan_title01_td1">
-						创建新客户端分组
+						客户端分组档案
 					</td>
 				</tr>
 			</table>
@@ -218,6 +235,7 @@
 							leftValue="serverTag" rightId="serverId" rightValue="serverTag" rightName="serverId" selectStyle="two_select"
 							itemStyle="item_two_select" moveStyle="button_select" size="15" width="90%" contextPath="${contextPath}" />
 						<input type="hidden" name="hiddenServerIds" value=""/>
+						<span id="server_listDiv"></span>
 					</td>
 				</tr>
 			</table>

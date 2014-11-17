@@ -6,7 +6,7 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>物资管理系统-客户端信息创建</title>
+		<title>物资管理系统-客户端信息详情</title>
 		<link href="${contextPath }/framework/css/style.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
@@ -218,7 +218,7 @@
 			if(!isPhoneRegex(clientTel)){
 				var infoDiv = document.getElementById("tele_phoneDiv");
 				infoDiv.className = "warning";
-			    infoDiv.innerHTML = "固定电话只能为数字,()或者-，请修改！";
+			    infoDiv.innerHTML = "固定电话不正确，请输入形如 区号+电话号码 的数字，如0901-2100222或010-11111111！";
 				return false;
 			}
 			
@@ -241,10 +241,10 @@
 		        infoDiv.innerHTML = "移动电话不能为空，请填写！";
 				return false;
 			}
-			if(numLength>20){
+			if(numLength>14){
 				var infoDiv = document.getElementById("mobile_phoneDiv");
 				infoDiv.className = "warning";
-		        infoDiv.innerHTML = "移动电话号码长度不能超过20位，请修改！";
+		        infoDiv.innerHTML = "移动电话号码长度不能超过14位，请修改！";
 				return false;
 			}
 			if(!VerifyMobilePhone(mobilePhone)){
@@ -312,7 +312,7 @@
 				style="margin:0px;">
 				<tr>
 					<td class="qinggoudan_title01_td1">
-						创建新客户端档案
+						客户端档案
 					</td>
 				</tr>
 			</table>
@@ -345,7 +345,7 @@
 				</tr>
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
-						客户名称
+						真实姓名
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<input name="clientName" id="client_name" type="text" class="qinggoudan_input023" size="20" maxlength="50"
@@ -405,7 +405,7 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<input name="telePhone" id="tele_phone" type="text" class="qinggoudan_input023" size="20" maxlength="20"
+						<input name="telePhone" id="tele_phone" type="text" class="qinggoudan_input023" size="14" maxlength="20"
 							value="${information.clientInfo.telephone}"
 							onchange="checkTelePhone();">
 						<span id="tele_phoneDiv"></span>
@@ -417,7 +417,7 @@
 						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
-						<input name="mobilePhone" id="mobile_phone" type="text" class="qinggoudan_input023" size="20" maxlength="20"
+						<input name="mobilePhone" id="mobile_phone" type="text" class="qinggoudan_input023" size="14" maxlength="20"
 							value="${information.clientInfo.mobilephone}"
 							onchange="checkMobilePhone();">
 						<span id="mobile_phoneDiv"></span>

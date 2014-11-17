@@ -145,7 +145,7 @@ public class MailOperation
 			log.info("mailFromHost is " + mailFromHost);
 			log.info("userId is " + userId);
 			log.info("password is " + password);
-			transport.connect(mailFromHost, userId, password); //登陆邮箱服务器的用户名和密码；
+			transport.connect(mailFromHost, userId, password); //登录邮箱服务器的用户名和密码；
 			if (transport.isConnected())
 			{
 				flag = true;

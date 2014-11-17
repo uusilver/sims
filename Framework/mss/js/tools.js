@@ -314,7 +314,15 @@ String.prototype.len = function()
  */
 function isPhoneRegex(phone)
 {
-	return /(^[0-9]{3,4}\-{0,1}[0-9]{3,8}$)|(^[0-9]{3,8}$)|(^(\(|（)[0-9]{3,4}(\)|）)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/.test(phone);
+	var condition_1 = /^[0-9]{3,4}\-{0,1}[0-9]{3,8}$/;
+	var condition_2 = /^[0-9]{3,8}$/;
+	var condition_3 = /^(\(|（)[0-9]{3,4}(\)|）)[0-9]{3,8}$/;
+	var condition_4 = /^0{0,1}13[0-9]{9}$/;
+	if(condition_1.test(phone)||condition_2.test(phone)||condition_3.test(phone)||condition_4.test(phone)){
+		return true;
+	}else{
+		return false;
+	}
 }
 
 /*

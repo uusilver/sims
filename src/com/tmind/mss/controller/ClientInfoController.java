@@ -262,7 +262,7 @@ public class ClientInfoController extends MultiActionController {
 			SessionUtils.setObjectAttribute(request, "clientInfoFormSession", clientInfoForm);
 		}
 
-		HashMap clientInfoResult = clientInfoBO.queryClientInfoList(clientInfoForm,String.valueOf(SpmsConstants.COUNT_FOR_EVERY_PAGE));
+		HashMap clientInfoResult = clientInfoBO.queryClientInfoList(clientInfoForm,String.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));
 
 		map.put("clientInfoList", (List) clientInfoResult.get(RequestNameConstants.RESULT_LIST));
 		map.put(RequestNameConstants.TOTAL_COUNT, clientInfoResult.get(RequestNameConstants.TOTAL_COUNT));

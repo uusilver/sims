@@ -361,7 +361,7 @@ public class ResultConstants {
 
 	public static final int ADMIN_SYSUSERINFO_FAILURE = 31021; // 系统用户保存失败
 
-	public static final int ADMIN_SYSUSERINFO_EXISTS_LOGINNAME = 31022; // 已存在此登陆名
+	public static final int ADMIN_SYSUSERINFO_EXISTS_LOGINNAME = 31022; // 已存在此登录名
 
 	public static final int ADMIN_SYSUSERINFO_DELETE_SUCCESS = 31023; // 系统用户删除成功
 
@@ -698,11 +698,11 @@ public class ResultConstants {
 
 	public static final int DIY_USER_RING_OPEN_FAILURE = 61052; // 铃音业务开通失败！
 
-	public static final int DIY_USER_LOGIN_TIMEOUT = 61053; // DIY登陆,系统超时！
+	public static final int DIY_USER_LOGIN_TIMEOUT = 61053; // DIY登录,系统超时！
 
-	public static final int LOGIN_MOBILE_ERROR = 61054; // DIY登陆,号码错误或号码不存在！
+	public static final int LOGIN_MOBILE_ERROR = 61054; // DIY登录,号码错误或号码不存在！
 
-	public static final int LOGIN_MOBILE_PWSD_ERROR = 61055; // DIY登陆,密码验证失败！
+	public static final int LOGIN_MOBILE_PWSD_ERROR = 61055; // DIY登录,密码验证失败！
 
 	public static final int INTERFACE_WWW_RANDOMSESSIONKEY_NULL = 70001; // 网站randomsessionkey为空
 

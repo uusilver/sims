@@ -12,7 +12,7 @@ import org.hibernate.criterion.Example;
 
 import com.tmind.framework.pub.dao.BaseDao;
 import com.tmind.mss.formBean.ChatSearchForm;
-import com.tmind.mss.pub.constants.SpmsConstants;
+import com.tmind.mss.pub.constants.MssConstants;
 import com.tmind.mss.pub.po.MpmsBoardMsg;
 
 
@@ -176,7 +176,7 @@ public class MpmsBoardMsgDAO extends BaseDao {
 		listHSql.append(filterSql + ") order by boardMsg.createTime desc ");
 		countHSql.append( filterSql);
 		
-		HashMap map = queryResultCount(listHSql.toString(),countHSql.toString(),paramList,searchForm.getCurrentPage(),String.valueOf(SpmsConstants.COUNT_FOR_EVERY_PAGE));
+		HashMap map = queryResultCount(listHSql.toString(),countHSql.toString(),paramList,searchForm.getCurrentPage(),String.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));
 		return map;
 		
 	}
@@ -187,7 +187,7 @@ public class MpmsBoardMsgDAO extends BaseDao {
     /*
      * 按照查询条件进行留言信息查询
      * @param chatSearchForm 查询条件组合
-     * @param CUserInfo 当前登陆用户信息
+     * @param CUserInfo 当前登录用户信息
      * @return List 
      */
     public HashMap chatSearchList(ChatSearchForm searchForm)
@@ -230,7 +230,7 @@ public class MpmsBoardMsgDAO extends BaseDao {
         countHSql.append(filterSql);
         
         
-        HashMap map = queryResultCount(hql.toString(),countHSql.toString(),paramList,searchForm.getCurrentPage(),String.valueOf(SpmsConstants.COUNT_FOR_EVERY_PAGE));
+        HashMap map = queryResultCount(hql.toString(),countHSql.toString(),paramList,searchForm.getCurrentPage(),String.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));
 		return map;
     }
 

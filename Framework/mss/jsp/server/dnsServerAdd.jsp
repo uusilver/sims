@@ -141,7 +141,7 @@
 				style="margin:0px;">
 				<tr>
 					<td class="qinggoudan_title01_td1">
-						创建新服务器档案
+						辅助服务器档案
 					</td>
 				</tr>
 			</table>

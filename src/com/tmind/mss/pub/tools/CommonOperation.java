@@ -47,7 +47,7 @@ public class CommonOperation {
 
 
 	/**
-	 * 获得已登陆用户的信息
+	 * 获得已登录用户的信息
 	 * @return
 	 */
 	public UserBaseInfo getLoginUserInfo(HttpServletRequest request){

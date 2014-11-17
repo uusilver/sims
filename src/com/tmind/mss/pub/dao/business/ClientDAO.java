@@ -297,9 +297,9 @@ public class ClientDAO extends BaseDao {
 			
 //		filterHql.append(" where 1=1 ");
 
-		//客户名称
+		//客户端用户名
 		if (searchForm.getQueryClientName() != null && !"".equals(searchForm.getQueryClientName())) {
-			filterHql.append(" and c.truename like ?");
+			filterHql.append(" and c.username like ?");
 			paramList.add((Object) ("%" + searchForm.getQueryClientName() + "%"));
 		}
 		//客户状态

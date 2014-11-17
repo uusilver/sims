@@ -256,6 +256,11 @@ public class ServerInfoController extends MultiActionController {
 			showHeader="yes";
 		}
 		
+		String queryStatus = request.getParameter("queryStatus");
+		if(queryStatus==null||"".equals(queryStatus)){
+			queryStatus = MssConstants.STATE_A;
+		}
+		
 		
 		// ifSession只在修改页面跳转至查询页面时有值
 		String ifSession = request.getParameter("ifSession");
@@ -275,6 +280,7 @@ public class ServerInfoController extends MultiActionController {
 		serverInfoForm.setQueryEndTime(queryEndTime);
 		serverInfoForm.setViewOrEdit(viewOrEdit);
 		serverInfoForm.setShowHeader(showHeader);
+		serverInfoForm.setQueryStatus(queryStatus);
 
 		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
 

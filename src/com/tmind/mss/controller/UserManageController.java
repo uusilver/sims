@@ -214,7 +214,7 @@ public class UserManageController extends MultiActionController {
 
 		// 要查看的用户的userId
 		long queryUserId = userInfo.getUserId().longValue();
-		// 当前登陆用户的userId
+		// 当前登录用户的userId
 		long currUserId = new CommonOperation().getLoginUserInfo(request).getSysUser().getUserId().longValue();
 
 		if (currUserId != 1 && (queryUserId == currUserId || queryUserId == 1)) {
@@ -587,7 +587,7 @@ public class UserManageController extends MultiActionController {
 	}
 
 	/**
-	 * 检查工号或是登陆名是否唯存在
+	 * 检查工号或是登录名是否唯存在
 	 * 
 	 * @param request
 	 * @param response

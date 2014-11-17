@@ -11,7 +11,7 @@ import org.apache.commons.collections.map.ListOrderedMap;
 
 import com.tmind.framework.pub.po.FrameMenu;
 import com.tmind.mss.formBean.MenuForm;
-import com.tmind.mss.pub.constants.DmsConstants;
+import com.tmind.mss.pub.constants.MssConstants;
 import com.tmind.mss.pub.dao.system.MenuDAO;
 import com.tmind.mss.pub.po.Menu;
 import com.tmind.mss.pub.po.UserInfo;
@@ -52,7 +52,7 @@ public class MenuBO {
 	 * @return List 所有菜单列表
 	 */
 	public HashMap queryMenuList(MenuForm form) {
-		String perPageCount = new Integer(DmsConstants.COUNT_FOR_EVERY_PAGE).toString();
+		String perPageCount = new Integer(MssConstants.COUNT_FOR_EVERY_PAGE).toString();
 
 		return menuDAO.queryMenuList(form, perPageCount);
 	}

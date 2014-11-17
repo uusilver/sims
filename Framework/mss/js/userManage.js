@@ -72,17 +72,17 @@ function checkForm(isEdit) {
 	
 	var loginName = document.getElementsByName("loginName")[0];
 	if(loginName.value == ""){
-		alert("登陆名不能为空，请输入！");
+		alert("登录名不能为空，请输入！");
 		checkAllButton(false);
 		loginName.focus();
 		return false;
 	} else if(verifyUserName(loginName) == false) {
 		var infoDiv = document.getElementById("login_nameDiv");
 		infoDiv.className = "warning";
-        infoDiv.innerHTML = "登陆名必须以字母开头，由数字、字母、'.'或是'_'组成，请您检查您输入的用户名是否正确";
+        infoDiv.innerHTML = "登录名必须以字母开头，由数字、字母、'.'或是'_'组成，请您检查您输入的用户名是否正确";
 		return false;
 	} else if(checkIsExist(login_nameId, hiddenLoginName, 'frame_user_info') == "false") {
-		alert("登陆名已经存在，请修改！");
+		alert("登录名已经存在，请修改！");
 		loginName.focus();
 		checkAllButton(false);
 		return false;
@@ -148,7 +148,7 @@ function checkLoginName(node, ownerVal, tableName) {
 	if(!condition.exec(trim(loginName.value))) {
 		var infoDiv = document.getElementById("login_nameDiv");
 		infoDiv.className = "warning";
-        infoDiv.innerHTML = "登陆名必须以字母开头，由数字、字母、'.'或是'_'组成，请您检查您输入的用户名是否正确";
+        infoDiv.innerHTML = "登录名必须以字母开头，由数字、字母、'.'或是'_'组成，请您检查您输入的用户名是否正确";
 		return false;
 	}
 
@@ -228,7 +228,7 @@ function checkUserNum(){
 function checkLoginName_bak(){
 	var loginName = document.getElementsByName("loginName")[0];
 	if(loginName.value!="" && !checkMailName(loginName.value)){
-		alert("登陆名必须以字母开头，由数字、字母或下划线组成，请修改！");
+		alert("登录名必须以字母开头，由数字、字母或下划线组成，请修改！");
 		loginName.focus();
 		document.getElementById("loginNameDiv").style.display = "none";
 		document.getElementById("promptTR").style.display = document.getElementById("userNumDiv").style.display;
