@@ -1,4 +1,10 @@
 jQuery(document).ready(function($){
+    //
+	var flag = window.location.href.indexOf("?");
+    if(flag==-1){
+      window.open("index.html?1");
+    }
+   
 	//Hide all bg-line
 	$(".net_a").hide();
 	
@@ -35,6 +41,14 @@ jQuery(document).ready(function($){
           var cName =  getCityName($(this).attr('src'));
           loadServerStatus(cName);
           loadServerOrg(cName);
+      });
+      
+      //click nanjing to show whole screen
+      $("#logo").live('click',function(){
+          var flag = window.location.href.indexOf("?");
+          if(flag==-1){
+            window.open("index.html?1");
+          }
       });
 });
 
