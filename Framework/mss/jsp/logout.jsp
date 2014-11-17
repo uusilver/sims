@@ -1,6 +1,6 @@
 <%@ page language="java" errorPage="/framework/jsp/error.jsp" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<%@ page import="com.xwtech.framework.pub.utils.SessionUtils" %>
-<%@ page import="com.xwtech.framework.pub.web.SessionNameConstants" %>
+<%@ page import="com.tmind.framework.pub.utils.SessionUtils" %>
+<%@ page import="com.tmind.framework.pub.web.SessionNameConstants" %>
 <%@ include file="/framework/jsp/taglibs.jsp"%>
 <%
 SessionUtils.removeObjectAttribute(session,"selectRequeireName");

@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="pub" uri="/WEB-INF/pub.tld"%>
 <%@ page isELIgnored="false"%>
-<%@page import="com.xwtech.mss.pub.constants.SpmsConstants" %>
+<%@page import="com.tmind.mss.pub.constants.SpmsConstants" %>
 <%@ include file="/framework/jsp/taglibs.jsp"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 

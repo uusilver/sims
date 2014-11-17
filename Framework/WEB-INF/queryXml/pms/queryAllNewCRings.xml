@@ -1,6 +1,6 @@
 <queries>
-  <query name="queryAllNewCRings" class="com.xwtech.framework.query.bo.QueryByXml" nocondition="true">
-    <valuefetch class="com.xwtech.framework.query.bo.QueryValueFetchByJdbcSql" pageSize="20">
+  <query name="queryAllNewCRings" class="com.tmind.framework.query.bo.QueryByXml" nocondition="true">
+    <valuefetch class="com.tmind.framework.query.bo.QueryValueFetchByJdbcSql" pageSize="20">
       <sql count="true">
         <SqlSelect>
           diy_user.diy_user_id,

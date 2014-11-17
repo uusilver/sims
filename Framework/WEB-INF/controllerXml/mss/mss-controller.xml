@@ -3,14 +3,14 @@
 
 <beans>
 	<bean name="/mss/jsp/userLoginController.do"
-		class="com.xwtech.mss.controller.UserLoginController">
+		class="com.tmind.mss.controller.UserLoginController">
 		<property name="userLoginBO" ref="userLoginBO" />
 		<property name="commandClass"
-			value="com.xwtech.mss.pub.po.UserInfo" />
+			value="com.tmind.mss.pub.po.UserInfo" />
 	</bean>
 
 	<bean name="/mss/jsp/menuController.do"
-		class="com.xwtech.mss.controller.MenuController">
+		class="com.tmind.mss.controller.MenuController">
 		<property name="menuBO" ref="menuBO" />
 		<property name="roleBO" ref="roleBO" />
 		<property name="userPropertyBO" ref="userPropertyBO" />
@@ -21,7 +21,7 @@
 	</bean>
 
 	<bean name="/mss/jsp/sysManage/userManageController.do"
-		class="com.xwtech.mss.controller.UserManageController">
+		class="com.tmind.mss.controller.UserManageController">
 		<property name="userManageBO" ref="userManageBO" />
 		<property name="menuBO" ref="menuBO" />
 		<property name="roleBO" ref="roleBO" />
@@ -36,7 +36,7 @@
 
 	<!-- 角色信息管理 -->
 	<bean name="/mss/jsp/sysManage/roleManageController.do"
-		class="com.xwtech.mss.controller.RoleManageController">
+		class="com.tmind.mss.controller.RoleManageController">
 		<property name="userManageBO" ref="userManageBO" />
 		<property name="menuBO" ref="menuBO" />
 		<property name="roleBO" ref="roleBO" />
@@ -49,7 +49,7 @@
 	</bean>
 	
 	<bean name="/mss/jsp/log/operLog.do"
-		class="com.xwtech.mss.controller.OperLogController">
+		class="com.tmind.mss.controller.OperLogController">
 		<property name="operLogBO">
 			<ref bean="operLogBO" />
 		</property>
@@ -61,7 +61,7 @@
 
 <!-- 部门机构管理 -->
 	<bean name="/mss/jsp/OrgnizationOperation.do"
-		class="com.xwtech.mss.controller.OrgnizationOperation">
+		class="com.tmind.mss.controller.OrgnizationOperation">
 		<property name="orgnizationBO" ref="orgnizationBO" />
 		<property name="sysOperLog" ref="sysOperLog" />
 		
@@ -72,12 +72,12 @@
 	<!-- Configuration For SIMS project -->
 
     <bean name="/mss/jsp/server/serverManagerController.do"
-		class="com.xwtech.mss.controller.ServerManagerController">
+		class="com.tmind.mss.controller.ServerManagerController">
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 	
 	<bean name="/mss/html/locationController.do"
-		class="com.xwtech.mss.controller.LocationController">
+		class="com.tmind.mss.controller.LocationController">
 		<property name="transTemplate" ref="transTemplate" />
 		<property name="countryBO" ref="countryBO" />
 		<property name="provinceBO" ref="provinceBO" />
@@ -88,14 +88,14 @@
 	</bean>
 	
 	<bean name="/mss/html/mainPageInfoController.do"
-		class="com.xwtech.mss.controller.MainPageInfoController">
+		class="com.tmind.mss.controller.MainPageInfoController">
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 	
 	
 	
 	
-	<bean name="/mss/jsp/server/serverInfoController.do" class="com.xwtech.mss.controller.ServerInfoController">
+	<bean name="/mss/jsp/server/serverInfoController.do" class="com.tmind.mss.controller.ServerInfoController">
 		<property name="transTemplate" ref="transTemplate" />
 		<property name="serverInfoBO" ref="serverInfoBO" />
 		<property name="serverGroupMappingBO" ref="serverGroupMappingBO" />
@@ -104,7 +104,7 @@
 	</bean>
 	
 	
-	<bean name="/mss/jsp/server/serverGroupController.do" class="com.xwtech.mss.controller.ServerGroupController">
+	<bean name="/mss/jsp/server/serverGroupController.do" class="com.tmind.mss.controller.ServerGroupController">
 		<property name="transTemplate" ref="transTemplate" />
 		<property name="serverGroupBO" ref="serverGroupBO" />
 		<property name="serverInfoBO" ref="serverInfoBO" />
@@ -113,14 +113,14 @@
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 	
-	<bean name="/mss/jsp/client/clientInfoController.do" class="com.xwtech.mss.controller.ClientInfoController">
+	<bean name="/mss/jsp/client/clientInfoController.do" class="com.tmind.mss.controller.ClientInfoController">
 		<property name="transTemplate" ref="transTemplate" />
 		<property name="clientInfoBO" ref="clientInfoBO" />
 		<property name="clientServerMappingBO" ref="clientServerMappingBO" />
 		<property name="operLogBO" ref="operLogBO"/>
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
-	<bean name="/mss/jsp/client/clientGroupController.do" class="com.xwtech.mss.controller.ClientGroupController">
+	<bean name="/mss/jsp/client/clientGroupController.do" class="com.tmind.mss.controller.ClientGroupController">
 		<property name="transTemplate" ref="transTemplate" />
 		<property name="clientGroupBO" ref="clientGroupBO" />
 		<property name="clientInfoBO" ref="clientInfoBO" />
@@ -130,14 +130,14 @@
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 	
-	<bean name="/mss/jsp/server/operDnsServerController.do" class="com.xwtech.mss.controller.OperDnsServerController">
+	<bean name="/mss/jsp/server/operDnsServerController.do" class="com.tmind.mss.controller.OperDnsServerController">
 		<property name="transTemplate" ref="transTemplate" />
 		<property name="dnsServerBO" ref="dnsServerBO" />
 		<property name="operLogBO" ref="operLogBO"/>
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>
 	
-	<bean name="/mss/html/indexPageController.do" class="com.xwtech.mss.controller.IndexPageController">
+	<bean name="/mss/html/indexPageController.do" class="com.tmind.mss.controller.IndexPageController">
 		<property name="serverInfoBO" ref="serverInfoBO" />
 		<property name="methodNameResolver" ref="paraMethodResolver" />
 	</bean>

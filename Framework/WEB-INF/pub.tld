@@ -8,7 +8,7 @@
   <shortname>test</shortname>
   <tag>
     <name>dtp</name>
-    <tagclass>com.xwtech.framework.pub.tag.DateTimePicker</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.DateTimePicker</tagclass>
     <bodycontent>empty</bodycontent>
     <attribute>
       <name>format</name>
@@ -113,7 +113,7 @@
   </tag>
   <tag>
     <name>dynmatch</name>
-    <tagclass>com.xwtech.framework.pub.tag.DynamicMatchTag</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.DynamicMatchTag</tagclass>
     <bodycontent>empty</bodycontent>
     <attribute>
       <name>name</name>
@@ -218,7 +218,7 @@
   </tag>
   <tag>
     <name>tree</name>
-    <tagclass>com.xwtech.framework.pub.tag.TreeTag</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.TreeTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <attribute>
       <name>arTree</name>
@@ -268,7 +268,7 @@
   </tag>
   <tag>
     <name>tab</name>
-    <tagclass>com.xwtech.framework.pub.tag.TabTag</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.TabTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <attribute>
       <name>num</name>
@@ -308,7 +308,7 @@
   </tag>
   <tag>
     <name>two</name>
-    <tagclass>com.xwtech.framework.pub.tag.SetectTag</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.SetectTag</tagclass>
     <bodycontent>empty</bodycontent>
     <attribute>
       <name>arl</name>
@@ -418,7 +418,7 @@
   </tag>
   <tag>
     <name>link</name>
-    <tagclass>com.xwtech.framework.pub.tag.LinkTag</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.LinkTag</tagclass>
     <bodycontent>empty</bodycontent>
     <attribute>
       <name>arrOne</name>
@@ -578,7 +578,7 @@
   </tag>
   <tag>
     <name>simpleselect</name>
-    <tagclass>com.xwtech.framework.pub.tag.SimpleSelectTag</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.SimpleSelectTag</tagclass>
     <bodycontent>empty</bodycontent>
     <attribute>
       <name>name</name>
@@ -608,7 +608,7 @@
   </tag>
   <tag>
     <name>ajaxtree</name>
-    <tagclass>com.xwtech.framework.pub.tag.AjaxTreeTag</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.AjaxTreeTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <attribute>
       <name>sql</name>
@@ -643,7 +643,7 @@
   </tag>
   <tag>
     <name>tree</name>
-    <tagclass>com.xwtech.framework.pub.tag.TreeTag</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.TreeTag</tagclass>
     <bodycontent>JSP</bodycontent>
     <attribute>
       <name>arTree</name>
@@ -693,7 +693,7 @@
   </tag>
   <tag>
     <name>page</name>
-    <tagclass>com.xwtech.framework.pub.tag.PageTag</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.PageTag</tagclass>
     <bodycontent>empty</bodycontent>
     <attribute>
       <name>totalCount</name>
@@ -738,7 +738,7 @@
   </tag>
   <tag><!-- 汇总查询物料种类下拉框 -->
     <name>select</name>
-    <tagclass>com.xwtech.framework.pub.tag.SelectTag</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.SelectTag</tagclass>
     <bodycontent>empty</bodycontent>
     <attribute>
       <name>sql</name>
@@ -785,7 +785,7 @@
   <!-- 根据dateNumber不同长度，转换相应日期格式 -->
   <tag>
     <name>FormatDate</name>
-    <tagclass>com.xwtech.framework.pub.tag.FormatDate</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.FormatDate</tagclass>
     <bodycontent>empty</bodycontent>
     <attribute>
       <name>dateNumber</name>

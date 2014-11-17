@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=utf-8"%>
-<%@page import="com.xwtech.mss.pub.constants.SpmsConstants" %>
+<%@page import="com.tmind.mss.pub.constants.SpmsConstants" %>
 <%@include file="/framework/jsp/taglibs.jsp"%>
 
 <html>

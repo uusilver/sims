@@ -2,62 +2,62 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="operLogBO" class="com.xwtech.mss.bo.system.OperLogBO">     
+	<bean id="operLogBO" class="com.tmind.mss.bo.system.OperLogBO">     
 		<property name="operationLogDAO" ref="operationLogDAO" />
 	</bean>
 	
 	<!-- 以下为业务内容 -->
 	
-	<bean id="authorizationBO" class="com.xwtech.mss.bo.business.AuthorizationBO">     
+	<bean id="authorizationBO" class="com.tmind.mss.bo.business.AuthorizationBO">     
 		<property name="mpmsAuthorizationDAO" ref="mpmsAuthorizationDAO" />
 	</bean>
 	
 	<!-- Configuration For SIMS project -->
 	
-	<bean id="serverInfoBO" class="com.xwtech.mss.bo.business.ServerInfoBO">     
+	<bean id="serverInfoBO" class="com.tmind.mss.bo.business.ServerInfoBO">     
 		<property name="transitServerDAO" ref="transitServerDAO" />
 	</bean>
 	
-	<bean id="dnsServerBO" class="com.xwtech.mss.bo.business.DnsServerBO">     
+	<bean id="dnsServerBO" class="com.tmind.mss.bo.business.DnsServerBO">     
 		<property name="operDNSServerDAO" ref="operDNSServerDAO" />
 	</bean>
 	
-	<bean id="serverGroupMappingBO" class="com.xwtech.mss.bo.business.ServerGroupMappingBO">     
+	<bean id="serverGroupMappingBO" class="com.tmind.mss.bo.business.ServerGroupMappingBO">     
 		<property name="serverGroupMappingDAO" ref="serverGroupMappingDAO" />
 	</bean>
 	
-	<bean id="countryBO" class="com.xwtech.mss.bo.business.CountryBO">     
+	<bean id="countryBO" class="com.tmind.mss.bo.business.CountryBO">     
 		<property name="countryDAO" ref="countryDAO" />
 	</bean>
 	
-	<bean id="provinceBO" class="com.xwtech.mss.bo.business.ProvinceBO">     
+	<bean id="provinceBO" class="com.tmind.mss.bo.business.ProvinceBO">     
 		<property name="provinceDAO" ref="provinceDAO" />
 	</bean>
 	
-	<bean id="cityBO" class="com.xwtech.mss.bo.business.CityBO">     
+	<bean id="cityBO" class="com.tmind.mss.bo.business.CityBO">     
 		<property name="cityDAO" ref="cityDAO" />
 	</bean>
 	
-	<bean id="serverGroupBO" class="com.xwtech.mss.bo.business.ServerGroupBO">     
+	<bean id="serverGroupBO" class="com.tmind.mss.bo.business.ServerGroupBO">     
 		<property name="serverGroupDAO" ref="serverGroupDAO" />
 	</bean>
-	<bean id="regionBO" class="com.xwtech.mss.bo.business.RegionBO">     
+	<bean id="regionBO" class="com.tmind.mss.bo.business.RegionBO">     
 		<property name="regionDAO" ref="regionDAO" />
 	</bean>
 	
-	<bean id="clientInfoBO" class="com.xwtech.mss.bo.business.ClientInfoBO">     
+	<bean id="clientInfoBO" class="com.tmind.mss.bo.business.ClientInfoBO">     
 		<property name="clientDAO" ref="clientDAO" />
 	</bean>
 	
-	<bean id="clientGroupBO" class="com.xwtech.mss.bo.business.ClientGroupBO">     
+	<bean id="clientGroupBO" class="com.tmind.mss.bo.business.ClientGroupBO">     
 		<property name="clientGroupDAO" ref="clientGroupDAO" />
 	</bean>
 	
-	<bean id="clientGroupMappingBO" class="com.xwtech.mss.bo.business.ClientGroupMappingBO">     
+	<bean id="clientGroupMappingBO" class="com.tmind.mss.bo.business.ClientGroupMappingBO">     
 		<property name="clientGroupMappingDAO" ref="clientGroupMappingDAO" />
 	</bean>
 	
-	<bean id="clientServerMappingBO" class="com.xwtech.mss.bo.business.ClientServerMappingBO">     
+	<bean id="clientServerMappingBO" class="com.tmind.mss.bo.business.ClientServerMappingBO">     
 		<property name="clientServerMappingDAO" ref="clientServerMappingDAO" />
 	</bean>
 	

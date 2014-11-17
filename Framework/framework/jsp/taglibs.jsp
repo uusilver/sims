@@ -3,5 +3,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fn" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt_rt" prefix="fmt"%>
 <%@ page isELIgnored="false" %>
-<%@ page import="com.xwtech.mss.pub.constants.SpmsConstants" %>
+<%@ page import="com.tmind.mss.pub.constants.SpmsConstants" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" scope="request" />

@@ -1,9 +1,9 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <%@include file="/framework/jsp/taglibs.jsp"%>
-<jsp:directive.page import="com.xwtech.framework.pub.utils.DateUtils"/>
-<jsp:directive.page import="com.xwtech.mss.pub.tools.CommonOperation"/>
-<jsp:directive.page import="com.xwtech.mss.pub.po.UserInfo"/>
-<jsp:directive.page import="com.xwtech.mss.pub.constants.DmsConstants"/>
+<jsp:directive.page import="com.tmind.framework.pub.utils.DateUtils"/>
+<jsp:directive.page import="com.tmind.mss.pub.tools.CommonOperation"/>
+<jsp:directive.page import="com.tmind.mss.pub.po.UserInfo"/>
+<jsp:directive.page import="com.tmind.mss.pub.constants.DmsConstants"/>
 
 <html>
 <head>

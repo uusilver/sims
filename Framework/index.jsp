@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ page import="java.util.HashMap"%>
-<%@ page import="com.xwtech.framework.pub.web.RequestNameConstants"%>
-<%@ page import="com.xwtech.framework.pub.result.ResultInfos"%>
+<%@ page import="com.tmind.framework.pub.web.RequestNameConstants"%>
+<%@ page import="com.tmind.framework.pub.result.ResultInfos"%>
 <%@ page import="java.util.Iterator"%>
-<%@ page import="com.xwtech.framework.pub.result.ResultInfo"%>
-<%@ page import="com.xwtech.framework.pub.utils.SessionUtils" %>
-<%@ page import="com.xwtech.framework.pub.web.SessionNameConstants" %>
+<%@ page import="com.tmind.framework.pub.result.ResultInfo"%>
+<%@ page import="com.tmind.framework.pub.utils.SessionUtils" %>
+<%@ page import="com.tmind.framework.pub.web.SessionNameConstants" %>
 <%@ include file="/framework/jsp/taglibs.jsp"%>
 
 <html>

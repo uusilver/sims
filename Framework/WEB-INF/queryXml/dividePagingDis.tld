@@ -8,7 +8,7 @@
   <shortname>test</shortname>
   <tag>
     <name>paging</name>
-    <tagclass>com.xwtech.framework.pub.tag.DividePagingDis</tagclass>
+    <tagclass>com.tmind.framework.pub.tag.DividePagingDis</tagclass>
     <bodycontent>empty</bodycontent>
     <attribute>
       <name>recordTotalNum</name>

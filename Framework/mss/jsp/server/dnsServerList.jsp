@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=utf-8"%>
-<%@page import="com.xwtech.mss.pub.constants.MssConstants" %>
+<%@page import="com.tmind.mss.pub.constants.MssConstants" %>
 <%@include file="/framework/jsp/taglibs.jsp"%>
 
 <html>
@@ -52,15 +52,15 @@
 				<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table" style="margin:0px;">
 					<tr>
 						<td class="qinggoudan_table_td1">
-							DNS服务类型:
+							辅助服务器类型:
 							<pub:link sql="<%=MssConstants.QUERY_DNS_SERVER_TYPE_SQL%>" num="1" selectSize="15"
 								title="---服务器类型---" next="false" name="queryServerType" mvalue="${information.searchForm.queryServerType}" />
 						</td>
-						<td class="qinggoudan_table_td1">
+						<!-- td class="qinggoudan_table_td1">
 							DNS服务器状态：
-							<pub:link sql="<%=MssConstants.QUERY_ROLE_STATE%>" num="1" id="t.role_id" valueName="t.role_name"
+							<pub:link sql="" num="1" id="t.role_id" valueName="t.role_name"
 								title="---请选择---" next="false" name="queryStatus" mvalue="${information.searchForm.queryStatus}" />
-						</td>
+						</td> -->
 						<td class="qinggoudan_table_td1">
 							&nbsp;
 							<input type="button" class="anniu_out" value=" 搜 索 " onMouseOver="className='anniu_over'"
@@ -93,10 +93,10 @@
 					</td>
 					<!-- td class="qinggoudan_table_title">
 						服务器端口
-					</td> -->
+					</td>
 					<td class="qinggoudan_table_title">
 						状态
-					</td>
+					</td> -->
 					<c:if test="${information.searchForm.indexNO==null || information.searchForm.indexNO==''}">
 						<td width="50" class="qinggoudan_table_title">
 							详情
@@ -110,21 +110,21 @@
 								<input type="checkbox" class="qinggoudan_input011" name="serverChk" value="${serverInfo.dnsserverid}"/>
 							</c:if>
 						</td>
-						<td class="qinggoudan_table_td2" width="7%" >
+						<td class="qinggoudan_table_td2" width="10%" >
 								${status.index+1}
 						</td>
-						<td class="qinggoudan_table_td2" width="17%" >
+						<td class="qinggoudan_table_td2" width="25%" >
 							&nbsp;${fn:escapeXml(serverInfo.serverType)}
 						</td>
-						<td class="qinggoudan_table_td2" width="17%" >
+						<td class="qinggoudan_table_td2" width="30%" >
 							&nbsp;${fn:escapeXml(serverInfo.serverip)}
 						</td>
 						<!-- td class="qinggoudan_table_td2" width="17%" >
 							&nbsp;${fn:escapeXml(serverInfo.serverport)}
-						</td>-->
+						</td>
 						<td class="qinggoudan_table_td2" width="17%" >
 								${serverInfo.status == "A" ? "有效" : "无效"}
-						</td>
+						</td>-->
 						<td class="qinggoudan_table_td2">
 							<a href="javascript:viewServer('${serverInfo.dnsserverid}')"> <img src="${contextPath}/mss/image/see.gif" width="18" height="20"
 									border="0"> </a>

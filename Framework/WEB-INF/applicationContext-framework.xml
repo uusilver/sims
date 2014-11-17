@@ -8,11 +8,11 @@
 	<!--<bean
 		id="globeContext"
 		singleton="true"
-		class="com.xwtech.framework.pub.web.GlobeContext">
+		class="com.tmind.framework.pub.web.GlobeContext">
 		</bean>-->
 	<!-- base framework web application start bean -->
 	<bean id="baseFrameworkApplication" singleton="true"
-		class="com.xwtech.framework.pub.web.BaseFrameworkApplication">
+		class="com.tmind.framework.pub.web.BaseFrameworkApplication">
 		<property name="baseJdbcDAO" ref="baseJdbcDAO" />
 	</bean>
 
@@ -41,7 +41,7 @@
 			<list>
 				<!-- wap messge source -->
 				<value>
-					com.xwtech.framework.pub.messageSource.userMessageSource
+					com.tmind.framework.pub.messageSource.userMessageSource
 				</value>
 			</list>
 		</property>
@@ -49,7 +49,7 @@
 
 	<!-- framework web application start bean -->
 	<bean id="frameworkApplication" singleton="true"
-		class="com.xwtech.framework.pub.web.FrameworkApplication">
+		class="com.tmind.framework.pub.web.FrameworkApplication">
 		<property name="frameworkProperties" ref="frameworkProperties" />
 		<property name="dbCollection" ref="dbCollection" />
 
@@ -59,13 +59,13 @@
 					<key>
 						<value>frameResult</value>
 					</key>
-					<value>from com.xwtech.mss.pub.po.FrameResult frameResult where frameResult.resultState='A'</value>
+					<value>from com.tmind.mss.pub.po.FrameResult frameResult where frameResult.resultState='A'</value>
 				</entry>
 				<!-- entry>
 					<key>
 						<value>userInterests</value>
 					</key>
-					<value>from com.xwtech.mss.pub.po.MssLikeInfo mssLikeInfo where mssLikeInfo.isDel=0 and mssLikeInfo.isHide=0</value>
+					<value>from com.tmind.mss.pub.po.MssLikeInfo mssLikeInfo where mssLikeInfo.isDel=0 and mssLikeInfo.isHide=0</value>
 				</entry> -->
 			</map>
 		</property>
@@ -75,7 +75,7 @@
 
 	<!-- framework properties beans -->
 	<bean id="frameworkProperties"
-		class="com.xwtech.framework.pub.web.FrameworkProperties">
+		class="com.tmind.framework.pub.web.FrameworkProperties">
 		<property name="useCheckCode" value="false" /><!-- 是否使用验证码 -->
 		<!-- <property name="mailFrom" value="gudp@mail.xwtec.cn"/> 
 			<property name="mailHost" value="mail.xwtec.cn"/> 

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
-<jsp:directive.page import="com.xwtech.framework.pub.utils.DateUtils"/>
+<jsp:directive.page import="com.tmind.framework.pub.utils.DateUtils"/>
 <%@ include file="/framework/jsp/taglibs.jsp"%>
 <html>
 <head>

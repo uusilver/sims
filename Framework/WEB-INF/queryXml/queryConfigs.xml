@@ -7,7 +7,7 @@
   <!--：是否缓存查询配置，缺省为false-->
   <!--查询配置-->
   <!--：一个查询配置中可以包含多个查询-->
-  <queryConfig class="com.xwtech.framework.query.bo.QueryConfigByXml">
+  <queryConfig class="com.tmind.framework.query.bo.QueryConfigByXml">
     <!--class属性（必选）：负责查询配置解析的类-->
     <!-- === -->
     <!--配置文件路径（对于QueryConfigByXml必选）-->

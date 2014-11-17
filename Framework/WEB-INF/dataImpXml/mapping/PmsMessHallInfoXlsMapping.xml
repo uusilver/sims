@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="GBK"?>
 
-<class className="com.xwtech.pms.pub.po.PmsMessHallInfo">
+<class className="com.tmind.pms.pub.po.PmsMessHallInfo">
   <entry>
     <title>责任人</title>
     <methodName>setPrincipal</methodName>

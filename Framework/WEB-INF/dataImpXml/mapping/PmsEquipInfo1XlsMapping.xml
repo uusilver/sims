@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="GBK"?>
 
-<class className="com.xwtech.pms.pub.po.PmsEquipInfo">
+<class className="com.tmind.pms.pub.po.PmsEquipInfo">
   <entry>
     <title>营业厅名</title>
     <methodName>setPmsBusIntegInfo</methodName>

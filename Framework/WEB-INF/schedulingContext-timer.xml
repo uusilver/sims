@@ -30,15 +30,15 @@
 		class="org.quartz.impl.StdSchedulerFactory">
 	</bean>
 	<bean name="scheduleInfo"
-		class="com.xwtech.mss.pub.spring.scheduling.ScheduleInfo">
+		class="com.tmind.mss.pub.spring.scheduling.ScheduleInfo">
 		<property name="cronExpression" value="" />
 	</bean>
 	<bean name="scheduleInfoManager"
-		class="com.xwtech.mss.pub.spring.scheduling.ScheduleInfoManager">
+		class="com.tmind.mss.pub.spring.scheduling.ScheduleInfoManager">
 		<property name="scheduleInfo" ref="scheduleInfo" />
 	</bean>
 	<bean name="scheduleInfoAction"
-		class="com.xwtech.mss.pub.spring.scheduling.ScheduleInfoAction">
+		class="com.tmind.mss.pub.spring.scheduling.ScheduleInfoAction">
 		<property name="stdSchedulerFactory" ref="stdSchedulerFactory" />
 		<property name="scheduleInfoManager" ref="scheduleInfoManager" />
 	</bean>
@@ -74,7 +74,7 @@
 	<bean name="doWebApacheLog"
 		class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+			value="com.tmind.mss.pub.timer.HttpCallQuartzJob" />
 		<property name="jobDataAsMap">
 			<map>
 				<entry key="timeout" value="10" />
@@ -102,7 +102,7 @@
 	<bean name="doWebPlateLog"
 		class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+			value="com.tmind.mss.pub.timer.HttpCallQuartzJob" />
 		<property name="jobDataAsMap">
 			<map>
 				<entry key="timeout" value="10" />
@@ -129,7 +129,7 @@
 	<bean name="doWebForumLog"
 		class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+			value="com.tmind.mss.pub.timer.HttpCallQuartzJob" />
 		<property name="jobDataAsMap">
 			<map>
 				<entry key="timeout" value="10" />
@@ -156,7 +156,7 @@
 	<bean name="doWebTopicLog"
 		class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+			value="com.tmind.mss.pub.timer.HttpCallQuartzJob" />
 		<property name="jobDataAsMap">
 			<map>
 				<entry key="timeout" value="10" />
@@ -183,7 +183,7 @@
 	<bean name="doWebPTinfoLog"
 		class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+			value="com.tmind.mss.pub.timer.HttpCallQuartzJob" />
 		<property name="jobDataAsMap">
 			<map>
 				<entry key="timeout" value="10" />
@@ -210,7 +210,7 @@
 	<bean name="doWebUserVisitLog"
 		class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+			value="com.tmind.mss.pub.timer.HttpCallQuartzJob" />
 		<property name="jobDataAsMap">
 			<map>
 				<entry key="timeout" value="10" />
@@ -237,7 +237,7 @@
 	<bean name="doWebUserPointLog"
 		class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+			value="com.tmind.mss.pub.timer.HttpCallQuartzJob" />
 		<property name="jobDataAsMap">
 			<map>
 				<entry key="timeout" value="10" />
@@ -265,7 +265,7 @@
 	<bean name="doWapApacheLog"
 		class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+			value="com.tmind.mss.pub.timer.HttpCallQuartzJob" />
 		<property name="jobDataAsMap">
 			<map>
 				<entry key="timeout" value="10" />
@@ -293,7 +293,7 @@
 	<bean name="doWapLanmuLog"
 		class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass"
-			value="com.xwtech.mss.pub.timer.HttpCallQuartzJob" />
+			value="com.tmind.mss.pub.timer.HttpCallQuartzJob" />
 		<property name="jobDataAsMap">
 			<map>
 				<entry key="timeout" value="10" />

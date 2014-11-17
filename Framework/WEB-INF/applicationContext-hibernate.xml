@@ -41,43 +41,39 @@
                   <list>
                      <!-- 配置hibernate的配置文件 -->
 
-                             <value>com/xwtech/mss/pub/po/FrameFieldCheck.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/FrameLoginLog.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/FrameResult.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/FrameUrl.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/Menu.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/OperationLog.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/Role.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/UserInfo.hbm.xml</value>
-                           	 <value>com/xwtech/mss/pub/po/UserProperty.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/Orgnization.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/FrameOrgCityRelation.hbm.xml</value>
-                             
-                           	 <value>com/xwtech/mss/pub/po/GoodsType.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/GoodsInfo.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/ClientInfo.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/GoodsRecord.hbm.xml</value>
-                             <value>com/xwtech/mss/pub/po/MpmsAuthorization.hbm.xml</value>
+                             <value>com/tmind/mss/pub/po/FrameFieldCheck.hbm.xml</value>
+                             <value>com/tmind/mss/pub/po/FrameLoginLog.hbm.xml</value>
+                             <value>com/tmind/mss/pub/po/FrameResult.hbm.xml</value>
+                             <value>com/tmind/mss/pub/po/FrameUrl.hbm.xml</value>
+                             <value>com/tmind/mss/pub/po/Menu.hbm.xml</value>
+                             <value>com/tmind/mss/pub/po/OperationLog.hbm.xml</value>
+                             <value>com/tmind/mss/pub/po/Role.hbm.xml</value>
+                             <value>com/tmind/mss/pub/po/UserInfo.hbm.xml</value>
+                           	 <value>com/tmind/mss/pub/po/UserProperty.hbm.xml</value>
+                             <value>com/tmind/mss/pub/po/Orgnization.hbm.xml</value>
+                             <value>com/tmind/mss/pub/po/FrameOrgCityRelation.hbm.xml</value>
+
+                             <value>com/tmind/mss/pub/po/MpmsAuthorization.hbm.xml</value>
                              
                             
-                            <value>com/xwtech/mss/pub/po/OperDNSServer.hbm.xml</value> 
-                            <value>com/xwtech/mss/pub/po/TransitServer.hbm.xml</value> 
-                            <value>com/xwtech/mss/pub/po/Region.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/Gateway.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/Country.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/ServerStatus.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/ServerGroup.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/ServerGroupMapping.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/Province.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/ClientWebsiteHistory.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/ClientGroup.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/ClientGroupMapping.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/ClientServerMapping.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/ClientGateway.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/City.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/ClientStatus.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/Client.hbm.xml</value>
-							<value>com/xwtech/mss/pub/po/CodeBook.hbm.xml</value>
+                            <value>com/tmind/mss/pub/po/OperDNSServer.hbm.xml</value> 
+                            <value>com/tmind/mss/pub/po/TransitServer.hbm.xml</value> 
+                            <value>com/tmind/mss/pub/po/Region.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/Gateway.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/Country.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/ServerStatus.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/ServerGroup.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/ServerGroupMapping.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/Province.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/ClientWebsiteHistory.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/ClientGroup.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/ClientGroupMapping.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/ClientServerMapping.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/ClientGateway.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/City.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/ClientStatus.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/Client.hbm.xml</value>
+							<value>com/tmind/mss/pub/po/CodeBook.hbm.xml</value>
                     </list>
 		</property>
 		<property name="hibernateProperties">

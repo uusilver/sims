@@ -2,33 +2,33 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
 	<bean id="userLoginBO"
-		class="com.xwtech.mss.bo.system.login.UserLoginBO">
+		class="com.tmind.mss.bo.system.login.UserLoginBO">
 		<property name="userInfoDAO" ref="userInfoDAO" />
 		<property name="frameLoginLogDAO" ref="frameLoginLogDAO" />
 	</bean>
-	<bean id="menuBO" class="com.xwtech.mss.bo.system.menu.MenuBO">
+	<bean id="menuBO" class="com.tmind.mss.bo.system.menu.MenuBO">
 		<property name="menuDAO" ref="menuDAO" />
 	</bean>
 	<bean id="userManageBO"
-		class="com.xwtech.mss.bo.system.user.UserManageBO">
+		class="com.tmind.mss.bo.system.user.UserManageBO">
 		<property name="userInfoDAO" ref="userInfoDAO" />
 		<property name="roleDAO" ref="roleDAO" />
 	</bean>
 	<bean id="roleBO"
-		class="com.xwtech.mss.bo.system.property.RoleBO">
+		class="com.tmind.mss.bo.system.property.RoleBO">
 		<property name="roleDAO" ref="roleDAO" />
 	</bean>
 	<bean id="userPropertyBO"
-		class="com.xwtech.mss.bo.system.property.UserPropertyBO">
+		class="com.tmind.mss.bo.system.property.UserPropertyBO">
 		<property name="userPropertyDAO" ref="userPropertyDAO" />
 	</bean>
 	<bean id="operLogBO"
-		class="com.xwtech.mss.bo.system.operator.OperLogBO">
+		class="com.tmind.mss.bo.system.operator.OperLogBO">
 		<property name="operationLogDAO" ref="operationLogDAO" />
 	</bean>
 
 	<bean id="orgnizationBO"
-		class="com.xwtech.mss.bo.system.orgnization.OrgnizationBO">
+		class="com.tmind.mss.bo.system.orgnization.OrgnizationBO">
 		<property name="sysOperLog" ref="sysOperLog" />
 		<property name="orgnizationDAO" ref="orgnizationDAO" />
 		<property name="frameOrgCityRelationDAO"
@@ -36,19 +36,19 @@
 		<property name="transTemplate" ref="transTemplate" /><!-- 事务 -->
 	</bean>
 
-	<bean id="sysOperLog" class="com.xwtech.mss.pub.web.SysOperLog">
+	<bean id="sysOperLog" class="com.tmind.mss.pub.web.SysOperLog">
 		<property name="userInfoDAO" ref="userInfoDAO"/>
 		<property name="operationLogDAO" ref="operationLogDAO"/>
 	</bean> 
 	
 
 	
-  <!-- <bean id="dmsUserPropertyBO" class="com.xwtech.dms.bo.DmsUserPropertyBO">
+  <!-- <bean id="dmsUserPropertyBO" class="com.tmind.dms.bo.DmsUserPropertyBO">
     <property name="dmsUserPropertyDAO" ref="dmsUserPropertyDAO"/>
   </bean>
-    <bean id="dmsSysResourceBO" class="com.xwtech.dms.bo.DmsSysResourceBO">
+    <bean id="dmsSysResourceBO" class="com.tmind.dms.bo.DmsSysResourceBO">
   </bean>
-  <bean id="dmsRoleBO" class="com.xwtech.dms.bo.DmsRoleBO">
+  <bean id="dmsRoleBO" class="com.tmind.dms.bo.DmsRoleBO">
     <property name="dmsRoleDAO" ref="dmsRoleDAO"/>
   </bean> -->
 

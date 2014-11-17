@@ -1,9 +1,9 @@
 <%@page contentType="text/html; charset=utf-8"%>
-<jsp:directive.page import="com.xwtech.mss.bo.system.menu.MenuBO" />
-<jsp:directive.page import="com.xwtech.framework.pub.web.ContextBeanUtils" />
+<jsp:directive.page import="com.tmind.mss.bo.system.menu.MenuBO" />
+<jsp:directive.page import="com.tmind.framework.pub.web.ContextBeanUtils" />
 <jsp:directive.page import="java.util.List" />
-<jsp:directive.page import="com.xwtech.mss.pub.po.Menu" />
-<%@page import="com.xwtech.mss.pub.constants.SpmsConstants" %>
+<jsp:directive.page import="com.tmind.mss.pub.po.Menu" />
+<%@page import="com.tmind.mss.pub.constants.SpmsConstants" %>
 <%@include file="/framework/jsp/taglibs.jsp"%>
 
 <html>

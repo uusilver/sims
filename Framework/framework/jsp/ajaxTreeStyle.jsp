@@ -19,12 +19,12 @@ StringBuffer buf = new StringBuffer();
     }
     try
     {
-        com.xwtech.framework.pub.utils.MacroString macroSql = new com.xwtech.framework.pub.utils.MacroString(sql, "$[", "]$");
+        com.tmind.framework.pub.utils.MacroString macroSql = new com.tmind.framework.pub.utils.MacroString(sql, "$[", "]$");
         macroSql.setMacroValue("keyId", idValue);
         sql = macroSql.getString(false);
         System.out.println("sql="+sql);
 
-      java.util.List list = com.xwtech.framework.pub.web.FrameworkApplication.baseJdbcDAO.queryForList(sql);
+      java.util.List list = com.tmind.framework.pub.web.FrameworkApplication.baseJdbcDAO.queryForList(sql);
           buf.append("<root>");
           for (int i=0;i<list.size();i++)
           {

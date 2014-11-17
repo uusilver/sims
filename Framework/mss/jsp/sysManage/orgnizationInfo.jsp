@@ -1,8 +1,8 @@
 <%@page contentType="text/html; charset=utf-8"%>
 <jsp:directive.page import="java.util.Iterator" />
-<%@page import="com.xwtech.mss.pub.constants.SpmsConstants" %>
+<%@page import="com.tmind.mss.pub.constants.SpmsConstants" %>
 <%@include file="/framework/jsp/taglibs.jsp"%>
-<%@page language="java" import="com.xwtech.mss.pub.po.Orgnization"%>
+<%@page language="java" import="com.tmind.mss.pub.po.Orgnization"%>
 <html>
 
 	<head>

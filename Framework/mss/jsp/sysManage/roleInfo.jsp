@@ -2,9 +2,9 @@
 <%@include file="/framework/jsp/taglibs.jsp"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="com.xwtech.framework.pub.po.FrameMenu"%>
-<%@ page import="com.xwtech.framework.pub.web.RequestNameConstants"%>
-<%@ page import="com.xwtech.mss.pub.constants.SpmsConstants" %>
+<%@ page import="com.tmind.framework.pub.po.FrameMenu"%>
+<%@ page import="com.tmind.framework.pub.web.RequestNameConstants"%>
+<%@ page import="com.tmind.mss.pub.constants.SpmsConstants" %>
 
 <html>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="GBK"?>
 
-<class className="com.xwtech.pms.pub.po.PmsBuildCompanyInfo">
+<class className="com.tmind.pms.pub.po.PmsBuildCompanyInfo">
   <entry>
     <title>地址</title>
     <methodName>setAddress</methodName>

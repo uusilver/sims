@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
 	<bean id="dbCollection"
-		class="com.xwtech.mss.pub.db.DbCollection">
+		class="com.tmind.mss.pub.db.DbCollection">
 
 		<property name="transTemplate" ref="transTemplate" />
 		<property name="frameFieldCheckDAO" ref="frameFieldCheckDAO" />
@@ -18,10 +18,6 @@
 		<property name="frameOrgCityRelationDAO" ref="frameOrgCityRelationDAO" />
 			
 			
-		<property name="goodsTypeDAO" ref="goodsTypeDAO" />
-		<property name="goodsInfoDAO" ref="goodsInfoDAO" />
-		<property name="clientInfoDAO" ref="clientInfoDAO" />
-		<property name="goodsRecordDAO" ref="goodsRecordDAO" />
 		<property name="mpmsAuthorizationDAO" ref="mpmsAuthorizationDAO" />
 		
 		<!-- DAO for SIMS Project -->
@@ -47,158 +43,137 @@
 
 
 	<bean id="frameFieldCheckDAO"
-		class="com.xwtech.mss.pub.dao.system.FrameFieldCheckDAO">
+		class="com.tmind.mss.pub.dao.system.FrameFieldCheckDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="frameLoginLogDAO"
-		class="com.xwtech.mss.pub.dao.system.FrameLoginLogDAO">
+		class="com.tmind.mss.pub.dao.system.FrameLoginLogDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="frameResultDAO"
-		class="com.xwtech.mss.pub.dao.system.FrameResultDAO">
+		class="com.tmind.mss.pub.dao.system.FrameResultDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="frameUrlDAO"
-		class="com.xwtech.mss.pub.dao.system.FrameUrlDAO">
+		class="com.tmind.mss.pub.dao.system.FrameUrlDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="menuDAO" class="com.xwtech.mss.pub.dao.system.MenuDAO">
+	<bean id="menuDAO" class="com.tmind.mss.pub.dao.system.MenuDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="operationLogDAO"
-		class="com.xwtech.mss.pub.dao.system.OperationLogDAO">
+		class="com.tmind.mss.pub.dao.system.OperationLogDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="roleDAO" class="com.xwtech.mss.pub.dao.system.RoleDAO">
+	<bean id="roleDAO" class="com.tmind.mss.pub.dao.system.RoleDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="userInfoDAO"
-		class="com.xwtech.mss.pub.dao.system.UserInfoDAO">
+		class="com.tmind.mss.pub.dao.system.UserInfoDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="userPropertyDAO"
-		class="com.xwtech.mss.pub.dao.system.UserPropertyDAO">
+		class="com.tmind.mss.pub.dao.system.UserPropertyDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="orgnizationDAO"
-		class="com.xwtech.mss.pub.dao.system.OrgnizationDAO">
+		class="com.tmind.mss.pub.dao.system.OrgnizationDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="frameOrgCityRelationDAO"
-		class="com.xwtech.mss.pub.dao.system.FrameOrgCityRelationDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-
-	<bean id="goodsTypeDAO"
-		class="com.xwtech.mss.pub.dao.business.GoodsTypeDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<bean id="goodsInfoDAO"
-		class="com.xwtech.mss.pub.dao.business.GoodsInfoDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<bean id="clientInfoDAO"
-		class="com.xwtech.mss.pub.dao.business.ClientInfoDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<bean id="goodsRecordDAO"
-		class="com.xwtech.mss.pub.dao.business.GoodsRecordDAO">
+		class="com.tmind.mss.pub.dao.system.FrameOrgCityRelationDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="mpmsAuthorizationDAO"
-		class="com.xwtech.mss.pub.dao.business.MpmsAuthorizationDAO">
+		class="com.tmind.mss.pub.dao.business.MpmsAuthorizationDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 <!-- DAO configuration for SIMS project -->
 
 	<bean id="transitServerDAO"
-		class="com.xwtech.mss.pub.dao.business.TransitServerDAO">
+		class="com.tmind.mss.pub.dao.business.TransitServerDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="cityDAO"
-		class="com.xwtech.mss.pub.dao.business.CityDAO">
+		class="com.tmind.mss.pub.dao.business.CityDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="clientDAO"
-		class="com.xwtech.mss.pub.dao.business.ClientDAO">
+		class="com.tmind.mss.pub.dao.business.ClientDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="clientGatewayDAO"
-		class="com.xwtech.mss.pub.dao.business.ClientGatewayDAO">
+		class="com.tmind.mss.pub.dao.business.ClientGatewayDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="clientGroupDAO"
-		class="com.xwtech.mss.pub.dao.business.ClientGroupDAO">
+		class="com.tmind.mss.pub.dao.business.ClientGroupDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="clientGroupMappingDAO"
-		class="com.xwtech.mss.pub.dao.business.ClientGroupMappingDAO">
+		class="com.tmind.mss.pub.dao.business.ClientGroupMappingDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="clientServerMappingDAO"
-		class="com.xwtech.mss.pub.dao.business.ClientServerMappingDAO">
+		class="com.tmind.mss.pub.dao.business.ClientServerMappingDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="clientStatusDAO"
-		class="com.xwtech.mss.pub.dao.business.ClientStatusDAO">
+		class="com.tmind.mss.pub.dao.business.ClientStatusDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="clientWebsiteHistoryDAO"
-		class="com.xwtech.mss.pub.dao.business.ClientWebsiteHistoryDAO">
+		class="com.tmind.mss.pub.dao.business.ClientWebsiteHistoryDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="countryDAO"
-		class="com.xwtech.mss.pub.dao.business.CountryDAO">
+		class="com.tmind.mss.pub.dao.business.CountryDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="gatewayDAO"
-		class="com.xwtech.mss.pub.dao.business.GatewayDAO">
+		class="com.tmind.mss.pub.dao.business.GatewayDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="provinceDAO"
-		class="com.xwtech.mss.pub.dao.business.ProvinceDAO">
+		class="com.tmind.mss.pub.dao.business.ProvinceDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="regionDAO"
-		class="com.xwtech.mss.pub.dao.business.RegionDAO">
+		class="com.tmind.mss.pub.dao.business.RegionDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="serverGroupDAO"
-		class="com.xwtech.mss.pub.dao.business.ServerGroupDAO">
+		class="com.tmind.mss.pub.dao.business.ServerGroupDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="serverGroupMappingDAO"
-		class="com.xwtech.mss.pub.dao.business.ServerGroupMappingDAO">
+		class="com.tmind.mss.pub.dao.business.ServerGroupMappingDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="serverStatusDAO"
-		class="com.xwtech.mss.pub.dao.business.ServerStatusDAO">
+		class="com.tmind.mss.pub.dao.business.ServerStatusDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="operDNSServerDAO"
-		class="com.xwtech.mss.pub.dao.business.OperDNSServerDAO">
+		class="com.tmind.mss.pub.dao.business.OperDNSServerDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	

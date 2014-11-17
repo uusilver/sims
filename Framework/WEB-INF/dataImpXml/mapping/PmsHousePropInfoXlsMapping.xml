@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="GBK"?>
 
-<class className="com.xwtech.pms.pub.po.PmsHousePropInfo">
+<class className="com.tmind.pms.pub.po.PmsHousePropInfo">
   <entry>
     <title>行政区</title>
     <methodName>setDistrict</methodName>
