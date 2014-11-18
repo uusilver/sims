@@ -5,3 +5,4 @@
 <%@ page isELIgnored="false" %>
 <%@ page import="com.tmind.mss.pub.constants.SpmsConstants" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" scope="request" />
+<script type="text/javascript" src="${contextPath}/mss/js/alert.js"></script> 

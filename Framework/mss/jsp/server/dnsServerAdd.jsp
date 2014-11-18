@@ -9,20 +9,28 @@
 		<title>物资管理系统-辅助服务器管理</title>
 		<link href="${contextPath }/framework/css/style.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
+		<link href="${contextPath}/mss/css/confirm.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/ajax.js"></script>
 		<script type="text/javascript" src="${contextPath}/mss/js/jquery-1.9.1.min.js"></script> 
+		<script type="text/javascript" src="${contextPath}/mss/js/confirm.js"></script> 
 		
 		<script type="text/javascript">
 
 		function saveServerInfo(){
 			if(checkServerIP()&&checkServerType()&&checkServerComment()){
-				if(confirm("您确定要保存该辅助服务器信息么？")){
-					document.serverInfoAddForm.submit();
-				}
+				window.confirm("您确定要保存该辅助服务器信息么？","OK()","NO()");
 			}else{
 				alert("请根据提示修改相应内容！");
 			}
+		}
+		
+		function OK(){
+			document.serverInfoAddForm.submit();
+		}
+		
+		function Cancel(){
+			document.serverInfoAddForm.submit();
 		}
 		
 		
