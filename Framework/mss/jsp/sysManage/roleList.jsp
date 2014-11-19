@@ -145,9 +145,25 @@
 		if(roleIdStr == ""){
 			alert("请选择要删除的角色！");
 			return;
-		} else if (confirm("您确定要删除选中的角色信息吗？")){
-			window.location = "${contextPath}/mss/jsp/sysManage/roleManageController.do?method=delRoleInfo&roleIdStr=" + roleIdStr;
+		} else{
+			window.confirm("您确定要删除选中的角色信息吗？","OK()","Cancel()");
 		}
+	}
+	
+	function OK(){
+		var roleChk = document.getElementsByName("roleChk");
+		var roleIdStr = "";
+		for(var i = 1; i < roleChk.length; i++){
+			if(roleChk[i].checked == true){
+				roleIdStr += roleChk[i].value + ",";
+			}
+		}
+		roleIdStr = roleIdStr.substring(0, roleIdStr.length - 1);
+		window.location = "${contextPath}/mss/jsp/sysManage/roleManageController.do?method=delRoleInfo&roleIdStr=" + roleIdStr;
+	}
+	
+	function Cancel(){
+		return false;
 	}
 	
 	

@@ -220,7 +220,7 @@
         strConfirm +="  <div class='message_width' onmousedown='BeginDrag(this)' onmouseup='EndDrag(this)' onmousemove='Draging(this)'>";
         strConfirm +="    <table class='message_title'>";
         strConfirm +="      <tr>";
-        strConfirm +="        <td><div class='message_div'>Please Confirm</div>";
+        strConfirm +="        <td><div class='message_div'>请确认所提交的信息</div>";
         strConfirm +="          <div class='message_close'><a href='#'><img  id='confirmCloseButton'  style='cursor:pointer;' src='http://www.cnblogs.com/images/cnblogs_com/charles2008/Close.gif' alt='Close' title='Close' width='40' height='40' /></a></div></td>";
         strConfirm +="      </tr>";
         strConfirm +="    </table>";
@@ -239,7 +239,7 @@
         strConfirm +="        <td colspan='2' height='35'>&nbsp;</td>";
         strConfirm +="      </tr>";
         strConfirm +="      <tr>";
-        strConfirm +="        <td colspan='2' class='message_button'><input  id='confirmOKButton'  class='button_short' type='button' name='btnOk' value='OK'/><input  id='confirmCancelButton'  class='button_short' type='button' name='btnOk' value='Cancel'/></td>";
+        strConfirm +="        <td colspan='2' class='message_button'><input  id='confirmOKButton'  class='button_short' type='button' name='btnOk' value='确定'/>&nbsp;&nbsp;&nbsp;&nbsp;<input  id='confirmCancelButton'  class='button_short' type='button' name='btnOk' value='取消'/></td>";
         strConfirm +="      </tr>";
         strConfirm +="    </table>";
         strConfirm +="  </div>";

@@ -306,9 +306,24 @@
 		if(serverIdStr==""){
 			alert("请选择要删除的服务器！");
 			return;
-		}else if(confirm("您确定要删除选中的服务器信息吗？")){
-			window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=delServerInfo&serverIdStr=" + serverIdStr 
-				+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,queryServerStatus,currentPage,viewOrEdit');
+		}else{
+			window.confirm("您确定要删除选中的服务器信息吗？","OK()","NO()");
 		}
+	}
+	
+	function OK(){
+		var serverChk = document.getElementsByName("serverChk");
+		var serverIdStr = "";
+		for(var i=1;i<serverChk.length; i++){
+			if(serverChk[i].checked == true){
+				serverIdStr += serverChk[i].value + ",";
+			}
+		}
+		window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=delServerInfo&serverIdStr=" + serverIdStr 
+		+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,queryServerStatus,currentPage,viewOrEdit');
+	}
+	
+	function Cancel(){
+		return false;
 	}
 </script>

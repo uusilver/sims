@@ -129,3 +129,39 @@ function showInfo(infoDivId, text) {
     }
     
 }
+
+
+
+/**
+ * 检查IP地址是否冲突存在。
+ * @param node 页面节点对象
+ * @param ownerVal 对象所属值。（用于更新功能，填入该对象所属值。新增功能，填入""即可。） 
+ * @param tableName 所需要查询的表名
+ */
+function checkIsDNSOrTransitServer(node, ownerVal, tableName,url) {
+	
+	var _infoDivSuffix = "Div";   //提示信息div的统一后缀
+	var nodeId = node.id;         //获取节点id
+	var retrunValue = "true";
+
+	if(trim(node.value) == ""){
+		showInfo(nodeId + _infoDivSuffix, "");
+		return false;
+	} else if(trim(node.value) == ownerVal) {
+		showInfo(nodeId + _infoDivSuffix, retrunValue);
+		return retrunValue;
+	} else {
+		//var url = document.getElementsByName("checkUrl")[0].value;
+
+		var filter = "tableName=" + encodeURIComponent(tableName) + 	// 表名
+					"&colName=" + encodeURIComponent(node.id) + 	// 字段名
+                 	"&colVal=" + encodeURIComponent(node.value) +	// 字段值
+                 	"&ownerVal=" + encodeURIComponent(ownerVal);	// 对象所属值
+		
+		retrunValue = getReturnDataByXMLHttp(url,filter);
+	    showInfo(nodeId + _infoDivSuffix, retrunValue);
+	    
+	    return retrunValue;
+	}
+}
+

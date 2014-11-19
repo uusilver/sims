@@ -69,7 +69,7 @@ public class RoleBO {
 	 */
 	public long saveRoleInfo(BaseForm roleForm) {
 		// 拼装SQL
-		String strSql = "INSERT INTO frame_role fr VALUES (FRAME_SEQ_ROLE.NEXTVAL, ? , ? , ?)";
+		String strSql = "INSERT INTO frame_role (ROLE_NAME,DESCRIPTION,STATE) VALUES ( ? , ? , ?)";
 		Object[] param = new Object[3];
 		param[0] = roleForm.getRoleName();
 		param[1] = roleForm.getRoleDesc();
@@ -124,7 +124,7 @@ public class RoleBO {
 		String[] frameUrl = SpmsConstants.FRAME_URL_VALUES;
 		for (int i = 0; i < frameUrl.length; i++) {
 			// 拼装SQL
-			String strSql = "INSERT INTO frame_url VALUES (frame_seq_url.NEXTVAL, ?, ?, ?, ?, ?)";
+			String strSql = "INSERT INTO frame_url (ROLE_ID,URL_VALUE,URL_NAME,URL_DESC,URL_STATE) VALUES ( ?, ?, ?, ?, ?)";
 			Object[] param = new Object[5];
 			param[0] = roleId;
 			param[1] = frameUrl[i];

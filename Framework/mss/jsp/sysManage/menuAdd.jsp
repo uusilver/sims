@@ -64,10 +64,18 @@
 				return;
 			}
 
-			if(passed=="0" && confirm("您确定要添加菜单信息吗？")){
-				document.menuAddForm.action = "${contextPath}/mss/jsp/menuController.do?method=saveMenuInfo";
-				document.menuAddForm.submit();
+			if(passed=="0"){
+				window.confirm("您确定要添加菜单信息吗？","OK()","Cancel()");
 			}
+		}
+		
+		function OK(){
+			document.menuAddForm.action = "${contextPath}/mss/jsp/menuController.do?method=saveMenuInfo";
+			document.menuAddForm.submit();
+		}
+		
+		function Cancel(){
+			return false;
 		}
 		
 		function checkLevel(level)

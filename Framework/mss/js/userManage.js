@@ -1,12 +1,20 @@
 function saveUser(isEdit){
 	checkAllButton(true);
 	
-	if(checkForm(isEdit) == true && confirm("您确定要保存用户信息吗？")){
-		document.userForm.submit();
+	if(checkForm(isEdit) == true){
+		window.confirm("您确定要保存该用户信息吗？","OK()","NO()");
 	}else{
 		checkAllButton(false);
 	}
 
+}
+
+function OK(){
+	document.userForm.submit();
+}
+
+function Cancel(){
+	return false;
 }
 
 //检查表单元素

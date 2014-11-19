@@ -168,6 +168,7 @@ public class ServerInfoController extends MultiActionController {
 					
 					//保存服务器所属分组信息
 					if(serverGroupID!=null&&!"".equals(serverGroupID)){
+						serverGroupMappingBO.delMappingRecords(transitServer.getServerid().toString(), null);
 						ServerGroupMapping sgMapping = new ServerGroupMapping();
 						sgMapping.setServergroupid(new Integer(serverGroupID));
 						sgMapping.setServerid(transitServer.getServerid());
@@ -229,7 +230,7 @@ public class ServerInfoController extends MultiActionController {
 		// 进行服务器选择查询时使用
 		String rowId = request.getParameter("trId");
 		
-		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "" : request.getParameter("viewOrEdit").trim();
+		String viewOrEdit = request.getParameter("viewOrEdit") == null ? "edit" : request.getParameter("viewOrEdit").trim();
 		
 		String queryCountryId = request.getParameter("queryCountryId");
 		

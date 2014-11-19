@@ -229,10 +229,25 @@
 		if(userIdStr==""){
 			alert("请选择要删除的用户！");
 			return;
-		}else if(confirm("您确定要删除选中的用户信息吗？")){
-			window.location = "${contextPath}/mss/jsp/sysManage/userManageController.do?method=delUserInfo&userIdStr=" + userIdStr 
-				+ constructParams('quserNum,quserName,quserDept,quserRole,currentPage,viewOrEdit');
+		}else{
+			window.confirm("您确定要删除选中的用户信息吗？","OK()","NO()");
 		}
+	}
+	
+	function OK(){
+		var userChk = document.getElementsByName("userChk");
+		var userIdStr = "";
+		for(var i=1;i<userChk.length; i++){
+			if(userChk[i].checked == true){
+				userIdStr += userChk[i].value + ",";
+			}
+		}
+		window.location = "${contextPath}/mss/jsp/sysManage/userManageController.do?method=delUserInfo&userIdStr=" + userIdStr 
+		+ constructParams('quserNum,quserName,quserDept,quserRole,currentPage,viewOrEdit');
+	}
+	
+	function Cancel(){
+		return false;
 	}
 	
 	function returnUser(returnForm,indexNO,userId,userName,telNum){

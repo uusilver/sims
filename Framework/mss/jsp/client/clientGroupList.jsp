@@ -207,9 +207,24 @@
 		if(clientIdStr==""){
 			alert("请选择要删除的客户端组！");
 			return;
-		}else if(confirm("您确定要删除选中的客户端分组吗？")){
-			window.location = "${contextPath}/mss/jsp/client/clientGroupController.do?method=delClientGroups&clientIdStr=" + clientIdStr 
-				+ constructParams('queryClientGroupName,queryNote,queryStatus,currentPage,viewOrEdit');
+		}else{
+			window.confirm("您确定要删除选中的客户端分组吗？","OK()","NO()");
 		}
+	}
+	
+	function OK(){
+		var clientChk = document.getElementsByName("clientChk");
+		var clientIdStr = "";
+		for(var i=1;i<clientChk.length; i++){
+			if(clientChk[i].checked == true){
+				clientIdStr += clientChk[i].value + ",";
+			}
+		}
+		window.location = "${contextPath}/mss/jsp/client/clientGroupController.do?method=delClientGroups&clientIdStr=" + clientIdStr 
+		+ constructParams('queryClientGroupName,queryNote,queryStatus,currentPage,viewOrEdit');
+	}
+	
+	function Cancel(){
+		return false;
 	}
 </script>

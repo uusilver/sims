@@ -118,12 +118,18 @@
 		function saveServerInfo(){
 			if(checkServerIP()&&checkCountry()&&checkProvince()&&checkCity()&&checkServerType()&&checkServerStatus()
 				&&checkInvalidTime()&&checkServerLimit()&&checkServeRegion()&&checkServerComment()){
-				if(confirm("您确定要保存该服务器信息么？")){
-					document.serverInfoAddForm.submit();
-				}
+				window.confirm("您确定要保存该服务器信息么？","OK()","NO()");
 			}else{
 				alert("请根据提示修改相应内容！");
 			}
+		}
+		
+		function OK(){
+			document.serverInfoAddForm.submit();
+		}
+		
+		function Cancel(){
+			return false;
 		}
 		
 		
@@ -150,6 +156,15 @@
 			}
 
 			if((editFlag==null||editFlag==''||editFlag!='edit')&&checkIsExist(serverIP, '', 'transit_server') == "false") {
+		        serverIP.focus();
+				return false;
+			}
+
+			//校验IP是否用于运维服务器，0表示要创建跳转服务器
+			if((editFlag==null||editFlag==''||editFlag!='edit')&&checkIsExist(serverIP, '', 'oper_dns_server,0') == "false") {
+				var infoDiv = document.getElementById("serveripDiv");
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "此IP地址已用作运维服务器，不能作为跳转服务器，请修改！";
 		        serverIP.focus();
 				return false;
 			}
