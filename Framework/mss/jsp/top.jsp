@@ -21,23 +21,21 @@ function toExpand()
 		frm.cols="0,*";
 }
 
-function close(){
-	alert('1');
-	//toExpand();
-	alert('2');
-	var img1 = document.getElementById("image1");
-	var img2 = document.getElementById("image2");
-	img1.style = 'display:none';
-	alert('3');
-	img2.style = 'display:block';
-	alert('4');
-}
-
-function open(){
-	//toExpand();
-	//$("#image2").css({'display':'none'});
-	//$("#image1").css({'display':'block'});
-}
+$(function(){
+	$("#image1").click(function(){
+		toExpand();
+		$("#image1").css({'display':'none'});
+		$("#image2").css({'display':'block'});
+	});
+	
+	$("#image2").click(function(){
+		toExpand();
+		$("#image2").css({'display':'none'});
+		$("#image1").css({'display':'block'});
+	});
+	
+	
+});
 </script>
 </head>
 
@@ -60,7 +58,7 @@ function open(){
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td width="160" align="right" valign="bottom" class="top_bg4"><img src="${contextPath }/mss/image/menu_close.gif" width="38" height="21" align="absbottom" id="image1" style="cursor:pointer" onclick="javascript:close();"><img src="${contextPath }/mss/image/menu_open.gif" align="absbottom" id="image2" style="cursor:pointer;display:none" onclick="open();">&nbsp;&nbsp;&nbsp;</td>
+    <td width="160" align="right" valign="bottom" class="top_bg4"><img src="${contextPath }/mss/image/menu_close.gif" width="38" height="21" align="absbottom" id="image1" style="cursor:pointer"><img src="${contextPath }/mss/image/menu_open.gif" align="absbottom" id="image2" style="cursor:pointer;display:none">&nbsp;&nbsp;&nbsp;</td>
   <td class="top_bg3">
   	欢迎 ${fn:escapeXml(userInfo.userName)} 登录，现在是 <%=currYear%>年<%=currMonth%>月<%=currDate%>号
     <a href="${contextPath }/mss/jsp/sysManage/password_mod.jsp" target="mainFrame" class="password">修改密码</a></td>
