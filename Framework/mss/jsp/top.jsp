@@ -25,13 +25,13 @@ $(function(){
 	$("#image1").click(function(){
 		toExpand();
 		$("#image1").css({'display':'none'});
-		$("#image2").css({'display':'block'});
+		$("#image2").css({'display':'inline-block'});
 	});
 	
 	$("#image2").click(function(){
 		toExpand();
 		$("#image2").css({'display':'none'});
-		$("#image1").css({'display':'block'});
+		$("#image1").css({'display':'inline-block'});
 	});
 	
 	
