@@ -44,7 +44,7 @@
 				alert("请选择要删除的记录！");
 				return;
 			}else {
-				window.confirm("您确定要删除选中的物品类别信息吗？","OK()","Cancel()");
+				window.confirm("您确定要删除选中的客户端吗？","OK()","Cancel()");
 			}
 		}
 		

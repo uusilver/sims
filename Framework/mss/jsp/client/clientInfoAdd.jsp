@@ -256,7 +256,7 @@
 			if(!VerifyMobilePhone(mobilePhone)){
 				var infoDiv = document.getElementById("mobile_phoneDiv");
 				infoDiv.className = "warning";
-			    infoDiv.innerHTML = "移动电话只能为数字，请修改！";
+			    infoDiv.innerHTML = "移动电话只能为数字且格式有效，例如13915247896，请修改！";
 				return false;
 			}
 			

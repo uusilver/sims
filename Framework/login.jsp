@@ -13,6 +13,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"  alt=""/>
 <title>服务器信息管理系统（SIMS）－用户登录</title>
 <link rel="stylesheet" type="text/css" href="${contextPath }/mss/css/login.css" />
+<%
+	HashMap map = (HashMap)request.getAttribute(RequestNameConstants.INFORMATION);
+	String resultInfoStr = "";
+	if(map!=null){
+	ResultInfos resultInfos = (ResultInfos)map.get(RequestNameConstants.RESULTINFOS);
+	 if(resultInfos != null){
+	    Iterator it = resultInfos.iterator();
+	    while(it.hasNext()){
+	      ResultInfo resultInfo = (ResultInfo)it.next();
+	      if(resultInfo != null){
+	        resultInfoStr += resultInfo.getResultInfo();
+	      }
+	    }
+	    }
+	    }
+	
+		SessionUtils.removeObjectAttribute(session,"selectRequeireName");
+		SessionUtils.removeObjectAttribute(session,SessionNameConstants.LOGIN_TOKEN);
+	    
+	//清除系统cookie
+	Cookie[] cookies = request.getCookies();
+	//清除掉系统cookie
+	for (int i = 0; cookies != null && i < cookies.length; i++)
+	{
+		if (SessionNameConstants.DMS_COOKIE.equals(cookies[i].getName()) || SessionNameConstants.MPMS_COOKIE.equals(cookies[i].getName())){
+			 cookies[i] = new Cookie(cookies[i].getName(), null);
+			 cookies[i].setMaxAge(SessionNameConstants.iCookieForCurrentPage);
+			 cookies[i].setPath("/");
+			 //添加至response
+			 response.addCookie(cookies[i]);
+			 break;
+		 }
+	}
+ %>
+<script language="javascript">
+	var msg = "<%=resultInfoStr%>";
+</script>
 <script type="text/javascript" src="${contextPath}/mss/html/js/jquery-1.7.1.min.js" />
  
 <script language="javaScript" type="text/javascript">
@@ -101,6 +138,9 @@ $(function() {
 	<!--背景图自适应-->
 	$(window).load(function(){
 		fullBg($("#background"));
+		if(msg!=null&&msg!=""){
+			alert(msg);
+		}
 	});
 	
 	$(".login_btn_b").click(function(){
@@ -121,41 +161,6 @@ $(function() {
 });
 
 </script>
-<%
-	HashMap map = (HashMap)request.getAttribute(RequestNameConstants.INFORMATION);
-	String resultInfoStr = "";
-	if(map!=null){
-	ResultInfos resultInfos = (ResultInfos)map.get(RequestNameConstants.RESULTINFOS);
-	 if(resultInfos != null){
-	    Iterator it = resultInfos.iterator();
-	    while(it.hasNext()){
-	      ResultInfo resultInfo = (ResultInfo)it.next();
-	      if(resultInfo != null){
-	        resultInfoStr += resultInfo.getResultInfo();
-	      }
-	    }
-	    }
-	    }
-	
-		SessionUtils.removeObjectAttribute(session,"selectRequeireName");
-		SessionUtils.removeObjectAttribute(session,SessionNameConstants.LOGIN_TOKEN);
-	    
-	//清除系统cookie
-	Cookie[] cookies = request.getCookies();
-	//清除掉系统cookie
-	for (int i = 0; cookies != null && i < cookies.length; i++)
-	{
-		if (SessionNameConstants.DMS_COOKIE.equals(cookies[i].getName()) || SessionNameConstants.MPMS_COOKIE.equals(cookies[i].getName())){
-			 cookies[i] = new Cookie(cookies[i].getName(), null);
-			 cookies[i].setMaxAge(SessionNameConstants.iCookieForCurrentPage);
-			 cookies[i].setPath("/");
-			 //添加至response
-			 response.addCookie(cookies[i]);
-			 break;
-		 }
-	}
- %>
-
 </head>
 
 <body style="margin:0px; padding:0px;">

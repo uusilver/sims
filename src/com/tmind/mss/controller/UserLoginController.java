@@ -2,15 +2,18 @@ package com.tmind.mss.controller;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.validation.BindException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Cookie;
 
 import org.springframework.web.servlet.ModelAndView;
+
 import com.tmind.framework.pub.web.RequestNameConstants;
 
 import java.util.HashMap;
 
+import com.tmind.framework.pub.result.ResultInfo;
 import com.tmind.framework.pub.result.ResultInfos;
 import com.tmind.mss.bo.system.login.UserLoginBO;
 import com.tmind.mss.pub.po.UserInfo;
@@ -123,7 +126,7 @@ public class UserLoginController extends SimpleFormController {
         }
         resultInfos.setIsAlert(true);
         resultInfos.setIsRedirect(true);
-        return new ModelAndView("/mss/jsp/information.jsp", RequestNameConstants.INFORMATION, map);
+        return new ModelAndView(gotoUrl, RequestNameConstants.INFORMATION, map);
     }
 
 

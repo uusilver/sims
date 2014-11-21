@@ -425,7 +425,8 @@ public class ClientDAO extends BaseDao {
 				+" and c.disable = cb_disable.value"
 				+" and cb_disable.tag = '"+MssConstants.DISABLE_FLAG+"'"
 				+" and c.usertype = cb_userType.value"
-				+" and cb_userType.tag = '"+MssConstants.USER_TYPE+"'");
+				+" and cb_userType.tag = '"+MssConstants.USER_TYPE+"'"
+				+" and c.status='"+MssConstants.STATE_A+"'");
 		
 		listHql.append(fromHql);
 
@@ -486,7 +487,8 @@ public class ClientDAO extends BaseDao {
 				+ " and ts.servertype = cb_type.value"
 				+ " and cb_type.tag = '"+MssConstants.SERVER_TYPE+"'"
 				+ " and ts.serverstatus = cb_status.value"
-				+ " and cb_status.tag = '"+MssConstants.SERVER_STATUS+"'");
+				+ " and cb_status.tag = '"+MssConstants.SERVER_STATUS+"'"
+				+ " and ts.status='"+MssConstants.STATE_A+"'");
 		
 		notExistsHql.append(" and not exists ( "
 				+ " select csMapping.serverid from client cl,client_server_mapping csMapping"

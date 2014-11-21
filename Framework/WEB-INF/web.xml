@@ -177,18 +177,6 @@
 		<taglib-uri>http://java.sun.com/jsp/jstl/fmt_rt</taglib-uri>
 		<taglib-location>/WEB-INF/fmt-1_0-rt.tld</taglib-location>
 	</taglib>
-	<taglib>
-		<taglib-uri>/springForm</taglib-uri>
-		<taglib-location>
-			/WEB-INF/queryXml/spring-form.tld
-		</taglib-location>
-	</taglib>
-	<taglib>
-		<taglib-uri>/pub/dividePagingDis.tld</taglib-uri>
-		<taglib-location>
-			/WEB-INF/queryXml/dividePagingDis.tld
-		</taglib-location>
-	</taglib>
 
 	</jsp-config>
 </web-app>

@@ -27,6 +27,7 @@
         resultInfoStr += resultInfo.getResultInfo();
       }
     }  
+    out.println(resultInfoStr);
 	%>
 	<script language="javascript">
 		if("<%=resultInfos.getIsAlert()%>" == "true" && "<%=resultInfoStr%>"!="登录成功，欢迎您！"){
