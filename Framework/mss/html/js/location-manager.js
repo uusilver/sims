@@ -11,14 +11,14 @@
 function demo_rename() {
     var ref = $('#jstree_demo').jstree(true),
         sel = ref.get_selected();
-    if(!sel.length) { return false; }
+    if(!sel.length) { alert("未选中!"); return false; }
     sel = sel[0];
     ref.edit(sel);
 };
 function demo_delete() {
     var ref = $('#jstree_demo').jstree(true),
         sel = ref.get_selected();
-    if(!sel.length) { return false; }
+    if(!sel.length) { alert("未选中!"); return false; }
     
     var param = JSON.stringify(sel);
     $.post('/sims/mss/html/locationController.do?method=deleteLocationInfo',{param:param},function(data){
@@ -110,6 +110,7 @@ $(function () {
 	       $.post('/sims/mss/html/locationController.do?method=saveLocationInfo',{result:result},function(data){
 	    	      if(data=='success'){
 	                  alert('保存成功!');
+	                  window.location.reload();
 	              }
 	       });
        }
