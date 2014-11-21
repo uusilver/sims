@@ -5,3 +5,7 @@
 <%@ page isELIgnored="false" %>
 <%@ page import="com.tmind.mss.pub.constants.SpmsConstants" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" scope="request" />
+<link href="${contextPath }/framework/css/style.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/mss/css/confirm.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${contextPath}/mss/js/alert.js"></script>
+<script type="text/javascript" src="${contextPath}/mss/js/confirm.js"></script>  

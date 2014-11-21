@@ -8,6 +8,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>服务器分组管理</title>
+		<link href="${contextPath }/framework/css/style.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
 		<link href="${contextPath}/mss/css/jquery.multiDialog.css" rel="stylesheet" type="text/css" />
@@ -207,9 +208,24 @@
 		if(serverIdStr==""){
 			alert("请选择要删除的服务器组！");
 			return;
-		}else if(confirm("您确定要删除选中的服务器分组吗？")){
-			window.location = "${contextPath}/mss/jsp/server/serverGroupController.do?method=delServerGroups&serverIdStr=" + serverIdStr 
-				+ constructParams('queryServerGroupName,queryNote,queryStatus,currentPage,viewOrEdit');
+		}else{
+			window.confirm("您确定要删除选中的服务器分组吗？","OK()","NO()");
 		}
+	}
+	
+	function OK(){
+		var serverChk = document.getElementsByName("serverChk");
+		var serverIdStr = "";
+		for(var i=1;i<serverChk.length; i++){
+			if(serverChk[i].checked == true){
+				serverIdStr += serverChk[i].value + ",";
+			}
+		}
+		window.location = "${contextPath}/mss/jsp/server/serverGroupController.do?method=delServerGroups&serverIdStr=" + serverIdStr 
+		+ constructParams('queryServerGroupName,queryNote,queryStatus,currentPage,viewOrEdit');
+	}
+	
+	function Cancel(){
+		return false;
 	}
 </script>

@@ -43,9 +43,24 @@
 			if(userIdStr==""){
 				alert("请选择要删除的记录！");
 				return;
-			}else if(confirm("您确定要删除选中的物品类别信息吗？")){
-				window.location = "${contextPath}/mss/jsp/client/clientInfoController.do?method=delClientInfo&clientNumStr=" + userIdStr;
+			}else {
+				window.confirm("您确定要删除选中的物品类别信息吗？","OK()","Cancel()");
 			}
+		}
+		
+		function OK(){
+			var userChk = document.getElementsByName("userChk");
+			var userIdStr = "";
+			for(var i=1;i<userChk.length; i++){
+				if(userChk[i].checked == true){
+					userIdStr += userChk[i].value + ",";
+				}
+			}
+			window.location = "${contextPath}/mss/jsp/client/clientInfoController.do?method=delClientInfo&clientNumStr=" + userIdStr;
+		}
+		
+		function Cancel(){
+			return false;
 		}
 	</script>
 	</head>

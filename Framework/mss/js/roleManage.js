@@ -5,8 +5,8 @@ function updateRoleInfo(){
 	
 	setMenuId();
 	
-	if(checkForm(hiddenRoleName) == true && confirm("您确定要更新用户信息吗？")) {
-		document.roleInfoForm.submit();
+	if(checkForm(hiddenRoleName) == true) {
+		window.confirm("您确定要更新用户信息吗？","OKEdit()","Cancel()");
 	} else {
 		checkAllButton(false);
 	}
@@ -18,11 +18,25 @@ function saveRoleInfo(){
 	
 	setMenuId();
 	
-	if(checkForm("") == true && confirm("您确定要保存用户信息吗？")){
-		document.roleAddForm.submit();
+	if(checkForm("") == true){
+		window.confirm("您确定要保存用户信息吗？","OKAdd()","Cancel()");
 	} else {
 		checkAllButton(false);
 	}
+}
+
+
+
+function OKAdd(){
+	document.roleAddForm.submit();
+}
+
+function OKEdit(){
+	document.roleInfoForm.submit();
+}
+
+function Cancel(){
+	return false;
 }
 
 // 保存将下拉框值至隐藏表单元素，用于后台程序添加/更新数据库

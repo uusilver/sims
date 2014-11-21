@@ -51,9 +51,25 @@
 			if(menuIdStr == ""){
 				alert("请选择要删除的菜单！");
 				return;
-			} else if (confirm("您确定要删除选中的菜单吗？")){
-				window.location = "${contextPath}/mss/jsp/menuController.do?method=delMenuInfo&menuIdStr=" + menuIdStr;
+			} else{
+				window.confirm("您确定要删除选中的菜单吗？","OK()","Cancel()");
 			}
+		}
+		
+		function OK(){
+			var menuChk = document.getElementsByName("menuChk");
+			var menuIdStr = "";
+			for(var i = 1; i < menuChk.length; i++){
+				if(menuChk[i].checked == true){
+					menuIdStr += menuChk[i].value + ",";
+				}
+			}
+			menuIdStr = menuIdStr.substring(0, menuIdStr.length - 1);
+			window.location = "${contextPath}/mss/jsp/menuController.do?method=delMenuInfo&menuIdStr=" + menuIdStr;
+		}
+		
+		function Cancel(){
+			return false;
 		}
 
 		function chooseAllBox(tarId)

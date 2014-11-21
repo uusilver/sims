@@ -32,21 +32,27 @@
 		function saveClientInfo(){
 			if(checkUserName()&&checkPassword()&&checkModifyPass()&&checkTrueName()&&checkDisableFlag()
 					&&checkUserType()&&checkTelePhone()&&checkMobilePhone()&&checkAccessedServer()&&checkClientComment()){
-				if(confirm("您确定要保存该客户信息么？")){
-					var serverOptions = $("select[name=serverId]").find("option");
-					var serverIds = "";
-					for(var i=0;i < serverOptions.length; i++){
-						serverIds += serverOptions[i].value + ",";
-					}
-					serverIds = serverIds.substring(0, serverIds.length - 1);
-			
-					$("input[name=hiddenServerIds]").attr("value",serverIds);
-					
-					document.clientInfoAddForm.submit();
-				}
+				window.confirm("您确定要保存该客户信息么？","OK()","NO()");
 			}else{
 				alert("请根据提示修改相应内容！");
 			}
+		}
+		
+		function OK(){
+			var serverOptions = $("select[name=serverId]").find("option");
+			var serverIds = "";
+			for(var i=0;i < serverOptions.length; i++){
+				serverIds += serverOptions[i].value + ",";
+			}
+			serverIds = serverIds.substring(0, serverIds.length - 1);
+	
+			$("input[name=hiddenServerIds]").attr("value",serverIds);
+			
+			document.clientInfoAddForm.submit();
+		}
+		
+		function Cancel(){
+			return false;
 		}
 		
 		function checkUserName() {

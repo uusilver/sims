@@ -132,6 +132,20 @@
 								title="---服务器类型---" next="false" name="queryServerType" mvalue="${information.searchForm.queryServerType}" />
 						</td>
 						<td class="qinggoudan_table_td1">
+							服务器分组:
+							<pub:link sql="<%=MssConstants.QUERY_NO_SERVE_GROUP_INFO_SQL+MssConstants.SQL_UNION+MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" title="---请选择---"
+								next="false" name="queryServerGroup" mvalue="${information.searchForm.queryServerGroup}" />
+						</td>
+						<td class="qinggoudan_table_td1">
+							服务器状态:
+							<pub:link sql="<%=MssConstants.QUERY_SERVER_STATUS_SQL%>" num="1" title="---请选择---" next="false" 
+							name="queryServerStatus" mvalue="${information.searchForm.queryServerStatus}" />
+						</td>
+						<td class="qinggoudan_table_td1">
+						</td>
+						</tr>
+						<tr>
+						<td class="qinggoudan_table_td1">
 							所属国家:
 							<select class="country" id="countryId" name="queryCountryId">
 							<option value="">---请选择国家---</option>
@@ -149,16 +163,6 @@
 							<select class="city" id="cityId" name="queryCityId">
 							<option value="">---请选择城市---</option>
 							</select>
-						</td>
-						<td class="qinggoudan_table_td1">
-							服务器分组:
-							<pub:link sql="<%=MssConstants.QUERY_NO_SERVE_GROUP_INFO_SQL+MssConstants.SQL_UNION+MssConstants.QUERY_SERVE_GROUP_INFO_SQL%>" num="1" title="---请选择---"
-								next="false" name="queryServerGroup" mvalue="${information.searchForm.queryServerGroup}" />
-						</td>
-						<td class="qinggoudan_table_td1">
-							服务器状态:
-							<pub:link sql="<%=MssConstants.QUERY_SERVER_STATUS_SQL%>" num="1" title="---请选择---" next="false" 
-							name="queryServerStatus" mvalue="${information.searchForm.queryServerStatus}" />
 						</td>
 						<td class="qinggoudan_table_td1">
 							&nbsp;
@@ -306,9 +310,24 @@
 		if(serverIdStr==""){
 			alert("请选择要删除的服务器！");
 			return;
-		}else if(confirm("您确定要删除选中的服务器信息吗？")){
-			window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=delServerInfo&serverIdStr=" + serverIdStr 
-				+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,queryServerStatus,currentPage,viewOrEdit');
+		}else{
+			window.confirm("您确定要删除选中的服务器信息吗？","OK()","NO()");
 		}
+	}
+	
+	function OK(){
+		var serverChk = document.getElementsByName("serverChk");
+		var serverIdStr = "";
+		for(var i=1;i<serverChk.length; i++){
+			if(serverChk[i].checked == true){
+				serverIdStr += serverChk[i].value + ",";
+			}
+		}
+		window.location = "${contextPath}/mss/jsp/server/serverInfoController.do?method=delServerInfo&serverIdStr=" + serverIdStr 
+		+ constructParams('queryServerType,queryCountryId,queryProvinceId,queryCityId,queryServerGroup,queryServerStatus,currentPage,viewOrEdit');
+	}
+	
+	function Cancel(){
+		return false;
 	}
 </script>

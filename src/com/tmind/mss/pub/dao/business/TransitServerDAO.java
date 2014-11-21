@@ -433,6 +433,7 @@ public class TransitServerDAO extends BaseDao {
 				paramList[0]=new Integer (groupId);
 			}
 		}
+		filterHql.append(" and ts.status = 'A' ");
 		
 		//按服务器类别和名称排序
 		listHql.append(filterHql + "  order by ts.serverid asc ");

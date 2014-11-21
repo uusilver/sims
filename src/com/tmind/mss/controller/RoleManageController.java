@@ -115,6 +115,7 @@ public class RoleManageController extends MultiActionController {
 		String accessType = request.getParameter("accessType");
 		// ifSession只在修改页面跳转至查询页面时有值
 		String ifSession = request.getParameter("ifSession");
+
 		
 		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
 			roleForm.setRoleState(SpmsConstants.STATE_A);
@@ -125,7 +126,9 @@ public class RoleManageController extends MultiActionController {
 			roleForm = (BaseForm) new StructForm().strucReqInfoSearchForm(request, null);
 			SessionUtils.setObjectAttribute(request, "roleFormSession", roleForm);
 		}
-
+		
+		roleForm.setRoleState(SpmsConstants.STATE_A);
+		
 		// 调用BO查询，得到结果集
 		HashMap roleList = roleBO.queryRoleList(roleForm);
 
@@ -324,7 +327,6 @@ public class RoleManageController extends MultiActionController {
 
 	/**
 	 * 用于AJAX检查某表某字段值是否存在。（有时间加入共通方法类）
-	 * 
 	 * @param request
 	 * @param response
 	 * @return
@@ -343,19 +345,35 @@ public class RoleManageController extends MultiActionController {
 		// 记录状态字段名
 		String stateColName = request.getParameter("stateColName");
 
+		String[] tableNameAndServerType =null;
+		
+		// 服务器类型，0：跳转服务器，1：运维服务器，2：DNS服务器
+		String serverType = "";
 		try {
 			StringBuffer sbSql = new StringBuffer("SELECT COUNT(0) FROM ");
-			// 针对更新功能，如果所填值为所属值，则过滤
-			// if (!StringUtils.isEmpty(ownerVal)) {
-			// sbSql.append("(SELECT * FROM " + tableName + " WHERE " + colName
-			// + "!= '" + ownerVal + "')");
-			// } else {
-			sbSql.append(tableName);
-			// }
+			
+			if(tableName.indexOf(",")!=-1){
+				tableNameAndServerType = tableName.split(",");
+				serverType = tableNameAndServerType[1];
+			}
+			
+			if(tableNameAndServerType!=null){
+				sbSql.append(tableNameAndServerType[0]);
+			}else{
+				sbSql.append(tableName);
+			}
 
 			sbSql.append(" WHERE ");
 			sbSql.append(colName + " = '" + colVal.trim() + "'");
 			sbSql.append(" and "+stateColName+" != "+"'D'");
+			
+			if(serverType.equals("0")||serverType.equals("2")){
+				sbSql.append(" and servertype=1 ");
+			}
+			
+			if(serverType.equals("1")){
+				sbSql.append(" and servertype=2 ");
+			}
 
 			log.info("检查是否存在SQL：" + sbSql.toString());
 			long rowCount = FrameworkApplication.baseJdbcDAO.queryForLong(sbSql.toString());

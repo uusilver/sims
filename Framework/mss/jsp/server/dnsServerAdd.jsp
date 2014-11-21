@@ -16,13 +16,19 @@
 		<script type="text/javascript">
 
 		function saveServerInfo(){
-			if(checkServerIP()&&checkServerType()&&checkServerComment()){
-				if(confirm("您确定要保存该辅助服务器信息么？")){
-					document.serverInfoAddForm.submit();
-				}
+			if(checkServerType()&&checkServerIP()&&checkServerComment()){
+				window.confirm("您确定要保存该辅助服务器信息么？","OK()","NO()");
 			}else{
 				alert("请根据提示修改相应内容！");
 			}
+		}
+		
+		function OK(){
+			document.serverInfoAddForm.submit();
+		}
+		
+		function Cancel(){
+			return false;
 		}
 		
 		
@@ -48,10 +54,47 @@
 				return false;
 			}
 
+			//检查服务器IP是否已被使用
 			if((editFlag==null||editFlag==''||editFlag!='edit')&&checkIsExist(serverIP, '', 'oper_dns_server') == "false") {
 		        serverIP.focus();
 				return false;
 			}
+			
+			//校验IP是否用于运维服务器，-1表示不需要添加服务器类型查询条件；1表示要创建运维服务器；2表示要创建DNS服务器
+			var serverType = document.getElementsByName("serverType")[0].value;
+			//创建运维服务器
+			if(serverType!=null&&serverType=='1'){
+				//校验IP是否已被用于跳转服务器
+				if((editFlag==null||editFlag==''||editFlag!='edit')&&checkIsExist(serverIP, '', 'transit_server,-1') == "false") {
+					var infoDiv = document.getElementById("serveripDiv");
+					infoDiv.className = "warning";
+			        infoDiv.innerHTML = "此IP地址已用作跳转服务器，不能作为运维服务器，请修改！";
+			        serverIP.focus();
+					return false;
+				}
+				
+				//校验IP是否已被用于DNS服务器
+				if((editFlag==null||editFlag==''||editFlag!='edit')&&checkIsExist(serverIP, '', 'oper_dns_server,1') == "false") {
+					var infoDiv = document.getElementById("serveripDiv");
+					infoDiv.className = "warning";
+			        infoDiv.innerHTML = "此IP地址已用作DNS服务器，不能作为运维服务器，请修改！";
+			        serverIP.focus();
+					return false;
+				}
+			}
+			
+			//创建DNS服务器
+			if(serverType!=null&&serverType=='2'){
+				//校验IP是否已被用于运维服务器
+				if((editFlag==null||editFlag==''||editFlag!='edit')&&checkIsExist(serverIP, '', 'oper_dns_server,2') == "false") {
+					var infoDiv = document.getElementById("serveripDiv");
+					infoDiv.className = "warning";
+			        infoDiv.innerHTML = "此IP地址已用作运维服务器，不能作为DNS服务器，请修改！";
+			        serverIP.focus();
+					return false;
+				}
+			}
+			
 			
 			var infoDiv = document.getElementById("serveripDiv");
 			//infoDiv.className = "OK";
@@ -149,6 +192,17 @@
 			<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table">
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
+						服务器类型
+						<font color="red">*</font>
+					</td>
+					<td align="left" class="qinggoudan_table_td1">
+						<pub:link sql="<%=MssConstants.QUERY_DNS_SERVER_TYPE_SQL%>" num="1" selectSize="20"
+							title="---请选择服务器类型---" next="false" name="serverType" mvalue="${information.operDNSServer.servertype}" />
+					<span id="server_typeDiv"></span>
+					</td>
+				</tr>
+				<tr height="30">
+					<td width="20%" align="center" class="qinggoudan_table_title">
 						服务器IP
 						<font color="red">*</font>
 					</td>
@@ -172,17 +226,6 @@
 						<span id="server_portDiv"></span>
 					</td>
 				</tr> -->
-				<tr height="30">
-					<td width="20%" align="center" class="qinggoudan_table_title">
-						服务器类型
-						<font color="red">*</font>
-					</td>
-					<td align="left" class="qinggoudan_table_td1">
-						<pub:link sql="<%=MssConstants.QUERY_DNS_SERVER_TYPE_SQL%>" num="1" selectSize="20"
-							title="---请选择服务器类型---" next="false" name="serverType" mvalue="${information.operDNSServer.servertype}" />
-					<span id="server_typeDiv"></span>
-					</td>
-				</tr>
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						备注

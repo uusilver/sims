@@ -37,21 +37,27 @@
 				if(viewOrEdit!=null&&viewOrEdit=="edit"){
 					alertMessage="您确定要修改该服务器组么？";
 				}
-				if(confirm(alertMessage)){
-					var serverOptions = $("select[name=serverId]").find("option");
-					var serverIds = "";
-					for(var i=0;i < serverOptions.length; i++){
-						serverIds += serverOptions[i].value + ",";
-					}
-					serverIds = serverIds.substring(0, serverIds.length - 1);
-			
-					$("input[name=hiddenServerIds]").attr("value",serverIds);
-					//alert($("input[name=hiddenServerIds]").val());
-					document.serverGroupAddForm.submit();
-				}
+				window.confirm(alertMessage,"OK()","NO()");
 			}else{
 				alert("请根据提示修改相应内容！");
 			}
+		}
+		
+		function OK(){
+			var serverOptions = $("select[name=serverId]").find("option");
+			var serverIds = "";
+			for(var i=0;i < serverOptions.length; i++){
+				serverIds += serverOptions[i].value + ",";
+			}
+			serverIds = serverIds.substring(0, serverIds.length - 1);
+	
+			$("input[name=hiddenServerIds]").attr("value",serverIds);
+			//alert($("input[name=hiddenServerIds]").val());
+			document.serverGroupAddForm.submit();
+		}
+		
+		function Cancel(){
+			return false;
 		}
 		
 		//校验

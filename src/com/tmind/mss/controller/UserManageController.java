@@ -126,9 +126,9 @@ public class UserManageController extends MultiActionController {
 		String accessType = request.getParameter("accessType");
 
 		// 菜单首次访问，默认查询状态有效的信息
-		if (accessType != null && accessType.equals("menu")) {
+//		if (accessType != null && accessType.equals("menu")) {
 			searchForm.setUserState(SpmsConstants.STATE_A);
-		}
+//		}
 
 		map.put("searchForm", searchForm);
 

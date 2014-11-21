@@ -31,9 +31,9 @@ window.alert = function(txt)
     alertFram.style.lineHeight = "150px";
     alertFram.style.zIndex = "10001";
     strHtml = "<ul style=\"list-style:none;margin:0px;padding:0px;width:100%\">\n";
-    strHtml += " <li style=\"background:#366bdd;text-align:left;padding-left:20px;font-size:14px;font-weight:bold;height:25px;line-height:25px;border:1px solid #4b76f9;\">[SIMS系统提示]</li>\n";
+    strHtml += " <li style=\"background:#4989D3;text-align:left;padding-left:20px;font-size:14px;font-weight:bold;color:#fff;height:25px;line-height:25px;border:1px solid #4b76f9;\">[SIMS系统提示]</li>\n";
     strHtml += " <li style=\"background:#fff;text-align:center;font-size:12px;height:120px;line-height:120px;border-left:1px solid #F9CADE;border-right:1px solid #F9CADE;\">"+txt+"</li>\n";
-    strHtml += " <li style=\"background:#2f45fd;text-align:center;font-weight:bold;height:25px;line-height:25px; border:1px solid #335ff9;\"><input type=\"button\" value=\"确 定\" onclick=\"doOk()\" /></li>\n";
+    strHtml += " <li style=\"background:#fff;text-align:center;font-weight:bold;height:25px;line-height:25px; border:1px solid #335ff9;\"><input type=\"button\" value=\"确 定\" onclick=\"doOk()\" /></li>\n";
     strHtml += "</ul>\n";
     alertFram.innerHTML = strHtml;
     document.body.appendChild(alertFram);

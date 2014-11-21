@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.tmind.framework.pub.dao.BaseDao;
 import com.tmind.framework.pub.utils.StringUtils;
+import com.tmind.framework.pub.web.FrameworkApplication;
 import com.tmind.mss.formBean.UserManageSearchForm;
 import com.tmind.mss.pub.constants.MssConstants;
 import com.tmind.mss.pub.po.UserInfo;
@@ -309,7 +310,7 @@ public class UserInfoDAO extends BaseDao {
 				.lastIndexOf(","))) : idStr.trim());
 		sql.append(" ) ");
 		
-		executeCommonSql(sql.toString());
+		FrameworkApplication.baseJdbcDAO.update(sql.toString());
 	}
 	
 	/**
