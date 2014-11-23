@@ -56,6 +56,7 @@
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<textarea rows="3" cols="50" name="roleDesc"></textarea>
+						<span id="role_descDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
@@ -66,13 +67,14 @@
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:link sql="<%=SpmsConstants.QUERY_ROLE_STATE%>" num="1" title="" next="false" name="roleState"
 							mvalue="${information.role.state}" />
-
+						<span id="role_stateDiv"></span>
 					</td>
 				</tr>
 
 				<tr>
 					<td align="center" class="qinggoudan_table_title">
 						菜单信息
+						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:two align="left" arl="${information.menuList }" selectItem="系统菜单" waitItem="用户菜单" leftId="menuId"
@@ -80,7 +82,7 @@
 							itemStyle="item_two_select" moveStyle="button_select" size="15" contextPath="${contextPath}" />
 
 						<input type="hidden" name="hiddenMenuId" value="">
-
+						<span id="role_menuDiv"></span>
 					</td>
 				</tr>
 
