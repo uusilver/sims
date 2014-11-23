@@ -65,10 +65,12 @@
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						手机号码
+						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<input name="userTel" type="text" size="20" maxlength="11" onchange="checkTel()" class="qinggoudan_input02"
 							 onkeypress="checkNumber()" value="${information.userInfo.tel}">
+					<span id="mobile_numDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
@@ -83,10 +85,12 @@
 				<tr height="30">
 					<td width="20%" align="center" class="qinggoudan_table_title">
 						用户角色
+						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:select sql="<%=SpmsConstants.QUERY_ROLE_INFO%>" title="---请选择---" next="true" name="userRole" sonName="menuName"
 							relationSql="<%=SpmsConstants.QUERY_MENUINFO_CASCADE%>" mvalue="${information.userInfo.role.roleId}" />
+					<span id="user_roleDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">

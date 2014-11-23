@@ -118,7 +118,7 @@
 		function saveServerInfo(){
 			if(checkServerIP()&&checkCountry()&&checkProvince()&&checkCity()&&checkServerType()&&checkServerStatus()
 				&&checkInvalidTime()&&checkServerLimit()&&checkServeRegion()&&checkServerComment()){
-				window.confirm("您确定要保存该服务器信息么？","OK()","NO()");
+				window.confirm("您确定要保存该服务器信息么？","OK()","Cancel()");
 			}else{
 				alert("请根据提示修改相应内容！");
 			}
