@@ -502,6 +502,7 @@ public class UserManageController extends MultiActionController {
 		// 密码
 		final String loginPwd = request.getParameter("newPassword");
 
+		String gotoURL = "/mss/jsp/sysManage/password_mod.jsp";
 		try {
 			transTemplate.execute(new TransactionCallbackWithoutResult() {
 				protected void doInTransactionWithoutResult(TransactionStatus status) {
@@ -526,7 +527,7 @@ public class UserManageController extends MultiActionController {
 			resultInfos.add(new ResultInfo(ResultConstants.USER_PWD_MOD_FAILED));
 			ex.printStackTrace();
 		}
-		return new ModelAndView("/mss/jsp/information.jsp", RequestNameConstants.INFORMATION, map);
+		return new ModelAndView(gotoURL, RequestNameConstants.INFORMATION, map);
 	}
 
 	/**

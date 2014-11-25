@@ -1,16 +1,47 @@
 <%@page contentType="text/html; charset=utf-8"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="com.tmind.framework.pub.web.RequestNameConstants"%>
+<%@ page import="com.tmind.framework.pub.result.ResultInfos"%>
+<%@ page import="java.util.Iterator"%>
+<%@ page import="com.tmind.framework.pub.result.ResultInfo"%>
+<%@ page import="com.tmind.framework.pub.utils.SessionUtils" %>
+<%@ page import="com.tmind.framework.pub.web.SessionNameConstants" %>
 <%@include file="/framework/jsp/taglibs.jsp" %>
 
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>物资管理系统</title>
+	<title>服务器信息管理系统（SIMS）－修改密码</title>
 	<link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${contextPath}/mss/js/tools.js"></script>
 	<script type="text/javascript" src="${contextPath}/mss/js/ajax.js"></script>
+	<%
+	HashMap map = (HashMap)request.getAttribute(RequestNameConstants.INFORMATION);
+	String resultInfoStr = "";
+	if(map!=null){
+	ResultInfos resultInfos = (ResultInfos)map.get(RequestNameConstants.RESULTINFOS);
+	 if(resultInfos != null){
+	    Iterator it = resultInfos.iterator();
+	    while(it.hasNext()){
+	      ResultInfo resultInfo = (ResultInfo)it.next();
+	      if(resultInfo != null){
+	        resultInfoStr += resultInfo.getResultInfo();
+	      }
+	    }
+	    }
+	    }
+ %>
+<script language="javascript">
+	var msg = "<%=resultInfoStr%>";
+	function alertMsg(){
+		if(msg!=null&&msg!=''){
+			alert(msg);
+		}
+	}
+</script>
 </head>
 
-<body>
+<body onload="alertMsg();">
 
 <form name="modPwdForm" action="${contextPath}/mss/jsp/sysManage/userManageController.do?method=modPassword" method="post">
 
@@ -87,7 +118,7 @@
 		}
 		
 		var oldPwdRightFlag = true;
-		var url="/mss/jsp/sysManage/userManageController.do?method=checkOldPwd";
+		var url="${contextPath }/mss/jsp/sysManage/userManageController.do?method=checkOldPwd";
 		var filter = "";
 		filter="oldPwd="+oldPassword.value;
 	    var retrunValue = getReturnDataByXMLHttp(url,filter);
@@ -97,7 +128,8 @@
 			oldPassword.focus();
 			checkAllButton(false);
 			return;
-	    }
+	    }    
+	    
 	    
 	    if(passed == "0"){
 	    	document.modPwdForm.submit();
