@@ -20,7 +20,7 @@
 		<script type="text/javascript">
 		function editInfo(id,oprType)
 		{
-			window.location = "${contextPath}/mss/jsp/menuController.do?method=queryMenuInfo&resourceId=" + id + "&currentPage=" + document.getElementsByName("currentPage")[0].value + "&oprType=" + oprType;
+			window.location = "${contextPath}/mss/jsp/menuController.do?method=queryMenuInfo&resourceId=" + id + "&currentPage=" + document.getElementsByName("currentPage")[0].value + "&oprType=" + oprType+ "&queryMenuState=" + document.getElementsByName("queryMenuState")[0].value;
 		}
 		
 		function addInfo()
@@ -245,7 +245,7 @@
 					</td>
 				</tr>
 			</table>
-
+				<input type="hidden" name="queryMenuState" value="${information.searchForm.queryMenuState }">
 		</form>
 	</body>
 </html>

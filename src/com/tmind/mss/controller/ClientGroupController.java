@@ -258,18 +258,19 @@ public class ClientGroupController extends MultiActionController {
 		clientGroupForm.setQueryNote(queryNote);
 		clientGroupForm.setViewOrEdit(viewOrEdit);
 
-		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
 
-			if (null == currentPage || "".equals(currentPage)) {
-				currentPage = "1";
-			}
-			clientGroupForm.setCurrentPage(currentPage);
+		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
 			clientGroupForm.setQueryStatus(MssConstants.STATE_A);
 			
 			SessionUtils.setObjectAttribute(request, "clientGroupFormSession", clientGroupForm);
 		} else if (ifSession != null && ifSession.equals("yes")) {
 			clientGroupForm = (ClientGroupForm) SessionUtils.getObjectAttribute(request, "clientGroupFormSession");
 		}
+		
+		if (null == currentPage || "".equals(currentPage)) {
+			currentPage = "1";
+		}
+		clientGroupForm.setCurrentPage(currentPage);
 		
 		HashMap clientResult = null;
 		clientResult = clientGroupBO.queryClientGroupList(clientGroupForm,String.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));

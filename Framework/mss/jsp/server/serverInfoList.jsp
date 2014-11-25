@@ -283,6 +283,7 @@
 			<input type="hidden" name="showHeader" value="${information.searchForm.showHeader}" />
 			<input type="hidden" name="queryServerGroup" value="${information.searchForm.queryServerGroup}" />
 			
+			
 
 		</form>
 

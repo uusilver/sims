@@ -13,23 +13,56 @@
 		<script type="text/javascript">
 		function saveMenu(){
 			var passed = "0";
+			var correctIcon = "<img src=\"${contextPath}/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 			
+			var menuLevel = document.getElementsByName("menuLevel");
+			var levelVal=1;
+			for ( var i = 0; i < menuLevel.length; i++) {
+				  if (menuLevel[i].checked==true) {
+					  levelVal = menuLevel[i].value;
+					  break;
+				   }
+			}
+			if(levelVal==2){
+				var parentMenu = document.getElementsByName("parentMenuId")[0];
+				var index = parentMenu.selectedIndex;
+				var selected = parentMenu[index].value;
+				var parentMenuDiv = document.getElementById("parent_menuDiv");
+				if(selected==null||selected==''){
+					parentMenuDiv.className = "warning";
+					parentMenuDiv.innerHTML = "请选择上级菜单！";
+					document.getElementsByName("parentMenuId")[0].focus();
+					passed = "1";
+					return;
+				}
+				parentMenuDiv.innerHTML = correctIcon;
+			}
+			
+			var menuNameDiv = document.getElementById("menu_nameDiv");
 			if(trim(document.getElementsByName("resourceName")[0].value)==""){
-				alert("请输入菜单名称！");
+				//alert("请输入菜单名称！");
+				menuNameDiv.className = "warning";
+				menuNameDiv.innerHTML = "请输入菜单名称！";
 				document.getElementsByName("resourceName")[0].focus();
 				passed = "1";
 				return;
 			}
 		
-			if(trim(document.getElementsByName("resourceName")[0].value).length>60){
-				alert("菜单名称过长！");
+			if(trim(document.getElementsByName("resourceName")[0].value).length>20){
+				//alert("菜单名称过长！");
+				menuNameDiv.className = "warning";
+				menuNameDiv.innerHTML = "菜单名称过长，不能超过20个字符，请修改！";
 				document.getElementsByName("resourceName")[0].focus();
 				passed = "1";
 				return;
 			}
-		
+			menuNameDiv.innerHTML = correctIcon;
+
+			var menuOrderDiv = document.getElementById("menu_orderDiv");
 			if(trim(document.getElementsByName("menuOrder")[0].value)==""){
-				alert("请输入菜单顺序！");
+				//alert("请输入菜单顺序！");
+				menuOrderDiv.className = "warning";
+				menuOrderDiv.innerHTML = "请输入菜单顺序！";
 				document.getElementsByName("menuOrder")[0].focus();
 				passed = "1";
 				return;
@@ -37,32 +70,44 @@
 
 
 			if(document.getElementsByName("menuOrder")[0].value!="" && !checkIsNum(trim(document.getElementsByName("menuOrder")[0].value))){
-				alert("菜单顺序必须为数字，请重新输入！");
+				//alert("菜单顺序必须为数字，请重新输入！");
+				menuOrderDiv.className = "warning";
+				menuOrderDiv.innerHTML = "菜单顺序必须为数字，请重新输入！";
 				document.getElementsByName("menuOrder")[0].focus();
 				passed = "1";
 				return;
 			}
 			
 			if(trim(document.getElementsByName("menuOrder")[0].value).length>2){
-				alert("菜单顺序必须为2位数字！");
+				//alert("菜单顺序必须为2位数字！");
+				menuOrderDiv.className = "warning";
+				menuOrderDiv.innerHTML = "菜单顺序必须为2位数字！";
 				document.getElementsByName("menuOrder")[0].focus();
 				passed = "1";
 				return;
 			}
+			menuOrderDiv.innerHTML = correctIcon;
 			
+
+			var menuUrlDiv = document.getElementById("menu_urlDiv");
 			if(trim(document.getElementsByName("resourceUrl")[0].value)==""){
-				alert("请输入菜单链接！");
+				//alert("请输入菜单链接！");
+				menuUrlDiv.className = "warning";
+				menuUrlDiv.innerHTML = "请输入菜单链接！";
 				document.getElementsByName("resourceUrl")[0].focus();
 				passed = "1";
 				return;
 			}
 			
 			if(trim(document.getElementsByName("resourceUrl")[0].value).length > 200){
-				alert("菜单链接过长！");
+				//alert("菜单链接过长！");
+				menuUrlDiv.className = "warning";
+				menuUrlDiv.innerHTML = "菜单链接过长，不能超过200个字符，请修改！";
 				document.getElementsByName("resourceUrl")[0].focus();
 				passed = "1";
 				return;
 			}
+			menuUrlDiv.innerHTML = correctIcon;
 
 			if(passed=="0"){
 				window.confirm("您确定要添加菜单信息吗？","OK()","Cancel()");
@@ -139,6 +184,7 @@
 					<td class="qinggoudan_table_td1" id="parentMenuIdTd">
 						<pub:link sql="<%=SpmsConstants.QUERY_MENUINFO_FIRST%>" num="1" id="t.role_id" valueName="t.role_name"
 							title="请选择上级菜单" next="false" name="parentMenuId" mvalue="" />
+						<span id="parent_menuDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
@@ -149,6 +195,7 @@
 					<td class="qinggoudan_table_td1">
 						&nbsp;
 						<input type="text" name="resourceName" class="qinggoudan_input02" maxlength="16" size="20">
+						<span id="menu_nameDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
@@ -159,6 +206,7 @@
 					<td class="qinggoudan_table_td1">
 						&nbsp;
 						<input type="text" name="menuOrder" class="qinggoudan_input02" maxlength="3" size="10">
+						<span id="menu_orderDiv"></span>
 					</td>
 				</tr>
 				<tr height="30">
@@ -170,6 +218,7 @@
 						&nbsp;
 						<%--<input type="text" name="resourceUrl" class="qinggoudan_input02" size="40">--%>
 						<textarea rows="3" cols="50" name="resourceUrl"></textarea>
+						<span id="menu_urlDiv"></span>
 					</td>
 				</tr>
 

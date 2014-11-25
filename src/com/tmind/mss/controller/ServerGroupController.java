@@ -243,16 +243,16 @@ public class ServerGroupController extends MultiActionController {
 		serverGroupForm.setViewOrEdit(viewOrEdit);
 
 		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
-
-			if (null == currentPage || "".equals(currentPage)) {
-				currentPage = "1";
-			}
-			serverGroupForm.setCurrentPage(currentPage);
 			
 			SessionUtils.setObjectAttribute(request, "serverGroupFormSession", serverGroupForm);
 		} else if (ifSession != null && ifSession.equals("yes")) {
 			serverGroupForm = (ServerGroupForm) SessionUtils.getObjectAttribute(request, "serverGroupFormSession");
 		}
+		
+		if (null == currentPage || "".equals(currentPage)) {
+			currentPage = "1";
+		}
+		serverGroupForm.setCurrentPage(currentPage);
 		
 		HashMap serverResult = null;
 		serverResult = serverGroupBO.queryServerGroupList(serverGroupForm,String.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));

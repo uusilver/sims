@@ -208,17 +208,18 @@ public class OperDnsServerController extends MultiActionController {
 		serverInfoForm.setShowHeader(showHeader);
 		serverInfoForm.setIndexNO(indexNO);
 
+		
 		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
-
-			if (null == currentPage || "".equals(currentPage)) {
-				currentPage = "1";
-			}
-			serverInfoForm.setCurrentPage(currentPage);
 			
 			SessionUtils.setObjectAttribute(request, "serverInfoFormSession", serverInfoForm);
 		} else if (ifSession != null && ifSession.equals("yes")) {
 			serverInfoForm = (ServerInfoForm) SessionUtils.getObjectAttribute(request, "serverInfoFormSession");
 		}
+
+		if (null == currentPage || "".equals(currentPage)) {
+			currentPage = "1";
+		}
+		serverInfoForm.setCurrentPage(currentPage);
 		
 		HashMap serverResult = null;
 		serverResult = dnsServerBO.queryDnsServerList(serverInfoForm,String.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));

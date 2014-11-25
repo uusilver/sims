@@ -62,7 +62,6 @@
 				<tr height="30">
 					<td align="center" class="qinggoudan_table_title">
 						角色状态
-						<font color="red">*</font>
 					</td>
 					<td align="left" class="qinggoudan_table_td1">
 						<pub:link sql="<%=SpmsConstants.QUERY_ROLE_STATE%>" num="1" title="" next="false" name="roleState"

@@ -15,49 +15,106 @@
 		<script type="text/javascript">
 		function saveMenu(){
 			var passed = "0";
+			var correctIcon = "<img src=\"${contextPath}/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";
 			
 			var menuLevel= $('input:radio[name="menuLevel"]:checked').val();
 			
 			var fatherMenu = $("select[name=parentMenuId]").val();
-			
+
+			var parentMenuDiv = document.getElementById("parent_menuDiv");
 			if(menuLevel=="2"&&(fatherMenu==null||fatherMenu=="")){
-				alert("请选择上级菜单！");
+				//alert("请选择上级菜单！");
+				parentMenuDiv.className = "warning";
+				parentMenuDiv.innerHTML = "请选择上级菜单！";
 				$("select[name=parentMenuId]").focus();
 				return;
 			}
+			parentMenuDiv.innerHTML = correctIcon;
 			
+
+			var menuNameDiv = document.getElementById("menu_nameDiv");
 			if(trim(document.getElementsByName("resourceName")[0].value)==""){
-				alert("请输入菜单名称！");
+				//alert("请输入菜单名称！");
+				menuNameDiv.className = "warning";
+				menuNameDiv.innerHTML = "请输入菜单名称！";
 				document.getElementsByName("resourceName")[0].focus();
 				passed = "1";
 				return;
 			}
+		
+			if(trim(document.getElementsByName("resourceName")[0].value).length>20){
+				//alert("菜单名称过长！");
+				menuNameDiv.className = "warning";
+				menuNameDiv.innerHTML = "菜单名称过长，不能超过20个字符，请修改！";
+				document.getElementsByName("resourceName")[0].focus();
+				passed = "1";
+				return;
+			}
+			menuNameDiv.innerHTML = correctIcon;
 			
+
+			var menuOrderDiv = document.getElementById("menu_orderDiv");
 			if(trim(document.getElementsByName("menuOrder")[0].value)==""){
-				alert("请输入菜单顺序！");
+				//alert("请输入菜单顺序！");
+				menuOrderDiv.className = "warning";
+				menuOrderDiv.innerHTML = "请输入菜单顺序！";
 				document.getElementsByName("menuOrder")[0].focus();
 				passed = "1";
 				return;
 			}
 
 			if(document.getElementsByName("menuOrder")[0].value!="" && !checkIsNum(trim(document.getElementsByName("menuOrder")[0].value))){
-				alert("菜单顺序必须为数字，请重新输入！");
+				//alert("菜单顺序必须为数字，请重新输入！");
+				menuOrderDiv.className = "warning";
+				menuOrderDiv.innerHTML = "菜单顺序必须为数字，请重新输入！";
 				document.getElementsByName("menuOrder")[0].focus();
 				passed = "1";
 				return;
 			}
 			
+			if(trim(document.getElementsByName("menuOrder")[0].value).length>2){
+				//alert("菜单顺序必须为2位数字！");
+				menuOrderDiv.className = "warning";
+				menuOrderDiv.innerHTML = "菜单顺序必须为2位数字！";
+				document.getElementsByName("menuOrder")[0].focus();
+				passed = "1";
+				return;
+			}
+			menuOrderDiv.innerHTML = correctIcon;
+			
+
+			var menuUrlDiv = document.getElementById("menu_urlDiv");
 			if(trim(document.getElementsByName("resourceUrl")[0].value)==""){
-				alert("请输入菜单链接！");
+				//alert("请输入菜单链接！");
+				menuUrlDiv.className = "warning";
+				menuUrlDiv.innerHTML = "请输入菜单链接！";
 				document.getElementsByName("resourceUrl")[0].focus();
 				passed = "1";
 				return;
 			}
-
-			if(passed=="0" && confirm("您确定要添加菜单信息吗？")){
-				document.menuAddForm.action = "${contextPath}/mss/jsp/menuController.do?method=saveMenuInfo";
-				document.menuAddForm.submit();
+			
+			if(trim(document.getElementsByName("resourceUrl")[0].value).length > 200){
+				//alert("菜单链接过长！");
+				menuUrlDiv.className = "warning";
+				menuUrlDiv.innerHTML = "菜单链接过长，不能超过200个字符，请修改！";
+				document.getElementsByName("resourceUrl")[0].focus();
+				passed = "1";
+				return;
 			}
+			menuUrlDiv.innerHTML = correctIcon;
+
+			if(passed=="0"){
+				window.confirm("您确定要修改菜单信息吗？","OK()","Cancel()");
+			}
+		}
+		
+		function OK(){
+			document.menuAddForm.action = "${contextPath}/mss/jsp/menuController.do?method=saveMenuInfo";
+			document.menuAddForm.submit();
+		}
+		
+		function Cancel(){
+			return false;
 		}
 		
 		function checkLevel(level)
@@ -129,7 +186,7 @@
 					<td class="qinggoudan_table_td1" id="parentMenuIdTd">
 						<pub:link sql="<%=SpmsConstants.QUERY_MENUINFO_FIRST%>" num="1" id="t.role_id" valueName="t.role_name"
 							title="请选择上级菜单" next="false" name="parentMenuId" mvalue="${information.menuInfo.menu.menuId}" />
-
+						<span id="parent_menuDiv"></span>
 					</td>
 				</tr>
 				<tr height="28">
@@ -141,6 +198,7 @@
 						&nbsp;
 						<input type="text" name="resourceName" maxlength="16" size="20" class="qinggoudan_input02"
 							value="${fn:escapeXml(information.menuInfo.menuName)}">
+						<span id="menu_nameDiv"></span>
 					</td>
 				</tr>
 				<tr height="28">
@@ -151,6 +209,7 @@
 					<td class="qinggoudan_table_td1">
 						&nbsp;
 						<input type="text" name="menuOrder" class="qinggoudan_input02" maxlength="3" size="10" value="${information.menuInfo.menuOrder}">
+						<span id="menu_orderDiv"></span>
 					</td>
 				</tr>
 				<tr height="28">
@@ -162,12 +221,12 @@
 						&nbsp;
 						<%--<input type="text" name="resourceUrl" class="qinggoudan_input02" size="40" value="${information.menuInfo.menuUrl}">--%>
 						<textarea rows="3" cols="50" name="resourceUrl">${information.menuInfo.menuUrl}</textarea>
+						<span id="menu_urlDiv"></span>
 					</td>
 				</tr>
 				<tr height="28">
 					<td width="15%" class="qinggoudan_table_title">
 						菜单状态
-						<font color="red">*</font>
 					</td>
 					<td width="70%" class="qinggoudan_table_td1">
 						&nbsp;
@@ -184,7 +243,7 @@
 							onMouseOut="className='anniu_out'">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" class="anniu_out" value=" 返 回 " onMouseOver="className='anniu_over'"
-							onMouseOut="className='anniu_out'" onclick="window.location='${contextPath}/mss/jsp/menuController.do?method=queryMenuList'">
+							onMouseOut="className='anniu_out'" onclick="window.location='${contextPath}/mss/jsp/menuController.do?method=queryMenuList&queryMenuState=${information.queryMenuState }'">
 					</td>
 				</tr>
 			</table>

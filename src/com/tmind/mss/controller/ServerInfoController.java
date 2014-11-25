@@ -284,16 +284,16 @@ public class ServerInfoController extends MultiActionController {
 		serverInfoForm.setQueryStatus(queryStatus);
 
 		if (accessType != null && accessType.equals("menu")) {// 菜单首次访问，默认查询状态有效的信息
-
-			if (null == currentPage || "".equals(currentPage)) {
-				currentPage = "1";
-			}
-			serverInfoForm.setCurrentPage(currentPage);
-			
+			queryStatus = MssConstants.STATE_A;
 			SessionUtils.setObjectAttribute(request, "serverInfoFormSession", serverInfoForm);
 		} else if (ifSession != null && ifSession.equals("yes")) {
 			serverInfoForm = (ServerInfoForm) SessionUtils.getObjectAttribute(request, "serverInfoFormSession");
 		}
+
+		if (null == currentPage || "".equals(currentPage)) {
+			currentPage = "1";
+		}
+		serverInfoForm.setCurrentPage(currentPage);
 		
 		HashMap serverResult = null;
 		serverResult = serverInfoBO.queryServerInfoList(serverInfoForm,String.valueOf(MssConstants.COUNT_FOR_EVERY_PAGE));

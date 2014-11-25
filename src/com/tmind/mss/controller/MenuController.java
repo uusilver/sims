@@ -135,6 +135,9 @@ public class MenuController extends MultiActionController {
 		String currPage = request.getParameter("currPage");
 
 		String resourceId = request.getParameter("resourceId");
+
+		String queryMenuState = request.getParameter("queryMenuState");
+		
 		Menu menu = new Menu();
 		if (resourceId != null && !resourceId.equals("")) {
 			menu = menuBO.getMenuById(new Long(resourceId));
@@ -144,10 +147,10 @@ public class MenuController extends MultiActionController {
 		if (oprType == null || oprType.equals("")) {
 			oprType = "view";
 		}
-
+		
 		map.put("menuInfo", menu);
 		map.put("oprType", oprType);
-
+		map.put("queryMenuState", queryMenuState);
 		return new ModelAndView("/mss/jsp/sysManage/menuInfo.jsp?currPage=" + currPage,
 				RequestNameConstants.INFORMATION, map);
 	}

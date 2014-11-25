@@ -115,5 +115,17 @@ function checkForm() {
 	
 	roleDescDiv.innerHTML = "<img src=\"../../image/correct.png\" width=\"25\" heigth=\"25\"/>";
     
+	
+	var menuId = document.getElementsByName("menuId")[0];
+	var roleMenuDiv = document.getElementById("role_menuDiv");
+	if(menuId.options.length==0){
+		roleMenuDiv.className = "warning";
+		roleMenuDiv.innerHTML = "请选择该角色可以访问的系统菜单！";
+		menuId.focus();
+		checkAllButton(false);
+		return false;
+	}
+	roleMenuDiv.innerHTML = "<img src=\"../../image/correct.png\" width=\"25\" heigth=\"25\"/>";
+    
 	return true;
 }
