@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>服务器信息管理系统V1.0</title>
+<title>服务器信息管理系统（SIMS）v1.0</title>
 <link href="${contextPath }/mss/css/top.css" rel="stylesheet" type="text/css">
 </head>
 

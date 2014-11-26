@@ -3,7 +3,7 @@
 
 <html>
 	<head>
-		<title>南京移动物业管理系统</title>
+		<title>服务器信息管理系统（SIMS）v1.0</title>
 	    <link href="${contextPath }/mss/css/menu.css" rel="stylesheet" type="text/css" />
 	    <script type="text/javascript">
 	    	function tabit(prefix,idx) {

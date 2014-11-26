@@ -62,11 +62,12 @@ public class UserLoginController extends SimpleFormController {
             switch(resultCode)
             {
             case ResultConstants.LOGIN_SUECCESS: //登录成功
-            	gotoUrl = "/mss/jsp/main.jsp";
+            	//gotoUrl = "/mss/jsp/main.jsp";
+            	gotoUrl = "/mss/jsp/information.jsp";
 //                String sHavingCookie = RequestUtils.getStringParameter(request, "retainPwd");
 //                String sSelectPage = RequestUtils.getStringParameter(request,"selectPage");
 //                Cookie diyUserCookie = null;
-                resultInfos.setGotoUrl(gotoUrl);
+                resultInfos.setGotoUrl("/mss/jsp/main.jsp");
 //                if(sHavingCookie != null)
 //                {
 //                    if(this.checkCookieHavingChar(loginPwd))

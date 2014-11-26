@@ -56,6 +56,15 @@
 				passed = "1";
 				return;
 			}
+			var chkUrl = document.getElementsByName("checkUrl")[0];
+			chkUrl.value += "&menuLevel="+levelVal;
+			if(checkIsExist(document.getElementsByName("resourceName")[0], '', 'frame_menu') == "false") {
+				//alert("姓名已经存在，请修改！");
+			infoDiv.className = "warning";
+			infoDiv.innerHTML = "菜单已经存在，请修改！";
+			document.getElementsByName("resourceName")[0].focus();
+			return false;
+		}
 			menuNameDiv.innerHTML = correctIcon;
 
 			var menuOrderDiv = document.getElementById("menu_orderDiv");
@@ -146,7 +155,7 @@
 		<br />
 
 		<form name="menuAddForm" method="post">
-
+			<input type="hidden" name="checkUrl" value="${contextPath}/mss/jsp/sysManage/roleManageController.do?method=checkIsExist&stateColName=menu_state" />
 			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="qinggoudan_table"
 				style="margin:0px;">
 				<tr>
@@ -194,7 +203,7 @@
 					</td>
 					<td class="qinggoudan_table_td1">
 						&nbsp;
-						<input type="text" name="resourceName" class="qinggoudan_input02" maxlength="16" size="20">
+						<input type="text" name="resourceName" id="menu_name" class="qinggoudan_input02" maxlength="16" size="20">
 						<span id="menu_nameDiv"></span>
 					</td>
 				</tr>
@@ -219,6 +228,15 @@
 						<%--<input type="text" name="resourceUrl" class="qinggoudan_input02" size="40">--%>
 						<textarea rows="3" cols="50" name="resourceUrl"></textarea>
 						<span id="menu_urlDiv"></span>
+					</td>
+				</tr>
+				<tr height="30">
+					<td width="15%" class="qinggoudan_table_title">
+					</td>
+				
+					<td width="70%" class="qinggoudan_table_td1">
+						&nbsp;
+						<span class="OK">如果没有链接地址，请输入‘#’</span>
 					</td>
 				</tr>
 

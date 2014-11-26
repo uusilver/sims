@@ -344,6 +344,9 @@ public class RoleManageController extends MultiActionController {
 		
 		// 记录状态字段名
 		String stateColName = request.getParameter("stateColName");
+		
+		// 菜单级别，用于校验菜单名称唯一性
+		String menuLevel = request.getParameter("menuLevel");
 
 		String[] tableNameAndServerType =null;
 		
@@ -365,7 +368,11 @@ public class RoleManageController extends MultiActionController {
 
 			sbSql.append(" WHERE ");
 			sbSql.append(colName + " = '" + colVal.trim() + "'");
-			sbSql.append(" and "+stateColName+" != "+"'D'");
+			if(colName.equals("menu_name")){
+				sbSql.append(" and "+stateColName+" != "+"'U'");
+			}else{
+				sbSql.append(" and "+stateColName+" != "+"'D'");
+			}
 			
 			if(serverType.equals("0")||serverType.equals("2")){
 				sbSql.append(" and servertype=1 ");
@@ -373,6 +380,10 @@ public class RoleManageController extends MultiActionController {
 			
 			if(serverType.equals("1")){
 				sbSql.append(" and servertype=2 ");
+			}
+			
+			if(menuLevel!=null&&!"".equals(menuLevel)){
+				sbSql.append(" and menu_level= "+menuLevel);
 			}
 
 			log.info("检查是否存在SQL：" + sbSql.toString());

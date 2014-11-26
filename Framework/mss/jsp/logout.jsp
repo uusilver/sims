@@ -24,7 +24,7 @@ for (int i = 0; cookies != null && i < cookies.length; i++)
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>南京移动物资采购管理系统</title>
+<title>服务器信息管理系统（SIMS）－用户退出</title>
 </head >
  <body onLoad='window.parent.location.href = "${contextPath }/login.jsp"'>
  </body>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>南京移动物资采购信息系统</title>
+<title>服务器信息管理系统（SIMS）v1.0</title>
 <link href="${contextPath}/mss/css/main.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 <!--

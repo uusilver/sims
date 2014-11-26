@@ -104,6 +104,14 @@
 				return false;
 			}
 			
+			var condition = /[\u4E00-\u9FA5]/i; //校验是否汉字
+			if(condition.test(trim(password.value))) {
+				infoDiv.className = "warning";
+		        infoDiv.innerHTML = "密码不能含有汉字，请修改！";
+		        password.focus();
+				return false;
+			}
+			
 			//infoDiv.className = "OK";
 		    //infoDiv.innerHTML = "密码符合要求";
 		    infoDiv.innerHTML = "<img src=\"${contextPath }/mss/image/correct.png\" width=\"25\" heigth=\"25\"/>";

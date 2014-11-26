@@ -138,9 +138,10 @@ $(function() {
 	<!--背景图自适应-->
 	$(window).load(function(){
 		fullBg($("#background"));
-		if(msg!=null&&msg!=""){
+		if(msg!=null&&msg!=""&&msg!="登录成功，欢迎您！"){
 			alert(msg);
 		}
+		
 	});
 	
 	$(".login_btn_b").click(function(){
