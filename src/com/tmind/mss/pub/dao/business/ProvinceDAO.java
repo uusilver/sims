@@ -32,7 +32,7 @@ public class ProvinceDAO extends BaseDao {
 	public void save(Province transientInstance) {
 		log.debug("saving Province instance");
 		try {
-			getSession().merge(transientInstance);
+			getSession().saveOrUpdate(transientInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);

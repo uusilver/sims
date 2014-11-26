@@ -201,6 +201,7 @@ public class LocationController extends MultiActionController{
 							coutryId = String.valueOf(cTemp.getCountryid());
 						}
 					}
+//					coutryId = String.valueOf(perCountry.getCountryid());
 					
 				}else{				//id like = "1-1", the first is the prefix, the second number which is after "-" is the real id
 				//same for below
