@@ -109,8 +109,8 @@ $(function () {
 	       
 	       $.post('/sims/mss/html/locationController.do?method=saveLocationInfo',{result:result},function(data){
 	    	      if(data=='success'){
-	                  alert('保存成功!');
 	                  window.location.reload();
+	                  alert('保存成功!');
 	              }else{
 	            	  alert('保存失败');
 
