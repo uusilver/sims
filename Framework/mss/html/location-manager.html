@@ -63,5 +63,13 @@
 	<script src="js/lib/site.js"></script>
 	<script>$.each($q,function(i,f){$(f)});$q=null;</script>
     
-
+	<script type="text/javascript">
+        window.onload = function() {
+            var url = window.location.href.indexOf('?');
+            
+            if(url!=-1){
+                alert("保存成功");
+            }
+        };
+    </script>
 </body></html>
