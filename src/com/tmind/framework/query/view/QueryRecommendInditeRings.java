@@ -6,7 +6,7 @@ package com.tmind.framework.query.view;
  *
  * <p>Description: http://localhost:8080/cring/jsp/user/login.jsp</p>
  *
- * <p>Copyright: Copyright (c) 2005</p>
+ * <p>Copyright: Copyright (c) 2014</p>
  *
  * <p>Company: tmind.com</p>
  *

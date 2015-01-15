@@ -8,7 +8,7 @@ import org.jdom.Element;
  *
  * <p>Description: Framework</p>
  *
- * <p>Copyright: Copyright (c) 2005</p>
+ * <p>Copyright: Copyright (c) 2014</p>
  *
  * <p>Company: tmind.com</p>
  *

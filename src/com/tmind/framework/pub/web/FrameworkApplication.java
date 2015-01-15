@@ -27,7 +27,7 @@ import com.tmind.mss.pub.web.SysOperLog;
  * Description: Framework
  * </p>
  * <p>
- * Copyright: Copyright (c) 2005
+ * Copyright: Copyright (c) 2014
  * </p>
  * <p>
  * Company: tmind.com

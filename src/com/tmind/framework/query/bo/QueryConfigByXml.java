@@ -17,11 +17,11 @@ import java.util.HashMap;
  *
  * <p>Description: Framework</p>
  *
- * <p>Copyright: Copyright (c) 2005</p>
+ * <p>Copyright: Copyright (c) 2014</p>
  *
  * <p>Company: tmind.com</p>
  *
- * @author 杨永清
+ * @author 杨洋
  * @version 1.0
  */
 public class QueryConfigByXml implements IQueryConfig, IJdomConfig

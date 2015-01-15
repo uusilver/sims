@@ -49,7 +49,7 @@ import java.math.BigInteger;
  * The symbol <code>*</code> is used to indicate any input including <code>null</code>.</p>
  *
  *
- * @author 杨永清
+ * @author 杨洋
 
 
 

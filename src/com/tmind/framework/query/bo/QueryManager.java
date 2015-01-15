@@ -27,7 +27,7 @@ import com.tmind.framework.pub.utils.ExceptionUtils;
  *
  * <p>Description: Framework</p>
  *
- * <p>Copyright: Copyright (c) 2005</p>
+ * <p>Copyright: Copyright (c) 2014</p>
  *
  * <p>Company: tmind.com</p>
  *
@@ -37,7 +37,7 @@ import com.tmind.framework.pub.utils.ExceptionUtils;
  *        IQueryCondition（目前的实现为QueryConditionByXml）：条件区域
  *        IQueryValueFetch（目前的实现为QueryValueFetchByJdbcSql）：结果获取
  *        QueryExhibit：结果展现
- * @author 杨永清
+ * @author 杨洋
  * @version 1.0
  *
  * 修改记录：

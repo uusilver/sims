@@ -35,11 +35,11 @@ import com.tmind.framework.pub.utils.ArrayListUtils;
  *
  * <p>Description: Framework</p>
  *
- * <p>Copyright: Copyright (c) 2005</p>
+ * <p>Copyright: Copyright (c) 2014</p>
  *
  * <p>Company: tmind.com</p>
  *
- * @author 杨永清
+ * @author 杨洋
 
 
 
@@ -246,11 +246,11 @@ public class QueryValueFetchByJdbcSql implements IQueryValueFetch, IJdomConfig, 
    *
    * <p>Description: Framework</p>
    *
-   * <p>Copyright: Copyright (c) 2005</p>
+   * <p>Copyright: Copyright (c) 2014</p>
    *
    * <p>Company: tmind.com</p>
    *
-   * @author 杨永清
+   * @author 杨洋
 
 
 
